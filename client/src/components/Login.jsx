@@ -2,7 +2,9 @@
 
 const Login=()=>{
     return(
-        <h1>Hello!</h1>
+        <h1>
+            hola!
+        </h1>
     )
 }
 export default Login;
