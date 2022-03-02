@@ -3,7 +3,7 @@
 const Login=()=>{
     return(
         <h1>
-            hola!
+            hello!
         </h1>
     )
 }
