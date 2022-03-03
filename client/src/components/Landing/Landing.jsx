@@ -1,4 +1,4 @@
-import styles from "../styles/Landing.module.css";
+import styles from "./Landing.module.css";
 
 export default function Landing(){
     return(
