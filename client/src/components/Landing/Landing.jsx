@@ -1,9 +1,10 @@
-import styles from "../styles/Landing.module.css";
+import styles from "./Landing.module.css";
 
 export default function Landing(){
     return(
-        <div>
-            <h1 className={styles.h1} >Landing Pagee!!</h1>
+        <div className={styles.container}>
+            <div className={styles.leftDiv} ><img src="" alt="" /></div>
+            <div className={styles.rightDiv} ></div>
         </div>
     )
 };
