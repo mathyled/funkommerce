@@ -1,0 +1,28 @@
+
+.login{
+    width: 350px;
+    height: 500px;
+    background-color:#8067c3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing:3px;
+    text-decoration: underline;
+    position: relative;
+}
+
+.login h3{
+    color:white;
+
+}
+
+.inputGroup{
+    display: flex;
+    flex-direction: column;
+}
+.login button{
+    width: 80%;
+    margin:20px 10%;
+    height: 30px;
+}
