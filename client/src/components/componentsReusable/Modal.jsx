@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import S from './Modal.module.css';
+import S from './Generics.module.css';
 
 const Login=({children,buttonText})=>{
 

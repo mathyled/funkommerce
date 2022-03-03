@@ -1,38 +1,51 @@
-import Modal from '../componentsReusable/Modal';
-import Input from '../componentsReusable/Input';
-import Button from '../componentsReusable/Button';
-import S from './Login.module.css';
+import Modal from "../componentsReusable/Modal";
+import Input from "../componentsReusable/Input";
+import Button from "../componentsReusable/Button";
 
- const Login=()=>{
+import S from './Login.module.css';
+import {validator} from '../../helpers/validatorsForm';
+import { useState } from "react";
+
+const Login = () => {
+
+  const [inputs,setInputs]=useState({
+    email:'',
+    password:''
+  });
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+  });
 
     return (
-      <Modal buttonText="REGISTER">
-        <main className={S.containerForm}>
-          <form className={S.login}>
-            <h3>CREATE ACCOUNT</h3>
-            <div className={S.inputGroup}>
-              <Span text="Name" />
-              <Input type="text" name="name" />
-              <Span text="Last-Name" />
-              <Input type="text" name="lastName" />
-              <Span text="Password" />
-              <Input type="password" name="password" />
-              <Span text="Email" />
-              <Input type="email" name="email" />
+      <Modal buttonText="Login">
+        <main className={S.container}>
+          <form autoComplete="off">
+            <h3>REGISTER</h3>
+            <div className={S.inputGroup} onChange={(e)=>{
+
+              setInputs({
+                ...inputs,
+                [e.target.name]:e.target.value,
+              })
+              setError(validator(error,e.target))
+
+            }}>
+              <span>Email</span>
+              <Input type="email" name="email" placeholder="example@gmail"/>
+                {error.email && <b>{error.email}</b>}
+              <span>Password</span>
+              <Input type="password" name="password" placeholder='password'/>
+                {error.password && <b>{error.password}</b>}
+                
+              <Button>
+                Submit
+              </Button>
             </div>
-            <Button>Submit</Button>
           </form>
         </main>
       </Modal>
     );
-}
-
-const Span=({text})=>{
-  return (
-    <span className={S.spanText}>
-      {text}
-    </span>);
-}
-
+};
 
 export default Login;

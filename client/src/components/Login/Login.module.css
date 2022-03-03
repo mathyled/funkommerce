@@ -1,42 +1,28 @@
 
-
-
-.login{
-    width:94%;
-    margin:4% 3%;
-    height:92%;
-    
+.container{
+    width: 350px;
+    background-color: #61a2ba;
+    border-radius: 10px;
+    padding: 10px 3px;
 }
-
-.login h3{
+.container h3{
     color:white;
-    margin-top:10px;
-    margin-bottom: 20px;
-
+    margin-top:5px;
+    margin-bottom: 5px;
 }
 
 .inputGroup{
-    display: flex;
+    width: 98%;
+    margin:20px 1%;
+    display:flex;
     flex-direction: column;
 }
-.spanText{
+.inputGroup span{
     text-align: start;
-    color:#eae8ee;
+    color:#ebf0dd;
     font-weight: bold;
-    border-left:4px solid white;
+    border-left:3px solid white;
     padding-left:8px;
     border-bottom: 0.5px solid #ffffff17;
-}
-
-.containerForm{
-    width: 350px;
-    height: 500px;
-    background-color:#8067c3;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    letter-spacing:3px;
-    position: relative;
-
+    margin-bottom: 5px;
 }

@@ -1,9 +1,9 @@
-import S from './Modal.module.css';
+import S from './Generics.module.css';
 
-const Input =()=>{
+const Input =({placeholder,name,type})=>{
 
     return(
-        <input className={S.input}/>
+        <input className={S.input} placeholder={placeholder} name={name} type={type}/>
     )
 
 }

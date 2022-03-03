@@ -1,4 +1,4 @@
-import S from './Modal.module.css'
+import S from './Generics.module.css'
 
 export default function Button({children,click}){
     return(
