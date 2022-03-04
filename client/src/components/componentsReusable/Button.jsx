@@ -1,10 +1,9 @@
-import React from "react";
+import S from './Generics.module.css'
 
-
-export default function Button(){
+export default function Button({children,click}){
     return(
-        <div>
-            <button></button>
-        </div>
+            <button onClick={click} className={S.button}>
+                {children}
+            </button>
     )
 };

@@ -1,0 +1,44 @@
+
+.login{
+    width:92%;
+    margin:4% 4%;
+    /* height:95%; */
+    
+}
+
+.login h3{
+    color:white;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.inputGroup{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.containerForm{
+    width: 350px;
+    background-color:#8067c3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing:3px;
+    position: relative;
+
+}
+
+.err{
+    margin:-2px 0px 10px 0px;
+    color: #e5e96f;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.invalid{
+    box-shadow: 0px 0px 2px 2px red;
+}
+
+
