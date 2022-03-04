@@ -8,7 +8,6 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-      
     case TYPES.GET_FUNKOS:
       return {
         ...state,
@@ -17,12 +16,14 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.ADD_TO_CART:
       let newItem = state.funkos.find(
-        (product) => product.id === action.payload
+        (product) => String(product.id) === String(action.payload)
       );
-
-      let itemCart = state.cart.find((item) => item.id === newItem.id);
-
-      return itemCart
+      //console.log('newItem',newItem)
+      let itemInCart = state.cart.find(
+        (item) => String(item.id) === String(newItem.id)
+      );
+      //console.log('itemInCart',itemInCart)
+      return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
@@ -37,29 +38,37 @@ export default function rootReducer(state = initialState, action) {
           };
 
     case TYPES.REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
-
+      let itemToDelete = state.cart.find(
+        (item) => String(item.id) === String(action.payload)
+      );
+      console.log(itemToDelete, "itemToDelete");
       return itemToDelete.quantity > 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === action.payload
+              String(item.id) === String(action.payload)
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
             ),
           }
         : {
             ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
+            cart: state.cart.filter(
+              (item) => String(item.id) !== String(action.payload)
+            ),
           };
 
-    case TYPES.REMOVE_ALL_FROM_CART: {
+    case TYPES.REMOVE_ALL_FROM_CART: 
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart.filter(
+          (item) => String(item.id) !== String(action.payload)
+        ),
       };
-    };
-
+    
+    case TYPES.CLEAR_CART:
+      return initialState;
+      
     case TYPES.SEARCH_FUNKOS: {
       console.log(action.payload)
       return {
@@ -67,6 +76,7 @@ export default function rootReducer(state = initialState, action) {
         funkos: [action.payload]
       }
     }
+
 
     default:
       return { ...state };
