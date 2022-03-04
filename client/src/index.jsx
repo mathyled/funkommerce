@@ -6,14 +6,35 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
+import { I18nextProvider } from "react-i18next";
+import i18next from "i18next";
+import global_es from "./translations/ES/global.json";
+import global_en from "./translations/EN/global.json";
+
+i18next.init({
+  interpolation: { escapeValue: false },
+  lng:"en",
+  resources:{
+    en:{
+      global: global_en
+    },
+    es:{
+      global: global_es
+    },
+  }
+
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <I18nextProvider i18n={i18next} >
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </I18nextProvider>
+
   </React.StrictMode>,
   document.getElementById("root")
 );

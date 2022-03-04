@@ -1,0 +1,12 @@
+{
+    "header":{
+        "hello-world":"Hello I am Mathias"
+    },
+    "cardDemo":{
+        "my-Card":"My Funko Card",
+        "click-here":"Click Here"
+    },
+    "funkoCard":{
+        "add-card":"Add to cart"
+    }
+}
