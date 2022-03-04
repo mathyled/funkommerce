@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {getFunkos} from "../../redux/actions"
+import {getFunkos, orderFunkos} from "../../redux/actions/actions"
+import s from "./Order.module.css"
 
 const Order = () => {
     const dispatch = useDispatch();
@@ -25,10 +26,14 @@ const Order = () => {
                 <option value="">
                     Order By...
                 </option>
+                <optgroup label="Alphabetical">
                 <option value="AtoZ">A to Z</option>
                 <option value="ZtoA">Z to A</option>
-                <option value="HighPrice">Price: High To Low</option>
-                <option value="LowPrice">Price: Low To High</option>
+                </optgroup>
+                <optgroup label="Price">
+                <option value="HighPrice">High To Low</option>
+                <option value="LowPrice">Low To High</option>
+                </optgroup>
             </select>
         </div>
     )
