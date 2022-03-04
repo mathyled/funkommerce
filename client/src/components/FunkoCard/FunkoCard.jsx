@@ -17,7 +17,7 @@ const FunkoCard = () => {
   }
 
 
-  if (funkos.lenght > 1) {
+  if (funkos.length < 1) {
     return (
       <div>
         <h1>Loading...</h1>
