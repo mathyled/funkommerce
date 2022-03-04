@@ -4,6 +4,7 @@ const initialState = {
   funkos: [],
   funkosBackUp: [],
   cart: [],
+  user:{}//Usuario de la sesion
 };
 
 export default function rootReducer(state = initialState, action) {

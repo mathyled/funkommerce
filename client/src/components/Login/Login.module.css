@@ -17,6 +17,10 @@
     display:flex;
     flex-direction: column;
 }
+
+.inputGroup b{
+    color:#c9f2ac;
+}
 .inputGroup span{
     text-align: start;
     color:#ebf0dd;

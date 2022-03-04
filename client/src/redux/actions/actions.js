@@ -1,6 +1,8 @@
 import axios from "axios";
 import { TYPES } from "./types";
 
+
+
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get(
@@ -49,3 +51,55 @@ export const searchFunkos = (name) => {
   }
 }
 
+
+//ACTIONS FOR CREATE USER 
+export const createUser=(name,lastName,email,userName,password) => {
+
+  return async (dispatch)=>{
+
+    try{
+
+      //Espera por crear un ususario
+      await axios.post('http:url.com',{name,lastName,email,userName,password});
+
+      dispatch({
+          type:TYPES.CREATE_USER,
+        })
+
+    }catch(error){
+
+      console.log('CREATEUSER__ACTION: ',error)
+
+    }
+
+
+  }
+
+}
+
+  //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
+
+  export const findUser=(userName,password)=>{
+
+    return async(dispatch)=>{
+
+      try{
+
+        const response=await axios.post('http:url.com',{userName,password});
+
+        dispatch({
+           type:TYPES.GET_USER,
+           payload:response
+        })
+
+
+      }catch(error){
+
+        console.log('FINDUSER_ACTION: ',error);
+      }
+
+
+
+    }
+
+  }
