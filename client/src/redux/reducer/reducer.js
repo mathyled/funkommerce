@@ -2,6 +2,7 @@ import { TYPES } from "../actions/types";
 
 const initialState = {
   funkos: [],
+  funkosBackUp: [],
   cart: [],
 };
 
@@ -9,7 +10,6 @@ export default function rootReducer(state = initialState, action) {
   switch (action.type) {
       
     case TYPES.GET_FUNKOS:
-      
       return {
         ...state,
         funkos: action.payload,
@@ -58,6 +58,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
+    };
+
+    case TYPES.SEARCH_FUNKOS: {
+      console.log(action.payload)
+      return {
+        ...state,
+        funkos: [action.payload]
+      }
     }
 
     default:

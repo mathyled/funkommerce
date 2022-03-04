@@ -28,3 +28,17 @@ export const deleteFromCart =
       ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
+
+export const searchFunkos = (name) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`https://the-funko-api.herokuapp.com//api/v1/items/${name}`)
+      dispatch({type: TYPES.SEARCH_FUNKOS, payload: data.data})
+    }
+    catch(e) {
+      dispatch({type: TYPES.SEARCH_FUNKOS, payload: []})
+      console.log("error in action searchFunko")
+      console.log(e)
+    }
+  }
+}
