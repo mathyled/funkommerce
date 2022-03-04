@@ -1,0 +1,49 @@
+.container{
+    /* background-color: red;
+    flex-direction: row;
+    justify-content: center; */
+   
+    /* overflow: hidden; */
+
+    display: flex;
+    
+    flex-wrap: wrap;
+    align-content: space-between;
+    /* display: inline-block; */
+    background-color: gray;
+}
+
+.funkosCard{
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    
+}
+.item{
+    display: flex;
+    flex-direction: column;
+  background-color: rgb(238, 255, 0);
+  margin: 5px;
+  height: 400px;
+  width: 350px;
+ 
+}
+.li{
+    list-style:none;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartImg{
+    height: 40px;
+    display: flex;
+    margin-left: 95%;
+    margin-top: 2px;
+    /* background-color: red; */
+}
+
+.funkoImg{
+    height: 250px;
+    margin: 0;
+}
