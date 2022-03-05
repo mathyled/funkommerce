@@ -3,7 +3,10 @@ import { TYPES } from "../actions/types";
 const initialState = {
   funkos: [],
   funkosBackUp: [],
-  cart: [],
+  cart:
+    JSON.parse(localStorage.getItem("funkosInCart")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("funkosInCart")),
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -27,7 +30,7 @@ export default function rootReducer(state = initialState, action) {
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
+            String(item.id)=== String(newItem.id)
                 ? { ...item, quantity: item.quantity + 1 }
                 : item
             ),
@@ -37,11 +40,41 @@ export default function rootReducer(state = initialState, action) {
             cart: [...state.cart, { ...newItem, quantity: 1 }],
           };
 
+
+
+
+          case TYPES.SUM_IN_CART:
+            let addItem = state.funkos.find(
+              (product) => String(product.id) === String(action.payload)
+            );
+            //console.log('newItem',newItem)
+            let itemInCart2 = state.cart.find(
+              (item) => String(item.id) === String(addItem.id)
+            );
+            //console.log('itemInCart',itemInCart)
+            return itemInCart2
+              ? {
+                  ...state,
+                  cart: state.cart.map((item) =>
+                  String(item.id)=== String(addItem.id)
+                      ? { ...item, quantity: item.quantity + 1 }
+                      : item
+                  ),
+                }
+              : {
+                  ...state,
+                  cart: [...state.cart, { ...addItem, quantity: 1 }],
+                };
+
+
+
+
+
     case TYPES.REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
         (item) => String(item.id) === String(action.payload)
       );
-      console.log(itemToDelete, "itemToDelete");
+      //console.log(itemToDelete, "itemToDelete");
       return itemToDelete.quantity > 1
         ? {
             ...state,
@@ -58,25 +91,38 @@ export default function rootReducer(state = initialState, action) {
             ),
           };
 
-    case TYPES.REMOVE_ALL_FROM_CART: 
+    case TYPES.REMOVE_ALL_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter(
           (item) => String(item.id) !== String(action.payload)
         ),
       };
-    
+
     case TYPES.CLEAR_CART:
-      return initialState;
-      
-    case TYPES.SEARCH_FUNKOS: {
-      console.log(action.payload)
+      localStorage.clear();
       return {
         ...state,
-        funkos: [action.payload]
-      }
-    }
+        cart: [],
+      };
 
+    // case TYPES.CHANGE_TEXT_BUTTON:
+    //   let changeText = state.funkos.find(
+    //     (item) => String(item.id) === String(action.payload[1])
+    //   );
+    //   console.log(changeText)
+    //   return {
+    //     ...state,
+    //     funkos:state.funkos.map((item) => String(item.id) === String(changeText.id) ? { ...item, text: action.payload[0] }: item
+    //   )
+    //   };
+
+    case TYPES.SEARCH_FUNKOS: {
+      return {
+        ...state,
+        funkos: [action.payload],
+      };
+    }
 
     default:
       return { ...state };
