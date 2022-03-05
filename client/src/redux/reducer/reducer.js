@@ -1,16 +1,17 @@
-import { TYPES } from "../actions/types";
+import {
+  TYPES
+} from "../actions/types";
 
 const initialState = {
   funkos: [],
   funkosBackUp: [],
-  cart:
-    JSON.parse(localStorage.getItem("funkosInCart")) === null
-      ? []
-      : JSON.parse(localStorage.getItem("funkosInCart")),
+  cart: JSON.parse(localStorage.getItem("funkosInCart")) === null ?
+    [] :
+    JSON.parse(localStorage.getItem("funkosInCart")),
   cart: [],
 
-  user:{},//Usuario de la sesion
-  detail:[]
+  user: {}, //Usuario de la sesion
+  detail: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -30,45 +31,57 @@ export default function rootReducer(state = initialState, action) {
         (item) => String(item.id) === String(newItem.id)
       );
       //console.log('itemInCart',itemInCart)
-      return itemInCart
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-            String(item.id)=== String(newItem.id)
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
+      return itemInCart ?
+        {
+          ...state,
+          cart: state.cart.map((item) =>
+            String(item.id) === String(newItem.id) ?
+            {
+              ...item,
+              quantity: item.quantity + 1
+            } :
+            item
+          ),
+        } :
+        {
+          ...state,
+          cart: [...state.cart, {
+            ...newItem,
+            quantity: 1
+          }],
+        };
 
 
 
 
-          case TYPES.SUM_IN_CART:
-            let addItem = state.funkos.find(
-              (product) => String(product.id) === String(action.payload)
-            );
-            //console.log('newItem',newItem)
-            let itemInCart2 = state.cart.find(
-              (item) => String(item.id) === String(addItem.id)
-            );
-            //console.log('itemInCart',itemInCart)
-            return itemInCart2
-              ? {
-                  ...state,
-                  cart: state.cart.map((item) =>
-                  String(item.id)=== String(addItem.id)
-                      ? { ...item, quantity: item.quantity + 1 }
-                      : item
-                  ),
-                }
-              : {
-                  ...state,
-                  cart: [...state.cart, { ...addItem, quantity: 1 }],
-                };
+    case TYPES.SUM_IN_CART:
+      let addItem = state.funkos.find(
+        (product) => String(product.id) === String(action.payload)
+      );
+      //console.log('newItem',newItem)
+      let itemInCart2 = state.cart.find(
+        (item) => String(item.id) === String(addItem.id)
+      );
+      //console.log('itemInCart',itemInCart)
+      return itemInCart2 ?
+        {
+          ...state,
+          cart: state.cart.map((item) =>
+            String(item.id) === String(addItem.id) ?
+            {
+              ...item,
+              quantity: item.quantity + 1
+            } :
+            item
+          ),
+        } :
+        {
+          ...state,
+          cart: [...state.cart, {
+            ...addItem,
+            quantity: 1
+          }],
+        };
 
 
 
@@ -79,21 +92,24 @@ export default function rootReducer(state = initialState, action) {
         (item) => String(item.id) === String(action.payload)
       );
       //console.log(itemToDelete, "itemToDelete");
-      return itemToDelete.quantity > 1
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              String(item.id) === String(action.payload)
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: state.cart.filter(
-              (item) => String(item.id) !== String(action.payload)
-            ),
-          };
+      return itemToDelete.quantity > 1 ?
+        {
+          ...state,
+          cart: state.cart.map((item) =>
+            String(item.id) === String(action.payload) ?
+            {
+              ...item,
+              quantity: item.quantity - 1
+            } :
+            item
+          ),
+        } :
+        {
+          ...state,
+          cart: state.cart.filter(
+            (item) => String(item.id) !== String(action.payload)
+          ),
+        };
 
     case TYPES.REMOVE_ALL_FROM_CART:
       return {
@@ -110,16 +126,16 @@ export default function rootReducer(state = initialState, action) {
         cart: [],
       };
 
-    // case TYPES.CHANGE_TEXT_BUTTON:
-    //   let changeText = state.funkos.find(
-    //     (item) => String(item.id) === String(action.payload[1])
-    //   );
-    //   console.log(changeText)
-    //   return {
-    //     ...state,
-    //     funkos:state.funkos.map((item) => String(item.id) === String(changeText.id) ? { ...item, text: action.payload[0] }: item
-    //   )
-    //   };
+      // case TYPES.CHANGE_TEXT_BUTTON:
+      //   let changeText = state.funkos.find(
+      //     (item) => String(item.id) === String(action.payload[1])
+      //   );
+      //   console.log(changeText)
+      //   return {
+      //     ...state,
+      //     funkos:state.funkos.map((item) => String(item.id) === String(changeText.id) ? { ...item, text: action.payload[0] }: item
+      //   )
+      //   };
 
     case TYPES.SEARCH_FUNKOS: {
       return {
@@ -132,26 +148,26 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
-      if(action.payload === "AtoZ") {
+      if (action.payload === "AtoZ") {
         funkoSort = state.funkos.sort((a, b) => {
-          if(a.name > b.name) return 1;
-          if(a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          if (a.name < b.name) return -1;
           else return 0;
         })
       }
-      if(action.payload === "ZtoA") {
+      if (action.payload === "ZtoA") {
         funkoSort = state.funkos.sort((a, b) => {
-          if(a.name > b.name) return -1;
-          if(a.name < b.name) return 1;
+          if (a.name > b.name) return -1;
+          if (a.name < b.name) return 1;
           else return 0;
         })
       }
-      if(action.payload === "PriceHigh") {
+      if (action.payload === "PriceHigh") {
         funkoSort = state.funkos.sort((a, b) => {
           return b.price - a.price
         })
       }
-      if(action.payload === "PriceLow") {
+      if (action.payload === "PriceLow") {
         funkoSort = state.funkos.sort((a, b) => {
           return a.price - b.price
         })
@@ -168,8 +184,37 @@ export default function rootReducer(state = initialState, action) {
         detail: [action.payload],
       };
 
+    case TYPES.HANDLE_CATEGORIES:
+      const allFunkos1 = state.funkos;
 
-    default:
-      return { ...state };
+      let categorieFilter = action.payload === 'ALL' ? state.funkos : allFunkos1.filter((i) => i.data.atributes.category.includes(action.payload));
+      return {
+        ...state,
+        funko: categorieFilter
+      }
+
+      case TYPES.HANDLE_BRANDS:
+        const allFunkos2 = state.funkos;
+
+        let brandFilter = action.payload === 'ALL' ? state.funkos : allFunkos2.filter((i) => i.data.atributes.brand.includes(action.payload));
+        return {
+          ...state,
+          funko: brandFilter
+        }
+
+        case TYPES.HANDLE_LICENSE:
+          const allFunkos3 = state.funkos;
+
+          let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => i.data.atributes.license.includes(action.payload));
+          return {
+            ...state,
+            funko: licenseFilter
+          }
+
+
+          default:
+            return {
+              ...state
+            };
   }
 }

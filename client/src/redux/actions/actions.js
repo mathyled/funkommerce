@@ -129,3 +129,23 @@ export const getDetails = (id)=>{
       }
 };
 
+export const filterCategories=(payload) =>{
+  return {
+      type: TYPES.HANDLE_CATEGORIES,
+      payload
+  }
+}
+
+export const filterBrands=(payload) =>{
+  return {
+      type: TYPES.HANDLE_BRANDS,
+      payload
+  }
+}
+
+export const filterLicense=(payload) =>{
+  return {
+      type: TYPES.HANDLE_LICENSE,
+      payload
+  }
+}
