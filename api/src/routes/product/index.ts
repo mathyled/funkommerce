@@ -4,6 +4,6 @@ const {getAllProduct} = require('../../controllers/cProduct.ts')
 
 const router = Router();
 
-router.get('/', getAllProduct)
+// router.get('/', getAllProduct)
 
 export default router;

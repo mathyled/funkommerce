@@ -2,12 +2,7 @@ import { Sequelize } from "sequelize";
 require("dotenv").config();
 const path = require("path");
 
-const { 
-  DB_NAME, 
-  DB_USER, 
-  DB_PASSWORD, 
-  HOST 
-} = process.env;
+const { DB_NAME, DB_USER, DB_PASSWORD, HOST } = process.env;
 
 const sequelize = new Sequelize(
   DB_NAME || "funkommerce",
@@ -22,6 +17,7 @@ const sequelize = new Sequelize(
 
 var models: Function[] = [
   require(path.join(__dirname, "/models/product", "index.ts")),
+  require(path.join(__dirname, "/models/productTest", "index.ts")),
   require(path.join(__dirname, "/models/category", "index.ts")),
   require(path.join(__dirname, "/models/brand", "index.ts")),
   require(path.join(__dirname, "/models/features", "index.ts")),
@@ -31,25 +27,19 @@ var models: Function[] = [
 
 models.forEach((model: Function) => model(sequelize));
 
-const { 
-  form_factor,
-  category, 
-  features,
-  license,
-  product,
-  brand
-} = sequelize.models;
+const { FormFactor, Category, Features, License, Product, Brand, ProductTest } =
+  sequelize.models;
 
-category.hasMany(product);
-product.belongsTo(category);
-features.belongsToMany(product, { through: "features_product" });
-product.belongsToMany(features, { through: "features_product" });
-license.hasMany(product);
-product.belongsTo(license);
-brand.hasMany(product);
-product.belongsTo(brand);
-form_factor.hasMany(product);
-product.belongsTo(form_factor);
+Category.hasMany(Product);
+Product.belongsTo(Category);
+Features.belongsToMany(Product, { through: "features_product" });
+Product.belongsToMany(Features, { through: "features_product" });
+License.hasMany(Product);
+Product.belongsTo(License);
+Brand.hasMany(Product);
+Product.belongsTo(Brand);
+FormFactor.hasMany(Product);
+Product.belongsTo(FormFactor);
 
 module.exports = {
   ...sequelize.models,
