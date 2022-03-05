@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { handleCategories, handleBrand, handleLicense } from '../../redux/actions';
+import { filterCategories, filterBrand, filterLicense } from '../../redux/actions/actions';
 import styles from '../Filter/Filter.module.css'
 
 
@@ -10,20 +10,17 @@ function Filter(){
 
     function handleCategories(e){
         e.preventDefault();
-        dispatch(filterCategory(e.target.value))
-        filterCategory(e.target.value)
+        dispatch(filterCategories(e.target.value))
     }
 
     function handleBrand(e){
         e.preventDefault()
         dispatch(filterBrand(e.target.value))
-        filterBrand(e.target.value)
     }
     
     function handleLicense(e){
         e.preventDefault()
         dispatch(filterLicense(e.target.value))
-        filterLicense(e.target.value)
     }
 
 

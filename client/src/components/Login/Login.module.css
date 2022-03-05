@@ -1,0 +1,32 @@
+
+.container{
+    width: 350px;
+    background-color: #61a2ba;
+    border-radius: 10px;
+    padding: 10px 3px;
+}
+.container h3{
+    color:white;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.inputGroup{
+    width: 98%;
+    margin:20px 1%;
+    display:flex;
+    flex-direction: column;
+}
+
+.inputGroup b{
+    color:#c9f2ac;
+}
+.inputGroup span{
+    text-align: start;
+    color:#ebf0dd;
+    font-weight: bold;
+    border-left:3px solid white;
+    padding-left:8px;
+    border-bottom: 0.5px solid #ffffff17;
+    margin-bottom: 5px;
+}
