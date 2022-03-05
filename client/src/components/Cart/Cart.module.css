@@ -1,9 +1,83 @@
-.cartImg{
-    height: 40px;
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
+
+.subContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  background-color: rgb(255, 255, 255);
+  justify-content: center;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  margin: 10px;
 }
-.title{
-    font-size: 15px;
+.myCartAndButtonEmpty{
+    display: flex;
+    justify-content: right;
+    background-color: transparent;
 }
-.funkoImg{
-    height: 128px;
+.myCart{
+    background-color: transparent;
+    margin-right: 40%;
+}
+.emptyCart {
+  margin-right: 10px;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  padding: 1%;
+  font-weight: bold;
+}
+.emptyCart:hover{
+    background-color: red;
+    
+}
+
+.li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  border-radius: 5px;
+  padding: 15px 15px;
+}
+
+.price {
+  margin: 5px;
+  background-color: rgb(255, 172, 147);
+  width: 100%;
+}
+
+.buttonsMoreAndLess {
+  margin: 5px;
+  width: 18%;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  border-radius: 50px;
+  font-size: 1rem;
+}
+.buttonsMoreAndLess:hover {
+  background-color: rgb(194, 255, 103);
+}
+.deleteButton {
+  margin: 5px;
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  margin: 5px 50px;
+  font-size: 1rem;
+  padding: 4px 5px 5px 5px;
+  color: black;
+}
+
+.deleteButton:hover {
+  box-shadow: 1px 1px 4px -1px rgba(122, 114, 114, 0.75);
+  border-radius: 50px;
+}
+
+.title {
+  font-size: 15px;
+}
+.funkoImg {
+  height: 128px;
 }
