@@ -6,7 +6,10 @@ import Cart from "./components/Cart/Cart";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header"
+
 import Navbar from "./components/Navbar/Navbar"
+
+import FunkoDetail from "./components/FunkoDetail/FunkoDetail";
 
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
         <Route path="/" element={<FunkoCard />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/header" element={ <Header />} />
+        <Route  path="/detail/:id" element={ < FunkoDetail/>} />
+       
       </Routes>
     </div>
   );

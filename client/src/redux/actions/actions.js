@@ -53,3 +53,16 @@ export const orderFunkos = (order) => {
   return {type: TYPES.ORDER_FUNKOS, payload: order}
 }
 
+
+export const getDetails = (id)=>{
+    return async (dispatch) => {
+        var json = await axios.get(
+           `https://the-funko-api.herokuapp.com/api/v1/items/${id}?page=7`);
+        return dispatch({
+            type: TYPES.GET_FUNKO_DETAIL,
+            payload: json.data.data
+        })
+    
+      }
+};
+
