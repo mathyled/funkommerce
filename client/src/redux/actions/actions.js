@@ -49,7 +49,9 @@ export const searchFunkos = (name) => {
   }
 }
 
-
+export const orderFunkos = (order) => {
+  return {type: TYPES.ORDER_FUNKOS, payload: order}
+}
 
 
 export const getDetails = (id)=>{

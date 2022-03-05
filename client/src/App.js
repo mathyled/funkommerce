@@ -6,8 +6,11 @@ import Cart from "./components/Cart/Cart";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header"
-import Searchbar from './components/Searchbar/Searchbar';
+
+import Navbar from "./components/Navbar/Navbar"
+
 import FunkoDetail from "./components/FunkoDetail/FunkoDetail";
+
 
 function App() {
   return (
@@ -16,7 +19,6 @@ function App() {
         <Route path="/" element={<FunkoCard />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/header" element={ <Header />} />
-        <Route exact path="/search" element={ <Searchbar/>} />
         <Route  path="/detail/:id" element={ < FunkoDetail/>} />
        
       </Routes>
