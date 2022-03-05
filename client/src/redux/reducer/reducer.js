@@ -4,7 +4,9 @@ const initialState = {
   funkos: [],
   funkosBackUp: [],
   cart: [],
+
   user:{}//Usuario de la sesion
+  detail:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -78,6 +80,11 @@ export default function rootReducer(state = initialState, action) {
       }
     }
 
+    case TYPES.GET_FUNKO_DETAIL:
+      return {
+        ...state,
+        detail: [action.payload],
+      };
 
     default:
       return { ...state };

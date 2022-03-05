@@ -12,6 +12,8 @@ import Header from "./components/Header/Header"
 
 
 import Home from "./components/Home/Home";
+import FunkoDetail from "./components/FunkoDetail/FunkoDetail";
+
 
 function App() {
   return (
@@ -20,6 +22,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/header" element={ <Header />} />
+
+
+        <Route  path="/detail/:id" element={ < FunkoDetail/>} />
+
       </Routes>
     </div>
   );

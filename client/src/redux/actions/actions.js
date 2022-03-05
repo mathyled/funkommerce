@@ -52,6 +52,7 @@ export const searchFunkos = (name) => {
 }
 
 
+
 //ACTIONS FOR CREATE USER 
 export const createUser=(name,lastName,email,userName,password) => {
 
@@ -71,10 +72,7 @@ export const createUser=(name,lastName,email,userName,password) => {
       console.log('CREATEUSER__ACTION: ',error)
 
     }
-
-
   }
-
 }
 
   //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
@@ -98,8 +96,19 @@ export const createUser=(name,lastName,email,userName,password) => {
         console.log('FINDUSER_ACTION: ',error);
       }
 
-
-
     }
 
   }
+
+export const getDetails = (id)=>{
+    return async (dispatch) => {
+        var json = await axios.get(
+           `https://the-funko-api.herokuapp.com/api/v1/items/${id}?page=7`);
+        return dispatch({
+            type: TYPES.GET_FUNKO_DETAIL,
+            payload: json.data.data
+        })
+    
+      }
+};
+
