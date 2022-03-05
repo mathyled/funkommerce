@@ -4,6 +4,8 @@ const initialState = {
   funkos: [],
   funkosBackUp: [],
   cart: [],
+
+  user:{}//Usuario de la sesion
   detail:[]
 };
 
