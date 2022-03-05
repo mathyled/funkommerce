@@ -8,6 +8,7 @@ import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 //import { MdOutlineAddShoppingCart } from 'react-icons/md';
 import gifLoader from '../../assets/gifLoader.gif'
+import Paged from "../Paged/Paged";
 
 const FunkoCard = () => {
   const funkos = useSelector((state) => state.funkos);
@@ -30,9 +31,22 @@ const FunkoCard = () => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
   }, [cart]);
 
+  ///PAGINADO
+
+  const [actualFunko, setActualpage] = useState(1);
+  const [funkoPerPage] = useState(5);
+
+    const indexOfLastFunko = actualFunko * funkoPerPage;
+    const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
+    const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko)
+
+    function paginate (e, numberPage){
+        setActualpage(numberPage)
+    }
+
   if (funkos.length < 1) {
     return (
-      <div>
+      <div> 
        <img src={gifLoader} alt="gif" />
       </div>
     );
@@ -44,8 +58,9 @@ const FunkoCard = () => {
           <img src={cart1} alt="img" />
           {/* <MdOutlineAddShoppingCart></MdOutlineAddShoppingCart> */}
         </Link>
+        
         <div className={styles.funkosCard}>
-          {funkos.map((product) => (
+          {currentFunko && currentFunko.map((product) => (
             <div className={styles.item} key={product.attributes.id}>
               <ul key={product.attributes.id}>
                 <li className={styles.li}>
@@ -81,7 +96,7 @@ const FunkoCard = () => {
                       Add to cart
                     </button>
                   </div>
-                  />
+                  
                     </Link>
                   <button onClick={() => addToCart1(product.attributes.id)}>
                     Add to cart
@@ -91,8 +106,16 @@ const FunkoCard = () => {
               </ul>
             </div>
           ))}
-        </div>
+        </div> 
+        <div className={styles.pagination}>
+        <Paged
+          funkoPerPage={funkoPerPage}
+          totalFunko={funkos}
+          paginate={paginate}
+        /> 
+        </div>              
       </div>
+
     );
   }
 };

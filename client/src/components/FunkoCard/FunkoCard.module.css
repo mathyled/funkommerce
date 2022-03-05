@@ -96,3 +96,8 @@
 .buttonAdd:hover {
   background-color: rgb(194, 255, 103);
 }
+
+.pagination{
+  width: 100%;
+  margin-left: 40%;
+}

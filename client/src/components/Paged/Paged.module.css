@@ -1,0 +1,22 @@
+.pag {
+    display: flex;    
+    padding: 10px;    
+}
+
+.btn {
+    background: #3cb7b9;
+    border: none;
+    color: white;
+    cursor: pointer;;
+    font-size: 25px;   
+    margin: 0 4px;
+    padding: 10px;
+    transition-duration: 0.4s;  
+    
+    
+}
+
+.btn:hover {
+    background-color: white;
+    color: #3cb7b9;
+}
