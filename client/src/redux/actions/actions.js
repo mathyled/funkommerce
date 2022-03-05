@@ -51,7 +51,9 @@ export const searchFunkos = (name) => {
   }
 }
 
-
+export const orderFunkos = (order) => {
+  return {type: TYPES.ORDER_FUNKOS, payload: order}
+}
 
 //ACTIONS FOR CREATE USER 
 export const createUser=(name,lastName,email,userName,password) => {
