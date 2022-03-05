@@ -21,7 +21,8 @@ function App() {
         <Route path="/header" element={ <Header />} />
 
         <Route  path="/detail/:id" element={ < FunkoDetail/>} />
-
+     
+      
       </Routes>
     </div>
   );
