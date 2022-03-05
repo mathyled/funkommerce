@@ -58,6 +58,7 @@ const FunkoCard = () => {
                     className={styles.funkoImg}
 
                   />
+                    </Link>
 
                   <div className={styles.funkoTittle}>
                     <div>
@@ -81,8 +82,7 @@ const FunkoCard = () => {
                       Add to cart
                     </button>
                   </div>
-                  />
-                    </Link>
+               
                   <button onClick={() => addToCart1(product.attributes.id)}>
                     Add to cart
                   </button>
