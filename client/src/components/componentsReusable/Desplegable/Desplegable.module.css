@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    /* font-family: roboto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+  }
+  
+  
+  :root {
+   
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 2px solid #f3f3f7;
+    --border-radius: 8px;
+    --speed: 500ms; 
+  }
+  
+    /* <nav> */
+    .navbar {
+      height: var(--nav-size);
+      padding: 0 1rem;
+      border-top: var(--border);
+    }
+    
+    /* <ul> */
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      height: 100%;
+    }
+
+  /* <li> */
+  .nav-item {
+    width: calc(var(--nav-size) * 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Icon Button */
+  .icon-button {
+    --button-size: calc(var(--nav-size) * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: #484a4d;
+    border-radius: 50%;
+    /* padding: 5px; */
+    /* margin: 2px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+  }
+  
+
+
+  
+
+ /* Dropdown Menu */
+  
+ .dropdown {
+  position: absolute;
+  margin-top: 255px;
+ width: 40%;
+  transform: translateX(-45%);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: hidden;
+  transition: height var(--speed) ease;
+  width: 492px;
+}
+
+  .icon-button:hover {
+    filter: brightness(1.2);
+  }
+  
+  .icon-button svg { 
+    fill: var(--text-color);
+    width: 20px;
+    height: 20px;
+  }
+  
+
+  .menu {
+    width: 100%;
+  }
+  

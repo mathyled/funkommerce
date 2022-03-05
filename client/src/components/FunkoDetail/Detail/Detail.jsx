@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails, clearCart } from "../../../redux/actions/actions";
+import { getDetails } from "../../../redux/actions/actions";
 import styles from "./Detail.module.css"
 
 const Detail = () => {
@@ -12,8 +12,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getDetails(id))
-    dispatch(clearCart())
-  }, [dispatch])
+  }, [dispatch,id])
 
   console.log("DETAILS", funkoDetails)
 

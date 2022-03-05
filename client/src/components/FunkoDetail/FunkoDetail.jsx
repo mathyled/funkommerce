@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails, addToCart } from "../../redux/actions/actions";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import Loading from "./Loading"
 import styles from "./FunkoDetail.module.css"
 import Loader from "../../assets/Funko.gif"
@@ -36,7 +36,7 @@ const FunkoDetail = () => {
   useEffect(() => {
     dispatch(getDetails(id))
    
-  }, [dispatch])
+  }, [dispatch,id])
 
   console.log("H", funkoDetails)
   if (funkoDetails.length === 0) {
