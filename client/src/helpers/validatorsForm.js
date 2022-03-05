@@ -76,7 +76,7 @@ export const validator=(error,input)=>{
         [name]: "The field cannot be empty",
       };
     }
-    console.log(input,errors);
+    // console.log(input,errors);
 
     return errors;
 

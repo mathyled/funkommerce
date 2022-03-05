@@ -7,6 +7,10 @@ const initialState = {
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
+  cart: [],
+
+  user:{},//Usuario de la sesion
+  detail:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -123,6 +127,47 @@ export default function rootReducer(state = initialState, action) {
         funkos: [action.payload],
       };
     }
+
+
+
+    case TYPES.ORDER_FUNKOS: {
+      let funkoSort;
+      if(action.payload === "AtoZ") {
+        funkoSort = state.funkos.sort((a, b) => {
+          if(a.name > b.name) return 1;
+          if(a.name < b.name) return -1;
+          else return 0;
+        })
+      }
+      if(action.payload === "ZtoA") {
+        funkoSort = state.funkos.sort((a, b) => {
+          if(a.name > b.name) return -1;
+          if(a.name < b.name) return 1;
+          else return 0;
+        })
+      }
+      if(action.payload === "PriceHigh") {
+        funkoSort = state.funkos.sort((a, b) => {
+          return b.price - a.price
+        })
+      }
+      if(action.payload === "PriceLow") {
+        funkoSort = state.funkos.sort((a, b) => {
+          return a.price - b.price
+        })
+      }
+      return {
+        ...state,
+        funkos: funkoSort
+      }
+    }
+
+    case TYPES.GET_FUNKO_DETAIL:
+      return {
+        ...state,
+        detail: [action.payload],
+      };
+
 
     default:
       return { ...state };

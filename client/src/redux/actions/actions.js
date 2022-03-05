@@ -1,6 +1,8 @@
 import axios from "axios";
 import { TYPES } from "./types";
 
+
+
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get(
@@ -63,3 +65,67 @@ export const searchFunkos = (name) => {
 //   (dispatch) => {
 //     return  dispatch({ type: TYPES.CHANGE_TEXT_BUTTON, payload:[text,id] });
 //   };
+
+export const orderFunkos = (order) => {
+  return {type: TYPES.ORDER_FUNKOS, payload: order}
+}
+
+//ACTIONS FOR CREATE USER 
+export const createUser=(name,lastName,email,userName,password) => {
+
+  return async (dispatch)=>{
+
+    try{
+
+      //Espera por crear un ususario
+      await axios.post('http:url.com',{name,lastName,email,userName,password});
+
+      dispatch({
+          type:TYPES.CREATE_USER,
+        })
+
+    }catch(error){
+
+      console.log('CREATEUSER__ACTION: ',error)
+
+    }
+  }
+}
+
+  //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
+
+  export const findUser=(userName,password)=>{
+
+    return async(dispatch)=>{
+
+      try{
+
+        const response=await axios.post('http:url.com',{userName,password});
+
+        dispatch({
+           type:TYPES.GET_USER,
+           payload:response
+        })
+
+
+      }catch(error){
+
+        console.log('FINDUSER_ACTION: ',error);
+      }
+
+    }
+
+  }
+
+export const getDetails = (id)=>{
+    return async (dispatch) => {
+        var json = await axios.get(
+           `https://the-funko-api.herokuapp.com/api/v1/items/${id}?page=7`);
+        return dispatch({
+            type: TYPES.GET_FUNKO_DETAIL,
+            payload: json.data.data
+        })
+    
+      }
+};
+
