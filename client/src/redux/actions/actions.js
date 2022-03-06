@@ -25,7 +25,7 @@ export const addToCart = (id) => {
 }; 
 
 export const sumInCart = (id) => {
-  console.log('action',id)
+  //console.log(id)
   return {
     type: TYPES.SUM_IN_CART,
     payload: id,
