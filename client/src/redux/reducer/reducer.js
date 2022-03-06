@@ -170,9 +170,10 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case TYPES.GET_FUNKO_DETAIL:
+      let detail= state.funkos.find( f => f.id === action.id)
       return {
         ...state,
-        detail: [action.payload],
+        detail,
       };
 
     case TYPES.HANDLE_CATEGORIES:
