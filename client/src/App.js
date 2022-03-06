@@ -13,7 +13,8 @@ function App() {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/header" element={ <Header />} />
         <Route  path="/detail/:id" element={ < FunkoDetail/>} />
-
+     
+      
       </Routes>
     </div>
   );
