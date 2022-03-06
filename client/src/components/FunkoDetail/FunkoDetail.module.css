@@ -1,49 +1,57 @@
-.container{
-    /* background-color: red;
-    flex-direction: row;
-    justify-content: center; */
-   
-    /* overflow: hidden; */
 
-    display: flex;
-    
-    flex-wrap: wrap;
-    align-content: space-between;
-    /* display: inline-block; */
-    background-color: gray;
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
 }
 
-.funkosCard{
-    background-color: aqua;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
-    
+.img {
+  height: 350px;
+  width: 450px ;
+  margin: 0;
+  background-color: rgb(243, 243, 247);
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px -1px rgb(122 114 114 / 75%);
 }
-.item{
-    display: flex;
-    flex-direction: column;
-  background-color: rgb(238, 255, 0);
+
+.header{
+  margin: 45px 0px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+.brand{
+  margin:20px 0px 20px 0px
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
   margin: 5px;
-  height: 400px;
-  width: 350px;
- 
-}
-.li{
-    list-style:none;
-    display: flex;
-    flex-direction: column;
-}
-
-.cartImg{
-    height: 40px;
-    display: flex;
-    margin-left: 95%;
-    margin-top: 2px;
-    /* background-color: red; */
+  height: 350px;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  transition-property: transform;
+  transition-duration: 0.8s;
 }
 
-.funkoImg{
-    height: 250px;
-    margin: 0;
+.buttonAdd{
+    border-radius: 2em ;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    padding: 0.75rem;
+    border:none
+}
+.buttonAdd:hover{
+  background-color: rgb(255, 255, 255);
+  color: black;;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px -1px rgb(122 114 114 / 75%);
 }
