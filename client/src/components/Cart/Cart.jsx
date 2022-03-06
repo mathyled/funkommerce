@@ -10,10 +10,14 @@ import notFound from "../../assets/notFound.png";
 import { useEffect } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 //MdOutlineAddShoppingCart
+import TotalToPay from "../TotalToPay/TotalToPay";
+import { AiOutlineHome } from "react-icons/ai";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   let cart = useSelector((state) => state.cart);
-  let arr = []
+
   // const[total, setTotal] = useState(arr)
 
   useEffect(() => {
@@ -35,33 +39,34 @@ const Cart = () => {
   };
 
   const emptyCart = () => {
-    dispatch(clearCart());
+    //console.log(cart.length)
+    if (cart.lenght < 1 || cart.length === 0) {
+      Swal.fire({
+        title: "The cart is already empty",
+        icon: "info",
+        timer: 4000,
+        timerProgressBar: true,
+      });
+    } else {
+      dispatch(clearCart());
+    }
   };
-  
-  
-  
-//  const totalFuntion = ()=>{
-//   // if (total.length > 1) {
-      
-//   //   for (let i = 0; i < arr.length; i++) {
-//   //     sum += arr[i]
-//   //   }
 
-//   // })
-//   setTotal(arr.push())
-    
-//   }
- 
   return (
     <div className={styles.container}>
+      <h1 className={styles.myCart}>MY CART</h1>
+      <Link to="/" className={styles.linkToHome}>
+        <AiOutlineHome className={styles.home} />
+      </Link>
       <div className={styles.myCartAndButtonEmpty}>
-        <h1 className={styles.myCart}>MY CART</h1>
+        <h3 className={styles.totalToPay}>
+          {" "}
+          <TotalToPay></TotalToPay>{" "}
+        </h3>
         <button onClick={() => emptyCart()} className={styles.emptyCart}>
           Empty cart{" "}
         </button>
-        {/* <h2>{total[0]}</h2> */}
       </div>
-
 
       <div className={styles.subContainer}>
         {cart.map((product) => (
@@ -74,25 +79,21 @@ const Cart = () => {
                 className={styles.funkoImg}
               ></img>
               <div className={styles.price}>
-                <h5 >
-                  {product.attributes.id - 42550}.00 x {product.quantity} ={" "}
-                  {(product.attributes.id - 42550) * product.quantity} USD
-                  {arr.push((product.attributes.id - 42550) * product.quantity)}
+                <h5>
+                  {product.attributes.id}.00 x {product.quantity} ={" "}
+                  {product.attributes.id * product.quantity} USD
                 </h5>
               </div>
-              {/* {console.log(arr)} */}
-              <div>
+              <div className={styles.buttonsMoreAndLessDiv}>
                 <button
                   onClick={() => addOneToCart(product.attributes.id)}
                   className={styles.buttonsMoreAndLess}
-                  // onChange={totalFuntion}
                 >
                   +
                 </button>
                 <button
                   onClick={() => deleteOneInTheCart(product.attributes.id)}
-                  className={styles.buttonsMoreAndLess}
-                  // onChange={totalFuntion}
+                  className={`${styles.buttonsMoreAndLess} ${styles.lessButton}`}
                 >
                   -
                 </button>
@@ -111,9 +112,6 @@ const Cart = () => {
           </ul>
         ))}
       </div>
-
-
-
     </div>
   );
 };

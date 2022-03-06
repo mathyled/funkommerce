@@ -1,16 +1,15 @@
-
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails, addToCart } from "../../redux/actions/actions";
-// import { Link } from "react-router-dom";
-// import Loading from "./Loading"
-import styles from "./FunkoDetail.module.css"
-import Loader from "../../assets/Funko.gif"
+
+import { getDetails } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
+import styles from "./FunkoDetail.module.css";
+import Loader from "../../assets/Funko.gif";
+import { addToCart } from "../../redux/actions/actions";
+import Swal from "sweetalert2";
 import Desplegable from "../componentsReusable/Desplegable/Desplegable";
 import Nav from "../Nav/Nav";
-import Swal from 'sweetalert2';
 // const capitalize = (input)=>{
 //     return input.charAt(0).toUpperCase() + input.slice(1);
 // }
@@ -18,11 +17,28 @@ import Swal from 'sweetalert2';
 const FunkoDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const funkoDetails = useSelector(state => state.detail)
+  const funkoDetails = useSelector((state) => state.detail);
+  const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(getDetails(id));
+  }, [dispatch]);
 
   const addToCart1 = (id) => {
-    if(id){
+    let funkoAlreadyInCart = cart.find(
+      (item) => String(item.id) === String(id)
+    );
+    if (funkoAlreadyInCart) {
       Swal.fire({
+        title: "The item is already in the cart",
+        icon: "info",
+        timer: 4000,
+        timerProgressBar: true,
+      });
+    } else {
+      
+      dispatch(addToCart(Number(id)));
+       Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Satisfactorily added',
@@ -30,15 +46,11 @@ const FunkoDetail = () => {
         timer: 1500
       })
     }
-    dispatch(addToCart(id));
   };
+ 
+    
 
-  useEffect(() => {
-    dispatch(getDetails(id))
-   
-  }, [dispatch,id])
 
-  console.log("H", funkoDetails)
   if (funkoDetails.length === 0) {
     return (
       <div>
@@ -69,11 +81,21 @@ const FunkoDetail = () => {
             </div>
               
             <div>
-              <button
+                  
+             /* <button
                 onClick={() => addToCart1(id)}
                 className={styles.buttonAdd}>
                <strong>ADD TO CART </strong> 
-              </button>
+              </button>*/
+            <button
+               onClick={() => addToCart1(id)}
+               className={styles.buttonAdd}
+              >
+            {cart.find((item) => item.id === id)
+              ? "In cart"
+              :  "Add to cart"}
+
+
             </div>
 
             <Desplegable />
@@ -91,8 +113,3 @@ const FunkoDetail = () => {
 };
 
 export default FunkoDetail;
-
-
-
-
-
