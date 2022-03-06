@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getDetails } from "../../redux/actions/actions";
-import { Link } from "react-router-dom";
 import styles from "./FunkoDetail.module.css";
 import Loader from "../../assets/Funko.gif";
 import { addToCart } from "../../redux/actions/actions";
@@ -22,7 +21,7 @@ const FunkoDetail = () => {
 
   useEffect(() => {
     dispatch(getDetails(id));
-  }, [dispatch]);
+  }, [dispatch,id]);
 
   const addToCart1 = (id) => {
     let funkoAlreadyInCart = cart.find(
@@ -66,17 +65,17 @@ const FunkoDetail = () => {
         <div className={styles.container}>
 
           <div  className={styles.img} >
-            <img src={funkoDetails[0].attributes["image-url"]} alt="Funko-Img" className={styles.img} />
+            <img src={funkoDetails[0].image} alt="Funko-Img" className={styles.img} />
           </div>
 
           <div className={styles.item} >
 
             <div className={styles.header} >
               <div className={styles.brand}>
-                <p>{funkoDetails[0].attributes.brand}</p>
+                <p>{funkoDetails[0].brand}</p>
               </div>
               <div>
-                <h1>{funkoDetails[0].attributes.title}</h1>
+                <h1>{funkoDetails[0].title}</h1>
               </div>
             </div>
               

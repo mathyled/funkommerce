@@ -118,15 +118,10 @@ export const createUser=(name,lastName,email,userName,password) => {
   }
 
 export const getDetails = (id)=>{
-    return async (dispatch) => {
-        var json = await axios.get(
-           `https://the-funko-api.herokuapp.com/api/v1/items/${id}?page=7`);
-        return dispatch({
+        return {
             type: TYPES.GET_FUNKO_DETAIL,
-            payload: json.data.data
-        })
-    
-      }
+            id,
+        }
 };
 
 export const filterCategories=(payload) =>{
