@@ -26,7 +26,9 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
           {funkos.map((product) => (
             <div className={styles.item} key={product.attributes.id}>
               <ul key={product.attributes.id}>
+                
                 <li className={styles.li}>
+                  
                   <Link
                     to={`/detail/${product.attributes.id}`}
                     className={styles.linkDetails}
@@ -37,11 +39,14 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                       className={styles.funkoImg}
                     />
 
+
                     <div className={styles.funkoTittle}>
                       <div>
                         <h3>{product.attributes.brand}</h3>
                       </div>
                       <h2>{product.attributes.title}</h2>
+
+
                     </div>
 
                     <div className={styles.price}>
