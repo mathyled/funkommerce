@@ -89,6 +89,10 @@
 
 }
 
+.notfound{
+  margin-top: 25px;
+  height: 300px;
+}
 .funkoTittle {
   background-color: transparent;
   height: 60px;
