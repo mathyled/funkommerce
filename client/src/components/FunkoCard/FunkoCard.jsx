@@ -1,102 +1,109 @@
 import styles from "./FunkoCard.module.css";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getFunkos, addToCart } from "../../redux/actions/actions";
-import cart1 from "../../../src/assets/cart1.png";
 import { Link } from "react-router-dom";
 import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
-//import { MdOutlineAddShoppingCart } from 'react-icons/md';
-import gifLoader from '../../assets/gifLoader.gif'
-import Filter from "../Filters/Filters";
 
-const FunkoCard = () => {
-  const funkos = useSelector((state) => state.funkos);
-  // let cart = useSelector((state) => state.cart);
+import { useEffect, useState } from "react";
 
-  // const [text, setText] = useState("Add to cart");
+import Paged from "../Paged/Paged";
+import gifLoader from "../../assets/gifLoader.gif";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getFunkos());
-  }, [dispatch]);
-
-  const addToCart1 = (id) => {
-    dispatch(addToCart(id));
-  };
-  let cart = useSelector((state) => state.cart);
+const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
+
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
   }, [cart]);
+
+  ///PAGINADO
+
+  const [actualFunko, setActualpage] = useState(1);
+  const [funkoPerPage] = useState(5);
+
+    const indexOfLastFunko = actualFunko * funkoPerPage;
+    const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
+    const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko)
+
+    function paginate (e, numberPage){
+        setActualpage(numberPage)
+    }
 
 
   if (funkos.length < 1) {
     return (
       <div>
-       <img src={gifLoader} alt="gif" />
+        <img src={gifLoader} alt="gif" />
       </div>
     );
   } else {
     return (
       <div className={styles.container}>
+       
         <Link to="/cart" className={styles.cartImg}>
           <ItemsQuantity />
-          <img src={cart1} alt="img" />
-          {/* <MdOutlineAddShoppingCart></MdOutlineAddShoppingCart> */}
+          <MdOutlineAddShoppingCart className={styles.cartImg2} />
         </Link>
         <div>
 
         </div>
+
         <div className={styles.funkosCard}>
-          {funkos.map((product) => (
+          {currentFunko && currentFunko.map((product) => (
             <div className={styles.item} key={product.attributes.id}>
               <ul key={product.attributes.id}>
+                
                 <li className={styles.li}>
+                  
+                  <Link
+                    to={`/detail/${product.attributes.id}`}
+                    className={styles.linkDetails}
+                  >
+                    <img
+                      src={product.attributes["image-url"] || notFound}
+                      alt="Funko-Img"
+                      className={styles.funkoImg}
+                    />
 
-                  <Link to={`/detail/${product.attributes.id}`}>
-                  <h2>{product.attributes.title}</h2>
-                  <img
-                    src={product.attributes["image-url"] || notFound}
-                    alt="Funko-Img"
-                    className={styles.funkoImg}
 
-                  />
+                    <div className={styles.funkoTittle}>
+                      <div>
+                        <h3>{product.attributes.brand}</h3>
+                      </div>
+                      <h2>{product.attributes.title}</h2>
 
-                  <div className={styles.funkoTittle}>
-                    <div>
-                      <h3>{product.attributes.brand}</h3>
+
                     </div>
-                    <h2>{product.attributes.title}</h2>
-                  </div>
 
-                  <div className={styles.price}>
-                    <h3>
-                      {/* {Math.floor(Math.random() * (50 - 20 + 1) + 20)} USD */}
-                      {product.attributes.id - 42550 } USD
-                    </h3>
-                  </div>
-
+                    <div className={styles.price}>
+                      <h3>{product.attributes.id} USD</h3>
+                    </div>
+                  </Link>
                   <div>
                     <button
                       onClick={() => addToCart1(product.attributes.id)}
                       className={styles.buttonAdd}
                     >
-                      Add to cart
+                      {cart.find((item) => item.id === product.id)
+                        ? "In cart"
+                        : "Add to cart"}
                     </button>
                   </div>
-                    </Link>
-                  <button onClick={() => addToCart1(product.attributes.id)}>
-                    Add to cart
-                  </button>
-
                 </li>
               </ul>
             </div>
           ))}
-        </div>
+        </div> 
+        <div className={styles.pagination}>
+        <Paged
+          funkoPerPage={funkoPerPage}
+          totalFunko={funkos}
+          paginate={paginate}
+        /> 
+        </div>              
       </div>
+
     );
   }
 };

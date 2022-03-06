@@ -8,8 +8,6 @@ const initialState = {
   cart: JSON.parse(localStorage.getItem("funkosInCart")) === null ?
     [] :
     JSON.parse(localStorage.getItem("funkosInCart")),
-  cart: [],
-
   user: {}, //Usuario de la sesion
   detail: []
 };
@@ -55,19 +53,12 @@ export default function rootReducer(state = initialState, action) {
 
 
     case TYPES.SUM_IN_CART:
-      let addItem = state.funkos.find(
-        (product) => String(product.id) === String(action.payload)
-      );
-      //console.log('newItem',newItem)
-      let itemInCart2 = state.cart.find(
-        (item) => String(item.id) === String(addItem.id)
-      );
-      //console.log('itemInCart',itemInCart)
+      let itemInCart2 = state.cart.find( (item) => String(item.id) === String(action.payload) );
       return itemInCart2 ?
         {
           ...state,
           cart: state.cart.map((item) =>
-            String(item.id) === String(addItem.id) ?
+            String(item.id) === String(itemInCart2.id) ?
             {
               ...item,
               quantity: item.quantity + 1
@@ -78,7 +69,7 @@ export default function rootReducer(state = initialState, action) {
         {
           ...state,
           cart: [...state.cart, {
-            ...addItem,
+            ...itemInCart2,
             quantity: 1
           }],
         };

@@ -1,6 +1,8 @@
 import React from "react";
+import styles from './ItemsQuantity.module.css'
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 
 const ItemsQuantity = () => {
   let cart = useSelector((state) => state.cart);
@@ -12,7 +14,7 @@ const ItemsQuantity = () => {
 
   return (
     <div>
-      <h2>{cart.length > 0 ? itemsQuantity1 : ""}</h2>
+      <h2 className={styles.itemsQuantity}>{cart.length > 0 ? itemsQuantity1 : ""}</h2>
     </div>
   );
 };
