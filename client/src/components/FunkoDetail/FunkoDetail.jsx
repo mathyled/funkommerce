@@ -90,7 +90,7 @@ console.log(funkoDetails)
                onClick={() => addToCart1(id)}
                className={styles.buttonAdd}
               >
-            {cart.find((item) => item.id === id)
+            {cart.find((item) => String(item.id) === id)
               ? "In cart"
               :  "Add to cart"}
 
