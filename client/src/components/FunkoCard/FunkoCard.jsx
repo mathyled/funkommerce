@@ -12,15 +12,10 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
-
-  useEffect(() => {
-    localStorage.setItem("funkosInCart", JSON.stringify(cart));
-  }, [cart]);
-
   ///PAGINADO
 
   const [actualFunko, setActualpage] = useState(1);
-  const [funkoPerPage] = useState(5);
+  const [funkoPerPage] = useState(20);
 
     const indexOfLastFunko = actualFunko * funkoPerPage;
     const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
@@ -41,24 +36,24 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     return (
       <div className={styles.container}>
        
-        <Link to="/cart" className={styles.cartImg}>
+        {/* <Link to="/cart" className={styles.cartImg}>
           <ItemsQuantity />
           <MdOutlineAddShoppingCart className={styles.cartImg2} />
-        </Link>
+        </Link> */}
 
         <div className={styles.funkosCard}>
           {currentFunko && currentFunko.map((product) => (
-            <div className={styles.item} key={product.attributes.id}>
-              <ul key={product.attributes.id}>
+            <div className={styles.item} key={product.id}>
+              <ul key={product.id}>
                 
                 <li className={styles.li}>
                   
                   <Link
-                    to={`/detail/${product.attributes.id}`}
+                    to={`/detail/${product.id}`}
                     className={styles.linkDetails}
                   >
                     <img
-                      src={product.attributes["image-url"] || notFound}
+                      src={product["image"] || notFound}
                       alt="Funko-Img"
                       className={styles.funkoImg}
                     />
@@ -66,20 +61,20 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
 
                     <div className={styles.funkoTittle}>
                       <div>
-                        <h3>{product.attributes.brand}</h3>
+                        <h3>{product.brand}</h3>
                       </div>
-                      <h2>{product.attributes.title}</h2>
+                      <h2>{product.title}</h2>
 
 
                     </div>
 
                     <div className={styles.price}>
-                      <h3>{product.attributes.id} USD</h3>
+                      <h3>{product.id} USD</h3>
                     </div>
                   </Link>
                   <div>
                     <button
-                      onClick={() => addToCart1(product.attributes.id)}
+                      onClick={() => addToCart1(product.id)}
                       className={styles.buttonAdd}
                     >
                       {cart.find((item) => item.id === product.id)
