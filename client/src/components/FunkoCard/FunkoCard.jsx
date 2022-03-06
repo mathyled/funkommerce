@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 
-
+import { useEffect, useState } from "react";
 
 import Paged from "../Paged/Paged";
 import gifLoader from "../../assets/gifLoader.gif";

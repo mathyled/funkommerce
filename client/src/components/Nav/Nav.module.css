@@ -11,4 +11,10 @@
   align-items: center;
   border-radius: 15px;
 }
-
+.home{
+  color: black;
+  font-size: 1.8rem;
+}
+.home:hover{
+  color: pink;
+}
