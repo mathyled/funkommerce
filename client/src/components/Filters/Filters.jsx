@@ -1,12 +1,21 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
-import { filterCategories, filterBrand, filterLicense } from '../../redux/actions/actions';
-import styles from '../Filter/Filter.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { filterCategories, filterBrands, filterLicense } from '../../redux/actions/actions';
+
 
 
 function Filter(){
     const dispatch = useDispatch();
+    const funkos = useSelector((state) => state.funkos);
+
+    // const funkoCategories = funkos.map((e) => {
+    //     const nombre = (e.attributes.category)
+    //     let result= nombre.filter((item, index) => {
+    //         return nombre.indexOf(item) === index
+    //     })
+    //     return result
+    // })
+    // console.log(funkoCategories)
 
     function handleCategories(e){
         e.preventDefault();
@@ -15,7 +24,7 @@ function Filter(){
 
     function handleBrand(e){
         e.preventDefault()
-        dispatch(filterBrand(e.target.value))
+        dispatch(filterBrands(e.target.value))
     }
     
     function handleLicense(e){
@@ -27,18 +36,13 @@ function Filter(){
 return (
     <div>
         <select onChange = {(e) => handleCategories(e)}>
-            <option value="none"> Categories </option>
-            <option value="ALL"> All </option>
-            <option value="Animation"> Animation </option>
-            <option value="Funko"> Funko </option>
-            <option value="Funko Games"> Funko Games </option>
-            <option value="Heroes"> Heroes </option>
-            <option value="Movies"> Movies </option>
-            <option value="Music"> Music </option>
-            <option value="Sports"> Sports </option>
-            <option value="Television"> Television </option>
-            <option value="Video Games"> Video Games </option>
-            <option value="Other"> Other </option>
+        <option value="ALL"> All </option>
+        {funkos && funkos.map((e) => {
+            return (
+                <option key={e.id} value ={e.attributes.category}>{e.attributes.category}</option>
+            )
+            
+        })}
         </select>
 
         <select onChange = {(e) => handleBrand(e)}>
@@ -170,6 +174,7 @@ return (
 )
 }
 
+export default Filter
 
 
         

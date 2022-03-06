@@ -184,10 +184,10 @@ export default function rootReducer(state = initialState, action) {
         detail: [action.payload],
       };
 
+      //FILTRADO
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkos;
-
-      let categorieFilter = action.payload === 'ALL' ? state.funkos : allFunkos1.filter((i) => i.data.atributes.category.includes(action.payload));
+      let categorieFilter = action.payload === 'ALL' ? state.funkos : allFunkos1.filter((i) => i.attributes.category.includes(action.payload));
       return {
         ...state,
         funko: categorieFilter
@@ -196,7 +196,7 @@ export default function rootReducer(state = initialState, action) {
       case TYPES.HANDLE_BRANDS:
         const allFunkos2 = state.funkos;
 
-        let brandFilter = action.payload === 'ALL' ? state.funkos : allFunkos2.filter((i) => i.data.atributes.brand.includes(action.payload));
+        let brandFilter = action.payload === 'ALL' ? state.funkos : allFunkos2.filter((i) => i.attributes.brand.includes(action.payload));
         return {
           ...state,
           funko: brandFilter
@@ -205,7 +205,7 @@ export default function rootReducer(state = initialState, action) {
         case TYPES.HANDLE_LICENSE:
           const allFunkos3 = state.funkos;
 
-          let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => i.data.atributes.license.includes(action.payload));
+          let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => i.attributes.license.includes(action.payload));
           return {
             ...state,
             funko: licenseFilter

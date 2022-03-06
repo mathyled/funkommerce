@@ -1,5 +1,5 @@
 import styles from "./FunkoCard.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFunkos, addToCart } from "../../redux/actions/actions";
 import cart1 from "../../../src/assets/cart1.png";
@@ -8,6 +8,7 @@ import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 //import { MdOutlineAddShoppingCart } from 'react-icons/md';
 import gifLoader from '../../assets/gifLoader.gif'
+import Filter from "../Filters/Filters";
 
 const FunkoCard = () => {
   const funkos = useSelector((state) => state.funkos);
@@ -30,6 +31,7 @@ const FunkoCard = () => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
   }, [cart]);
 
+
   if (funkos.length < 1) {
     return (
       <div>
@@ -44,6 +46,9 @@ const FunkoCard = () => {
           <img src={cart1} alt="img" />
           {/* <MdOutlineAddShoppingCart></MdOutlineAddShoppingCart> */}
         </Link>
+        <div>
+        <Filter />
+        </div>
         <div className={styles.funkosCard}>
           {funkos.map((product) => (
             <div className={styles.item} key={product.attributes.id}>
@@ -81,7 +86,6 @@ const FunkoCard = () => {
                       Add to cart
                     </button>
                   </div>
-                  />
                     </Link>
                   <button onClick={() => addToCart1(product.attributes.id)}>
                     Add to cart

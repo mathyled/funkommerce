@@ -129,6 +129,8 @@ export const getDetails = (id)=>{
       }
 };
 
+// ACTION PARA FILTRADO
+
 export const filterCategories=(payload) =>{
   return {
       type: TYPES.HANDLE_CATEGORIES,
