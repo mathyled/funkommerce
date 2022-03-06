@@ -6,12 +6,16 @@ import Register from "../Register/Register";
 import { Link } from "react-router-dom";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
-
+import Order from "../Order/Order"
+import Funkommerce from "../../assets/Funkommerce.png"
 const Nav = () => {
   return (
     <section className={styles.nav}>
-      SECTION
+      <Link to="/">
+   <img src={Funkommerce} alt="img-not found" className={styles.img} /> 
+      </Link>
       <Searchbar />
+      < Order />
       <Login />
       <Register />
       <Link to="/" >

@@ -10,6 +10,16 @@
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+
+}
+
+.img{
+  height: 100px;
+   width: auto;
 }
 
 .home{
