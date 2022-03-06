@@ -82,11 +82,11 @@ const FunkoDetail = () => {
               
             <div>
                   
-             /* <button
+              {/* <button
                 onClick={() => addToCart1(id)}
                 className={styles.buttonAdd}>
                <strong>ADD TO CART </strong> 
-              </button>*/
+              </button> */}
             <button
                onClick={() => addToCart1(id)}
                className={styles.buttonAdd}
@@ -95,7 +95,7 @@ const FunkoDetail = () => {
               ? "In cart"
               :  "Add to cart"}
 
-
+</button>
             </div>
 
             <Desplegable />
