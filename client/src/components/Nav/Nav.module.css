@@ -11,10 +11,29 @@
   align-items: center;
   border-radius: 15px;
 }
+
 .home{
   color: black;
   font-size: 1.8rem;
+  transition-property: color;
+  transition-duration: 0.5s;
 }
-.home:hover{
-  color: pink;
+
+.cartImg{
+  color: black;
+  font-size: 1.8rem;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transform: scaleX(-1);
 }
+.linkToCart{
+  background-color: transparent;
+  display: flex;
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+.home:hover,.cartImg:hover,.linkToCart:hover{
+  color: rgb(85, 255, 113);
+}
+
+

@@ -12,7 +12,7 @@ const TotalToPay = () => {
 
   useEffect(() => {
     for (let i = 0; i < cart.length; i++) {
-      sum += cart[i].attributes.id * cart[i].quantity; // - 42550
+      sum += cart[i].id * cart[i].quantity; // - 42550
     }
     setTotal(sum);
     // console.log("hola", sum);

@@ -53,7 +53,7 @@ const Cart = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container}> 
       <h1 className={styles.myCart}>MY CART</h1>
       <Link to="/" className={styles.linkToHome}>
         <AiOutlineHome className={styles.home} />
@@ -70,29 +70,29 @@ const Cart = () => {
 
       <div className={styles.subContainer}>
         {cart.map((product) => (
-          <ul key={product.attributes.id}>
+          <ul key={product.id}className={styles.ul}>
             <li className={styles.li}>
-              <h2 className={styles.title}>{product.attributes.title}</h2>
+              <h2 className={styles.title}>{product.title}</h2>
               <img
-                src={product.attributes["image-url"] || notFound}
+                src={product["image"] || notFound}
                 alt="Funko-Img"
                 className={styles.funkoImg}
               ></img>
               <div className={styles.price}>
                 <h5>
-                  {product.attributes.id}.00 x {product.quantity} ={" "}
-                  {product.attributes.id * product.quantity} USD
+                  {product.id}.00 x {product.quantity} ={" "}
+                  {product.id * product.quantity} USD
                 </h5>
               </div>
               <div className={styles.buttonsMoreAndLessDiv}>
                 <button
-                  onClick={() => addOneToCart(product.attributes.id)}
+                  onClick={() => addOneToCart(product.id)}
                   className={styles.buttonsMoreAndLess}
                 >
                   +
                 </button>
                 <button
-                  onClick={() => deleteOneInTheCart(product.attributes.id)}
+                  onClick={() => deleteOneInTheCart(product.id)}
                   className={`${styles.buttonsMoreAndLess} ${styles.lessButton}`}
                 >
                   -
@@ -101,7 +101,7 @@ const Cart = () => {
               <div>
                 <button
                   onClick={() =>
-                    deleteAllInTheCart(product.attributes.id, true)
+                    deleteAllInTheCart(product.id, true)
                   }
                   className={styles.deleteButton}
                 >
