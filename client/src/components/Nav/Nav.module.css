@@ -1,11 +1,14 @@
 
-.nav{
-    height: 70px;
-    width:100%;
-    background-color:#3cb7b9;
-    color:white;
-    display:flex;
-    flex-direction: row;
-    /*justify-content: space-evenly;*/
-    align-items: center;
+.nav {
+  height: 70px;
+  /* width: 100%; */
+  box-shadow: 1px 1px 1px 1px rgb(175, 175, 175);
+  margin: 5px 35px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
 }
+

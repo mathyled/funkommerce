@@ -1,12 +1,11 @@
 import Nav from "../Nav/Nav";
-
-import FunkoCard from "../FunkoCard/FunkoCard";
+import FunkoCardContainer from "../FunkoCardContainer/FunkoCardContainer";
 
 const Home = () => {
   return (
     <div>
-        <Nav/>
-        <FunkoCard />
+      <Nav />
+      <FunkoCardContainer />
     </div>
   );
 };
