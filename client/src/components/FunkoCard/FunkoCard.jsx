@@ -2,11 +2,35 @@ import styles from "./FunkoCard.module.css";
 import { Link } from "react-router-dom";
 import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
+
+
+
+import Paged from "../Paged/Paged";
 import gifLoader from "../../assets/gifLoader.gif";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 
+
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
+
+  useEffect(() => {
+    localStorage.setItem("funkosInCart", JSON.stringify(cart));
+  }, [cart]);
+
+  ///PAGINADO
+
+  const [actualFunko, setActualpage] = useState(1);
+  const [funkoPerPage] = useState(5);
+
+    const indexOfLastFunko = actualFunko * funkoPerPage;
+    const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
+    const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko)
+
+    function paginate (e, numberPage){
+        setActualpage(numberPage)
+    }
+
+
   if (funkos.length < 1) {
     return (
       <div>
@@ -21,9 +45,9 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
           <ItemsQuantity />
           <MdOutlineAddShoppingCart className={styles.cartImg2} />
         </Link>
-    
+
         <div className={styles.funkosCard}>
-          {funkos.map((product) => (
+          {currentFunko && currentFunko.map((product) => (
             <div className={styles.item} key={product.attributes.id}>
               <ul key={product.attributes.id}>
                 
@@ -67,8 +91,16 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
               </ul>
             </div>
           ))}
-        </div>
+        </div> 
+        <div className={styles.pagination}>
+        <Paged
+          funkoPerPage={funkoPerPage}
+          totalFunko={funkos}
+          paginate={paginate}
+        /> 
+        </div>              
       </div>
+
     );
   }
 };
