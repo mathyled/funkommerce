@@ -49,8 +49,8 @@ export const clearCart = () => (dispatch)=>{
 export const searchFunkos = (name) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`https://the-funko-api.herokuapp.com/api/v1/items/${name}`)
-      dispatch({type: TYPES.SEARCH_FUNKOS, payload: data.data})
+      const {data} = await axios.get(`http://localhost:3001/api/producttest/s?name=${name}`)
+      dispatch({type: TYPES.SEARCH_FUNKOS, payload: data})
     }
     catch(error) {
       dispatch({type: TYPES.SEARCH_FUNKOS, payload: []})
