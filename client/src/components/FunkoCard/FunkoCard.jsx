@@ -47,7 +47,7 @@ const FunkoCard = () => {
           {/* <MdOutlineAddShoppingCart></MdOutlineAddShoppingCart> */}
         </Link>
         <div>
-        <Filter />
+
         </div>
         <div className={styles.funkosCard}>
           {funkos.map((product) => (
