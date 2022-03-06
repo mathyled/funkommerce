@@ -23,16 +23,16 @@ const Detail = () => {
 
             <div className={styles.dropdown} >
               <div>
-                <p><strong>Items Number: </strong> {funkoDetails[0].attributes.number}</p>
+                <p><strong>Items Number: </strong> {funkoDetails[0].number}</p>
               </div>
               <div>
-                <p><strong>Category:</strong>{funkoDetails[0].attributes.category}</p>
+                <p><strong>Category:</strong>{funkoDetails[0].category}</p>
               </div>
               <div>
-                <p><strong>License:</strong>{funkoDetails[0].attributes.license}</p>
+                <p><strong>License:</strong>{funkoDetails[0].license}</p>
               </div>
               <div>
-                <p><strong>Product Type:</strong>{funkoDetails[0].attributes.brand}</p>
+                <p><strong>Product Type:</strong>{funkoDetails[0].brand}</p>
               </div>
             </div>
           </div>
