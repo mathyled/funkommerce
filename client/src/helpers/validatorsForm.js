@@ -59,6 +59,22 @@ export const validator = (error, input) => {
       }
       break;
 
+      case "number":
+      if (value < 1 || value > 999.99) {
+        errors = {
+          ...error,
+          [name]: "Price must be between $0.99 and $999.99",
+        };
+        break;
+      }
+
+      errors = {
+        ...error,
+        [name]: "",
+      };
+
+      break;
+
     default:
       break;
   }

@@ -70,10 +70,35 @@ const CreateFunko = () => {
 
   return (
       <div>
+          <h1>Add a New Product</h1>
           <form>
               <span>Title</span>
               <Input type="text" name="title" placeholder="Title..." value={input.title} onChange={handleChange}/>
               {error.title && <b>{error.title}</b>}
+              <span>Number</span>
+              <Input type="number" name="number" placeholder="Number..." value={input.number} onChange={handleChange}/>
+              {error.number && <b>{error.number}</b>}
+              <span>Brand</span>
+              <Input type="text" name="brand" placeholder="Brand..." value={input.brand} onChange={handleChange}/>
+              {error.brand && <b>{error.brand}</b>}
+              <span>Category</span>
+              <Input type="text" name="category" placeholder="Category..." value={input.category} onChange={handleChange}/>
+              {error.category && <b>{error.category}</b>}
+              <span>Type of Product</span>
+              <Input type="text" name="formFactor" placeholder="Type of Product..." value={input.formFactor} onChange={handleChange}/>
+              {error.formFactor && <b>{error.formFactor}</b>}
+              <span>License</span>
+              <Input type="text" name="license" placeholder="License..." value={input.license} onChange={handleChange}/>
+              {error.license && <b>{error.license}</b>}
+              <span>Image</span>
+              <Input type="text" name="image" placeholder="Image..." value={input.image} onChange={handleChange}/>
+              {error.image && <b>{error.image}</b>}
+              <span>Price $</span>
+              <Input type="number" name="price" step=".01" value={input.price} onChange={handleChange}/>
+              {error.price === 0 ? "" : error.price && <b>{error.price}</b>}
+              <span>Stock</span>
+              <Input type="number" name="stock" value={input.stock} onChange={handleChange}/>
+              {error.stock === 0 ? "" : error.stock && <b>{error.stock}</b>}
           </form>
       </div>
   )
