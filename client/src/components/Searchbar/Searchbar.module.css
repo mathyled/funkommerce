@@ -1,0 +1,32 @@
+:root {
+
+    --input-color: #99A3BA;
+    --input-border: #CDD9ED;
+    --input-background: #fff;
+    --input-placeholder: #CBD1DC;
+
+    --input-border-focus: #275EFE;
+}
+
+.search {
+    display: block;
+    width: 500px;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border .3s ease;
+}
+.search::placeholder {
+    color: var(--input-placeholder);
+}
+.search:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+}

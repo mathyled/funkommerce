@@ -57,18 +57,15 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                       className={styles.funkoImg}
                     />
 
-
-                    <div className={styles.funkoTittle}>
+                    <div className={styles.funkoTitle}>
                       <div>
-                        <h3>{product.brand}</h3>
+                        <h2>{product.brand}</h2>
                       </div>
-                      <h2>{product.title}</h2>
-
-
+                      <h1>{product.title}</h1>
                     </div>
 
                     <div className={styles.price}>
-                      <h3>{product.price} USD</h3>
+                      <h2>US$ {product.price}</h2>
                     </div>
                   </Link>
                   <div>

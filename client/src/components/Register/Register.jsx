@@ -21,7 +21,7 @@ import { useState } from 'react';
   });
 
     return (
-      <Modal buttonText="REGISTER">
+      <Modal buttonText="Register" className={styles.register}>
         <main className={styles.containerForm}>
           <form className={styles.login} autoComplete="off">
             <h3>CREATE ACCOUNT</h3>

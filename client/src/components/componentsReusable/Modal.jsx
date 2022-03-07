@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 import S from './Generics.module.css';
 
-const Login=({children,buttonText})=>{
+const Login=({children,buttonText, className})=>{
 
     const [visible,setVisible]= useState(false);
 
@@ -11,7 +11,7 @@ const Login=({children,buttonText})=>{
 
     return(
         <section>
-            <button  onClick={()=>setVisible(!visible)}>
+            <button className={className} onClick={()=>setVisible(!visible)}>
                 {buttonText}
             </button>
             <main className={S[vista]}>

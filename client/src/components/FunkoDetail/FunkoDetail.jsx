@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { getDetails } from "../../redux/actions/actions";
 import styles from "./FunkoDetail.module.css";
-import Loader from "../../assets/Funko.gif";
+import gifLoader from "../../assets/gifLoader.gif";
 import { addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Desplegable from "../componentsReusable/Desplegable/Desplegable";
@@ -53,8 +53,8 @@ console.log(funkoDetails)
   if (funkoDetails.length === 0) {
     return (
       <div>
-        <h1>Loading..</h1>
-        <img src={Loader} alt="img-not-found" />
+        <h1>Loading...</h1>
+        <img src={gifLoader} alt="gifLoader" />
 
       </div>
     )
@@ -74,7 +74,7 @@ console.log(funkoDetails)
               <div className={styles.brand}>
                 <p>{funkoDetails[0].brand}</p>
               </div>
-              <div>
+              <div className={styles.title}>
                 <h1>{funkoDetails[0].title}</h1>
               </div>
             </div>

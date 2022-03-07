@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFunkos, addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
+import Nav from "../Nav/Nav";
+import Nav2 from "../Nav/Nav2"
 
 
 const FunkoCardContainer = () => {
@@ -48,6 +50,8 @@ const FunkoCardContainer = () => {
   }
   return (
     <div >
+      <Nav/>
+      <Nav2/>
       <FunkoCard  funkos={funkos} addToCart1={addToCart1} cart={cart} />
     </div>
   );

@@ -20,7 +20,7 @@ const TotalToPay = () => {
 
   return (
     <div>
-      TOTAL: {total} USD
+      TOTAL: US$ {total}
     </div>
   );
 };

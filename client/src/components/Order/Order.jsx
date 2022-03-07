@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getFunkos, orderFunkos} from "../../redux/actions/actions"
-// import style from "./Order.module.css"
+import styles from "./Order.module.css"
 
 const Order = () => {
     const dispatch = useDispatch();
@@ -19,21 +19,14 @@ const Order = () => {
     }
 
     return (
-        <div>
-            <select defaultValue=""
-            onChange={handleOrder}
-            >
-                <option value="">
-                    Order By...
-                </option>
-                <optgroup label="Alphabetical">
-                <option value="AtoZ">A to Z</option>
-                <option value="ZtoA">Z to A</option>
-                </optgroup>
-                <optgroup label="Price">
-                <option value="HighPrice">High To Low</option>
-                <option value="LowPrice">Low To High</option>
-                </optgroup>
+        <div className={styles.order}>
+            <p className={styles.orderText}>Sort by:</p>
+            <select defaultValue="" onChange={handleOrder}>
+                <option value="">Default</option>
+                <option value="AtoZ">Name (A - Z)</option>
+                <option value="ZtoA">Name (Z - A)</option>
+                <option value="HighPrice">Price (High - Low)</option>
+                <option value="LowPrice">Price (Low - High)</option>
             </select>
         </div>
     )
