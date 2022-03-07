@@ -68,10 +68,10 @@ const Cart = () => {
         </button>
       </div>
 
-      <div className={styles.subContainer}>
+      <div className={styles.subContainer} >
         {cart.map((product) => (
           <ul key={product.id}className={styles.ul}>
-            <li className={styles.li}>
+            <li  className={styles.li}>
               <h2 className={styles.title}>{product.title}</h2>
               <img
                 src={product["image"] || notFound}

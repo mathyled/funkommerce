@@ -45,8 +45,8 @@ const FunkoCardContainer = () => {
     return <img src={gifLoader} alt="gifLoader"/>
   }
   return (
-    <div>
-      <FunkoCard funkos={funkos} addToCart1={addToCart1} cart={cart} />
+    <div key={Math.random()} >
+      <FunkoCard  funkos={funkos} addToCart1={addToCart1} cart={cart} />
     </div>
   );
 };

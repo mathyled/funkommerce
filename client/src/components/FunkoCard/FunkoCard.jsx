@@ -13,7 +13,7 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
   ///PAGINADO
-
+//console.log('jjjjj',funkos)
   const [actualFunko, setActualpage] = useState(1);
   const [funkoPerPage] = useState(20);
 
@@ -47,7 +47,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
             <div className={styles.item} key={product.id}>
               <ul key={product.id}>
                 
-                <li className={styles.li}>
+                <li  className={styles.li}>
                   
                   <Link
                     to={`/detail/${product.id}`}
@@ -70,7 +70,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                     </div>
 
                     <div className={styles.price}>
-                      <h3>{product.id} USD</h3>
+                      <h3>{product.price} USD</h3>
                     </div>
                   </Link>
                   <div>
