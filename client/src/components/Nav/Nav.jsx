@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Order from "../Order/Order"
-import Funkommerce from "../../assets/Funkommerce.png"
+import Funkommerce from "../../assets/Funkommerce.png";
+import Filters from '../Filters/Filters'
+
+
 const Nav = () => {
   return (
     <section className={styles.nav}>
@@ -25,6 +28,7 @@ const Nav = () => {
         <ItemsQuantity />
         <MdOutlineAddShoppingCart className={styles.cartImg} />
       </Link>
+      <Filters/>
     </section>
   );
 };

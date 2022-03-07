@@ -7,8 +7,10 @@ import { getFunkos, addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
 
+
 const FunkoCardContainer = () => {
   const funkos = useSelector((state) => state.funkos);
+
 
   let cart = useSelector((state) => state.cart);
 
@@ -45,7 +47,7 @@ const FunkoCardContainer = () => {
     return <img src={gifLoader} alt="gifLoader"/>
   }
   return (
-    <div key={Math.random()} >
+    <div >
       <FunkoCard  funkos={funkos} addToCart1={addToCart1} cart={cart} />
     </div>
   );

@@ -10,13 +10,15 @@ import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 
+
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
   ///PAGINADO
 //console.log('jjjjj',funkos)
   const [actualFunko, setActualpage] = useState(1);
-  const [funkoPerPage] = useState(20);
 
+  const [funkoPerPage] = useState(20);
+  
     const indexOfLastFunko = actualFunko * funkoPerPage;
     const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
     const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko)
@@ -37,10 +39,6 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     return (
       <div className={styles.container}>
        
-        {/* <Link to="/cart" className={styles.cartImg}>
-          <ItemsQuantity />
-          <MdOutlineAddShoppingCart className={styles.cartImg2} />
-        </Link> */}
 
         <div className={styles.funkosCard}>
           {currentFunko && currentFunko.map((product) => (
