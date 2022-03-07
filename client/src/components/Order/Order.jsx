@@ -25,8 +25,8 @@ const Order = () => {
                 <option value="">Default</option>
                 <option value="AtoZ">Name (A - Z)</option>
                 <option value="ZtoA">Name (Z - A)</option>
-                <option value="HighPrice">Price (High - Low)</option>
-                <option value="LowPrice">Price (Low - High)</option>
+                <option value="HighPrice">Price (High to Low)</option>
+                <option value="LowPrice">Price (Low to High)</option>
             </select>
         </div>
     )

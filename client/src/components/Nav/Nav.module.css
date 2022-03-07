@@ -37,7 +37,7 @@
 }
 
 .cartImg{
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 1.8rem;
   margin-right: 25px;
   transition-property: color;
@@ -52,5 +52,9 @@
   transition-duration: 0.5s;
 }
 .home:hover,.cartImg:hover,.linkToCart:hover{
-  color: rgb(85, 255, 113);
+  color: rgb(212, 212, 212);
+}
+.cartImg:hover,
+.cartImg:focus {
+  color: #98ea4c;
 }
