@@ -4,7 +4,7 @@ import styles from '../Paged/Paged.module.css'
 const Paged = ({funkoPerPage, totalFunko, paginate}) => {
     const numberPage = [];
 
-    for(let i = 1; i < Math.ceil(totalFunko.length / funkoPerPage); i++){
+    for(let i = 1; i <= Math.ceil(totalFunko.length / funkoPerPage); i++){
         numberPage.push(i)
     }
     return (
