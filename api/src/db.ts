@@ -3,6 +3,7 @@ require("dotenv").config();
 const path = require("path");
 
 const { DB_NAME, DB_USER, DB_PASSWORD, HOST } = process.env;
+console.log(typeof DB_NAME,typeof DB_USER,typeof DB_PASSWORD,typeof HOST)
 
 const sequelize = new Sequelize(
   DB_NAME || "funkommerce",
@@ -10,6 +11,7 @@ const sequelize = new Sequelize(
   DB_PASSWORD,
   {
     host: HOST,
+    port:3002,
     dialect: "postgres",
     logging: false,
   }
