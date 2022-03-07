@@ -186,7 +186,8 @@ export default function rootReducer(state = initialState, action) {
       //FILTRADO
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkos;
-      let categoryFilter = action.payload === 'ALL' ? state.funkos : allFunkos1.filter((i) => i.attributes.category.includes(action.payload));
+      let categoryFilter = action.payload === 'ALL' ? state.funkos : allFunkos1.filter((i) => i.category.includes(action.payload));
+      console.log(categoryFilter)
       return {
         ...state,
         funkos: categoryFilter
@@ -195,7 +196,7 @@ export default function rootReducer(state = initialState, action) {
       case TYPES.HANDLE_BRANDS:
         const allFunkos2 = state.funkos;
 
-        let brandFilter = action.payload === 'ALL' ? state.funkos : allFunkos2.filter((i) => i.attributes.brand.includes(action.payload));
+        let brandFilter = action.payload === 'ALL' ? state.funkos : allFunkos2.filter((i) => i.brand.includes(action.payload));
         return {
           ...state,
           funkos: brandFilter
@@ -205,7 +206,7 @@ export default function rootReducer(state = initialState, action) {
           const allFunkos3 = state.funkos;
 
           // eslint-disable-next-line array-callback-return
-        let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.attributes.license && i.attributes.license?.includes(action.payload)
+        let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
           ))
           console.log(licenseFilter)
           return {
