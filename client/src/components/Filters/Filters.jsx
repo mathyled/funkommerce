@@ -10,24 +10,32 @@ import {
 const Filters = () => {
   const dispatch = useDispatch();
   const funkos = useSelector((state) => state.funkos);
+  // const brand = useSelector((state) => state.brand);
+  // const categories = useSelector((state) => state.categories);
+  // const license = useSelector((state) => state.license);
+  const funkosBackUp = useSelector((state) => state.funkosBackUp)
+  
 
-  const categories = funkos?.map((e) => {
-    const nombre = e.category;
-    return nombre;
-  });
-  const funkoCategory = [...new Set(categories)];
+  // const categories = funkos?.map((e) => {
+  //   const nombre = e.category;
+  //   return nombre;
+  // });
+  // const funkoCategory = [...new Set(categories)];
 
-  const brands = funkos?.map((e) => {
-    const nombre = e.brand;
-    return nombre;
-  });
-  const funkoBrands = [...new Set(brands)];
+  // const brands = funkos?.map((e) => {
+  //   const nombre = e.brand;
+  //   return nombre;
+  // });
+  // const funkoBrands = [...new Set(brands)];
 
-  const license = funkos?.map((e) => {
-    const nombre = e.license;
-    return nombre;
-  });
-  const funkoLicense = [...new Set(license)];
+  // const license = funkos?.map((e) => {
+  //   const nombre = e.license;
+  //   return nombre;
+  // });
+  // const funkoLicense = [...new Set(license)];
+
+  //useEffect(() => {dispatch}, [])
+
 
   const handleCategories = async (e) => {
     e.preventDefault();
@@ -75,22 +83,22 @@ const Filters = () => {
     e.preventDefault();
     dispatch(getFunkos());
   }
-  let arr = [];
-  let f = funkos
-  f.map((e) => (arr.includes(e.category) ? "" : arr.push(e.category)));
-  let arr2 = [];
-  f.map((e) => (arr2.includes(e.license) ? "" : arr2.push(e.license)));
-  let arr3 = [];
-  f.map((e) => (arr3.includes(e.brand) ? "" : arr3.push(e.brand)));
-  console.log(arr3)
+  // let arr = [];
+  // let f = funkos
+  // f.map((e) => (arr.includes(e.category) ? "" : arr.push(e.category)));
+  // let arr2 = [];
+  // f.map((e) => (arr2.includes(e.license) ? "" : arr2.push(e.license)));
+  // let arr3 = [];
+  // f.map((e) => (arr3.includes(e.brand) ? "" : arr3.push(e.brand)));
+  // console.log(arr3)
   return (
     <div>
       <select onChange={(e) => handleCategories(e)}>
       <option value="Categories" hidden> Categories </option>
-        {arr?.map((e) => {
+        {funkosBackUp?.map((e) => {
           return (
-            <option key={e} value={e}>
-              {e}
+            <option key={e.id} value={e.category}>
+              {e.category}
             </option>
           );
         })}
@@ -98,10 +106,10 @@ const Filters = () => {
 
       <select onChange={(e) => handleBrand(e)}>
         <option value="ALL" hidden> Brands </option>
-        {arr3?.map((e) => {
+        {funkosBackUp?.map((e) => {
           return (
-            <option key={e} value={e}>
-              {e}
+            <option key={e.id} value={e.brand}>
+              {e.brand}
             </option>
           );
         })}
@@ -109,10 +117,10 @@ const Filters = () => {
 
       <select onChange={(e) => handleLicense(e)}>
         <option value="ALL" hidden> License </option>
-        {arr2?.map((e) => {
+        {funkosBackUp?.map((e) => {
           return (
-            <option key={e} value={e}>
-              {e}
+            <option key={e.id} value={e.license}>
+              {e.license}
             </option>
           );
         })}

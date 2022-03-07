@@ -9,7 +9,10 @@ const initialState = {
     [] :
     JSON.parse(localStorage.getItem("funkosInCart")),
   user: {}, //Usuario de la sesion
-  detail: []
+  detail: [],
+  brand: [],
+  categories: [],
+  licence: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -18,6 +21,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: action.payload,
+        funkosBackUp: action.payload
       };
 
     case TYPES.ADD_TO_CART:

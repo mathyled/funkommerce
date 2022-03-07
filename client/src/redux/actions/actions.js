@@ -126,23 +126,36 @@ export const getDetails = (id)=>{
 
 // ACTION PARA FILTRADO
 
-export const filterCategories=(payload) =>{
-  return {
+export const filterCategories=() =>{  
+  return async (dispatch) => {
+    var json= await axios.get('http://localhost:3001/api/category');
+    return dispatch({
       type: TYPES.HANDLE_CATEGORIES,
-      payload
+      payload: json.data
+    })     
   }
 }
 
-export const filterBrands=(payload) =>{
-  return {
+export const filterBrands=() =>{
+  return async (dispatch) => {
+    var json = await axios.get('http://localhost:3001/api/brand');
+
+    return dispatch({
       type: TYPES.HANDLE_BRANDS,
-      payload
+      payload: json.data
+
+    })  
   }
 }
 
-export const filterLicense=(payload) =>{
-  return {
+export const filterLicense=() =>{
+  return async (dispatch) => {
+    var json = await axios.get('http://localhost:3001/api/license');
+
+    return dispatch({
       type: TYPES.HANDLE_LICENSE,
-      payload
+      payload: json.data
+
+    })      
   }
 }
