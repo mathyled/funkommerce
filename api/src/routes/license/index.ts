@@ -1,6 +1,8 @@
 import { Router } from "express";
 
-const { getAllLicense } = require("../../controllers/cLicence.ts");
+
+const { getAllLicense } = require("../../controllers/cLicense.ts");
+
 
 const router = Router();
 
