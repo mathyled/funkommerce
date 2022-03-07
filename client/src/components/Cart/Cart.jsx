@@ -83,7 +83,7 @@ const Cart = () => {
               <div className={styles.price}>
                 <h5>
                   US$ {product.price} x {product.quantity} ={" "}
-                  {product.price * product.quantity}
+                  {(product.price * product.quantity).toFixed(2)}
                 </h5>
               </div>
               <div className={styles.buttonsMoreAndLessDiv}>

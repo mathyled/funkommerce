@@ -20,7 +20,7 @@ const TotalToPay = () => {
 
   return (
     <div>
-      TOTAL: US$ {total}
+      TOTAL: US$ {total.toFixed(2)}
     </div>
   );
 };
