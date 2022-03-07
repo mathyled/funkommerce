@@ -76,17 +76,20 @@ const Filters = () => {
     dispatch(getFunkos());
   }
   let arr = [];
-  let f = funkos
+  let f = funkos;
   f.map((e) => (arr.includes(e.category) ? "" : arr.push(e.category)));
   let arr2 = [];
   f.map((e) => (arr2.includes(e.license) ? "" : arr2.push(e.license)));
   let arr3 = [];
   f.map((e) => (arr3.includes(e.brand) ? "" : arr3.push(e.brand)));
-  console.log(arr3)
+  console.log(arr3);
   return (
     <div>
       <select onChange={(e) => handleCategories(e)}>
-      <option value="Categories" hidden> Categories </option>
+        <option value="Categories" hidden>
+          {" "}
+          Categories{" "}
+        </option>
         {arr?.map((e) => {
           return (
             <option key={e} value={e}>
@@ -97,7 +100,10 @@ const Filters = () => {
       </select>
 
       <select onChange={(e) => handleBrand(e)}>
-        <option value="ALL" hidden> Brands </option>
+        <option value="ALL" hidden>
+          {" "}
+          Brands{" "}
+        </option>
         {arr3?.map((e) => {
           return (
             <option key={e} value={e}>
@@ -108,7 +114,10 @@ const Filters = () => {
       </select>
 
       <select onChange={(e) => handleLicense(e)}>
-        <option value="ALL" hidden> License </option>
+        <option value="ALL" hidden>
+          {" "}
+          License{" "}
+        </option>
         {arr2?.map((e) => {
           return (
             <option key={e} value={e}>

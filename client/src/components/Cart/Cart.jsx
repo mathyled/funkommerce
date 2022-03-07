@@ -80,8 +80,8 @@ const Cart = () => {
               ></img>
               <div className={styles.price}>
                 <h5>
-                  {product.id}.00 x {product.quantity} ={" "}
-                  {product.id * product.quantity} USD
+                  {product.price} x {product.quantity} ={" "}
+                  {product.price * product.quantity} USD
                 </h5>
               </div>
               <div className={styles.buttonsMoreAndLessDiv}>
