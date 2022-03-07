@@ -10,6 +10,7 @@ import gifLoader from "../../assets/gifLoader.gif";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 
+
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   
 
@@ -20,7 +21,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
   ///PAGINADO
 
   const [actualFunko, setActualpage] = useState(1);
-  const [funkoPerPage] = useState(5);
+  const [funkoPerPage] = useState(10);
 
     const indexOfLastFunko = actualFunko * funkoPerPage;
     const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
@@ -45,10 +46,6 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
           <ItemsQuantity />
           <MdOutlineAddShoppingCart className={styles.cartImg2} />
         </Link>
-        <div>
-
-        </div>
-
         <div className={styles.funkosCard}>
           {currentFunko && currentFunko.map((product) => (
             <div className={styles.item} key={product.attributes.id}>

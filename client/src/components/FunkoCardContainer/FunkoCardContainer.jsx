@@ -5,9 +5,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFunkos, addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
+import Filters from "../Filters/Filters";
+
 
 const FunkoCardContainer = () => {
   const funkos = useSelector((state) => state.funkos);
+
 
   let cart = useSelector((state) => state.cart);
 
@@ -39,9 +42,14 @@ const FunkoCardContainer = () => {
   }, [cart]);
 
   return (
+    <>
+    <div>
+      <Filters />
+    </div>
     <div>
       <FunkoCard funkos={funkos} addToCart1={addToCart1} cart={cart} />
     </div>
+    </>
   );
 };
 export default FunkoCardContainer;
