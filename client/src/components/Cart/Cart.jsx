@@ -14,6 +14,7 @@ import TotalToPay from "../TotalToPay/TotalToPay";
 import { AiOutlineHome } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Funkommerce from "../../assets/Funkommerce.png";
 
 const Cart = () => {
   let cart = useSelector((state) => state.cart);
@@ -54,10 +55,11 @@ const Cart = () => {
 
   return (
     <div className={styles.container}> 
-      <h1 className={styles.myCart}>MY CART</h1>
       <Link to="/" className={styles.linkToHome}>
-        <AiOutlineHome className={styles.home} />
+        {/* <AiOutlineHome className={styles.home} /> */}
+        <img src={Funkommerce} alt="img-not found" className={styles.img} />
       </Link>
+      <h1 className={styles.myCart}>MY CART</h1>
       <div className={styles.myCartAndButtonEmpty}>
         <h3 className={styles.totalToPay}>
           {" "}
@@ -80,8 +82,8 @@ const Cart = () => {
               ></img>
               <div className={styles.price}>
                 <h5>
-                  {product.id}.00 x {product.quantity} ={" "}
-                  {product.id * product.quantity} USD
+                  US$ {product.id}.00 x {product.quantity} ={" "}
+                  {product.id * product.quantity}
                 </h5>
               </div>
               <div className={styles.buttonsMoreAndLessDiv}>

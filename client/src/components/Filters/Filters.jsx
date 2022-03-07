@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Filters.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCategories,
@@ -84,7 +85,8 @@ const Filters = () => {
   f.map((e) => (arr3.includes(e.brand) ? "" : arr3.push(e.brand)));
   console.log(arr3)
   return (
-    <div>
+    <div className={styles.filters}>
+      <p className={styles.filterText}>Filter by: </p>
       <select onChange={(e) => handleCategories(e)}>
       <option value="Categories" hidden> Categories </option>
         {arr?.map((e) => {
