@@ -1,3 +1,4 @@
+
 .nav {
   height: 70px;
   /* width: 100%; */
@@ -9,4 +10,40 @@
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+
 }
+
+.img{
+  height: 100px;
+   width: auto;
+}
+
+.home{
+  color: black;
+  font-size: 1.8rem;
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.cartImg{
+  color: black;
+  font-size: 1.8rem;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transform: scaleX(-1);
+}
+.linkToCart{
+  background-color: transparent;
+  display: flex;
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+.home:hover,.cartImg:hover,.linkToCart:hover{
+  color: rgb(85, 255, 113);
+}
+
+

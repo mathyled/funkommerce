@@ -89,6 +89,10 @@
 
 }
 
+.notfound{
+  margin-top: 25px;
+  height: 300px;
+}
 .funkoTittle {
   background-color: transparent;
   height: 60px;
@@ -98,6 +102,7 @@
   margin: 10px 5px;
   overflow: hidden;
 }
+
 
 .price {
   /* box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.75); */
@@ -111,7 +116,7 @@
 .buttonAdd {
   box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
   /* margin: 2px 30% 2px; */
-  padding: 8px 15px;
+  padding: 8px 45px;
   /* font-size: 70%; */
   background-color: transparent;
   border-radius: 50px;
@@ -121,6 +126,52 @@
   transition-property: background-color;
   transition-duration: 0.8s;
 }
+
+
 .buttonAdd:hover {
   background-color: rgb(194, 255, 103);
+
+}
+
+
+/* .btn-13 {
+  background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+  border: none;
+  z-index: 1;
+}
+.btn-13:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+.btn-13:hover {
+  color: #fff;
+}
+.btn-13:hover:after {
+  top: 0;
+  height: 100%;
+}
+.btn-13:active {
+  top: 2px;
+} */
+
+
+
+.pagination{
+  width: 100%;
+  margin-left: 40%;
 }

@@ -6,12 +6,12 @@ import { TYPES } from "./types";
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get(
-      "https://the-funko-api.herokuapp.com/api/v1/items/?page=10"
+      "http://localhost:3001/api/producttest"
     );
-    // console.log("hola",json)
+   // console.log("hola",json)
     return dispatch({
       type: TYPES.GET_FUNKOS,
-      payload: json.data.data,
+      payload: json.data,
     });
   };
 };
@@ -49,8 +49,8 @@ export const clearCart = () => (dispatch)=>{
 export const searchFunkos = (name) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`https://the-funko-api.herokuapp.com/api/v1/items/${name}`)
-      dispatch({type: TYPES.SEARCH_FUNKOS, payload: data.data})
+      const {data} = await axios.get(`http://localhost:3001/api/producttest/s?name=${name}`)
+      dispatch({type: TYPES.SEARCH_FUNKOS, payload: data})
     }
     catch(error) {
       dispatch({type: TYPES.SEARCH_FUNKOS, payload: []})
@@ -118,15 +118,10 @@ export const createUser=(name,lastName,email,userName,password) => {
   }
 
 export const getDetails = (id)=>{
-    return async (dispatch) => {
-        var json = await axios.get(
-           `https://the-funko-api.herokuapp.com/api/v1/items/${id}?page=7`);
-        return dispatch({
+        return {
             type: TYPES.GET_FUNKO_DETAIL,
-            payload: json.data.data
-        })
-    
-      }
+            id,
+        }
 };
 
 export const filterCategories=(payload) =>{
