@@ -131,7 +131,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.SEARCH_FUNKOS: {
       return {
         ...state,
-        funkos: [action.payload],
+        funkos: action.payload,
       };
     }
 

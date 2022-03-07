@@ -6,7 +6,7 @@ import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import { useEffect, useState } from "react";
 
 import Paged from "../Paged/Paged";
-import gifLoader from "../../assets/gifLoader.gif";
+import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 
@@ -29,7 +29,8 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
   if (funkos.length < 1) {
     return (
       <div>
-        <img src={gifLoader} alt="gif" />
+        <h2>Product not found</h2>
+        <img src={tristezaNotFound} alt="tristezaNotFound.png" className={styles.notfound} />
       </div>
     );
   } else {

@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { searchFunkos } from "../../redux/actions/actions";
-import s from "./Searchbar.module.css"
-
+// import style from "./Searchbar.module.css"
+import {BiSearchAlt} from "react-icons/bi"
 //Cuando ya este la base de datos hay que cambiar las actions a busqueda por query y borrarle los arrays al reducer del search
 
 const Searchbar = () => {
@@ -12,6 +12,7 @@ const Searchbar = () => {
     const handleChange = (e) => {
         e.preventDefault();
         setInput(e.target.value);
+        dispatch(searchFunkos(input));
     };
 
     const handleSubmit = (e) => {
@@ -30,7 +31,7 @@ const Searchbar = () => {
                 onChange={handleChange}
                 />
                 <button type="submit">
-                    Search
+                  <BiSearchAlt />
                 </button>
             </form>
         </div>
