@@ -131,7 +131,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.SEARCH_FUNKOS: {
       return {
         ...state,
-        funkos: [action.payload],
+        funkos: action.payload,
       };
     }
 
@@ -139,40 +139,48 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
+     // console.log("hello",action.payload)
       if (action.payload === "AtoZ") {
         funkoSort = state.funkos.sort((a, b) => {
-          if (a.name > b.name) return 1;
-          if (a.name < b.name) return -1;
+          if (a.title > b.title) return 1;
+          if (a.title < b.title) return -1;
           else return 0;
         })
       }
       if (action.payload === "ZtoA") {
         funkoSort = state.funkos.sort((a, b) => {
-          if (a.name > b.name) return -1;
-          if (a.name < b.name) return 1;
+          if (a.title > b.title) return -1;
+          if (a.title < b.title) return 1;
           else return 0;
         })
       }
-      if (action.payload === "PriceHigh") {
+      if (action.payload === "HighPrice") {
+        //console.log(action.payload)
         funkoSort = state.funkos.sort((a, b) => {
-          return b.price - a.price
-        })
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          else return 0;
+        }) 
       }
-      if (action.payload === "PriceLow") {
+      if (action.payload === "LowPrice") {
         funkoSort = state.funkos.sort((a, b) => {
-          return a.price - b.price
-        })
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          else return 0;
+        }) 
       }
+      console.log("hola",funkoSort)
       return {
         ...state,
-        funkos: funkoSort
+        funkos: [...funkoSort]
       }
     }
 
     case TYPES.GET_FUNKO_DETAIL:
+      let detail= state.funkos.find( f => String(f.id) === action.id)
       return {
         ...state,
-        detail: [action.payload],
+        detail:[detail]
       };
 
       //FILTRADO

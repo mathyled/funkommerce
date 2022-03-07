@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getFunkos, orderFunkos} from "../../redux/actions/actions"
-import s from "./Order.module.css"
+// import style from "./Order.module.css"
 
 const Order = () => {
     const dispatch = useDispatch();

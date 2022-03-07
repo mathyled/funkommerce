@@ -18,7 +18,7 @@ const Login = () => {
   });
 
     return (
-      <Modal buttonText="Login">
+      <Modal buttonText="Login"> 
         <main className={styles.container}>
           <form autoComplete="off">
             <h3>LOGIN</h3>

@@ -1,11 +1,11 @@
 import React from "react";
 // import styles from "./FunkoCardContainer.module.css";
 import FunkoCard from "../FunkoCard/FunkoCard";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFunkos, addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
-import Filters from "../Filters/Filters";
+import gifLoader from "../../assets/gifLoader.gif";
 
 
 const FunkoCardContainer = () => {
@@ -15,9 +15,11 @@ const FunkoCardContainer = () => {
   let cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
-
+  const [load,setLoad] = useState(true)
+  
   useEffect(() => {
-    dispatch(getFunkos());
+    dispatch(getFunkos())
+    .then(()=> setLoad(false))
   }, [dispatch]);
 
   const addToCart1 = (id) => {
@@ -41,15 +43,13 @@ const FunkoCardContainer = () => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
   }, [cart]);
 
+  if(load){
+    return <img src={gifLoader} alt="gifLoader"/>
+  }
   return (
-    <>
-    <div>
-      <Filters />
+    <div >
+      <FunkoCard  funkos={funkos} addToCart1={addToCart1} cart={cart} />
     </div>
-    <div>
-      <FunkoCard funkos={funkos} addToCart1={addToCart1} cart={cart} />
-    </div>
-    </>
   );
 };
 export default FunkoCardContainer;
