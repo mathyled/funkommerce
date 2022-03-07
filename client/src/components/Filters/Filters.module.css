@@ -1,14 +1,12 @@
-.order {
+.filters {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 }
 
-.orderText {
+.filterText {
     margin: 10px;
     font-size: 18px;
     text-transform: uppercase;
     font-family: 'Secular One';
 }
-
