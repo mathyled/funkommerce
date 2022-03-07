@@ -18,7 +18,7 @@ const FunkoDetail = () => {
   const dispatch = useDispatch();
   const funkoDetails = useSelector((state) => state.detail);
   const cart = useSelector((state) => state.cart);
-
+console.log(funkoDetails)
   useEffect(() => {
     dispatch(getDetails(id));
   }, [dispatch,id]);

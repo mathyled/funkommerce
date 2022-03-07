@@ -139,7 +139,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
-      console.log(action.payload)
+     // console.log("hello",action.payload)
       if (action.payload === "AtoZ") {
         funkoSort = state.funkos.sort((a, b) => {
           if (a.title > b.title) return 1;
@@ -154,20 +154,25 @@ export default function rootReducer(state = initialState, action) {
           else return 0;
         })
       }
-      if (action.payload === "PriceHigh") {
+      if (action.payload === "HighPrice") {
+        //console.log(action.payload)
         funkoSort = state.funkos.sort((a, b) => {
-          return b.price - a.price
-        })
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          else return 0;
+        }) 
       }
-      if (action.payload === "PriceLow") {
+      if (action.payload === "LowPrice") {
         funkoSort = state.funkos.sort((a, b) => {
-          return a.price - b.price
-        })
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          else return 0;
+        }) 
       }
-      console.log(funkoSort)
+      console.log("hola",funkoSort)
       return {
         ...state,
-        funkos: funkoSort
+        funkos: [...funkoSort]
       }
     }
 
