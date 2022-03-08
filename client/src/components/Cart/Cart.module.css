@@ -20,8 +20,7 @@
 }
 .myCart{
     background-color: transparent;
-    line-height: 0%;
-    /* margin-left: 50%; */
+    margin-top: 20px;
 }
 .emptyCart {
   margin-right: 50px;
@@ -29,14 +28,14 @@
   background-color: transparent;
   border: none;
   box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
-  padding: 1%;
+  padding: 1px 15px;
   border-radius: 5px;
   height: 50px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   transition-property: background-color;
   transition-duration: 0.7s;
 }
@@ -151,6 +150,8 @@
 .img {
   width: auto;
   height: 150px;
+  transition-property: transform;
+  transition-duration: 0.6s;
 }
 
 .img:hover {

@@ -60,12 +60,6 @@ export const searchFunkos = (name) => {
   }
 }
 
-// export const changeTextButton =
-//   (id, text) =>
-//   (dispatch) => {
-//     return  dispatch({ type: TYPES.CHANGE_TEXT_BUTTON, payload:[text,id] });
-//   };
-
 export const orderFunkos = (order) => {
   return {type: TYPES.ORDER_FUNKOS, payload: order}
 }
@@ -78,11 +72,19 @@ export const createUser=(name,lastName,email,userName,password) => {
     try{
 
       //Espera por crear un ususario
-      await axios.post('http:url.com',{name,lastName,email,userName,password});
+      const response=await axios.post('http:url.com',{name,lastName,email,userName,password});
 
-      dispatch({
-          type:TYPES.CREATE_USER,
-        })
+      if(response.data){
+          dispatch({
+            type: TYPES.CREATE_USER,
+            payload: response.data,
+          });
+
+      }else{
+        alert('User not found')
+      }
+
+      
 
     }catch(error){
 
@@ -102,10 +104,16 @@ export const createUser=(name,lastName,email,userName,password) => {
 
         const response=await axios.post('http:url.com',{userName,password});
 
-        dispatch({
-           type:TYPES.GET_USER,
-           payload:response
-        })
+        if(response.data){
+           dispatch({
+             type: TYPES.GET_USER,
+             payload: response.data,
+           });
+        }else{
+          alert('algo paso')
+        }
+
+       
 
 
       }catch(error){
@@ -125,15 +133,63 @@ export const getDetails = (id)=>{
 };
 
 // ACTION PARA FILTRADO
-
-export const filterCategories=(payload) =>{
-  return {
-      type: TYPES.HANDLE_CATEGORIES,
-      payload
+export const getCategories = () =>{
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/api/category`);
+    //  console.log(data)
+      dispatch({type: TYPES.GET_CATEGORIES, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_CATEGORIES, payload: []})
+      console.log("error in action searchFunko")
+      console.log(error)
+    }
   }
 }
 
+
+export const getLicense = () =>{
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/api/license`);
+     // console.log(data)
+      dispatch({type: TYPES.GET_LICENSE, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_LICENSE, payload: []})
+      console.log("error in action searchFunko")
+      console.log(error)
+    }
+  }
+}
+
+export const getBrand = () =>{
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/api/brand`);
+    //  console.log(data)
+      dispatch({type: TYPES.GET_BRANDS, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_BRANDS, payload: []})
+      console.log("error in action searchFunko")
+      console.log(error)
+    }
+  }
+}
+
+
+export const filterCategories = (payload) =>{
+  console.log("pp",payload)
+  return {
+    type: TYPES.HANDLE_CATEGORIES,
+    payload
+}
+}
+
 export const filterBrands=(payload) =>{
+  //console.log("pp",payload)
   return {
       type: TYPES.HANDLE_BRANDS,
       payload

@@ -9,19 +9,20 @@ const Login=({children,buttonText, className})=>{
     const vista = visible ? 'modal-visible': 'modal-hidden'
     
 
-    return(
-        <section>
-            <button className={className} onClick={()=>setVisible(!visible)}>
-                {buttonText}
+    return (
+      <section>
+        <button className={className} onClick={() => setVisible(!visible)}>
+          {buttonText}
+        </button>
+        <main className={S[vista]}>
+          <div className={S.formButton}>
+            <button className={S.close} onClick={() => setVisible(!visible)}>
+              x
             </button>
-            <main className={S[vista]}>
-                <button className={S.close} onClick={()=>setVisible(!visible)}>
-                    x
-                </button>
-                {children}
-            </main>
-
-        </section>
-    )
+            {children}
+          </div>
+        </main>
+      </section>
+    );
 }
 export default Login;
