@@ -1,3 +1,6 @@
+import { Storage } from "../../helpers/salveStorage";
+
+
 import {
   TYPES
 } from "../actions/types";
@@ -8,7 +11,7 @@ const initialState = {
   cart: JSON.parse(localStorage.getItem("funkosInCart")) === null ?
     [] :
     JSON.parse(localStorage.getItem("funkosInCart")),
-  user: {}, //Usuario de la sesion
+  user: null, //Usuario de la sesion
   detail: []
 };
 
@@ -202,7 +205,7 @@ export default function rootReducer(state = initialState, action) {
           funkos: brandFilter
         }
 
-        case TYPES.HANDLE_LICENSE:
+      case TYPES.HANDLE_LICENSE:
           const allFunkos3 = state.funkos;
 
           // eslint-disable-next-line array-callback-return
@@ -212,7 +215,25 @@ export default function rootReducer(state = initialState, action) {
           return {
             ...state,
             funkos: licenseFilter
-          }
+         }
+
+
+      case TYPES.GET_USER:
+
+         Storage.set('user',action.paylaod);
+
+         return {
+           ...state,
+           user:action.payload
+         }
+
+      case TYPES.CREATE_USER:
+         Storage.set("user", action.paylaod);
+         
+         return{
+           ...state,
+           user:action.payload
+         }
 
 
           default:

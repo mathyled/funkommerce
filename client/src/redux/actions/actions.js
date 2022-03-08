@@ -78,11 +78,19 @@ export const createUser=(name,lastName,email,userName,password) => {
     try{
 
       //Espera por crear un ususario
-      await axios.post('http:url.com',{name,lastName,email,userName,password});
+      const response=await axios.post('http:url.com',{name,lastName,email,userName,password});
 
-      dispatch({
-          type:TYPES.CREATE_USER,
-        })
+      if(response.data){
+          dispatch({
+            type: TYPES.CREATE_USER,
+            payload: response.data,
+          });
+
+      }else{
+        alert('User not found')
+      }
+
+      
 
     }catch(error){
 
@@ -102,10 +110,16 @@ export const createUser=(name,lastName,email,userName,password) => {
 
         const response=await axios.post('http:url.com',{userName,password});
 
-        dispatch({
-           type:TYPES.GET_USER,
-           payload:response
-        })
+        if(response.data){
+           dispatch({
+             type: TYPES.GET_USER,
+             payload: response.data,
+           });
+        }else{
+          alert('algo paso')
+        }
+
+       
 
 
       }catch(error){
