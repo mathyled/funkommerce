@@ -9,7 +9,6 @@ const {
 } = require("./src/init");
 
 conn.sync({ force: true }).then(async () => {
-  console.log('waits indexs')
   await loadBrand();
   await loadLicense();
   await loadCategory();
