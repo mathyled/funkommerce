@@ -1,17 +1,22 @@
+
+import { Storage } from "../../helpers/salveStorage";
+
 import { TYPES } from "../actions/types";
+
 
 const initialState = {
   funkos: [],
   funkosBackUp: [],
-  cart:
-    JSON.parse(localStorage.getItem("funkosInCart")) === null
-      ? []
-      : JSON.parse(localStorage.getItem("funkosInCart")),
-  user: {}, //Usuario de la sesion
+
+  cart: JSON.parse(localStorage.getItem("funkosInCart")) === null ?
+    [] :
+    JSON.parse(localStorage.getItem("funkosInCart")),
+  user: null, //Usuario de la sesion
   detail: [],
   categories: [],
   license: [],
   brand: [],
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -215,6 +220,37 @@ export default function rootReducer(state = initialState, action) {
         funkos: categoryFilter,
       };
 
+
+      case TYPES.HANDLE_LICENSE:
+          const allFunkos3 = state.funkos;
+
+          // eslint-disable-next-line array-callback-return
+        let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
+          ))
+          console.log(licenseFilter)
+          return {
+            ...state,
+            funkos: licenseFilter
+         }
+
+
+      case TYPES.GET_USER:
+
+         Storage.set('user',action.paylaod);
+
+         return {
+           ...state,
+           user:action.payload
+         }
+
+      case TYPES.CREATE_USER:
+         Storage.set("user", action.paylaod);
+         
+         return{
+           ...state,
+           user:action.payload
+         }
+
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -226,6 +262,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         funkos: brandFilter,
       };
+
 
     case TYPES.HANDLE_LICENSE:
       const allFunkos3 = state.funkosBackUp;
