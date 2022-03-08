@@ -221,17 +221,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
 
-      case TYPES.HANDLE_LICENSE:
-          const allFunkos3 = state.funkos;
+      // case TYPES.HANDLE_LICENSE:
+      //     const allFunkos3 = state.funkos;
 
-          // eslint-disable-next-line array-callback-return
-        let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
-          ))
-          console.log(licenseFilter)
-          return {
-            ...state,
-            funkos: licenseFilter
-         }
+      //     // eslint-disable-next-line array-callback-return
+      //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
+      //     ))
+      //     console.log(licenseFilter)
+      //     return {
+      //       ...state,
+      //       funkos: licenseFilter
+      //    }
 
 
       case TYPES.GET_USER:
@@ -265,7 +265,7 @@ export default function rootReducer(state = initialState, action) {
 
 
     case TYPES.HANDLE_LICENSE:
-      const allFunkos3 = state.funkosBackUp;
+      let allFunkos3 = state.funkosBackUp;
 
       // eslint-disable-next-line array-callback-return
       //console.log(action.payload);
