@@ -11,8 +11,11 @@ const Searchbar = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        setInput(e.target.value);
-        dispatch(searchFunkos(input));
+        const { value } = e.target;
+        setInput(value);
+        if (value.length > 2) {
+            dispatch(searchFunkos(input));
+        }
     };
 
     // const handleSubmit = (e) => {
@@ -21,15 +24,15 @@ const Searchbar = () => {
     //     e.target.reset();
     // };
 
-    return(
+    return (
         <div>
             <form>
                 <input
-                className={style.search}
-                type="text"
-                placeholder="What are you looking for?"
-                value={input}
-                onChange={handleChange}
+                    className={style.search}
+                    type="text"
+                    placeholder="What are you looking for?"
+                    value={input}
+                    onChange={handleChange}
                 />
                 {/* <button type="submit">
                   <BiSearchAlt />
