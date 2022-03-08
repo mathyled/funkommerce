@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useEffect } from "react";
 import { useDispatch } from "react-redux"
 import { searchFunkos } from "../../redux/actions/actions";
 import style from "./Searchbar.module.css"
@@ -11,8 +12,9 @@ const Searchbar = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        setInput(e.target.value);
+        setInput(e.target.value)
         dispatch(searchFunkos(input));
+        
     };
 
     // const handleSubmit = (e) => {

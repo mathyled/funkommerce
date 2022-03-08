@@ -25,7 +25,7 @@ const Nav = () => {
       </div>
       {/* <Link to="/" >
         <AiOutlineHome className={styles.home} />
-      </Link> */}
+      </Link> */} 
       <Link to="/cart" className={styles.linkToCart}>
         <ItemsQuantity />
         <MdOutlineAddShoppingCart className={styles.cartImg} />
