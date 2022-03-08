@@ -20,8 +20,7 @@
 }
 .myCart{
     background-color: transparent;
-    line-height: 0%;
-    /* margin-left: 50%; */
+    margin-top: 20px;
 }
 .emptyCart {
   margin-right: 50px;
@@ -151,6 +150,8 @@
 .img {
   width: auto;
   height: 150px;
+  transition-property: transform;
+  transition-duration: 0.6s;
 }
 
 .img:hover {

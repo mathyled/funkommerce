@@ -16,7 +16,7 @@ const Order = () => {
         else {
             dispatch(getFunkos());
         }
-    }
+    } 
 
     return (
         <div className={styles.order}>
@@ -28,6 +28,7 @@ const Order = () => {
                 <option value="HighPrice">Price (High to Low)</option>
                 <option value="LowPrice">Price (Low to High)</option>
             </select>
+            <span className={styles.customArrow}></span>
         </div>
     )
 }

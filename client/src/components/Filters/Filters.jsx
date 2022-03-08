@@ -43,52 +43,63 @@ const Filters = () => {
     <div className={styles.filters}>
       <p className={styles.filterText}>Filter by: </p>
 
-      <select onChange={(e) => handleCategories(e)}>
-        <option value="Categories" hidden>
-          {" "}
-          Categories{" "}
-        </option>
-        {categories?.map((e) => {
-          return (
-            <option key={e.id} value={e.name}>
-              {e.name}
-            </option>
-          );
-        })}
-      </select>
+      <div className={styles.customSelect}>
+        <select onChange={(e) => handleCategories(e)}>
+          <option value="Categories" hidden>
+            {" "}
+            Categories{" "}
+          </option>
+          {categories?.map((e) => {
+            return (
+              <option key={e.id} value={e.name}>
+                {e.name}
+              </option>
+            );
+          })}
+        </select>
+        <span className={styles.customArrow}></span>
+      </div>
 
-      <select onChange={(e) => handleLicense(e)}>
-        <option value="License" hidden>
-          {" "}
-          License{" "}
-        </option>
-        {license?.map((e) => {
-          return (
-            <option key={e.id} value={e.name}>
-              {e.name}
-            </option>
-          );
-        })}
-      </select>
+      <div className={styles.customSelect}>
+        <select onChange={(e) => handleLicense(e)}>
+          <option value="License" hidden>
+            {" "}
+            License{" "}
+          </option>
+          {license?.map((e) => {
+            return (
+              <option key={e.id} value={e.name}>
+                {e.name}
+              </option>
+            );
+          })}
+        </select>
+        <span className={styles.customArrow}></span>
+      </div>
 
-      <select onChange={(e) => handleBrand(e)}>
-        <option value="Brand" hidden>
-          {" "}
-          Brand{" "}
-        </option>
-        {brand?.map((e) => {
-          return (
-            <option key={e.id} value={e.name}>
-              {e.name}
-            </option>
-          );
-        })}
-      </select>
+      
+      <div className={styles.customSelect}>
+        <select onChange={(e) => handleBrand(e)}>
+          <option value="Brand" hidden>
+            {" "}
+            Brand{" "}
+          </option>
+          {brand?.map((e) => {
+            return (
+              <option key={e.id} value={e.name}>
+                {e.name}
+              </option>
+            );
+          })}
+        </select>
+        <span className={styles.customArrow}></span>
+      </div>
 
       <button
         onClick={(e) => {
           handleClick(e);
         }}
+        className={styles.allFunkos}
       >
         All Funkos!
       </button>

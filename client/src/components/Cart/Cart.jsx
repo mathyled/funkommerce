@@ -15,6 +15,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Funkommerce from "../../assets/Funkommerce.png";
+import Nav from "../Nav/Nav";
 
 const Cart = () => {
   let cart = useSelector((state) => state.cart);
@@ -55,10 +56,12 @@ const Cart = () => {
 
   return (
     <div className={styles.container}>
-      <Link to="/" className={styles.linkToHome}>
-        {/* <AiOutlineHome className={styles.home} /> */}
+      {/* <Link to="/" className={styles.linkToHome}>
+        
         <img src={Funkommerce} alt="img-not found" className={styles.img} />
-      </Link>
+      </Link> */}
+
+      <Nav></Nav>
       <h1 className={styles.myCart}>MY CART</h1>
       <div className={styles.myCartAndButtonEmpty}>
         <h3 className={styles.totalToPay}>
