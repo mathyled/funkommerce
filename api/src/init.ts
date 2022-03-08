@@ -15,7 +15,7 @@ const productCreate = async () => {
           category: items.attributes.category,
           license: items.attributes.license || "",
           brand: items.attributes.brand,
-          image: items.attributes["image-url"] || " ",
+          image: items.attributes["image-url"] || "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones.jpg?v=1577791303",
           price: (Math.random() * (50 - 5) + 5).toFixed(2),
           stock: Math.floor(Math.random() * (25 - 0)) + 0,
         })
