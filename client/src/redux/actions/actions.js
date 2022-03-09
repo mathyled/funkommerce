@@ -202,3 +202,11 @@ export const filterLicense=(payload) =>{
       payload
   }
 }
+
+
+export const getReviews=(payload) =>{
+  return {
+      type: TYPES.GET_REVIEWS,
+      payload
+  }
+};

@@ -16,7 +16,7 @@ const initialState = {
   categories: [],
   license: [],
   brand: [],
-
+  reviews:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -280,6 +280,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         funkos: licenseFilter,
       };
+
+      case TYPES.GET_REVIEWS:
+        return{
+          ...state,
+          reviews:action.payload
+        }
 
     default:
       return {
