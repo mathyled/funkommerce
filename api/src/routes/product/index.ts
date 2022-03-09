@@ -6,7 +6,7 @@ const {
   getProductsID,
   postProduct,
   deleteProduct
-} = require("../../controllers/cProduct.ts");
+} = require("../../controllers/product.ts");
 
 router.get("/", getAllProduct);
 router.get("/S", getAllFindProductsTitle);

@@ -6,7 +6,7 @@ import {
   getFindProductsDb,
   getFindProductId,
   helperPostProduct,
-} from "../helpers/hProduct";
+} from "../helpers/product";
 import { Request, Response } from "express";
 
 export const getAllProduct = async (req: Request, res: Response) => {
