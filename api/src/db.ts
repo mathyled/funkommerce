@@ -5,7 +5,7 @@ const path = require("path");
 const { DB_NAME, DB_USER, DB_PASSWORD, HOST } = process.env;
 
 const sequelize = new Sequelize(
-  DB_NAME || "funkommercetest",
+  DB_NAME || "funkommerce",
   DB_USER || "postgres",
   DB_PASSWORD,
   {
