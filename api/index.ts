@@ -1,19 +1,8 @@
-const { conn } = require("./src/db.ts");
-const { PORT } = process.env;
-import server from "./src/app";
-const {
-  productCreate,
-  loadCategory,
-  loadBrand,
-  loadLicense,
-} = require("./src/init");
+import { init } from "./src/init";
 
-conn.sync({ force: true }).then(async () => {
-  await loadBrand();
-  await loadLicense();
-  await loadCategory();
-  await productCreate();
-  server.listen(PORT, () => {
-    console.log(`server listenning ${PORT}`);
-  });
+import server from "./src/app";
+
+server.listen(3001, () => {
+  init();
+  console.log("server is runing");
 });

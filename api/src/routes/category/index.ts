@@ -1,12 +1,7 @@
 import { Router } from "express";
-
-const {
-  getAllCategory
-} = require("../../controllers/cCategory.ts");
-
+import { getAllCategories } from "../../controllers/cCategory" ;
 const router = Router();
 
-router.get("/", getAllCategory);
-
+router.get("/", getAllCategories);
 
 export default router;

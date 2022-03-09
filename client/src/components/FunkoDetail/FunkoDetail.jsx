@@ -9,6 +9,8 @@ import { addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Desplegable from "../componentsReusable/Desplegable/Desplegable";
 import Nav from "../Nav/Nav";
+import ReviewRoot from "../Reviews/ReviewRoot/ReviewRoot";
+import Detail from '../../components/FunkoDetail/Detail/Detail';
 // const capitalize = (input)=>{
 //     return input.charAt(0).toUpperCase() + input.slice(1);
 // }
@@ -64,7 +66,7 @@ console.log(funkoDetails)
        <Nav />
         <div className={styles.container}>
 
-          <div  className={styles.img} >
+          <div  className={styles.item} >
             <img src={funkoDetails[0].image} alt="Funko-Img" className={styles.img} />
           </div>
 
@@ -95,17 +97,15 @@ console.log(funkoDetails)
               :  "Add to cart"}
 
 </button>
+<ReviewRoot />
             </div>
 
-            <Desplegable />
+            {/* <Desplegable /> */}
           </div>
+            <div className={styles.item}></div>
+            <div className={styles.item}> <Detail /></div>
         </div>
 
-        {/* <div>
-        <Link to="/">
-            <button >Go back</button>
-        </Link>
-          </div> */}
       </div>
     )
   }
