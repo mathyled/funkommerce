@@ -1,12 +1,75 @@
 .filters {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .filterText {
-    margin: 10px;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-family: 'Secular One';
+  margin: 10px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: "Secular One";
+}
+
+select {
+  font-size: 1.2rem;
+  background-color: #8B3DFF;
+  color: white;
+  padding: 0.5rem 0.7rem;
+  width: 200px;
+  margin-right: 25px;
+  border-radius: 5px;
+  border: none;
+  /* font-family: 'Secular One'; */
+  font-weight: bold;
+appearance: none;
+}
+select::placeholder {
+  outline: none;
+}
+select:focus {
+  outline: none;
+ 
+}
+.customSelect{
+    position: relative;
+}
+.customArrow{
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 2.5rem;
+/* opacity: 10%; */
+    right: 32px;
+    top: 0;
+    pointer-events: none;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #a099ffea;
+    margin-top: 10px;
+}
+
+option{
+  /* font-size: 1.2rem; */
+ 
+}
+
+.allFunkos{
+  font-size: 1.2rem;
+  background-color: #8B3DFF;
+  /* background-color: transparent; */
+  box-shadow: 1px 1px 1px 1px rgb(177, 177, 177);
+  color: white;
+  padding: 0.6rem 0.7rem;
+  width: 200px;
+  margin-right: 25px;
+  border-radius: 50px;
+  border: none;
+  /* font-family: 'Secular One'; */
+  font-weight: bold;
+}
+.allFunkos:hover{
+  background-color: #8b3dffde;
 }
