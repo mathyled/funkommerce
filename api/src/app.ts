@@ -1,11 +1,11 @@
+import express from "express"
+import morgan from "morgan"
 import routes from './routes'
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const server = express();
 
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({ limit: '50mb' }))
+const server =  express();
+
+server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(express.json({ limit: '50mb' }))
 server.use(morgan('dev'))
 
 server.use('/api', routes)
