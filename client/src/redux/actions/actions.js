@@ -6,7 +6,7 @@ import { TYPES } from "./types";
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get(
-      "http://localhost:3001/api/producttest"
+      "http://localhost:3001/api/product"
     );
    // console.log("hola",json)
     return dispatch({
