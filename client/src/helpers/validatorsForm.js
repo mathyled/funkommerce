@@ -1,16 +1,28 @@
 export const validator = (error, input) => {
   const value = input.value;
   const name = input.name;
+  const url =
+  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let errors = {};
 
   switch (input.type) {
     case "text":
-      if (/[^a-z\x20]/.test(value)) {
-        //Si es true es poque tiene signos extraños
-        errors = {
-          ...error,
-          [name]: "The field cannot have signs",
-        };
+      if (name === "image") {
+        if (!url.test(value)) {
+          errors = {
+            ...error,
+            [name]: "Must enter a URL",
+          };
+        }
+      }
+      else if (name === "name") {
+        if (/[^a-z\x20]/.test(value)) {
+          //Si es true es poque tiene signos extraños
+          errors = {
+            ...error,
+            [name]: "The field cannot have signs",
+          };
+        }
       } else {
         errors = {
           ...error,
@@ -59,21 +71,35 @@ export const validator = (error, input) => {
       }
       break;
 
-      case "number":
-      if (value < 1 || value > 999.99) {
+    case "number":
+      if (name === "price") {
+        if (value < 1 || value > 999.99) {
+          errors = {
+            ...error,
+            [name]: "Price must be between $0.99 and $999.99",
+          };
+          break;
+        }
         errors = {
           ...error,
-          [name]: "Price must be between $0.99 and $999.99",
+          [name]: "",
         };
         break;
       }
-
-      errors = {
-        ...error,
-        [name]: "",
-      };
-
-      break;
+      if (name === "stock") {
+        if (value < 1 || value > 100) {
+          errors = {
+            ...error,
+            [name]: "Stock must be between 1 and 100",
+          };
+          break;
+        }
+        errors = {
+          ...error,
+          [name]: "",
+        };
+        break;
+      }
 
     default:
       break;
