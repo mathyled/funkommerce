@@ -5,7 +5,7 @@
     /* height:95%; */
     
 }
-
+ 
 .login h3{
     color:white;
     margin-top:5px;
@@ -20,19 +20,18 @@
 
 .containerForm{
     width: 350px;
-    background-color:#8067c3;
+    background-color:#ffffff;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     letter-spacing:3px;
     position: relative;
-
 }
 
 .err{
     margin:-2px 0px 10px 0px;
-    color: #e5e96f;
+    color: #f56565;
     font-weight: bold;
     font-size: 12px;
 }
@@ -49,7 +48,7 @@
     color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif; */
     font-size: 14px;
     font-weight: 500;
     height: 42px;

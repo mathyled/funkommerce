@@ -33,7 +33,7 @@ import { useState } from 'react';
                   [e.target.name]: e.target.value,
                 });
                 setErrors(validator(errors, e.target));
-              }}
+              }} 
             >
               <Input type="text" name="name" placeholder="Name" min="4" />
                 {errors.name && <span className={styles.err}>{errors.name}</span>}
@@ -42,12 +42,14 @@ import { useState } from 'react';
                   <span className={styles.err}>{errors.lastName}</span>
                 )}
               
-              <Input type="password" name="password" placeholder="password" />
+              
+              <Input type="email" name="email" placeholder="email" />
+                {errors.email && <span className={styles.err}>{errors.email}</span>}
+
+                <Input type="password" name="password" placeholder="password" />
                 {errors.password && (
                   <span className={styles.err}>{errors.password}</span>
                 )}
-              <Input type="email" name="email" placeholder="email" />
-                {errors.email && <span className={styles.err}>{errors.email}</span>}
             </div>
             <Button>Submit</Button>
           </form>

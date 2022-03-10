@@ -1,8 +1,8 @@
+import styles from './Login.module.css';
 import Modal from "../componentsReusable/Modal";
 import Input from "../componentsReusable/Input";
 import Button from "../componentsReusable/Button";
-
-import styles from './Login.module.css';
+ 
 import {validator} from '../../helpers/validatorsForm';
 import { useState } from "react";
 

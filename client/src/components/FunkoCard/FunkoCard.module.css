@@ -9,14 +9,15 @@
 }
 
 .funkosCard {
-  background-color: rgb(230, 114, 114);
+  background-color:transparent;
   /* background-image: url('../../assets/abstract2.jpg'); */
+  /* background-size: cover; */
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: center;
   /* backdrop-filter: blur(1px); */
-  /* background-size: cover; */
+
   padding-top: 30px;
   margin-left: 0;
   /* z-index: 0.5; */
@@ -34,11 +35,11 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%
   width: 220px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.979);
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.801);
   transition-property: transform, background-color;
   transition-duration: 0.8s;
   padding-top: 5px;
-  /* backdrop-filter: blur(5px); */
+  /* backdrop-filter: blur(15px); */
 }
 
 .item:hover {
@@ -93,8 +94,8 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%
   width: 200px;
   margin-right: 10px;
   overflow: hidden;
-  filter: brightness(1.1);
-  mix-blend-mode: multiply;
+  /* filter: brightness(1.1);
+  mix-blend-mode: multiply; */
 }
 
 .notfound {
@@ -105,7 +106,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%
 .brand {
   font-size: 8px;
   /* font-weight: bold; */
-  color: white;
+  color: rgb(73, 73, 73);
 }
 
 .funkoTitle {
@@ -117,7 +118,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%
   margin: 10px 5px;
   line-height: 23px;
   text-align: center;
-  color: white;
+  color: rgb(44, 44, 44);
   font-weight: 10;
 }
 
@@ -129,11 +130,11 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%
 font-weight: 10;
   border-radius: 15px;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.884);
+  color: rgba(39, 39, 39, 0.884);
 }
 
 .buttonAdd {
-  box-shadow: 0px 0.5px 1.5px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0.5px 2.5px -1px rgba(0, 0, 0, 0.75);
   /* margin: 2px 30% 2px; */
   padding: 8px 45px;
   /* font-size: 70%; */
@@ -144,17 +145,17 @@ font-weight: 10;
   font-family: "Secular One";
   transition-property: background-color, color;
   transition-duration: 0.8s;
-  color: rgb(255, 255, 255);
+  color: rgb(66, 66, 66);
 }
 
 .buttonAdd:hover {
-  background-color: rgba(255, 255, 255, 0.466); 
+  background-color: rgba(150, 255, 13, 0.377); 
   /* color:rgb(255, 255, 255); */
   /* background: rgb(2,0,36); */
   /* background: linear-gradient(90deg, rgb(194, 255, 103) 0%, rgba(82, 255, 13, 0.9) 35%, rgb(194, 255, 100) 100%);
 } */
 }
 .pagination {
-  width: 100%;
+  /* width: 100%; */
   margin-left: 40%;
 }
