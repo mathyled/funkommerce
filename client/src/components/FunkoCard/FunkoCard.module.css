@@ -9,19 +9,15 @@
 
 .funkosCard {
   background-color: transparent;
-  /* background-image: url('../../assets/abstract2.jpg'); */
-  /* background-size: cover; */
+
+  background-color:transparent;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: center;
-  /* backdrop-filter: blur(1px); */
-
   padding-top: 30px;
   margin-left: 0;
-  /* z-index: 0.5; */
-  /* background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%, rgba(0,212,255,1) 100%); */
+
 }
 
 .item {
