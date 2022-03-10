@@ -6,7 +6,7 @@ import { TYPES } from "./types";
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get(
-      "http://localhost:3001/api/producttest"
+      "http://localhost:3001/api/product"
     );
    // console.log("hola",json)
     return dispatch({
@@ -49,7 +49,7 @@ export const clearCart = () => (dispatch)=>{
 export const searchFunkos = (name) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`http://localhost:3001/api/producttest/s?name=${name}`)
+      const {data} = await axios.get(`http://localhost:3001/api/product/s?name=${name}`)
       dispatch({type: TYPES.SEARCH_FUNKOS, payload: data})
     }
     catch(error) {
@@ -148,20 +148,23 @@ export const getCategories = () =>{
   }
 }
 
-
+//LICENCIA INVALIDA DE MOMENTO
 export const getLicense = () =>{
-  return async ( dispatch )=> {
-    try {
-      const {data} = await axios.get(`http://localhost:3001/api/license`);
-     // console.log(data)
-      dispatch({type: TYPES.GET_LICENSE, payload: data})
-    }
-    catch(error) {
-      dispatch({type: TYPES.GET_LICENSE, payload: []})
-      console.log("error in action searchFunko")
-      console.log(error)
-    }
+  return {
+    type: TYPES.GET_LICENSE,
   }
+  // return async ( dispatch )=> {
+  //   try {
+  //     const {data} = await axios.get(`http://localhost:3001/api/license`);
+  //    // console.log(data)
+  //     dispatch({type: TYPES.GET_LICENSE, payload: data})
+  //   }
+  //   catch(error) {
+  //     dispatch({type: TYPES.GET_LICENSE, payload: []})
+  //     console.log("error in action searchFunko")
+  //     console.log(error)
+  //   }
+  // }
 }
 
 export const getBrand = () =>{
@@ -204,9 +207,17 @@ export const filterLicense=(payload) =>{
 }
 
 
+
 export const getReviews=(payload) =>{
   return {
       type: TYPES.GET_REVIEWS,
       payload
   }
 };
+
+export const modifiedTotal = () => {
+  return {
+    type: TYPES.MODIFIED_TOTAL
+  }
+}
+
