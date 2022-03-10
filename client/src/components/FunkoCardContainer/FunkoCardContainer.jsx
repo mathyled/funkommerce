@@ -3,7 +3,7 @@ import React from "react";
 import FunkoCard from "../FunkoCard/FunkoCard";
 import { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getFunkos, addToCart } from "../../redux/actions/actions";
+import { getFunkos, addToCart, getCategories, getLicense, getBrand } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
 import Nav from "../Nav/Nav";
@@ -21,8 +21,20 @@ const FunkoCardContainer = () => {
   
   useEffect(() => {
     dispatch(getFunkos())
-    .then(()=> setLoad(false))
+    .then(()=> setLoad(false));
+    dispatch(getCategories());
+    dispatch(getLicense());
+    dispatch(getBrand())
   }, [dispatch]);
+
+
+
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getFunkos());
+  }
+
+
 
   const addToCart1 = (id) => {
     let funkoAlreadyInCart = cart.find(

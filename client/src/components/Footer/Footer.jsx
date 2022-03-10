@@ -3,7 +3,9 @@ import Chatbot from 'react-chatbot-kit'
 import config from '../ChatBot/config'
 import ActionProvider from '../ChatBot/ActionProvider'
 import MessageParser from '../ChatBot/MessageParser'
-import style from '../Footer/Footer.module.css'
+import Styles from './Footer.module.css';
+import {Link} from 'react-router-dom'
+
 
 function Button() {
     return (
@@ -30,12 +32,54 @@ function Button() {
       }
     }
 
+    const perfiles=[
+      {
+          url:'#',
+          img:''
+  
+      },
+      {
+          url:'otro',
+          img:'other image'
+  
+      }
+  ];
+  
+
     return (
-        <div className = {style.container}>
-            <button id ='funko' className={style.btn} onClick ={handleClick}></button>
+      <div>
+        <div className = {Styles.container}>
+            <button id ='funko' className={Styles.btn} onClick ={handleClick}></button>
             {click ? <Button /> : null}
         </div>
+
+<footer className={Styles.footer}>
+<section className={Styles.footer_section1}>
+  {perfiles.map((perfil,index) => {
+    return (
+      <a href={perfil.url} key={index}>
+        <img src={perfil.img} alt="perfil" />
+      </a>
+    );
+  })}
+</section>
+<section className={Styles.footer_section}>
+  <header>
+    <Link to='/about'>About the proyect</Link>
+  </header>
+  <p>
+    Funkommerce es una tienda online desarrollada por un grupo de
+    programadores ,que ponen a prueba los conocimientos adquiridos sobre
+    desarrollo web, durante la cursada de Henry.
+  </p>
+</section>
+</footer>
+</div>
     )
 }
 
 export default Footer
+
+
+
+

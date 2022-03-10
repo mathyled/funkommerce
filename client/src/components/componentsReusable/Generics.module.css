@@ -43,8 +43,9 @@
     right: 0px;
     background-color: #5e5e5e4d;
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 .modal-hidden{
@@ -52,18 +53,23 @@
 }
 
 .close{
-    position:absolute;
-    top:0px;
-    right:0px;
-    /* margin-bottom: 20%;
-    margin-left: 310px; */
     border:none;
-    background-color:red;
+    background-color:#accddb;
+    margin-bottom: 0px;
+    color:white;
+    font-weight:bold;
     width:25px;
     height:30px;
     border-radius:5px;
+    margin-left: -30px;
+    margin-top:5px;
+    z-index: 2;
 }
 
+.formButton{
+    display:flex;
+    flex-direction: row-reverse;
+}
 .close:hover{
-    background-color:orange;
+    background-color:#95c5d9;
 }
