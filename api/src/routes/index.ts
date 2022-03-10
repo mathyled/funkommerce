@@ -1,15 +1,15 @@
 import { Router } from "express";
-import brandRoutes from "./brand";
-import productRoutes from "./product";
-import licenseRoutes from "./license";
-import categoryRoutes from "./category";
-import productTestRoutes from "./productTest";
+import productRoute from "./product";
+import brandRoute from "./brand";
+import categoryRouter from "./category"
+import userRoute from "./user";
 const router = Router();
 
-router.use("/brand", brandRoutes);
-router.use("/license", licenseRoutes);
-router.use("/product", productRoutes);
-router.use("/category", categoryRoutes);
-router.use("/productTest", productTestRoutes);
+router.use("/product", productRoute);
+router.use("/brand", brandRoute);
+router.use("/category", categoryRouter);
+router.use("/user", userRoute);
+
+
 
 export default router;
