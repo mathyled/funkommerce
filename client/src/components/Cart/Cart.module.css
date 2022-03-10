@@ -21,6 +21,7 @@
 .myCart{
     background-color: transparent;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .emptyCart {
   margin-right: 50px;
@@ -43,7 +44,9 @@
     background-color: rgb(255, 103, 103);
     
 }
-
+.checkOut:hover{
+  background-color: rgb(73, 255, 216);
+}
 .home{
   font-size: 2rem;
   margin-top: 10px;
@@ -64,6 +67,7 @@
 
 
 .totalToPay{
+  display: flex;
   background-color:  rgb(194, 255, 103);
   /* margin-right: 75vw;
   margin-left: 5vw; */
