@@ -1,0 +1,74 @@
+/* .root{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    height: 350px;
+    width: 450px;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 0px 1px 5px -1px rgb(122 114 114 / 75%);
+} */
+
+.btn{
+    color: rgb(26, 115, 232);
+    /* padding: 0 16px 0 12px; */
+    /* background-color: #fff; */
+    /* border-radius: 36px; */
+    /* box-sizing: border-box; */
+    /* height: 36px; */
+    /* border: 1px solid #dadce0; */
+    cursor: pointer;
+    box-shadow: 0px 1px 5px -1px rgb(0 0 0 / 75%);
+    /* margin: 2px 30% 2px; */
+    padding: 8px 45px;
+    /* font-size: 70%; */
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 50px;
+    border: none;
+    text-transform: uppercase;
+    font-family: "Secular One";
+}
+
+.divClose{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+    
+}
+
+.btnClose{
+    color: rgb(26, 115, 232);
+    cursor: pointer;
+    height: 36px;
+    border-radius: 4px;
+    padding: 0 15px 0px 15px;
+    border: 1px solid #dadce0;
+    border-width: 1px;
+    background: transparent;
+}
+
+.divHeader{
+    color: rgba(0,0,0,0.7);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    right: 20%;
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    height: 350px;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 0px 1px 5px -1px rgb(122 114 114 / 75%);
+    overflow: hidden;
+    width: 580px;
+    z-index: 1001;
+}

@@ -42,7 +42,7 @@
 }
 
 .register {
-    background-color: #a51313;
+    background-color: #796fffea;
     border-radius: 0px 6px 6px 0px;
     border-style: none;
     box-sizing: border-box;
@@ -71,5 +71,5 @@
   
   .register:hover,
   .register:focus {
-    background-color: #c53636;
+    background-color: #8B3DFF;;
   }

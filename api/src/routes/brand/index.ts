@@ -1,9 +1,7 @@
 import { Router } from "express";
-
-const { getAllBrand } = require("../../controllers/cBrand.ts");
-
+import { getAllBrands } from "../../controllers/brand";
 const router = Router();
 
-router.get("/", getAllBrand);
+router.get("/", getAllBrands);
 
 export default router;

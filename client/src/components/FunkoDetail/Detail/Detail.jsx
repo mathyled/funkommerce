@@ -22,7 +22,7 @@ const Detail = () => {
           <div className={styles.item} >
 
             <div className={styles.dropdown} >
-              <div>
+              <div className={styles.p}>
                 <p><strong>Items Number: </strong> {funkoDetails[0].number}</p>
               </div>
               <div>

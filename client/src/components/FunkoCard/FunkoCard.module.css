@@ -4,34 +4,46 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  background-color: rgb(255, 255, 255);
+  /* background-color: #f3f3f7; */
+
 }
 
 .funkosCard {
-  background-color: transparent;
+  background-color: rgb(230, 114, 114);
+  background-image: url('../../assets/abstract2.jpg');
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: center;
+  /* backdrop-filter: blur(1px); */
+  background-size: cover;
+  padding-top: 30px;
+  margin-left: 0;
+  
+  /* background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(67, 58, 148, 0.9) 29%, rgba(0,212,255,1) 100%); */
 }
 
 .item {
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
+  
   margin: 5px;
-  height: 450px;
+  height: 400px;
   width: 220px;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
-  transition-property: transform;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.979);
+  transition-property: transform, background-color;
   transition-duration: 0.8s;
+  padding-top: 5px;
+  backdrop-filter: blur(5px);
 }
 
 .item:hover {
   transform: translateY(-0.9%);
-  background-color: rgb(252, 252, 252);
+  background-color: rgba(255, 255, 255, 0.445);
 }
 
 .li {
@@ -44,7 +56,7 @@
   display: flex;
   background-color: transparent;
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   margin-top: 25px;
   margin-bottom: 25px;
   margin-right: 15px;
@@ -55,37 +67,47 @@
   padding: 5px 10px 10px 10px;
 }
 
-.cartImg:hover{
+.cartImg:hover {
   transform: translateY(-3%);
 }
 
-.cartImg2{
-  color: black;
+.cartImg2 {
+  color: rgb(0, 0, 0);
   transform: scaleX(-1);
   width: 45px;
   height: 45px;
-  transition-property:color;
+  transition-property: color;
   transition-duration: 0.6s;
   background-color: transparent;
   border-radius: 15%;
 }
 
-.linkDetails, .cartDiv{
-   text-decoration: none;
-   color: black;
+.linkDetails,
+.cartDiv {
+  text-decoration: none;
+  color: black;
 }
 
 .funkoImg {
-  height: 250px;
-  max-width: 220px;
+  height: 200px;
+  width: 200px;
   margin-right: 10px;
   overflow: hidden;
+  filter: brightness(1.1);
+  mix-blend-mode: multiply;
 }
 
-.notfound{
+.notfound {
   margin-top: 25px;
   height: 300px;
 }
+
+.brand {
+  font-size: 8px;
+  /* font-weight: bold; */
+  color: white;
+}
+
 .funkoTitle {
   background-color: transparent;
   height: 60px;
@@ -95,78 +117,44 @@
   margin: 10px 5px;
   line-height: 23px;
   text-align: center;
-  
+  color: white;
+  font-weight: 10;
 }
-
 
 .price {
   /* box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.75); */
   margin: 1px 30% 10px;
   padding: 2px 0;
   font-size: 70%;
+font-weight: 10;
   border-radius: 15px;
   background-color: transparent;
+  color: rgba(255, 255, 255, 0.884);
 }
 
 .buttonAdd {
-  box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0.5px 1.5px -1px rgba(0, 0, 0, 0.75);
   /* margin: 2px 30% 2px; */
   padding: 8px 45px;
   /* font-size: 70%; */
-  background-color: transparent;
-  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.267);
+  border-radius: 25px;
   border: none;
   text-transform: uppercase;
   font-family: "Secular One";
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 0.8s;
+  color: rgb(255, 255, 255);
 }
-
 
 .buttonAdd:hover {
-  background-color: rgb(194, 255, 103);
-
-}
-
-
-/* .btn-13 {
-  background-color: #89d8d3;
-background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
-  border: none;
-  z-index: 1;
-}
-.btn-13:after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  border-radius: 5px;
-   background-color: #4dccc6;
-background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
-  box-shadow:
-   -7px -7px 20px 0px #fff9,
-   -4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
-  transition: all 0.3s ease;
-}
-.btn-13:hover {
-  color: #fff;
-}
-.btn-13:hover:after {
-  top: 0;
-  height: 100%;
-}
-.btn-13:active {
-  top: 2px;
+  background-color: rgba(255, 255, 255, 0.466); 
+  /* color:rgb(255, 255, 255); */
+  /* background: rgb(2,0,36); */
+  /* background: linear-gradient(90deg, rgb(194, 255, 103) 0%, rgba(82, 255, 13, 0.9) 35%, rgb(194, 255, 100) 100%);
 } */
-
-
-
-.pagination{
+}
+.pagination {
   width: 100%;
   margin-left: 40%;
 }
