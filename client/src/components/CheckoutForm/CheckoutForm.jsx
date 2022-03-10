@@ -66,7 +66,7 @@ const CheckoutForm = () => {
           <button onClick={handleSubmit} className={styles.buttonPay}>
             {"Pay"}
             {tab}
-            US${total}
+            US${total.toFixed(2)}
           </button>
         </div>
       </form>
