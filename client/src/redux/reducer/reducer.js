@@ -14,6 +14,7 @@ const initialState = {
   categories: [],
   license: [],
   brand: [],
+  reviews:[],
   totalToPay: 0,
 };
 
@@ -276,6 +277,13 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
+
+      case TYPES.GET_REVIEWS:
+        return{
+          ...state,
+          reviews:action.payload
+        }
+
     case TYPES.MODIFIED_TOTAL:
       let sum = 0;
       for (let i = 0; i < state.cart.length; i++) {
@@ -285,6 +293,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         totalToPay: sum,
       };
+
 
     default:
       return {

@@ -5,12 +5,10 @@
 ## Starting
 #/api
 add in .env with
-DB_USER: postgres
-DB_PASSWORD: ******
-HOST: localhost
-PORT: 3001
+DATABASE_URL="postgresql://postgres:{tu password}@localhost:5432/funkommerce?schema=public"
 
 npm install
+
 npm run dev
 
 #/client

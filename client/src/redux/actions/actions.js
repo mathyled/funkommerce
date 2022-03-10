@@ -206,8 +206,18 @@ export const filterLicense=(payload) =>{
   }
 }
 
+
+
+export const getReviews=(payload) =>{
+  return {
+      type: TYPES.GET_REVIEWS,
+      payload
+  }
+};
+
 export const modifiedTotal = () => {
   return {
     type: TYPES.MODIFIED_TOTAL
   }
 }
+

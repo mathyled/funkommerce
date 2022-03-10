@@ -1,29 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { getDetails } from "../../redux/actions/actions";
 import styles from "./FunkoDetail.module.css";
 import gifLoader from "../../assets/gifLoader.gif";
 import { addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
-import Desplegable from "../componentsReusable/Desplegable/Desplegable";
 import Nav from "../Nav/Nav";
 import ReviewRoot from "../Reviews/ReviewRoot/ReviewRoot";
 import Detail from '../../components/FunkoDetail/Detail/Detail';
-// const capitalize = (input)=>{
-//     return input.charAt(0).toUpperCase() + input.slice(1);
-// }
+import imgCredit from "./image.js";
+import ImageCredit from "../componentsReusable/ImageCredit";
+import ReviewList from "../Reviews/ReviewList/ReviewList";
+
 
 const FunkoDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const funkoDetails = useSelector((state) => state.detail);
   const cart = useSelector((state) => state.cart);
-console.log(funkoDetails)
+  console.log(funkoDetails)
   useEffect(() => {
     dispatch(getDetails(id));
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   const addToCart1 = (id) => {
     let funkoAlreadyInCart = cart.find(
@@ -37,9 +36,9 @@ console.log(funkoDetails)
         timerProgressBar: true,
       });
     } else {
-      
+
       dispatch(addToCart(Number(id)));
-       Swal.fire({
+      Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Satisfactorily added',
@@ -48,8 +47,8 @@ console.log(funkoDetails)
       })
     }
   };
- 
-    
+
+
 
 
   if (funkoDetails.length === 0) {
@@ -63,10 +62,10 @@ console.log(funkoDetails)
   } else {
     return (
       <div >
-       <Nav />
+        <Nav />
         <div className={styles.container}>
 
-          <div  className={styles.item} >
+          <div className={styles.item} >
             <img src={funkoDetails[0].image} alt="Funko-Img" className={styles.img} />
           </div>
 
@@ -80,30 +79,71 @@ console.log(funkoDetails)
                 <h1>{funkoDetails[0].title}</h1>
               </div>
             </div>
-              
-            <div>
-                  
-              {/* <button
-                onClick={() => addToCart1(id)}
-                className={styles.buttonAdd}>
-               <strong>ADD TO CART </strong> 
-              </button> */}
-            <button
-               onClick={() => addToCart1(id)}
-               className={styles.buttonAdd}
-              >
-            {cart.find((item) => String(item.id) === id)
-              ? "In cart"
-              :  "Add to cart"}
+            <Detail />
+            <div className={styles.buttonRoot} >
 
-</button>
-<ReviewRoot />
+              <div>
+                <button
+                  onClick={() => addToCart1(id)}
+                  className={styles.buttonAdd}
+                >
+                  {cart.find((item) => String(item.id) === id)
+                    ? "In cart"
+                    : "Add to cart"}
+
+                </button>
+              </div>
+
+              <ReviewRoot />
+
             </div>
 
-            {/* <Desplegable /> */}
           </div>
-            <div className={styles.item}></div>
-            <div className={styles.item}> <Detail /></div>
+          <div className={styles["item-review"]}>
+            <ReviewList />
+          </div>
+          <div className={styles["item-medium"]}></div>
+          <div className={styles["item-pay"]}>
+            <h4>Payment methods</h4>
+
+            <div>
+              <p >
+                pay up to 12 cuotes
+              </p>
+            </div>
+            <p margin-top="20px" >Credit card</p>
+
+            <ImageCredit
+              styles={styles}
+              naranja={imgCredit.naranja}
+              master={imgCredit.master}
+              american={imgCredit.american}
+              visa={imgCredit.visa}
+            />
+
+            <p margin-top="20px" >Debit card</p>
+
+            <ImageCredit
+              styles={styles}
+              naranja={imgCredit.naranja}
+              master={imgCredit.master}
+              american={imgCredit.american}
+              visa={imgCredit.visa}
+            />
+
+            <p margin-top="20px" >Cash</p>
+
+            <div className={styles["ui-pdp-payment-icon"]}>
+              <div className={styles["ui-pdp-payment-icon__size"]}>
+                <img src={imgCredit.american} width="24px" height="24px" />
+              </div>
+
+              <div className={styles["ui-pdp-payment-icon__size"]}>
+                <img src={imgCredit.visa} width="45px" height="14px" />
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
