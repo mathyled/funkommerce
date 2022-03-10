@@ -1,4 +1,4 @@
-import { helperGetAllBrands} from "../helpers/hBrand";
+import { helperGetAllBrands} from "../helpers/brand";
 import { Request, Response } from "express";
 
 export const getAllBrands = async (req: Request, res: Response) => {

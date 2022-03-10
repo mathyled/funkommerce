@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getAllBrands } from "../../controllers/cBrans";
-const router = Router();
+import { getAllBrands } from "../../controllers/brand";
+const router = Router(); 
 
 router.get("/", getAllBrands);
 
