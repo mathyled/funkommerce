@@ -5,9 +5,10 @@ import {
   deleteFromCart,
   sumInCart,
   clearCart,
+  modifiedTotal,
 } from "../../redux/actions/actions";
 import notFound from "../../assets/notFound.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 //MdOutlineAddShoppingCart
 import TotalToPay from "../TotalToPay/TotalToPay";
@@ -18,15 +19,26 @@ import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
 
 const Cart = () => {
-  let cart = useSelector((state) => state.cart);
-
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const totalToPay2 = useSelector((state) => state.totalToPay);
   // const[total, setTotal] = useState(arr)
-
+  console.log(totalToPay2);
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
-  }, [cart]);
+    dispatch(modifiedTotal());
+  }, [dispatch, cart, totalToPay2]);
 
-  const dispatch = useDispatch();
+  // const [total, setTotal] = useState(0);
+  // let sum = 0;
+
+  // useEffect(() => {
+  //   for (let i = 0; i < cart.length; i++) {
+  //     sum += cart[i].price * cart[i].quantity;
+  //   }
+  //   setTotal(sum);
+
+  // }, [cart]);
 
   const addOneToCart = (id) => {
     dispatch(sumInCart(id));
@@ -53,24 +65,25 @@ const Cart = () => {
       dispatch(clearCart());
     }
   };
-
+  const tab = <>&nbsp;</>;
   return (
     <div className={styles.container}>
-      {/* <Link to="/" className={styles.linkToHome}>
-        
-        <img src={Funkommerce} alt="img-not found" className={styles.img} />
-      </Link> */}
-
       <Nav></Nav>
       <h1 className={styles.myCart}>MY CART</h1>
       <div className={styles.myCartAndButtonEmpty}>
         <h3 className={styles.totalToPay}>
           {" "}
-          <TotalToPay></TotalToPay>{" "}
+          TOTAL: {tab} <TotalToPay totalToPay2={totalToPay2}></TotalToPay>{" "}
         </h3>
+        <Link to="/checkout">
+          <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+            Checkout{" "}
+          </button>
+        </Link>
         <button onClick={() => emptyCart()} className={styles.emptyCart}>
           Empty cart{" "}
         </button>
+        {/* */}
       </div>
 
       <div className={styles.subContainer}>

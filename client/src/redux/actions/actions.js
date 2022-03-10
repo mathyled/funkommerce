@@ -202,3 +202,9 @@ export const filterLicense=(payload) =>{
       payload
   }
 }
+
+export const modifiedTotal = () => {
+  return {
+    type: TYPES.MODIFIED_TOTAL
+  }
+}
