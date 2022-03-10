@@ -208,6 +208,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkosBackUp;
+      console.log("categories",action.payload)
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
