@@ -1,0 +1,35 @@
+
+.profile{
+    width:130px;
+    height:150px;
+    background-repeat:no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    z-index: -1;
+}
+.profile div{
+    width:100%;
+    height:100%;
+    background-color:#454b76a6;
+    color:white;
+    position: relative;
+    /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); */
+    clip-path: circle(0.4% at 50% 50%);
+    transition: clip-path 1s cubic-bezier(0.29, 0.21, 0.55, 1.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile:hover div{
+    /* clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0); */
+    clip-path: circle(150% at 50% 50%);
+
+}
