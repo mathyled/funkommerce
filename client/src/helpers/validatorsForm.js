@@ -2,10 +2,10 @@ export const validator = (error, input) => {
   const value = input.value;
   const name = input.name;
   let errors = {};
-
+ 
   switch (input.type) {
     case "text":
-      if (/[^a-z\x20]/.test(value)) {
+      if (/[^a-zA-Z\x20]/.test(value)) {
         //Si es true es poque tiene signos extraños
         errors = {
           ...error,
@@ -46,7 +46,8 @@ export const validator = (error, input) => {
     case "email":
       // let val = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-      if (!/.@gmail.com/.test(value)) {
+      if (!/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+/gm.test(value)) {
+        //
         errors = {
           ...error,
           [name]: "It is not a valid email",
