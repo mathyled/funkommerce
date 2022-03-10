@@ -19,6 +19,8 @@ function App() {
         <Route  path="/detail/:id" element={ < FunkoDetail/>} />
         <Route path="/create" element={ <CreateFunko />} />
         <Route  path="/email" element={ < ContactUs/>} />
+        <Route  path="/checkout" element={ < CheckoutContainer/>} />
+
       </Routes>
     </div>
   );
