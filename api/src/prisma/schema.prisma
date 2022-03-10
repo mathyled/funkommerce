@@ -43,7 +43,7 @@ model User {
   password  String?
   name      String
   lastName  String
-  role      Role
+  role      Role     @default(USERS)
   createdAt DateTime @default(now())
   Detail    Detail[]
 }

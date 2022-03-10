@@ -3,7 +3,9 @@ const prisma = new PrismaClient();
 /////Get product/////
 export const getAllProductsDb = async () => {
   try {
-    let allProducts = await prisma.product.findMany({});
+    let allProducts = await prisma.product.findMany({
+      include:{Category: true, Brand:true},
+    });
     return allProducts;
   } catch (error) {
     console.error(error);
@@ -13,6 +15,7 @@ export const getFindProductsDb = async (name: any) => {
   try {
     let findProducts = await prisma.product.findMany({
       where: { title: { contains: name, mode: "insensitive" } },
+      include:{Category: true, Brand:true},
     });
     return findProducts;
   } catch (error) {
