@@ -1,0 +1,71 @@
+.react-chatbot-kit-chat-message-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.react-chatbot-kit-chat-input {
+  border: 2px solid;
+}
+
+.react-chatbot-kit-chat-input::placeholder {
+  color: transparent;
+}
+
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.react-chatbot-kit-chat-btn-send-icon {
+  display: inline-block;
+}
+
+.react-chatbot-kit-chat-bot-avatar-container {
+  background-color: white;
+}
+
+.react-chatbot-kit-chat-bot-avatar-letter {
+  content: 'Funko';
+  width: 30px;
+  height: 40px;
+}
+
+.react-chatbot-kit-user-avatar-icon{
+  display: none
+}
+
+.btn {
+  background: #ffffff;
+  border-radius: 50%;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 19px 18px 19px;
+  text-decoration: none;
+  border: 5px solid #ff8839;
+  transition: 350ms;
+}
+
+.btn:hover {
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.btn-no-round {
+  background: #ffffff;
+  border-radius: 5%;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 16px;
+  text-decoration: none;
+  border: 5px solid #000000;
+}
+
+.btn:focus {
+  outline: none;
+}
+  
