@@ -14,12 +14,12 @@
 }
 
 .customArrow{
-    position: absolute;
+    position: relative;
     display: block;
     height: 100%;
     width: 2.5rem;
 /* opacity: 10%; */
-    right: 32px;
+    right: 55px;
     top: 0;
     pointer-events: none;
     width: 0; 
@@ -27,5 +27,5 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 15px solid #a099ffea;
-    margin-top: 28px;
+    margin-top: 1px;
 }
