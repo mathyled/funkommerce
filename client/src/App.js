@@ -24,7 +24,7 @@ function App() {
         <Route  path="/checkout" element={ < CheckoutContainer/>} />
         <Route path='/about' element={<About />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

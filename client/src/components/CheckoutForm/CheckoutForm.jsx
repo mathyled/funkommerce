@@ -6,7 +6,8 @@ import axios from "axios";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { validator } from "../../helpers/validatorsForm";
-
+import Footer from "../Footer/Footer";
+ 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -100,6 +101,7 @@ const CheckoutForm = () => {
           </button>
         </div>
       </form>
+      {/* <Footer></Footer> */}
     </div>
   );
 };
