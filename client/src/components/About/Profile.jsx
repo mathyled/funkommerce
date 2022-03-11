@@ -1,24 +1,20 @@
 import Styles from './Profile.module.css'
-import {useRef,useEffect} from 'react';
 
-const Profile=({img})=>{
-    const divProfile = useRef(null);
-
-    useEffect(()=>{
-
-        console.log(divProfile.current);
-        const elemento=divProfile.current;
-        elemento.style.backgroundImage=`url(${img})`;
-    },[])
-
+const Profile=({img,name,content})=>{
+    
     
     return (
-      <div ref={divProfile} className={Styles.profile}>
-        {console.log("rederiza profile")}
-        <div>
-          iformacion extendida capo
+      <div className={Styles.profile}>
+        <div className={Styles.imgContainer}>
+          <img src={img} alt="profile" />
         </div>
-        {console.log("profile renderizado")}
+        <h3>{name}</h3>
+        <span>Full stack</span>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+           Vero sequi iusto earum amet aliquam commodi eveniet eos eius
+            cupiditate sed dignissimos numquam at neque, perspiciatis quo
+         vitae! Pariatur, officia quisquam?
+         </p>
       </div>
     );
 }

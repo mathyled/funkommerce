@@ -14,6 +14,7 @@ const initialState = {
   categories: [],
   license: [],
   brand: [],
+  reviews:[],
   totalToPay: 0,
 };
 
@@ -212,7 +213,7 @@ export default function rootReducer(state = initialState, action) {
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos1.filter((i) => i.category.includes(action.payload));
+          : allFunkos1.filter((e) => e.Category.name.includes(action.payload));
       //console.log(categoryFilter);
       return {
         ...state,
@@ -246,14 +247,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
-
+ 
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
       let brandFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos2.filter((i) => i.brand.includes(action.payload));
+          : allFunkos2.filter((e) => e.Brand.name.includes(action.payload));
       return {
         ...state,
         funkos: brandFilter,
@@ -276,6 +277,13 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
+
+      case TYPES.GET_REVIEWS:
+        return{
+          ...state,
+          reviews:action.payload
+        }
+
     case TYPES.MODIFIED_TOTAL:
       let sum = 0;
       for (let i = 0; i < state.cart.length; i++) {
@@ -285,6 +293,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         totalToPay: sum,
       };
+
 
     default:
       return {

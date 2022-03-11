@@ -5,7 +5,7 @@ import Footer from '../FooterChatbot/Footer'
 
 const Home = () => {
   return (
-    <div>
+    <div style={{height: '100vh',width: '100%', display: 'flex', justifyContent: 'center'}}>
       {/* <Nav />
       <Nav2/> */}
        {/* <FunkoCardContainer /> */}

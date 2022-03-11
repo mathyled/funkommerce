@@ -15,6 +15,12 @@
   /* border: solid 0.1px;
   border-color: #275EFE; */
 }
+.err{
+  margin:-2px 0px 10px 0px;
+  color: #f56565;
+  font-weight: bold;
+  font-size: 12px;
+}
 
 .cardElement {
   margin:  15px 30%;
@@ -22,6 +28,7 @@
   border-radius: 5px;
   border: none;
   box-shadow: 1px 1px 2px 1px rgb(173, 173, 173);
+  z-index: inherit;
 }
 .cardElement:focus {
   outline: none;
