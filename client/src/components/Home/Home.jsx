@@ -1,7 +1,7 @@
 // import Nav from "../Nav/Nav";
 // import Nav2 from "../Nav/Nav2"
 //import FunkoCardContainer from "../FunkoCardContainer/FunkoCardContainer";
-import Footer from '../FooterChatbot/Footer'
+import Footer from '../Footer/Footer'
 
 const Home = () => {
   return (
