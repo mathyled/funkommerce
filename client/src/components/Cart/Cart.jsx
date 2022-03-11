@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
+import Footer from '../Footer/Footer'
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -128,6 +129,7 @@ const Cart = () => {
           </ul>
         ))}
       </div>
+      <Footer></Footer>
     </div>
   );
 };
