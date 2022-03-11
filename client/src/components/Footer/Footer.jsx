@@ -4,6 +4,7 @@ import config from '../ChatBot/config'
 import ActionProvider from '../ChatBot/ActionProvider'
 import MessageParser from '../ChatBot/MessageParser'
 import {Link} from 'react-router-dom'
+import funkoImg from './funicon2.ico';
 import Styles from './Footer.module.css';
 import './Footer.css';
 
@@ -50,7 +51,9 @@ function Button() {
     return (
       <div>
         <div className = {Styles.container}>
-        <button id ='funko' className="btn" onClick ={handleClick}></button>
+        <button id ='funko' className="btn" onClick ={handleClick}>
+        <img className={Styles.img} src={funkoImg} alt="" />
+        </button>
             {click ? <Button /> : null}
         </div>
         

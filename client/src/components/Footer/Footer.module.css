@@ -6,6 +6,13 @@
   right: 10px;
   z-index: 50;
 }
+
+.img {
+  width: 2rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
  
 .footer {
   height: 140px;
