@@ -2,7 +2,7 @@ import styles from "./FunkoCard.module.css";
 import { Link } from "react-router-dom";
 import notFound from "../../assets/notFound.png";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
-
+ 
 import { useEffect, useState } from "react";
 
 import Paged from "../Paged/Paged";
@@ -59,7 +59,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
 
                     <div className={styles.funkoTitle}>
                       <div className={styles.brand}>
-                        <h2>{product.brand}</h2>
+                        <h2>{product.Brand.name}</h2>
                       </div>
                       <h1>{product.title}</h1>
                     </div>

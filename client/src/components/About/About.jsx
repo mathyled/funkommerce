@@ -4,67 +4,65 @@ import Profile from './Profile';
 
 const profiles = [
   {
-    url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    url: "https://media-exp1.licdn.com/dms/image/D4D35AQEXF_HeZ19P9Q/profile-framedphoto-shrink_400_400/0/1645148341909?e=1647028800&v=beta&t=9EQtyvr4BuTq0ErmA6YZalNs0BLdOEYz9fKW6cVbdG8",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
+  },
+  {
+    url: "https://media-exp1.licdn.com/dms/image/D4D35AQEXF_HeZ19P9Q/profile-framedphoto-shrink_400_400/0/1645148341909?e=1647028800&v=beta&t=9EQtyvr4BuTq0ErmA6YZalNs0BLdOEYz9fKW6cVbdG8",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
   {
     url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
-  },
-  {
-    url: "https://iestptrt.edu.pe/wp-content/uploads/2020/07/about-man-img.jpg",
-    name: "foo",
+    name: "Paul Jhon",
   },
 ];
 
-const mitad=Math.floor(profiles.length/2)
+const contenido='extotextooooo ca da rima es un campo nuevo de sabiduria jajajajajajaj'
+
 
 const About=()=>{
     return (
       <main className={Styles.main}>
         {console.log("about renderizado")}
-        <header>ABOUT THE TEAM</header>
-        <div className={Styles.section2}>
-          {profiles &&
-            profiles.slice(0, mitad).map((profile, index) => {
-              console.log(index);
-              return <Profile img={profile.url} key={index} />;
-            })}
-        </div>
-        <div className={Styles.section2}>
-          {profiles &&
-            profiles.slice(mitad, profiles.length).map((profile, index) => {
-              console.log(index);
-              return <Profile img={profile.url} key={index} />;
-            })}
-        </div>
-        <div className={Styles.descripcion}>
-              PEGA AQUI TU DESCRIPCION GRUPAL 
-        </div>
+        <h1>Our Team</h1>
+        <section>
+          {profiles && profiles.map((profile, i)=>{
+
+            return (
+              <Profile
+                name={profile.name}
+                img={profile.url}
+                key={i}
+                content={contenido}
+              />
+            );
+
+          })}
+        </section>
       </main>
     );
 }

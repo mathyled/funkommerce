@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   flex-direction: column-reverse;
@@ -14,6 +15,8 @@
   vertical-align: middle;
 }
  
+
+
 .footer {
   height: 140px;
   padding:10px;
@@ -21,10 +24,10 @@
   background-color: #636363;
   color: #fff;
   /*display: grid;
-  grid-template-columns: 1fr 1fr;
-   position: absolute;
-  bottom: 0; */
+  grid-template-columns: 1fr 1fr;*/
+
 }
+  
 .footer_section {
   display: flex;
   flex-direction: column;

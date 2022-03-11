@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
 import Nav from "../Nav/Nav";
 import Nav2 from "../Nav/Nav2"
-
+import Footer from "../Footer/Footer";
 
 const FunkoCardContainer = () => {
   const funkos = useSelector((state) => state.funkos);
@@ -65,6 +65,7 @@ const FunkoCardContainer = () => {
       <Nav/>
       <Nav2/>
       <FunkoCard  funkos={funkos} addToCart1={addToCart1} cart={cart} />
+      <Footer></Footer>
     </div>
   );
 };
