@@ -51,7 +51,7 @@ function Button() {
     return (
       <div>
         <div className = {Styles.container}>
-        <button id ='funko' className="btn" onClick ={handleClick}>
+        <button id ='funko' className="btn-chat" onClick ={handleClick}>
         <img className={Styles.img} src={funkoImg} alt="" />
         </button>
             {click ? <Button /> : null}
@@ -84,11 +84,6 @@ function Button() {
       </footer>
 
       </div>
-
-    );
-  })}
-
-
 
 </div>
     )
