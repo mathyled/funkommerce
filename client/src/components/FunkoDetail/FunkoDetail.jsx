@@ -12,7 +12,7 @@ import Detail from '../../components/FunkoDetail/Detail/Detail';
 import imgCredit from "./image.js";
 import ImageCredit from "../componentsReusable/ImageCredit";
 import ReviewList from "../Reviews/ReviewList/ReviewList";
-
+import Footer from "../Footer/Footer";
 
 const FunkoDetail = () => {
   const { id } = useParams();
@@ -145,7 +145,7 @@ const FunkoDetail = () => {
 
           </div>
         </div>
-
+<Footer></Footer>
       </div>
     )
   }

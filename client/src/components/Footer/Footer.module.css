@@ -1,3 +1,10 @@
+.container{
+  background-color: RED;
+  /* margin-left: 15px; */
+  display: flex;
+  flex-direction: column;
+ /* margin-top: 200px; */
+}
 .footer {
   height: 140px;
   padding:10px;
@@ -6,8 +13,7 @@
   color: #fff;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* position: absolute;
-  bottom: 0; */
+
 }
 .footer_section {
   display: flex;

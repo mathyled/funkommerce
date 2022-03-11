@@ -19,6 +19,7 @@ const perfiles=[
 const Footer=()=>{
 
     return (
+      <div className={Styles.container}>
       <footer className={Styles.footer}>
         <section className={Styles.footer_section1}>
           {perfiles.map((perfil,index) => {
@@ -40,6 +41,8 @@ const Footer=()=>{
           </p>
         </section>
       </footer>
+
+      </div>
     );
 }
 
