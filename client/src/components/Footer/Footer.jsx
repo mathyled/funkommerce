@@ -3,8 +3,9 @@ import Chatbot from 'react-chatbot-kit'
 import config from '../ChatBot/config'
 import ActionProvider from '../ChatBot/ActionProvider'
 import MessageParser from '../ChatBot/MessageParser'
-import Styles from './Footer.module.css';
 import {Link} from 'react-router-dom'
+import Styles from './Footer.module.css';
+import './Footer.css';
 
 
 function Button() {
@@ -49,9 +50,10 @@ function Button() {
     return (
       <div>
         <div className = {Styles.container}>
-            <button id ='funko' className={Styles.btn} onClick ={handleClick}></button>
+        <button id ='funko' className="btn" onClick ={handleClick}></button>
             {click ? <Button /> : null}
         </div>
+        
 
 <footer className={Styles.footer}>
 <section className={Styles.footer_section1}>
