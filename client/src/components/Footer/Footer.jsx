@@ -51,7 +51,7 @@ function Button() {
     return (
       <div>
         <div className = {Styles.container}>
-        <button id ='funko' className="btn" onClick ={handleClick}>
+        <button id ='funko' className="btn-chat" onClick ={handleClick}>
         <img className={Styles.img} src={funkoImg} alt="" />
         </button>
             {click ? <Button /> : null}
@@ -85,11 +85,14 @@ function Button() {
 
       </div>
 
+<<<<<<< HEAD
     );
 
 
 
 
+=======
+>>>>>>> 26f8e37d33f2c2297ff5230ff130100ad0db0478
 </div>
     )
 }

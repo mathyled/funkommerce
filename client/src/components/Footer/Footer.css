@@ -1,4 +1,4 @@
-.btn {
+.btn-chat {
     background: #ffffff;
     border-radius: 50%;
     font-family: Arial;
@@ -10,7 +10,7 @@
     transition: 350ms;
 }
 
-.btn:hover {
+.btn-chat:hover {
     background: #ffffff;
     text-decoration: none;
 }
