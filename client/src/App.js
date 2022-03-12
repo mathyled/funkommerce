@@ -14,7 +14,7 @@ import Confirm from "./components/componentsReusable/SendMail/Confirm"
 function App() {
   return (
     <div className="App">
-      <Routes>
+      <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/header" element={ <Header />} />
