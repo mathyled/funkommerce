@@ -18,14 +18,15 @@ function App() {
 
   useEffect(()=>{
 
-    const user=window.localStorage.getItem('user');
+    const user = window.localStorage.getItem("loggedUser");
+    console.log(user);
 
     if(user){
 
     }
 
 
-  })
+  },[])
 
   return (
     <div className="App">

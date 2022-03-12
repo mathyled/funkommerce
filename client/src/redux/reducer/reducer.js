@@ -232,28 +232,7 @@ export default function rootReducer(state = initialState, action) {
     //       funkos: licenseFilter
     //    }
 
-<<<<<<< HEAD
-    case TYPES.GET_USER:
-      Storage.set("user", action.paylaod);
-
-      return {
-        ...state,
-        user: action.payload,
-      };
-
-    case TYPES.CREATE_USER:
-      Storage.set("user", action.paylaod);
-      console.log('se guardo el usuario xd')
-
-      return {
-        ...state,
-        user: action.payload,
-      };
-
-=======
-    
- 
->>>>>>> dd150a08220b31ad3bb81f4fbef627583bdf7809
+   
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 

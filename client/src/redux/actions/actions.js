@@ -66,21 +66,29 @@ export const orderFunkos = (order) => {
 //ACTIONS FOR CREATE USER
 export const createUser = (name, lastName, email, userName, password) => {
   return async (dispatch) => {
+
+    const user = {
+      name,
+      lastName,
+      email,
+      userName,
+      password,
+    };
+
+
+
     try {
       //Espera por crear un ususario
-      const response = await axios.post("http:url.com", {
-        name,
-        lastName,
-        email,
-        userName,
-        password,
-      });
+      const response = await axios.post("http://localhost:3001/api/user", user);
 
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
           payload: response.data,
         });
+
+        Storage.set('loggedUser',response.data);
+        
       } else {
         alert("User not found");
       }

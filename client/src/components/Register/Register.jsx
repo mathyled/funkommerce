@@ -54,20 +54,7 @@ import { createUser } from '../../redux/actions/actions';
               <Input type="text" name="name" placeholder="Name" min="4" />
               {errors.name && <span className={styles.err}>{errors.name}</span>}
               <Input type="text" name="lastName" placeholder="lastName" />
-<<<<<<< HEAD
-              {errors.lastName && (
-                <span className={styles.err}>{errors.lastName}</span>
-              )}
 
-              <Input type="password" name="password" placeholder="password" />
-              {errors.password && (
-                <span className={styles.err}>{errors.password}</span>
-              )}
-              <Input type="email" name="email" placeholder="email" />
-              {errors.email && (
-                <span className={styles.err}>{errors.email}</span>
-              )}
-=======
                 {errors.lastName && (
                   <span className={styles.err}>{errors.lastName}</span>
                 )}
@@ -80,7 +67,6 @@ import { createUser } from '../../redux/actions/actions';
                 {errors.password && (
                   <span className={styles.err}>{errors.password}</span>
                 )}
->>>>>>> dd150a08220b31ad3bb81f4fbef627583bdf7809
             </div>
             <Button>Submit</Button>
           </form>
