@@ -14,7 +14,7 @@ const Detail = () => {
     dispatch(getDetails(id))
   }, [dispatch,id])
 
-  console.log("DETAILS", funkoDetails)
+//  console.log("DETAILS", funkoDetails)
 
     return (
 

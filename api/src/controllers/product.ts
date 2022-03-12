@@ -33,7 +33,7 @@ export const getAllFindProductsTitle = async (req: Request, res: Response) => {
 export const getProductsID = async (req: Request, res: Response) => {
   try {
     let { id } = req.params;
-    console.log(id);
+    console.log("hola",id);
 
     let getProduct = await getFindProductId(id);
     getProduct
