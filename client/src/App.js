@@ -11,6 +11,7 @@ import "./globalStyles/colors.css";
 // import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Confirm from "./components/componentsReusable/SendMail/Confirm"
+import SendMail from "./components/componentsReusable/SendMail/SendMail"
 function App() {
   return (
     <div className="App">
@@ -24,7 +25,7 @@ function App() {
         <Route  path="/checkout" element={ < CheckoutContainer/>} />
         <Route path='/about' element={<About />} />
         <Route path='/confirm' element={< Confirm />} />
-  
+        <Route path='/sendmail' element={< SendMail />} />
       </Routes>
       {/* <Footer /> */}
     </div>
