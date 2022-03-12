@@ -33,23 +33,26 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
 
-    if (!error) {
+    if (!error){
       //ENVIO PETICION POST AL BACK
       //   console.log(paymentMethod);
       console.log({
-        amount: total,
+        amount: paymentMethod,
       });
       elements.getElement(CardElement).clear();
       // try {
       //     const { id } = paymentMethod;
       //     const response = await axios.post("http://localhost:3001/payment", {
       //         amount: total,
-      //         id
+      //         id,
+      //          cart: []
+
       //     })
       // } catch (error) {
       //     console.log("Error", error);
       // }
     }
+    console.log(error)
   };
   return (
     <div>
@@ -91,7 +94,7 @@ const CheckoutForm = () => {
         <fieldset className={styles.cardElement}>
           <div>
             <CardElement />
-          </div>
+          </div> 
         </fieldset>
         <div className={styles.buttonSub}>
           <button onClick={handleSubmit} className={styles.buttonPay}>

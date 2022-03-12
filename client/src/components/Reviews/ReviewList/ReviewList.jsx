@@ -3,7 +3,7 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 import {useSelector} from "react-redux";
 const ReviewList= ()=>{
     const reviews= useSelector(state=> state.reviews)
-    console.log("state",reviews)
+  //  console.log("state",reviews)
     return(
         <div>
             {reviews.map(review=>(

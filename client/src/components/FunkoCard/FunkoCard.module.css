@@ -6,7 +6,7 @@
   align-content: space-between;
   /* background-color: #f3f3f7; */
 }
-
+ 
 .funkosCard {
   background-color: transparent;
 
@@ -105,7 +105,7 @@
 
 .funkoTitle {
   background-color: transparent;
-  height: 60px;
+  height: 45px;
   font-size: 62%;
   text-transform: uppercase;
   font-family: "Secular One";
@@ -114,6 +114,7 @@
   text-align: center;
   color: rgb(44, 44, 44);
   font-weight: 10;
+  overflow: hidden;
 }
 
 .price {
