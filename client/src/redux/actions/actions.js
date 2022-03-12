@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Storage } from "../../helpers/salveStorage";
 import { TYPES } from "./types";
+
 
 export const getFunkos = () => {
   return async (dispatch) => {
@@ -79,15 +79,17 @@ export const createUser = (name, lastName, email, userName, password) => {
 
     try {
       //Espera por crear un ususario
-      const response = await axios.post("http://localhost:3001/api/user", user);
+      const response = await axios.post(
+        "http://localhost:3001/api/user/signUp",
+        user
+      );
 
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
           payload: response.data,
         });
-
-        Storage.set('loggedUser',response.data);
+        console.log(response)
         
       } else {
         alert("User not found");
@@ -98,18 +100,41 @@ export const createUser = (name, lastName, email, userName, password) => {
   };
 };
 
+
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
-export const findUser = (userName, password) => {
+
+export const findUser = (correo, pass) => {
+
   return async (dispatch) => {
+
+    const user = { password:pass,email:correo };
+
     try {
-      const response = await axios.post("http:url.com", { userName, password });
+      // const response = await axios.post(
+      //   "http://localhost:3001/api/user//signIn",
+      //   user
+      // );
+
+
+      const config={
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body:JSON.stringify(user),
+      }
+
+      const res = await fetch("http://localhost:3001/api/user//signIn",config);
+      const response= await res.json();
+      
 
       if (response.data) {
         dispatch({
           type: TYPES.GET_USER,
           payload: response.data,
         });
+        console.log(response)
       } else {
         alert("algo paso");
       }
@@ -118,6 +143,8 @@ export const findUser = (userName, password) => {
     }
   };
 };
+
+
 
 export const getDetails = (id) => {
   console.log(id)
