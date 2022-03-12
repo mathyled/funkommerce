@@ -8,9 +8,9 @@ import CreateFunko from "./components/Form/CreateFunko"
 import ContactUs from "./components/componentsReusable/ContactUs/ContactUs"
 import CheckoutContainer from "./components/CheckoutContainer/CheckoutContainer";
 import "./globalStyles/colors.css";
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 import About from './components/About/About';
-
+import Confirm from "./components/componentsReusable/SendMail/Confirm"
 function App() {
   return (
     <div className="App">
@@ -23,6 +23,8 @@ function App() {
         <Route  path="/email" element={ < ContactUs/>} />
         <Route  path="/checkout" element={ < CheckoutContainer/>} />
         <Route path='/about' element={<About />} />
+        <Route path='/confirm' element={< Confirm />} />
+  
       </Routes>
       {/* <Footer /> */}
     </div>

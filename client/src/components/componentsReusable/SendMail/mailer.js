@@ -13,7 +13,7 @@ const oAuth2Client = new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URL
 oAuth2Client.setCredentials({refresh_token:REFRESH_TOKEN})
 
 
-async function sendMail(){
+export default async function sendMail({toUser,confirmationCode}){
     try{
         const accessToken= await oAuth2Client.getAccessToken()
 
@@ -31,11 +31,13 @@ async function sendMail(){
 
         const mailOptions = {
             from:"FUNKOMMERCE  <mathiasimagine@gmail.com>",
-            to:"luiscabezas_@outlook.com",
-            subject:"Hello from gmail using API",
+            // in Prod
+            // to: toUser.email,
+            to:"josean.urbani@gmail.com",
+            subject:"Activate Account",
             text:"Hello from gmail using API",
             html:`<h1>Email Confirmation</h1>
-            <h2>Hello fer</h2>
+            <h2>Hello Jose ${toUser.username}</h2>
             <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
             <a href=http://localhost:3001/confirm/${123}> Click here</a>
             </div>`,
@@ -49,5 +51,6 @@ async function sendMail(){
     }
 };
 
-sendMail().then(result=> console.log("Email send ...", result))
+const send =sendMail().then(result=> console.log("Email send ...", result))
 .catch(error => console.log(error.message))
+

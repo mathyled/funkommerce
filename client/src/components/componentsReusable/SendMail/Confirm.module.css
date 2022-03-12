@@ -1,0 +1,32 @@
+
+.root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:50vw;
+    flex-direction: column;
+}
+
+.card{
+    height: 450px;
+    width: 50%;
+    border: 1px solid var( --border-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0px 5px 5px 0px;
+}
+.cardOne{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--green);
+   height: 35%;
+    width: 100%;
+}
+.cardTwo{
+    justify-content: flex-end;
+   background-color: var(--input-background);
+  
+
+}
