@@ -1,6 +1,7 @@
 import { helperGetAllBrands} from "../helpers/brand";
 import { Request, Response } from "express";
 
+/// Get Category 
 export const getAllBrands = async (req: Request, res: Response) => {
     try {
       let allBrands = await helperGetAllBrands();
@@ -11,3 +12,6 @@ export const getAllBrands = async (req: Request, res: Response) => {
       console.error(error);
     }
   };
+
+
+
