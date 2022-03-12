@@ -1,7 +1,7 @@
 import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
-
+ 
 const initialState = {
   funkos: [],
   funkosBackUp: [],
@@ -175,7 +175,7 @@ export default function rootReducer(state = initialState, action) {
           else return 0;
         });
       }
-      console.log("hola", funkoSort);
+  
       return {
         ...state,
         funkos: [...funkoSort],
@@ -183,10 +183,10 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case TYPES.GET_FUNKO_DETAIL:
-      let detail = state.funkos.find((f) => String(f.id) === action.id);
+      // let detail = state.funkos.find((f) => String(f.id) === action.id);
       return {
         ...state,
-        detail: [detail],
+        detail: [action.payload],
       };
 
     //FILTRADO
@@ -213,7 +213,7 @@ export default function rootReducer(state = initialState, action) {
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos1.filter((i) => i.category.includes(action.payload));
+          : allFunkos1.filter((e) => e.Category.name.includes(action.payload));
       //console.log(categoryFilter);
       return {
         ...state,
@@ -232,6 +232,7 @@ export default function rootReducer(state = initialState, action) {
     //       funkos: licenseFilter
     //    }
 
+<<<<<<< HEAD
     case TYPES.GET_USER:
       Storage.set("user", action.paylaod);
 
@@ -249,13 +250,17 @@ export default function rootReducer(state = initialState, action) {
         user: action.payload,
       };
 
+=======
+    
+ 
+>>>>>>> dd150a08220b31ad3bb81f4fbef627583bdf7809
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
       let brandFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos2.filter((i) => i.brand.includes(action.payload));
+          : allFunkos2.filter((e) => e.Brand.name.includes(action.payload));
       return {
         ...state,
         funkos: brandFilter,
@@ -278,6 +283,24 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
+
+
+
+      case TYPES.GET_USER:
+      Storage.set("user", action.paylaod);
+
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case TYPES.CREATE_USER:
+      Storage.set("user", action.paylaod);
+
+      return {
+        ...state,
+        user: action.payload,
+      };
 
       case TYPES.GET_REVIEWS:
         return{

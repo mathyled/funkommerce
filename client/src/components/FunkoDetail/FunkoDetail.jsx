@@ -12,14 +12,14 @@ import Detail from '../../components/FunkoDetail/Detail/Detail';
 import imgCredit from "./image.js";
 import ImageCredit from "../componentsReusable/ImageCredit";
 import ReviewList from "../Reviews/ReviewList/ReviewList";
-
+import Footer from "../Footer/Footer";
 
 const FunkoDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const funkoDetails = useSelector((state) => state.detail);
   const cart = useSelector((state) => state.cart);
-  console.log(funkoDetails)
+  //console.log(funkoDetails)
   useEffect(() => {
     dispatch(getDetails(id));
   }, [dispatch, id]);
@@ -145,7 +145,7 @@ const FunkoDetail = () => {
 
           </div>
         </div>
-
+<Footer></Footer>
       </div>
     )
   }

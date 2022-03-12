@@ -1,66 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CheckoutForm.module.css";
 import Nav from "../Nav/Nav";
 import TotalToPay from "../TotalToPay/TotalToPay";
 import axios from "axios";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
-
+import { validator } from "../../helpers/validatorsForm";
+import Footer from "../Footer/Footer";
+ 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const tab = <>&nbsp;</>;
 
   const total = useSelector((state) => state.totalToPay);
-  console.log("hola", total);
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+  });
+
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //   const algo = await useStripe.createPaymentMethod({
-    //       type: "card",
-    //       card: elements.getElement(CardElement),
-    //   })
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
 
-    elements.getElement(CardElement).clear();
-    if (!error) {
+    if (!error){
       //ENVIO PETICION POST AL BACK
       //   console.log(paymentMethod);
       console.log({
-        amount: total,
+        amount: paymentMethod,
       });
+      elements.getElement(CardElement).clear();
       // try {
       //     const { id } = paymentMethod;
-      //     const response = await axios.post("http://localhost:4000/payment", {
-      //         amount: <TotalToPay/>,
-      //         id
+      //     const response = await axios.post("http://localhost:3001/payment", {
+      //         amount: total,
+      //         id,
+      //          cart: []
+
       //     })
       // } catch (error) {
       //     console.log("Error", error);
       // }
     }
+    console.log(error)
   };
   return (
     <div>
       <Nav />
       <form>
         <div>
-          <input type="text" placeholder="Name" className={styles.inputName} />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            className={styles.inputName}
+            onChange={(e) => {
+              setInputs({
+                ...inputs,
+                [e.target.name]: e.target.value,
+              });
+              setErrors(validator(errors, e.target));
+            }}
+          />
+          {errors.name && <span className={styles.err}>{errors.name}</span>}
         </div>
 
         <div>
           <input
-            type="text"
+            type="email"
+            name="email"
             placeholder="Your email"
             className={`${styles.inputName} ${styles.inputEmail}`}
+            onChange={(e) => {
+              setInputs({
+                ...inputs,
+                [e.target.name]: e.target.value,
+              });
+              setErrors(validator(errors, e.target));
+            }}
           />
+          {errors.email && <span className={styles.err}>{errors.email}</span>}
         </div>
         <fieldset className={styles.cardElement}>
           <div>
             <CardElement />
-          </div>
+          </div> 
         </fieldset>
         <div className={styles.buttonSub}>
           <button onClick={handleSubmit} className={styles.buttonPay}>
@@ -70,6 +104,7 @@ const CheckoutForm = () => {
           </button>
         </div>
       </form>
+      {/* <Footer></Footer> */}
     </div>
   );
 };

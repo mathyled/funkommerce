@@ -4,9 +4,17 @@ export const validator = (error, input) => {
   const url =
   /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let errors = {};
-
+ 
   switch (input.type) {
     case "text":
+
+      if (/[^a-zA-Z\x20]/.test(value)) {
+        //Si es true es poque tiene signos extraños
+        errors = {
+          ...error,
+          [name]: "The field cannot have signs",
+        };
+
       if (name === "image") {
         if (!url.test(value)) {
           errors = {
@@ -15,14 +23,7 @@ export const validator = (error, input) => {
           };
         }
       }
-      else if (name === "name") {
-        if (/[^a-z\x20]/.test(value)) {
-          //Si es true es poque tiene signos extraños
-          errors = {
-            ...error,
-            [name]: "The field cannot have signs",
-          };
-        }
+      
       } else {
         errors = {
           ...error,
@@ -58,7 +59,8 @@ export const validator = (error, input) => {
     case "email":
       // let val = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-      if (!/.@gmail.com/.test(value)) {
+      if (!/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+/gm.test(value)) {
+        //
         errors = {
           ...error,
           [name]: "It is not a valid email",

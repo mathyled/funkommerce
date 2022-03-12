@@ -1,14 +1,33 @@
+
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  /* position: fixed; */
+  /* bottom: 10px; */
+  right: 10px;
+  z-index: 50;
+}
+
+.img {
+  width: 2rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+ 
+
+
 .footer {
   height: 140px;
   padding:10px;
   width: 100%;
   background-color: #636363;
   color: #fff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* position: absolute;
-  bottom: 0; */
+  /*display: grid;
+  grid-template-columns: 1fr 1fr;*/
+
 }
+  
 .footer_section {
   display: flex;
   flex-direction: column;

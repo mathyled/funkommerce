@@ -17,13 +17,14 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
+import Footer from '../Footer/Footer'
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const totalToPay2 = useSelector((state) => state.totalToPay);
   // const[total, setTotal] = useState(arr)
-  console.log(totalToPay2);
+  //console.log(totalToPay2);
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
@@ -69,6 +70,7 @@ const Cart = () => {
   return (
     <div className={styles.container}>
       <Nav></Nav>
+      {/* {console.log(cart)} */}
       <h1 className={styles.myCart}>MY CART</h1>
       <div className={styles.myCartAndButtonEmpty}>
         <h3 className={styles.totalToPay}>
@@ -128,6 +130,7 @@ const Cart = () => {
           </ul>
         ))}
       </div>
+      <Footer></Footer>
     </div>
   );
 };
