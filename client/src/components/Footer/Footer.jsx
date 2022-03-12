@@ -83,16 +83,7 @@ function Button() {
         </section>
       </footer>
 
-      </div>
-
-<<<<<<< HEAD
-    );
-
-
-
-
-=======
->>>>>>> 26f8e37d33f2c2297ff5230ff130100ad0db0478
+      </div>  
 </div>
     )
 }
