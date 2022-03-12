@@ -242,6 +242,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CREATE_USER:
       Storage.set("user", action.paylaod);
+      console.log('se guardo el usuario xd')
 
       return {
         ...state,

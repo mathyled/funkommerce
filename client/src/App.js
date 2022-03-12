@@ -11,7 +11,28 @@ import "./globalStyles/colors.css";
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 
+import {useEffect} from 'react';
+
+
 function App() {
+
+  useEffect(()=>{
+
+    const user=window.localStorage.getItem('user');
+
+    if(user){
+
+    }
+
+
+  })
+
+
+
+
+
+
+
   return (
     <div className="App">
       <Routes>

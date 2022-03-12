@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Storage } from "../../helpers/salveStorage";
 import { TYPES } from "./types";
 
 
@@ -65,23 +66,36 @@ export const orderFunkos = (order) => {
 }
 
 //ACTIONS FOR CREATE USER 
-export const createUser=(name,lastName,email,userName,password) => {
+export const createUser=(name,lastName,email,password) => {
+  console.log(lastName,email,password,name)
 
   return async (dispatch)=>{
 
     try{
 
       //Espera por crear un ususario
-      const response=await axios.post('http:url.com',{name,lastName,email,userName,password});
+      console.log('enviando los datos')
 
-      if(response.data){
-          dispatch({
-            type: TYPES.CREATE_USER,
-            payload: response.data,
-          });
+      const data={
+        name:name,
+        lastName:lastName,
+        email:email,
+        password:password,
+      }
+      const response = await axios.post("http://localhost:3001/api/user/signUp",data);
+      console.log(response)
+      
 
-      }else{
-        alert('User not found')
+      if (response.data.msg !== "Error, could not create user") {
+        dispatch({
+          type: TYPES.CREATE_USER,
+          payload: response.data,
+        });
+        Storage.set('loggedUser',response.data);
+
+
+      } else {
+        alert("User not found");
       }
 
       
