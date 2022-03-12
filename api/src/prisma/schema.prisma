@@ -12,10 +12,11 @@ model Product {
   title       String
   number      String
   image       String
-  license     String
+  License     License?  @relation(fields: [LicenseId], references: [id])
+  LicenseId   Int      
   price       Decimal  @db.Money
   stock       Int
-  description String  @default("")
+  description String   @default("")
   Category    Category @relation(fields: [CategoryId], references: [id])
   CategoryId  Int
   Brand       Brand    @relation(fields: [BrandId], references: [id])
@@ -23,6 +24,12 @@ model Product {
   Detail      Detail[]
   formFactor  String
 
+}
+
+model License {
+  id      Int       @id @unique @default(autoincrement())
+  name    String    @unique
+  Product Product[]
 }
 
 model Category {
@@ -39,7 +46,7 @@ model Brand {
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String?   @unique
+  email     String?  @unique
   password  String?
   name      String
   lastName  String
