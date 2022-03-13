@@ -3,7 +3,7 @@ import React from "react";
 import TopBar from "./TopBar/TopBar";
 import styles from "./PanelHome.module.css";
 import SideBar from "./SideBar/SideBar";
-import Home from "../Pages/Home/Home"
+import PageHome from "../Pages/Home/PageHome"
 const PanelHome = () => {
 
     return (
@@ -12,7 +12,7 @@ const PanelHome = () => {
             <div className={styles.container}>
                 <SideBar />
                 <div className={styles.others}>
-                    <Home />
+                    <PageHome />
                 </div>
             </div>
 

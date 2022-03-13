@@ -15,7 +15,7 @@ import SendMail from "./components/componentsReusable/SendMail/SendMail";
 import PanelHome from "./components/AdminPanel/PanelHome/PanelHome";
 
 import ChatbotBtn from "./components/Chatbot-btn/Chatbot-btn"
-import StartRatting from "./components/Reviews/StartRatting/StartRatting"
+import StarRating from "./components/Reviews/StartRatting/StarRating"
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
         <Route path='/sendmail' element={< SendMail />} />
         <Route path='/admin' element={< PanelHome />} />
         <Route path= '/footer' element={<ChatbotBtn />}/>
-        <Route path= '/rating' element={<StartRatting />}/>
+        <Route path= '/rating' element={<StarRating />}/>
       </Routes>
       {/* <Footer /> */}
     </div>

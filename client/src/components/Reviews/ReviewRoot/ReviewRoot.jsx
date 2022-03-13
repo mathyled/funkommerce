@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormReview from "../FormReview/FormReview";
 import styles from "./ReviewRoot.module.css";
-import StarRating from "../StarRating/StarRating"
+import StarRating from "../StartRatting/StarRating"
 const ReviewRoot = () => {
 
     const [visible, setVisible] = useState(false);
