@@ -8,17 +8,12 @@ class MessageParser {
     const lowercase = message.toLowerCase();
     if (!lowercase) {this.actionProvider.empty()}
 
-      if(lowercase.includes('funko')){this.actionProvider.funko()}
+    if(lowercase.includes('funko')){this.actionProvider.funko()}
 
-      if(lowercase.includes('hi')){this.actionProvider.saludo()}
+    if(lowercase.includes('comprar')){this.actionProvider.handleBuy()}
 
-      if(lowercase.includes('hello')){this.actionProvider.saludo()}
+    if(lowercase.includes('pago')){this.actionProvider.handlePayment()}
 
-      if(lowercase.includes('hola')){this.actionProvider.saludo()}
-
-      if(lowercase.includes('buenas')){this.actionProvider.saludo()}
-
-      if(lowercase.includes('buenos')){this.actionProvider.saludo()}
     }
 }
 
