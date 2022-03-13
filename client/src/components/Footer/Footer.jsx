@@ -1,39 +1,10 @@
-import React, { useState } from 'react'
-import Chatbot from 'react-chatbot-kit'
-import config from '../ChatBot/config'
-import ActionProvider from '../ChatBot/ActionProvider'
-import MessageParser from '../ChatBot/MessageParser'
-import {Link} from 'react-router-dom'
-import funkoImg from './funicon2.ico';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import Styles from './Footer.module.css';
-import './Footer.css';
 
-
-function Button() {
-    return (
-      <div className="bot">
-        <Chatbot
-          config={config}
-          actionProvider={ActionProvider}
-          messageParser={MessageParser}
-        />
-      </div>
-    )
-  }
-  
+ 
   function Footer() {
-    let [click, setClick] = useState(false)
-  
-    let handleClick = (e) => {
-      setClick(!click)
-  
-      if(click){
-        document.getElementById('funko').classList.remove('btn-no-round') 
-      } else{
-        document.getElementById('funko').classList.add('btn-no-round')
-      }
-    }
-
+    
     const perfiles=[
       {
           url:'#',
@@ -47,20 +18,9 @@ function Button() {
       }
   ];
   
-
     return (
-      <div>
-        <div className = {Styles.container}>
-        <button id ='funko' className="btn-chat" onClick ={handleClick}>
-        <img className={Styles.img} src={funkoImg} alt="" />
-        </button>
-            {click ? <Button /> : null}
-        </div>
-        
-
-
       <div className={Styles.container}>
-      <footer className={Styles.footer}>
+       <footer className={Styles.footer}> 
         <section className={Styles.footer_section1}>
           {perfiles.map((perfil,index) => {
             return (
@@ -81,9 +41,9 @@ function Button() {
             desarrollo web, durante la cursada de Henry.
           </p>
         </section>
-      </footer>
+      </footer>  
 
-      </div>  
+       
 </div>
     )
 }
