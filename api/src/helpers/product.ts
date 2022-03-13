@@ -26,7 +26,9 @@ export const getFindProductId = async (id: any) => {
   try {
     let findProduct = await prisma.product.findUnique({
       where: { id: Number(id) },
-    });
+    include:{
+      Category:true
+    }});
     return findProduct;
   } catch (error) {
     console.error(error);
