@@ -22,7 +22,11 @@
 .imgComent{
     display: flex;
 }
-
+.imgLogo{
+    border-radius: 50px;
+    height: 32px;
+    width: 32px;
+}
 .divSpan{
     padding-left:10px
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormReview from "../FormReview/FormReview";
-import styles from "./ReviewRoot.module.css"
+import styles from "./ReviewRoot.module.css";
+import StarRating from "../StarRating/StarRating"
 const ReviewRoot = () => {
 
     const [visible, setVisible] = useState(false);
@@ -21,7 +22,8 @@ const ReviewRoot = () => {
 
                             <div className={styles.card}>
 
-                                <div className={styles.divHeader}>funko</div>
+                                <div className={styles.divHeader}>Your review</div>
+<StarRating/>
                                 <FormReview />
                                 <div className={styles.divClose}>
                                     <button onClick={() => setVisible(v => !v)} className={styles.btnClose}>Close</button>

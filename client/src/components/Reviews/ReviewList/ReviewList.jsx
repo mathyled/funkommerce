@@ -13,7 +13,7 @@ const ReviewList= ({reviews})=>{
       <ReviewItem funko={review.funko} review={review.review} key={review.id} />
             )) :
                  ( reviewData.map(review=> (
-                    <ReviewItem funko={review.funko} review={review.review}   />
+                    <ReviewItem funko={review.funko} review={review.review} imgUser={review.imgUser}  />
                  ) ) )
 
             
