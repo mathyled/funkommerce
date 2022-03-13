@@ -1,6 +1,6 @@
 
 import React from "react";
-import admin from "../../../assets/admin.png"
+import admin from "../../../../assets/admin.png"
 import styles from "./TopBar.module.css";
 import { AiOutlineBell } from "react-icons/ai";
 import { GrLanguage } from "react-icons/gr";

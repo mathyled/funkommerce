@@ -6,7 +6,7 @@
     align-items: center;
     /* border-bottom: 1px solid grey; */
     height: 100px;
-    background-color: var(--blue);
+    background-color: rgb(251, 251, 255);
     z-index: 10;
 }
 .left{
@@ -25,6 +25,7 @@
     height: 55px;
     width: 55px;
     cursor: pointer;
+    
 }
 
 .icon{
