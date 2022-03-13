@@ -1,16 +1,24 @@
 import React from "react";
 import ReviewItem from "../ReviewItem/ReviewItem";
-import {useSelector} from "react-redux";
-const ReviewList= ()=>{
-    const reviews= useSelector(state=> state.reviews)
+
+import styles from "./ReviewList.module.css"
+import reviewData from "./reviewData"
+const ReviewList= ({reviews})=>{
+  
   //  console.log("state",reviews)
     return(
-        <div>
-            {reviews.map(review=>(
+        <div className={styles.root} >
+            {reviews.length ? reviews.map(review=>(
 
       <ReviewItem funko={review.funko} review={review.review} key={review.id} />
-            ))}
+            )) :
+                 ( reviewData.map(review=> (
+                    <ReviewItem funko={review.funko} review={review.review}   />
+                 ) ) )
+
+            
        
+            }
         </div>
     )
 };

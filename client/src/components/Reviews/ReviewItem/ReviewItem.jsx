@@ -9,9 +9,9 @@ const ReviewItem = ({ funko, review }) => {
                 <div>
                     <h5>{funko}</h5>
                 </div>
-                <div  className={styles.imgComent}>
+                <div className={styles.imgComent}>
                     <img src={CreditCard2} width="24px" height="24px" />
-                    <div  className={styles.divSpan}>
+                    <div className={styles.divSpan}>
                         <span >{review}</span>
                     </div>
                 </div>

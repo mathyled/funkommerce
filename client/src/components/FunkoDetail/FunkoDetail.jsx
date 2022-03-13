@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails,getCategories } from "../../redux/actions/actions";
+import { getDetails,getCategories,getReviews } from "../../redux/actions/actions";
 import styles from "./FunkoDetail.module.css";
 import Funko from "../../assets/Funko.gif";
 import { addToCart } from "../../redux/actions/actions";
@@ -19,13 +19,15 @@ const FunkoDetail = () => {
   const dispatch = useDispatch();
   const funkoDetails = useSelector((state) => state.detail);
   const cart = useSelector((state) => state.cart);
-  const categories = useSelector((state) => state.categories);
+  // const categories = useSelector((state) => state.categories);
+  const reviews= useSelector(state=> state.reviews)
   
   useEffect(() => {
     dispatch(getDetails(id));
     dispatch(getCategories());
-    console.log("categ",categories)
-  }, [dispatch, id]);
+    dispatch(getReviews(reviews));
+ 
+  }, [dispatch, id,reviews]);
   
 
   const addToCart1 = (id) => {
@@ -104,7 +106,7 @@ const FunkoDetail = () => {
 
           </div>
           <div className={styles["item-review"]}>
-            <ReviewList />
+            <ReviewList reviews={reviews} />
           </div>
           <div className={styles["item-medium"]}></div>
           <div className={styles["item-pay"]}>
