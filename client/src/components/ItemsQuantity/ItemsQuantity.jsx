@@ -11,6 +11,7 @@ const ItemsQuantity = () => {
   useEffect(() => {
     setItemsQuantity1(cart.length);
   }, [cart]);
+ 
 
   return (
     <div>

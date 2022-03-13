@@ -1,7 +1,9 @@
 .filters {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  /* margin: 5px; */
+  /* position: fixed; */
 }
 
 .filterText {
@@ -12,64 +14,67 @@
 }
 
 select {
-  font-size: 1.2rem;
-  background-color: #8B3DFF;
+  font-size: 0.9rem;
+  /* background-color: #796fffea; */
+  background-color: #111;
   color: white;
   padding: 0.5rem 0.7rem;
-  width: 200px;
+  width: 130px;
   margin-right: 25px;
   border-radius: 5px;
   border: none;
   /* font-family: 'Secular One'; */
-  font-weight: bold;
-appearance: none;
+  /* font-weight: bold; */
+  appearance: none;
+  margin: 5px;
 }
 select::placeholder {
   outline: none;
 }
 select:focus {
   outline: none;
- 
 }
-.customSelect{
-    position: relative;
+.customSelect {
+  position: relative;
 }
-.customArrow{
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 2.5rem;
-/* opacity: 10%; */
-    right: 32px;
-    top: 0;
-    pointer-events: none;
-    width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 15px solid #a099ffea;
-    margin-top: 10px;
+.customArrow {
+  position: absolute;
+  display: block;
+  height: 100%;
+  /* width: 2rem; */
+  /* opacity: 10%; */
+  right: 15px;
+  top: 2px;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  /* border-top: 15px solid #a099ffea; */
+  border-top: 10px solid #ffffff;
+  margin-top: 12px;
+  text-indent: 15px;
 }
 
 option{
   /* font-size: 1.2rem; */
- 
 }
 
-.allFunkos{
-  font-size: 1.2rem;
-  background-color: #8B3DFF;
-  /* background-color: transparent; */
+.allFunkos {
+  font-size: 0.9rem;
+  background-color: #111111;
+
   box-shadow: 1px 1px 1px 1px rgb(177, 177, 177);
   color: white;
-  padding: 0.6rem 0.7rem;
-  width: 200px;
-  margin-right: 25px;
-  border-radius: 50px;
+  /* padding: 0.2rem; */
+  width: 130px;
+margin: 0 25px;
+  border-radius: 5px;
   border: none;
-  /* font-family: 'Secular One'; */
+
   font-weight: bold;
+  margin-top: 15px;
 }
-.allFunkos:hover{
-  background-color: #8b3dffde;
+.allFunkos:hover {
+  background-color: #353535;
 }
