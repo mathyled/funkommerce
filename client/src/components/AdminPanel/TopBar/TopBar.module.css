@@ -1,0 +1,51 @@
+.root{
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid grey; */
+    height: 100px;
+    background-color: var(--blue);
+    z-index: 10;
+}
+.left{
+    margin-left: 20px;
+}
+.right{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    margin-right: 20px;
+    justify-content: space-between;
+}
+
+.logo{
+    border-radius: 50px;
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+}
+
+.icon{
+    font-size: 35px;
+    cursor: pointer;
+}
+.notification{
+    position:relative;
+   
+}
+
+.iconNotif{
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: red;
+    border-radius: 50px;
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

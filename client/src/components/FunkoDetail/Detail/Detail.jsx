@@ -22,13 +22,16 @@ const Detail = () => {
           <div className={styles.item} >
        
               <div  className={styles.item} >
-                <p><strong>Category: </strong>{funkoDetails[0].category}</p>
+                <h2><strong>Category: </strong>{funkoDetails[0].Category.name}</h2>
               </div>
               
               <div  className={styles.item} >
-                <p><strong>License: </strong>{funkoDetails[0].license}</p>
+                <h2><strong>License: </strong>{funkoDetails[0].license}</h2>
               </div>
 
+              <div  className={styles.item} >
+                <h2><strong>$ </strong>{funkoDetails[0].price} USD  🤑</h2>
+              </div>
           </div>
     )
 };
