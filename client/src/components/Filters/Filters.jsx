@@ -41,15 +41,15 @@ const Filters = () => {
 
   return (
     <div className={styles.filters}>
-      <p className={styles.filterText}>Filter by: </p>
+      <p className={styles.filterText}>Filter by</p>
 
       <div className={styles.customSelect}>
-        <select onChange={(e) => handleCategories(e)}>
-          <option value="Categories" hidden>
+        <select onChange={(e) => handleBrand(e)}>
+          <option value="Brand" hidden>
             {" "}
-            Categories{" "}
+            Brand{" "}
           </option>
-          {categories?.map((e) => {
+          {brand?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
                 {e.name}
@@ -59,6 +59,8 @@ const Filters = () => {
         </select>
         <span className={styles.customArrow}></span>
       </div>
+
+     
 
       <div className={styles.customSelect}>
         <select onChange={(e) => handleLicense(e)}>
@@ -78,13 +80,14 @@ const Filters = () => {
       </div>
 
       
+ 
       <div className={styles.customSelect}>
-        <select onChange={(e) => handleBrand(e)}>
-          <option value="Brand" hidden>
+        <select onChange={(e) => handleCategories(e)}>
+          <option value="Categories" hidden>
             {" "}
-            Brand{" "}
+            Categories{" "}
           </option>
-          {brand?.map((e) => {
+          {categories?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
                 {e.name}
@@ -94,6 +97,7 @@ const Filters = () => {
         </select>
         <span className={styles.customArrow}></span>
       </div>
+
 
       <button
         onClick={(e) => {

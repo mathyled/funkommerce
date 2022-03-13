@@ -1,6 +1,6 @@
 .itemsQuantity{
     font-size: 1.5rem;
-    color: rgb(0, 0, 0);
+    color: #f3f3f7;
     /* padding-bottom: 5px; */
     background-color: transparent;
     margin-right: 5px;
@@ -12,5 +12,5 @@
   }
   .itemsQuantity:hover,
   .itemsQuantity:focus {
-    color: #98ea4c;
+    color: #8b3dff;
   }
