@@ -1,4 +1,4 @@
-.root{
+.root_tb{
     position: sticky;
     top: 0px;
     display: flex;
@@ -9,10 +9,10 @@
     background-color: rgb(251, 251, 255);
     z-index: 10;
 }
-.left{
+.left_tb{
     margin-left: 20px;
 }
-.right{
+.right_tb{
     display: flex;
     align-items: center;
     width: 200px;
@@ -20,7 +20,7 @@
     justify-content: space-between;
 }
 
-.logo{
+.logo_tb{
     border-radius: 50px;
     height: 55px;
     width: 55px;
@@ -28,16 +28,16 @@
     
 }
 
-.icon{
+.icon_tb{
     font-size: 35px;
     cursor: pointer;
 }
-.notification{
+.notification_tb{
     position:relative;
    
 }
 
-.iconNotif{
+.iconNotif_tb{
     position: absolute;
     top: -5px;
     right: 5px;
