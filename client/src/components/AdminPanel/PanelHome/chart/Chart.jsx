@@ -1,4 +1,4 @@
-import  "./chart.css"; //en minuscula
+import  "./chart.css";
 import {
   LineChart,
   Line,
