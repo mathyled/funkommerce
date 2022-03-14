@@ -108,33 +108,23 @@ export const findUser = (correo, pass) => {
 
   return async (dispatch) => {
 
-    const user = { password:pass,email:correo };
 
     try {
-      // const response = await axios.post(
-      //   "http://localhost:3001/api/user//signIn",
-      //   user
-      // );
-
 
       const config={
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body:JSON.stringify(user),
+        email:correo,
+        password:pass
       }
 
-      const res = await fetch("http://localhost:3001/api/user//signIn",config);
-      const response= await res.json();
+      const {data} = await axios.post("http:/localhost:3001/api/user/signIn",config);
       
 
-      if (response.data) {
+      if (data) {
         dispatch({
           type: TYPES.GET_USER,
-          payload: response.data,
+          payload: data,
         });
-        console.log(response)
+        console.log(data)
       } else {
         alert("algo paso");
       }
