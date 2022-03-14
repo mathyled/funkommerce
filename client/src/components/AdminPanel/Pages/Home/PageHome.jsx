@@ -1,4 +1,4 @@
-import Chart from "../../PanelHome/Chart/Chart";
+import Chart from "../../PanelHome/chart/Chart";
 import styles from "./PageHome.module.css";
 import { userData } from "../../PanelHome/data";
 // import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
