@@ -8,13 +8,6 @@ export const validator = (error, input) => {
   switch (input.type) {
     case "text":
 
-      if (/[^a-zA-Z\x20]/.test(value)) {
-        //Si es true es poque tiene signos extraños
-        errors = {
-          ...error,
-          [name]: "The field cannot have signs",
-        };
-
       if (name === "image") {
         if (!url.test(value)) {
           errors = {
@@ -23,14 +16,22 @@ export const validator = (error, input) => {
           };
         }
       }
-      
-      } else {
+      else if(name !== "brand" && name !== "license" && name !== "category") {
+        if (/[^a-zA-Z\x20]/.test(value)) {
+        //Si es true es poque tiene signos extraños
         errors = {
           ...error,
-          [name]: "",
+          [name]: "The field cannot have signs",
         };
+      
       }
-      break;
+    } else {
+      errors = {
+        ...error,
+        [name]: "",
+      };
+    }
+    break;
 
     case "password":
       if (value.length < 5 || value.length > 15) {
@@ -107,7 +108,7 @@ export const validator = (error, input) => {
       break;
   }
 
-  if (!value) {
+  if (value === "") {
     errors = {
       ...error,
       [name]: "The field cannot be empty",
