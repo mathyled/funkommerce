@@ -20,8 +20,9 @@ const Order = () => {
 
     return (
         <div className={styles.order}>
-            <p className={styles.orderText}>Sort by:</p>
+            {/* <p className={styles.orderText}>Sort by</p> */}
             <select defaultValue="" onChange={handleOrder}>
+            <option value="" hidden>Sort by</option>
                 <option value="">Default</option>
                 <option value="AtoZ">Name (A - Z)</option>
                 <option value="ZtoA">Name (Z - A)</option>

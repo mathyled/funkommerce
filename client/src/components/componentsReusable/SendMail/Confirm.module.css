@@ -1,28 +1,41 @@
-
+.main{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #5e5e5e4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .root{
     display: flex;
     justify-content: center;
     align-items: center;
-    height:50vw;
+    width: 50%;
     flex-direction: column;
 }
 
 .card{
     height: 450px;
-    width: 50%;
+    width: 100%;
     border: 1px solid var( --border-card);
     display: flex;
+    background-color: white;
+
     flex-direction: column;
     align-items: center;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 10px 10px 10px 10px;
 }
 .cardOne{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: var(--green);
    height: 35%;
     width: 100%;
+    border-radius: 10px 10px 0px 0px;
 }
 .cardTwo{
     justify-content: flex-end;
@@ -30,3 +43,26 @@
   
 
 }
+
+.img {
+
+ margin-top: 20px;
+    width: auto;
+    height: 30%;
+  }
+  .h1{
+    color: rgb(100 150 200 / 50%);
+  }
+
+  .p{
+    margin-top:50px;
+  }
+  .cardOneSend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--blue);
+   height: 35%;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }

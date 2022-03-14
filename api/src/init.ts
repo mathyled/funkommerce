@@ -11,6 +11,7 @@ const requestCategory = async () => {
   return data;
 };
 
+
 const requestBrand = async () => {
   let array: any[] = ["Pop!", "Plush"];
   for (let i = 1; i <= 3; i++) {
@@ -31,7 +32,7 @@ const requestBrand = async () => {
 
 const requestProduct = async () => {
   let array: any[] = [];
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 10; i <= 15; i++) {
     const { data }: any = await axios
       .get(`https://the-funko-api.herokuapp.com//api/v1/items/?page=${i}`)
       .then((response: AxiosResponse) => response.data);
@@ -68,6 +69,7 @@ export const init = async () => {
         });
       });
 
+
       allProducts.map(async (product: any) => {
         await prisma.product.create({
           data: {
@@ -75,17 +77,28 @@ export const init = async () => {
             number: product.attributes.number,
             price: (Math.random() * (50 - 5) + 5).toFixed(2),
             stock: Math.floor(Math.random() * (25 - 0)) + 0,
-            license: product.attributes.license,
+            License: {
+              connectOrCreate: {
+                where: { name: product.attributes.license },
+                create: { name: product.attributes.license }
+              }
+            },
             formFactor: product.attributes["form-factor"],
             image:
               product.attributes["image-url"] ||
               "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones.jpg?v=1577791303",
-            Category: {
-              connect: { name: product.attributes.category },
-            },
-            Brand: {
-              connect: { name: product.attributes.brand },
-            },
+              Category: {
+                connectOrCreate: {
+                  where: { name: product.attributes.category },
+                  create: { name: product.attributes.category }
+                }
+              },
+              Brand: {
+                connectOrCreate: {
+                  where: { name: product.attributes.brand },
+                  create: { name: product.attributes.brand }
+                }
+              },
           },
         });
       });

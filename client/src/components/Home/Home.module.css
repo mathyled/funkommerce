@@ -1,0 +1,19 @@
+.divNavAndCards{
+    background-color: transparent;
+    display: flex;
+    /* position: fixed; */
+    /* justify-content: center;
+    align-items: center;
+    align-content: center; */
+}
+.navFilters{
+    background-color: transparent(153, 237, 153);
+ /* box-shadow: 1px 1px 1px 1px rgba(112, 108, 108, 0.515); */
+}
+/* .funkoCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: red;
+} */
