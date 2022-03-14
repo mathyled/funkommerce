@@ -74,8 +74,9 @@ import { createUser } from '../../redux/actions/actions';
               <Button>Submit</Button>
             </div>
           </div>
+          </form>
         </main>
-      </form>
+   
     </Modal>
   );
 };
