@@ -23,7 +23,9 @@ export const getFindProductId = async (id: any) => {
   try {
     let findProduct = await prisma.product.findUnique({
       where: { id: Number(id) },
-    });
+    include:{
+      Category:true
+    }});
     return findProduct;
   } catch (error) {
     console.error(error);
@@ -50,7 +52,7 @@ export const helperPostProduct = async (props: any) => {
         number: number,
         Category: { connect: { id: categoryId } },
         image: image,
-        License:{connect:{id: licenseId}},
+        License: { connect: { id: licenseId } },
         price: price,
         stock: stock,
         formFactor: formFactor,
@@ -59,8 +61,6 @@ export const helperPostProduct = async (props: any) => {
       },
     });
 
-    newProduct 
-    ? newProduct 
-      : [];
+    newProduct ? newProduct : [];
   } catch (error) {}
 };
