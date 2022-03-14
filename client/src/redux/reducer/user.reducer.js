@@ -4,6 +4,7 @@ const initialState = {
   user: null, //Usuario de la sesion
 };
 
+
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case TYPES.GET_USER:

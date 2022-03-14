@@ -1,4 +1,4 @@
-import "./chart.css";
+import  "./Chart.css";
 import {
   LineChart,
   Line,
@@ -11,8 +11,8 @@ import {
 export default function Chart({ title, data, dataKey, grid }) {
 
   return (
-    <div className="chart">
-      <h3 className="chartTitle">{title}</h3>
+    <div class="chart_ch">
+      <h3 class="chartTitle_ch">{title}</h3>
       <ResponsiveContainer width="100%" aspect={4 / 1}>
         <LineChart data={data}>
           <XAxis dataKey="name" stroke="#5550bd" />

@@ -16,3 +16,11 @@
   
   
  
+  .img{
+    display: flex;
+    align-items: center;
+  }
+  .span{
+    text-decoration: line-through;
+    margin-right: 10px;
+  }

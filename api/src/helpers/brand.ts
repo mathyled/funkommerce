@@ -9,3 +9,14 @@ export const helperGetAllBrands = async () => {
       console.error(error);
   }
 };
+
+export const postBrand = async (brandName: string)=>{
+  try{
+    await prisma.brand.create({
+      data: { name: brandName }
+  })
+  return "ok"
+  }catch(error){
+    console.log(error)
+  }
+}

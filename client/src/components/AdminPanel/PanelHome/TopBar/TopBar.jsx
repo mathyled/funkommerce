@@ -1,34 +1,36 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import admin from "../../../../assets/admin.png"
-import styles from "./TopBar.module.css";
+import "./TopBar.css";
 import { AiOutlineBell } from "react-icons/ai";
-import { GrLanguage } from "react-icons/gr";
+import { MdLanguage, MdDarkMode } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
-const TopBar = () => {
+import { DarkModeContext } from "../DarkMode/context/darkModeContext";
 
+const TopBar = () => {
+    const { dispatch } = useContext(DarkModeContext);
 
     return (
+        <div class="root_tb" >
 
-
-        <div className={styles.root} >
-
-            <div className={styles.left}>
+            <div class="left_tb">
                 <h1>Admin Panel</h1>
             </div>
-            <div className={styles.right}>
-                <div className={styles.notification}>
-                    <AiOutlineBell className={styles.icon} />
-                    <span className={styles.iconNotif}>2</span>
+            <div class="right_tb">
+                <MdDarkMode class="icon_tb" onClick={() => dispatch({ type: "TOGGLE" })} />
+
+                <div class="notification_tb">
+                    <AiOutlineBell class="icon_tb" />
+                    <span class="iconNotif_tb"><strong>2</strong></span>
                 </div>
                 <div>
-                    <GrLanguage className={styles.icon} />
+                    <MdLanguage class="icon_tb" />
                 </div>
                 <div>
-                    <IoMdSettings className={styles.icon} />
+                    <IoMdSettings class="icon_tb" />
                 </div>
                 <div>
-                    <img src={admin} className={styles.logo} />
+                    <img src={admin} class="logo_tb" />
                 </div>
             </div>
 

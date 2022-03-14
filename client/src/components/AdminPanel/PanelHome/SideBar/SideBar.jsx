@@ -1,6 +1,6 @@
 
 import React from "react";
-import styles from "./SideBar.module.css";
+import"./SideBar.css";
 import { AiOutlineHome } from "react-icons/ai";
 import {
      MdTimeline,
@@ -12,66 +12,66 @@ import {
 import { BiTrendingUp } from "react-icons/bi";
 const SideBar = () => {
     return (
-        <div className={styles.sidebar} >
+        <div class="sidebar_sd" >
 
-            <div className={styles.sidebarWrapper}>
-                <div className={styles.sidebarMenu}>
-                    <h3 className={styles.sidebarTitle}>Dashboard</h3>
-                    <ul className={styles.sidebarList}>
-                        <li className={styles.sidebarListItem}>
-                        <AiOutlineHome className={styles.sidebarIcon} />
+            <div class="sidebarWrapper_sd">
+                <div class="sidebarMenu_sd">
+                    <h3 class="sidebarTitle_sd">Dashboard</h3>
+                    <ul class="sidebarList_sd">
+                        <li class="sidebarListItem_sd">
+                        <AiOutlineHome class="sidebarIcon_sd" />
                             Home
                         </li>
-                        <li className={styles.sidebarListItem}>
-                          <MdTimeline className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                          <MdTimeline class="sidebarIcon_sd" />
                             Analytics
                         </li>
-                        <li className={styles.sidebarListItem}>
-                            <BiTrendingUp className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <BiTrendingUp class="sidebarIcon_sd" />
                             Sales
                             </li>
                     </ul>
                 </div>
             </div>
 
-            <div className={styles.sidebarWrapper}>
-                <div className={styles.sidebarMenu}>
-                    <h3 className={styles.sidebarTitle}>Quick Menu</h3>
-                    <ul className={styles.sidebarList}>
-                        <li className={styles.sidebarListItem}>
-                            <MdPermIdentity className={styles.sidebarIcon} />
+            <div class="sidebarWrapper_sd">
+                <div class="sidebarMenu_sd">
+                    <h3 class="sidebarTitle_sd">Quick Menu</h3>
+                    <ul class="sidebarList_sd">
+                        <li class="sidebarListItem_sd">
+                            <MdPermIdentity class="sidebarIcon_sd" />
                             Users
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <MdStorefront className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <MdStorefront class="sidebarIcon_sd" />
                             Products
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <MdAttachMoney className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <MdAttachMoney class="sidebarIcon_sd" />
                             Transactions
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <MdBarChart className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <MdBarChart class="sidebarIcon_sd" />
                             Reports
                             </li>
                     </ul>
                 </div>
             </div>
 
-            <div className={styles.sidebarWrapper}>
-                <div className={styles.sidebarMenu}>
-                    <h3 className={styles.sidebarTitle}>Notifications</h3>
-                    <ul className={styles.sidebarList}>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+            <div class="sidebarWrapper_sd">
+                <div class="sidebarMenu_sd">
+                    <h3 class="sidebarTitle_sd">Notifications</h3>
+                    <ul class="sidebarList_sd">
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Mail
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Feedback
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Messages
                             </li>
                     </ul>
@@ -79,20 +79,20 @@ const SideBar = () => {
             </div>
 
 
-            <div className={styles.sidebarWrapper}>
-                <div className={styles.sidebarMenu}>
-                    <h3 className={styles.sidebarTitle}>Staff</h3>
-                    <ul className={styles.sidebarList}>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+            <div class="sidebarWrapper_sd">
+                <div class="sidebarMenu_sd">
+                    <h3 class="sidebarTitle_sd">Staff</h3>
+                    <ul class="sidebarList_sd">
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Manage
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Analytics
                             </li>
-                        <li className={styles.sidebarListItem}>
-                            <AiOutlineHome className={styles.sidebarIcon} />
+                        <li class="sidebarListItem_sd">
+                            <AiOutlineHome class="sidebarIcon_sd" />
                             Reports
                             </li>
                     </ul>
