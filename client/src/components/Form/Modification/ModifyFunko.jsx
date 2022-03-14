@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from "./CreateFunko.module.css";
+import styles from "./ModifyFunko.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { validator } from "../../helpers/validatorsForm";
+import { validator } from "../../../helpers/validatorsForm";
 import {
   getBrand,
   getCategories,
+  getFunkos,
   getLicense,
-} from "../../redux/actions/actions";
+} from "../../../redux/actions/actions";
 import Swal from "sweetalert2";
-import Nav from "../Nav/Nav";
+import Nav from "../../Nav/Nav";
 
 const CreateFunko = () => {
+  let allFunkos = useSelector((state) => state.funkosBackUp);
   let allCategories = useSelector((state) => state.categories);
   let allLicenses = useSelector((state) => state.license);
   let allBrands = useSelector((state) => state.brand);
@@ -19,19 +21,25 @@ const CreateFunko = () => {
     "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones_1024x1024.jpg?v=1577791303";
 
   const [input, setInput] = useState({
-    title: "",
-    number: "",
-    brand: "",
-    category: "",
-    license: "",
-    image: "",
-    price: 0,
-    stock: 0,
+    title: chosenProduct? chosenProduct.title : "",
+    number: chosenProduct? chosenProduct.number : "",
+    brand: chosenProduct? chosenProduct.brand : "",
+    category: chosenProduct? chosenProduct.category : "",
+    license: chosenProduct? chosenProduct.license : "",
+    image: chosenProduct? chosenProduct.image : "",
+    price: chosenProduct? chosenProduct.price : 0,
+    stock: chosenProduct? chosenProduct.stock : 0,
   });
 
   const [error, setError] = useState({});
+  const [product, setProduct] = useState({
+    product: ""
+  })
+
+  const chosenProduct = allFunkos.find(e => e.name === product)
 
   useEffect(() => {
+    dispatch(getFunkos())
     dispatch(getCategories());
     dispatch(getLicense());
     dispatch(getBrand());
@@ -44,6 +52,14 @@ const CreateFunko = () => {
     });
     setError(validator(error, event.target));
   };
+
+  const handleProduct = (event) => {
+    setProduct({
+      ...product,
+      [event.target.name]: event.target.value
+    })
+    setError(validator(error, event.target));
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -70,9 +86,9 @@ const CreateFunko = () => {
       });
       return;
     } else {
-      //dispatch(createFunko(input));
+      //dispatch(modifyFunko(input));
       Swal.fire({
-        title: `${input.title} Successfully Created`,
+        title: `${input.title} Successfully Modified`,
         icon: "success",
         position: "center",
         timer: 1500,
@@ -105,9 +121,28 @@ const CreateFunko = () => {
         </div>
         <form className={styles.gridRight} onSubmit={handleSubmit}>
           <div className={styles.formTop}>
-            <h1>{input.title ? input.title : "New Product"}</h1>
+            <h1>{input.title ? input.title : "Modify Product"}</h1>
           </div>
           <div className={styles.formMiddle}>
+          <input
+                type="text"
+                name="product"
+                list="products"
+                placeholder="Article..."
+                value={input.brand}
+                className={error.product ? styles.error : styles.input}
+                onChange={handleProduct}
+              />
+              <datalist id="products">
+                {allFunkos?.map((c) => {
+                  return (
+                    <option key={c.id} value={c.name}>
+                      {c.name}
+                    </option>
+                  );
+                })}
+              </datalist>
+              <p>{error.product && <b>{error.product}</b>}</p>
             <div className={styles.formLeft}>
               <input
                 type="text"
