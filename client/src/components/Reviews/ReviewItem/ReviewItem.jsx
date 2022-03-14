@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ReviewItem.module.css";
-import CreditCard2 from "../../../assets/CreditCard/CreditCard2.png"
-const ReviewItem = ({ funko, review }) => {
+// import StartRatting from "../StartRatting/StartRatting"
+const ReviewItem = ({ funko, review ,imgUser}) => {
     console.log("item", review)
     return (
         <div className={styles.root}>
@@ -9,10 +9,11 @@ const ReviewItem = ({ funko, review }) => {
                 <div>
                     <h5>{funko}</h5>
                 </div>
-                <div  className={styles.imgComent}>
-                    <img src={CreditCard2} width="24px" height="24px" />
-                    <div  className={styles.divSpan}>
-                        <span >{review}</span>
+                <div className={styles.imgComent}>
+                    <img src={imgUser}  className={styles.imgLogo}/>
+                    <div className={styles.divSpan}>
+                        <span >"{review}"</span>
+                        {/* <StartRatting /> */}
                     </div>
                 </div>
             </div>
