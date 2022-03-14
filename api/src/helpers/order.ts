@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { getFindProductId } from "./product";
 
@@ -37,7 +37,7 @@ export const helpersPostOrder = async (props: any) => {
       data: { Order_detail: { connect: OrderDetailId } }, ///[{id:2},{id:15}]
     });
 
-    return newOrder
+    return newOrder;
   } catch (error) {
     console.error(error);
   }
