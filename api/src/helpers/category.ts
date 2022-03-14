@@ -9,3 +9,14 @@ export const helperGetAllCategory = async () => {
     console.error(error);
   }
 };
+
+export const postCategory = async (categoryName: string) =>{
+  try{
+    await prisma.category.create({
+      data: { name: categoryName }
+  })
+  return "ok"
+  }catch(error){
+
+  }
+}

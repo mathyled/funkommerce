@@ -5,25 +5,41 @@ import styles from './Register.module.css';
 import {validator} from '../../helpers/validatorsForm';
 import { useState } from 'react';
 
+import {useDispatch} from 'react-redux';
+import { createUser } from '../../redux/actions/actions';
+
+
  const Register=()=>{
 
+
+  const dispatch=useDispatch();
   const [errors,setErrors]=useState({
     name:'',
     password:'',
-    userName:'',
+    lastName:'',
     email:''
   });
   const [inputs, setInputs] = useState({
     name: "",
     password: "",
-    userName:'',
+    lastName: "",
     email: "",
   });
+
+    const sendForm=(event) => {
+      event.preventDefault();
+
+      dispatch(createUser(inputs))
+
+    }
+
+
+
 
     return (
       <Modal buttonText="Register" className={styles.register}>
         <main className={styles.containerForm}>
-          <form className={styles.login} autoComplete="off">
+          <form className={styles.login} autoComplete="off" onSubmit={sendForm}>
             <h3>CREATE ACCOUNT</h3>
             <div
               className={styles.inputGroup}
@@ -36,8 +52,9 @@ import { useState } from 'react';
               }} 
             >
               <Input type="text" name="name" placeholder="Name" min="4" />
-                {errors.name && <span className={styles.err}>{errors.name}</span>}
+              {errors.name && <span className={styles.err}>{errors.name}</span>}
               <Input type="text" name="lastName" placeholder="lastName" />
+
                 {errors.lastName && (
                   <span className={styles.err}>{errors.lastName}</span>
                 )}

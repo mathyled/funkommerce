@@ -1,6 +1,7 @@
 import React from 'react'
 import { createChatBotMessage } from 'react-chatbot-kit'
-import  Options  from './Options'
+import Help from './Widgets/Help/Help'
+import  Options  from './Widgets/Options/Options'
 
 const config = {
   botName: 'Funkommerce',
@@ -22,14 +23,22 @@ const config = {
       backgroundColor: "#2d3748",
     },
   },
-  initialMessages: [createChatBotMessage('Hola! Soy Funko. ¿En que te ayudo?', {
-    widget: 'options'
-  })],
-  widget: [{
-    widgetName: 'options',
-    widgetFunc: (props) => <Options {...props} 
-    /> 
-  }]
+  initialMessages: [createChatBotMessage("Hi! I'm Funko. ¿What can I do for you?", {
+    widget: "options",
+  })
+],
+widgets: [
+  {
+    widgetName: "options",
+    widgetFunc: (props) => <Options {...props} />,
+    },
+  
+  {
+    widgetName: "help",
+    widgetFunc: (props) => <Help {...props} />,
+    },
+  ],
+
 
 }
 
