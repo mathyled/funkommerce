@@ -100,6 +100,27 @@ export const createUser = (name, lastName, email, userName, password) => {
   };
 };
 
+//ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
+export const salveUser = () => {
+
+  const user = window.localStorage.getItem("loggedUser");
+ 
+  if(user){
+
+    return {
+      type:TYPES.FIND_USER,
+      payload:user
+    }
+  }
+
+  return {
+    type:TYPES.FIND_USER,
+    payload:null
+  }
+};
+
+
+
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
@@ -115,8 +136,12 @@ export const findUser = (correo, pass) => {
         email:correo,
         password:pass
       }
+      console.log('118- ',config)
 
-      const {data} = await axios.post("http:/localhost:3001/api/user/signIn",config);
+      const { data } = await axios.post(
+        "http://localhost:3001/api/user/signIn",
+        config
+      );
       
 
       if (data) {

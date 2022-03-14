@@ -289,7 +289,15 @@ export default function rootReducer(state = initialState, action) {
         user: action.payload,
       };
 
-      case TYPES.GET_REVIEWS:
+    case TYPES.FIND_USER:
+
+
+      return {
+        ...state,
+        user:action.payload,
+      }
+
+    case TYPES.GET_REVIEWS:
         return{
           ...state,
           reviews:action.payload
