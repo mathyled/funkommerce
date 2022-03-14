@@ -1,7 +1,9 @@
 import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
- 
+
+
+
 const initialState = {
   funkos: [],
   funkosBackUp: [],
@@ -18,7 +20,9 @@ const initialState = {
   totalToPay: 0,
 };
 
+
 export default function rootReducer(state = initialState, action) {
+
   switch (action.type) {
     case TYPES.GET_FUNKOS:
       return {
@@ -86,6 +90,7 @@ export default function rootReducer(state = initialState, action) {
             ],
           };
 
+
     case TYPES.REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
         (item) => String(item.id) === String(action.payload)
@@ -110,6 +115,7 @@ export default function rootReducer(state = initialState, action) {
             ),
           };
 
+
     case TYPES.REMOVE_ALL_FROM_CART:
       return {
         ...state,
@@ -117,6 +123,7 @@ export default function rootReducer(state = initialState, action) {
           (item) => String(item.id) !== String(action.payload)
         ),
       };
+
 
     case TYPES.CLEAR_CART:
       localStorage.clear();
@@ -142,6 +149,7 @@ export default function rootReducer(state = initialState, action) {
         funkos: action.payload,
       };
     }
+    
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
@@ -232,8 +240,7 @@ export default function rootReducer(state = initialState, action) {
     //       funkos: licenseFilter
     //    }
 
-    
- 
+   
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -263,11 +270,9 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
-
-
-
       case TYPES.GET_USER:
-      Storage.set("user", action.paylaod);
+      
+        Storage.set("loggedUser", action.payload);
 
       return {
         ...state,
@@ -275,7 +280,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
-      Storage.set("user", action.paylaod);
+        
+      Storage.set("loggedUser", action.payload);
 
       return {
         ...state,

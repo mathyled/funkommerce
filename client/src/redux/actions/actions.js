@@ -1,6 +1,7 @@
 import axios from "axios";
 import { TYPES } from "./types";
 
+
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get("http://localhost:3001/api/product");
@@ -57,27 +58,39 @@ export const searchFunkos = (name) => {
 };
 
 export const orderFunkos = (order) => {
-  return { type: TYPES.ORDER_FUNKOS, payload: order };
-};
+
+  return {type: TYPES.ORDER_FUNKOS, payload: order}
+}
+
 
 //ACTIONS FOR CREATE USER
 export const createUser = (name, lastName, email, userName, password) => {
   return async (dispatch) => {
+
+    const user = {
+      name,
+      lastName,
+      email,
+      userName,
+      password,
+    };
+
+
+
     try {
       //Espera por crear un ususario
-      const response = await axios.post("http:url.com", {
-        name,
-        lastName,
-        email,
-        userName,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/api/user/signUp",
+        user
+      );
 
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
           payload: response.data,
         });
+        console.log(response)
+        
       } else {
         alert("User not found");
       }
@@ -87,18 +100,31 @@ export const createUser = (name, lastName, email, userName, password) => {
   };
 };
 
+
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
-export const findUser = (userName, password) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post("http:url.com", { userName, password });
 
-      if (response.data) {
+export const findUser = (correo, pass) => {
+
+  return async (dispatch) => {
+
+
+    try {
+
+      const config={
+        email:correo,
+        password:pass
+      }
+
+      const {data} = await axios.post("http:/localhost:3001/api/user/signIn",config);
+      
+
+      if (data) {
         dispatch({
           type: TYPES.GET_USER,
-          payload: response.data,
+          payload: data,
         });
+        console.log(data)
       } else {
         alert("algo paso");
       }
@@ -107,6 +133,8 @@ export const findUser = (userName, password) => {
     }
   };
 };
+
+
 
 export const getDetails = (id) => {
   console.log(id)
