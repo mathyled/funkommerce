@@ -1,32 +1,39 @@
 
 .login{
-    width:92%;
-    margin:4% 4%;
+    /* width:92%; */
+    /* margin:4% 4%; */
     /* height:95%; */
-    
+ /* display: flex;
+ justify-content: center; */
 }
- 
-.login h3{
-    color:white;
-    margin-top:5px;
-    margin-bottom: 5px;
+
+.login h3{ 
+    color:#111;
+    margin-top:35px;
+    margin-bottom: 10px;
+    font-family: 'Secular One';
 }
 
 .inputGroup{
     display: flex;
     flex-direction: column;
+    background-color: #FFFFFF;
 }
 
 
 .containerForm{
     width: 350px;
-    background-color:#ffffff;
+    background-color:white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+
     letter-spacing:3px;
-    position: relative;
+    /* position: relative; */
+    overflow: hidden;
+ 
 }
 
 .err{
@@ -41,19 +48,15 @@
 }
 
 .register {
-    background-color: #796fffea;
+    background-color: #ffffff;
     border-radius: 0px 6px 6px 0px;
     border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
+    /* box-sizing: border-box; */
+    color:#111;
     cursor: pointer;
     display: inline-block;
-    /* font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-size: 14px;
-    font-weight: 500;
-    height: 42px;
-    width: 90px;
-    line-height: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
     list-style: none;
     margin: 0;
     outline: none;
@@ -66,9 +69,18 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    border-left: #111 solid 1px;
+
+
+    transition-property: color;
+    transition-duration: 0.7s;
   }
   
   .register:hover,
   .register:focus {
-    background-color: #8B3DFF;;
+    color: #275dfe;
   }
+.buttonSubmit{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}

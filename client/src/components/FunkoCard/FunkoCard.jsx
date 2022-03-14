@@ -4,22 +4,25 @@ import notFound from "../../assets/notFound.png";
 import { useState } from "react";
 import Paged from "../Paged/Paged";
 import tristezaNotFound from "../../assets/tristezaNotFound.png";
-// import shoppingBag from '../../assets/shoppingBag.png'
 import Order from "../Order/Order";
+import { useDispatch, useSelector } from "react-redux";
+import { changePage } from "../../redux/actions/actions";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   ///PAGINADO
-  //console.log('jjjjj',funkos)
+  // console.log('jjjjj',funkos)
   const [actualFunko, setActualpage] = useState(1);
-
+  const page = useSelector((state) => state.actualPage);
+  const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);
 
-  const indexOfLastFunko = actualFunko * funkoPerPage;
+  const indexOfLastFunko = page * funkoPerPage;
   const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
   const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko);
 
   function paginate(e, numberPage) {
-    setActualpage(numberPage);
+    //setActualpage(numberPage);
+    dispatch(changePage(numberPage));
   }
 
   if (funkos.length < 1) {
@@ -35,7 +38,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     );
   } else {
     return (
-      /* */
+     
       <div className={styles.containerAll}>
         <div className={styles.order}>
           <Order />
@@ -87,7 +90,6 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
               funkoPerPage={funkoPerPage}
               totalFunko={funkos}
               paginate={paginate}
-              
             />
           </div>
         </div>

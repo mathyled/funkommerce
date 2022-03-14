@@ -170,7 +170,7 @@ export const getBrand = () => {
 };
 
 export const filterCategories = (payload) => {
-  console.log("pp", payload);
+ // console.log("pp", payload);
   return {
     type: TYPES.HANDLE_CATEGORIES,
     payload,
@@ -204,3 +204,10 @@ export const modifiedTotal = () => {
     type: TYPES.MODIFIED_TOTAL,
   };
 };
+
+export const changePage = (number) =>{
+  return{
+    type: TYPES.CHANGE_PAGE,
+    payload: number
+  }
+}
