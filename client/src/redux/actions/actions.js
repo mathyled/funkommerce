@@ -166,21 +166,21 @@ export const getCategories = () => {
 
 //LICENCIA INVALIDA DE MOMENTO
 export const getLicense = () => {
-  return {
-    type: TYPES.GET_LICENSE,
-  };
-  // return async ( dispatch )=> {
-  //   try {
-  //     const {data} = await axios.get(`/api/license`);
-  //    // console.log(data)
-  //     dispatch({type: TYPES.GET_LICENSE, payload: data})
-  //   }
-  //   catch(error) {
-  //     dispatch({type: TYPES.GET_LICENSE, payload: []})
-  //     console.log("error in action searchFunko")
-  //     console.log(error)
-  //   }
-  // }
+  // return {
+  //   type: TYPES.GET_LICENSE,
+  // };
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`/api/license`);
+     // console.log(data)
+      dispatch({type: TYPES.GET_LICENSE, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_LICENSE, payload: []})
+      console.log("error in action searchFunko")
+      console.log(error)
+    }
+  }
 };
 
 export const getBrand = () => {
