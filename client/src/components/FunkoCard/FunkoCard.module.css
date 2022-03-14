@@ -1,11 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
 
 .containerAll {
-  box-shadow: 0.1px 1px 1px 1px rgba(112, 108, 108, 0.515);
+  /* box-shadow: 0.1px 1px 1px 1px rgba(112, 108, 108, 0.515); */
   display: flex;
   flex-direction: column;
-  background-color: #F3F3F7;
-  /* background-color: rgb(240, 240, 255); */
+  /* background-color: #F3F3F7; */
+  background-color: transparent;
+  min-width: 85vw;
+  /* min-height: 89vh; */
+  /* -webkit-box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1);
+  -moz-box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1);
+  box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1); */
+  min-height: calc(100vh - 75px);
 }
 .container {
   display: flex;
@@ -15,9 +21,15 @@
 }
 .order {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  /* background-color: red; */
+   /* align-items: flex-end; */
+  justify-content: flex-end; 
+  /* align-content: flex-end; */
   margin-top: 30px;
+  /* margin-left: calc(100vw - 5px); */
+  width: 50%;
+  margin-left: 50%;
+  margin-right: 10%;
 }
 .notFound2 {
   display: flex;
@@ -26,6 +38,7 @@
   background-color: aqua; */
   margin-top: 45px;
   margin-left: 30vw;
+  /* height: calc(100vh-); */
 }
 .funkosCard {
   background-color: transparent;
@@ -117,7 +130,7 @@
 }
 
 .brand {
-  font-size: 8px;
+  font-size: 9px;
   color: #111;
 }
 
@@ -151,7 +164,7 @@
   /* margin: 2px 30% 2px; */
   /* padding: 8px 150px; */
 
-  background-color: #F3F3F7;
+  background-color: #f3f3f7;
   border-radius: 25px;
   border: none;
   text-transform: uppercase;

@@ -53,7 +53,8 @@
 .buttonPay {
   display: flex;
   justify-content: center;
-  background-color: rgb(194, 255, 103);
+  background-color: #111;
+  color: white;
  border-radius: 5px;
   
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -68,5 +69,5 @@
 }
 
 .buttonPay:hover {
-  background-color: rgb(205, 255, 131);
+  background-color: rgb(29, 29, 29);
 }

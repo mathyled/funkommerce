@@ -1,23 +1,26 @@
-import styles from './Login.module.css';
+import styles from "./Login.module.css";
 import Modal from "../componentsReusable/Modal";
 import Input from "../componentsReusable/Input";
 import Button from "../componentsReusable/Button";
- 
-import {validator} from '../../helpers/validatorsForm';
+
+import { validator } from "../../helpers/validatorsForm";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { findUser } from '../../redux/actions/actions';
 
 const Login = () => {
 
+
   const [inputs,setInputs]=useState({
     email:'',
     password:''
+
   });
   const [error, setError] = useState({
     name: "",
     password: "",
   });
+
 
   const dispatch=useDispatch();
 
@@ -45,19 +48,21 @@ const Login = () => {
                 setError(validator(error, e.target));
               }}
             >
-              <span>Name</span>
+              
               <Input type="email" name="email" placeholder="Email" />
               {error.email && <b>{error.email}</b>}
-              <span>Password</span>
+        
               <Input type="password" name="password" placeholder="password" />
               {error.password && <b>{error.password}</b>}
 
+
               <Button>Submit</Button>
             </div>
-          </form>
-        </main>
-      </Modal>
-    );
+          </div>
+        </form>
+      </main>
+    </Modal>
+  );
 };
 
 export default Login;

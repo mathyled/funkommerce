@@ -5,7 +5,7 @@ import Nav2 from "../Nav/Nav2";
 
 const Home = () => {
   return (
-    <div >
+    <div className={styles.containerHome}>
       <div>
         <Nav />
       </div>

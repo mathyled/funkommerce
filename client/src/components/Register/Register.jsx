@@ -1,9 +1,10 @@
-import Modal from '../componentsReusable/Modal';
-import Input from '../componentsReusable/Input';
-import Button from '../componentsReusable/Button';
-import styles from './Register.module.css';
-import {validator} from '../../helpers/validatorsForm';
-import { useState } from 'react';
+import Modal from "../componentsReusable/Modal";
+import Input from "../componentsReusable/Input";
+import Button from "../componentsReusable/Button";
+import styles from "./Register.module.css";
+import { validator } from "../../helpers/validatorsForm";
+import { useState } from "react";
+
 
 import {useDispatch} from 'react-redux';
 import { createUser } from '../../redux/actions/actions';
@@ -18,6 +19,7 @@ import { createUser } from '../../redux/actions/actions';
     password:'',
     lastName:'',
     email:''
+
   });
   const [inputs, setInputs] = useState({
     name: "",
@@ -63,17 +65,19 @@ import { createUser } from '../../redux/actions/actions';
               <Input type="email" name="email" placeholder="email" />
                 {errors.email && <span className={styles.err}>{errors.email}</span>}
 
-                <Input type="password" name="password" placeholder="password" />
-                {errors.password && (
-                  <span className={styles.err}>{errors.password}</span>
-                )}
-            </div>
-            <Button>Submit</Button>
-          </form>
-        </main>
-      </Modal>
-    );
-}
 
+            <Input type="password" name="password" placeholder="password" />
+            {errors.password && (
+              <span className={styles.err}>{errors.password}</span>
+            )}
+            <div className={styles.buttonSubmit}>
+              <Button>Submit</Button>
+            </div>
+          </div>
+        </main>
+      </form>
+    </Modal>
+  );
+};
 
 export default Register;

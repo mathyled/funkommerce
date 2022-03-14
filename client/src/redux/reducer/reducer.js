@@ -17,7 +17,8 @@ const initialState = {
   license: [],
   brand: [],
   reviews:[],
-  totalToPay: 0,
+  totalToPay: 0, 
+  actualPage: 1, 
 };
 
 
@@ -217,7 +218,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkosBackUp;
-      console.log("categories",action.payload)
+     // console.log("categories",action.payload)
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
@@ -304,6 +305,11 @@ export default function rootReducer(state = initialState, action) {
         totalToPay: sum,
       };
 
+      case TYPES.CHANGE_PAGE:
+        return{
+          ...state,
+          actualPage: action.payload, 
+        }
 
     default:
       return {
