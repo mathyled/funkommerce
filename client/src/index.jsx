@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import axios from 'axios';
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -11,6 +12,7 @@ import i18next from "i18next";
 import global_es from "./translations/ES/global.json";
 import global_en from "./translations/EN/global.json";
 import { DarkModeContextProvider } from "./components/AdminPanel/PanelHome/DarkMode/context/darkModeContext";
+
 i18next.init({
   interpolation: { escapeValue: false },
   lng:"en",
@@ -23,7 +25,9 @@ i18next.init({
     },
   }
 
-})
+});
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 ReactDOM.render(
   <React.StrictMode>

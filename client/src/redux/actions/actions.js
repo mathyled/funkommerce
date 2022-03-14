@@ -4,7 +4,7 @@ import { TYPES } from "./types";
 
 export const getFunkos = () => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/api/product");
+    var json = await axios.get("/api/product");
     // console.log("hola",json)
     return dispatch({
       type: TYPES.GET_FUNKOS,
@@ -46,7 +46,7 @@ export const searchFunkos = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/api/product/s?name=${name}`
+        `/api/product/s?name=${name}`
       );
       dispatch({ type: TYPES.SEARCH_FUNKOS, payload: data });
     } catch (error) {
@@ -80,7 +80,7 @@ export const createUser = (name, lastName, email, userName, password) => {
     try {
       //Espera por crear un ususario
       const response = await axios.post(
-        "http://localhost:3001/api/user/signUp",
+        "/api/user/signUp",
         user
       );
 
@@ -116,7 +116,7 @@ export const findUser = (correo, pass) => {
         password:pass
       }
 
-      const {data} = await axios.post("http:/localhost:3001/api/user/signIn",config);
+      const {data} = await axios.post("/api/user/signIn",config);
       
 
       if (data) {
@@ -140,7 +140,7 @@ export const getDetails = (id) => {
   console.log(id)
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/api/product/${id}`);
+      const { data } = await axios.get(`/api/product/${id}`);
       console.log(data)
       dispatch({ type: TYPES.GET_FUNKO_DETAIL, payload: data });
     } catch (error) {
@@ -153,7 +153,7 @@ export const getDetails = (id) => {
 export const getCategories = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/api/category`);
+      const { data } = await axios.get(`/api/category`);
       //  console.log(data)
       dispatch({ type: TYPES.GET_CATEGORIES, payload: data });
     } catch (error) {
@@ -171,7 +171,7 @@ export const getLicense = () => {
   };
   // return async ( dispatch )=> {
   //   try {
-  //     const {data} = await axios.get(`http://localhost:3001/api/license`);
+  //     const {data} = await axios.get(`/api/license`);
   //    // console.log(data)
   //     dispatch({type: TYPES.GET_LICENSE, payload: data})
   //   }
@@ -186,7 +186,7 @@ export const getLicense = () => {
 export const getBrand = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/api/brand`);
+      const { data } = await axios.get(`/api/brand`);
       //  console.log(data)
       dispatch({ type: TYPES.GET_BRANDS, payload: data });
     } catch (error) {
