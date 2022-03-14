@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails } from "../../redux/actions/actions";
+import { getDetails,getCategories } from "../../redux/actions/actions";
 import styles from "./FunkoDetail.module.css";
-import gifLoader from "../../assets/gifLoader.gif";
+import Funko from "../../assets/Funko.gif";
 import { addToCart } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Nav from "../Nav/Nav";
@@ -19,10 +19,14 @@ const FunkoDetail = () => {
   const dispatch = useDispatch();
   const funkoDetails = useSelector((state) => state.detail);
   const cart = useSelector((state) => state.cart);
-  //console.log(funkoDetails)
+  const categories = useSelector((state) => state.categories);
+  
   useEffect(() => {
     dispatch(getDetails(id));
+    dispatch(getCategories());
+    console.log("categ",categories)
   }, [dispatch, id]);
+  
 
   const addToCart1 = (id) => {
     let funkoAlreadyInCart = cart.find(
@@ -53,9 +57,9 @@ const FunkoDetail = () => {
 
   if (funkoDetails.length === 0) {
     return (
-      <div>
-        <h1>Loading...</h1>
-        <img src={gifLoader} alt="gifLoader" />
+      <div className={styles.h1}>
+        <h1 >Loading...</h1>
+        <img src={Funko} alt="Funko" />
 
       </div>
     )

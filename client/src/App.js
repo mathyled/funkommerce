@@ -12,6 +12,9 @@ import "./globalStyles/colors.css";
 import About from './components/About/About';
 import Confirm from "./components/componentsReusable/SendMail/Confirm";
 import {useEffect} from 'react';
+import SendMail from "./components/componentsReusable/SendMail/SendMail";
+import PanelHome from "./components/AdminPanel/PanelHome/PanelHome";
+import ChatbotBtn from "./components/Chatbot-btn/Chatbot-btn"
 
 
 function App() {
@@ -40,7 +43,9 @@ function App() {
         <Route  path="/checkout" element={ < CheckoutContainer/>} />
         <Route path='/about' element={<About />} />
         <Route path='/confirm' element={< Confirm />} />
-  
+        <Route path='/sendmail' element={< SendMail />} />
+        <Route path='/admin' element={< PanelHome />} />
+        <Route path= '/footer' element={<ChatbotBtn />}/>
       </Routes>
       {/* <Footer /> */}
     </div>
