@@ -11,11 +11,12 @@ import "./globalStyles/colors.css";
 // import Footer from './components/Footer/Footer';
 import About from "./components/About/About";
 import Confirm from "./components/componentsReusable/SendMail/Confirm";
-import { useEffect } from "react";
+
+import {useEffect} from 'react';
 import SendMail from "./components/componentsReusable/SendMail/SendMail";
 import PanelHome from "./components/AdminPanel/PanelHome/PanelHome";
+import ChatbotBtn from "./components/Chatbot-btn/Chatbot-btn"
 
-import ChatbotBtn from "./components/Chatbot-btn/Chatbot-btn";
 
 function App() {
   useEffect(() => {
