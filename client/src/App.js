@@ -21,15 +21,17 @@ import { DarkModeContext } from "./components/AdminPanel/PanelHome/DarkMode/cont
 import "./components/AdminPanel/PanelHome/dark.css"
 import React,{useContext} from "react";
 
+import {useDispatch} from 'react-redux';
+import {salveUser} from './redux/actions/actions';
+
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const dispatch=useDispatch();
   
     useEffect(() => {
-      const user = window.localStorage.getItem("loggedUser");
-      console.log(user);
-  
-      // if (user) {
-      // }
+      
+      dispatch(salveUser());
+      
     }, [])
   return (
     <div  className={darkMode ? "app  " : "App"}>
