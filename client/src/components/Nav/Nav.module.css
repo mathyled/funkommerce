@@ -1,17 +1,19 @@
 
 .nav {
-  height: 70px;
-  box-shadow: 0.5px 0px 0.5px 0.5px rgb(175, 175, 175);
+  height: 75px;
+  /* box-shadow: 0.5px 0px 0.5px 0.5px rgb(175, 175, 175); */
   /* margin-top: 5px; */
    /* background-color: #000000;
   background-image: linear-gradient(315deg, #5c5c5c 0%, #ffc1c1 74%);  */
   /* border-radius: 0px 0px 5px 5px; */
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  background-color: #111;
+  overflow: hidden;
 }
 
 .img{
@@ -20,11 +22,18 @@
   margin-top: 7px;
   margin-left: 10px;
   transition-property: transform;
-  transition-duration: 0.6s;
+  transition-duration: 1.5s;
+  /* filter: saturate(0%);
+  filter: contrast(200%) brightness(1%); */
+  
 }
 
 .img:hover {
-  transform: scale(1.1);
+  /* transform: scale(1); */
+  /* filter: saturate(150%);
+  filter: contrast(25%) brightness(150%);  */
+  /* filter: opacity(0.5) drop-shadow(0 0 0   #F3F3F7) */
+ transform: scale(1.05);
 }
 
 .userbtns {
@@ -39,23 +48,26 @@
 }
 
 .cartImg{
-  color: rgb(0, 0, 0);
-  font-size: 1.6rem;
-  margin-right: 25px;
+  color: white;
+  font-size: 3rem;
+  margin-top: 5px; 
   transition-property: color;
   transition-duration: 0.5s;
-  transform: scaleX(-1);
-  transform: scale(1.5);
+ 
 }
 .linkToCart{
   background-color: transparent;
   display: flex;
+  justify-content: center;
   transition-property: color;
   transition-duration: 0.5s;
+  width: 80px;
+  height: 55px;
+  margin-right: 15px;
 }
 
 .cartImg:hover,
 .cartImg:focus {
   /* color: #98ea4c; */
-  color: #8B3DFF;
+  color: #275dfe;
 }

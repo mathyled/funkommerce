@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,11 +6,15 @@ import {
   filterBrands,
   filterLicense,
   getFunkos,
+  changePage,
 } from "../../redux/actions/actions";
 
 const Filters = () => {
-  const dispatch = useDispatch();
   const funkos = useSelector((state) => state.funkos);
+
+  const page = useSelector((state) => state.actualPage);
+
+  const dispatch = useDispatch();
 
   const categories = useSelector((state) => state.categories);
   const license = useSelector((state) => state.license);
@@ -20,18 +24,21 @@ const Filters = () => {
     e.preventDefault();
 
     dispatch(filterCategories(e.target.value));
+    dispatch(changePage(1));
   };
 
   const handleBrand = async (e) => {
     e.preventDefault();
 
     dispatch(filterBrands(e.target.value));
+    dispatch(changePage(1));
   };
 
   const handleLicense = async (e) => {
     e.preventDefault();
 
     dispatch(filterLicense(e.target.value));
+    dispatch(changePage(1));
   };
 
   function handleClick(e) {
@@ -41,15 +48,15 @@ const Filters = () => {
 
   return (
     <div className={styles.filters}>
-      <p className={styles.filterText}>Filter by: </p>
+      <p className={styles.filterText}>Filter by</p>
 
       <div className={styles.customSelect}>
-        <select onChange={(e) => handleCategories(e)}>
-          <option value="Categories" hidden>
+        <select onChange={(e) => handleBrand(e)}>
+          <option value="Brand" hidden>
             {" "}
-            Categories{" "}
+            Brand{" "}
           </option>
-          {categories?.map((e) => {
+          {brand?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
                 {e.name}
@@ -77,14 +84,13 @@ const Filters = () => {
         <span className={styles.customArrow}></span>
       </div>
 
-      
       <div className={styles.customSelect}>
-        <select onChange={(e) => handleBrand(e)}>
-          <option value="Brand" hidden>
+        <select onChange={(e) => handleCategories(e)}>
+          <option value="Categories" hidden>
             {" "}
-            Brand{" "}
+            Categories{" "}
           </option>
-          {brand?.map((e) => {
+          {categories?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
                 {e.name}

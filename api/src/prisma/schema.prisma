@@ -25,6 +25,12 @@ model Product {
   licenseId    Int?
 }
 
+model License {
+  id      Int       @id @unique @default(autoincrement())
+  name    String    @unique
+  Product Product[]
+}
+
 model Category {
   id      Int       @id @unique @default(autoincrement())
   name    String    @unique
@@ -32,12 +38,6 @@ model Category {
 }
 
 model Brand {
-  id      Int       @id @unique @default(autoincrement())
-  name    String    @unique
-  Product Product[]
-}
-
-model License {
   id      Int       @id @unique @default(autoincrement())
   name    String    @unique
   Product Product[]

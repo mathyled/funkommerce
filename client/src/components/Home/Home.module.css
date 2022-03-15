@@ -1,0 +1,28 @@
+.containerHome{
+    background-color:#F3F3F7;
+    min-height: calc(100vh);
+}
+
+.divNavAndCards{
+    background-color: transparent;
+    display: flex;
+    /* position: fixed; */
+    /* justify-content: center;
+    align-items: center;
+    align-content: center; */
+}
+
+.navFilters{
+    background-color: white;
+    min-height: calc(100vh - 75px);
+ /* box-shadow: 1px 1px 1px 1px rgba(112, 108, 108, 0.515); */
+}
+.funkoCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1);
+    -moz-box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1);
+    box-shadow: -4px 0px 3px -3px rgba(156, 156, 156, 1);
+    min-height: calc(100vh - 75px);
+}

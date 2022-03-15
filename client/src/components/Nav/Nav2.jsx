@@ -6,10 +6,10 @@ import Filters from "../Filters/Filters";
 const Nav2 = () => {
   return (
     <section className={styles.nav}>
-      <Order />
-     
+      {/* <Order /> */}
+      <div className={styles.nav2}>
         <Filters />
-     
+      </div>
     </section>
   );
 };

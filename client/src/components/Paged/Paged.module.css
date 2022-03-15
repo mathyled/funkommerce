@@ -1,10 +1,10 @@
 .pag {
     display: flex;    
     padding: 20px;    
-}
+} 
 
 .btn {
-    background: #3cb7b9;
+    background: #111;
     border: none;
     border-radius: 6px;
     color: white;
@@ -16,12 +16,13 @@
 }
 
 .btn:hover {
-    background-color: white;
-    color: #3cb7b9;
-}
+    background: rgb(34, 34, 34);
+    color: #ffffff;
+} 
 
 .btn:focus {
-    background-color: #3858b1;
+    background: rgb(87, 84, 84);
     color: white;
+    /* border-radius: 50%; */
     
 }

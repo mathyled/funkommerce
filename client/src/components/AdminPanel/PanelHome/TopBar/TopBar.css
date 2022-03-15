@@ -1,0 +1,52 @@
+.root_tb{
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid grey; */
+    height: 100px;
+    background-color: rgb(251, 251, 255);
+    z-index: 10;
+}
+.left_tb{
+    margin-left: 20px;
+}
+.right_tb{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    margin-right: 20px;
+    justify-content: space-between;
+}
+
+.logo_tb{
+    border-radius: 50px;
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+    
+}
+
+.icon_tb{
+    font-size: 35px;
+    cursor: pointer;
+}
+.notification_tb{
+    position:relative;
+   
+}
+
+.iconNotif_tb{
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: red;
+    border-radius: 50px;
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
