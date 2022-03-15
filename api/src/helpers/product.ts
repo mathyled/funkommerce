@@ -55,11 +55,7 @@ export const helperPostProduct = async (props: any) => {
         number: number,
         Category: { connect: { id: categoryId } },
         image: image,
-<<<<<<< HEAD
         License: { connect: { id: licenseId } },
-=======
-        License: {connect: {id: licenseId}},
->>>>>>> main
         price: price,
         stock: stock,
         formFactor: formFactor,
