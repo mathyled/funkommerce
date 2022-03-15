@@ -18,11 +18,11 @@ model Product {
   formFactor   String
   Category     Category?      @relation(fields: [CategoryId], references: [id])
   CategoryId   Int?
-  Brand        Brand?          @relation(fields: [BrandId], references: [id])
+  Brand        Brand?         @relation(fields: [BrandId], references: [id])
   BrandId      Int?
   Order_detail Order_detail[]
-  License   License? @relation(fields: [licenseId], references: [id])
-  licenseId Int?
+  License      License?       @relation(fields: [licenseId], references: [id])
+  licenseId    Int?
 }
 
 model License {

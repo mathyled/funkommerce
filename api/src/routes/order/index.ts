@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { postOrder, detailOrder } from "../../controllers/order";
+import { postOrder, detailOrder, deleteOrder } from "../../controllers/order";
 
 const router = Router();
 
 router.post("/", postOrder);
-router.get("/",detailOrder)
+router.delete("/", deleteOrder);
+router.get("/", detailOrder);
 
 export default router;
