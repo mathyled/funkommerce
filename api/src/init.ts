@@ -11,6 +11,7 @@ const requestCategory = async () => {
   return data;
 };
 
+
 const requestBrand = async () => {
   let array: any[] = ["Pop!", "Plush"];
   for (let i = 1; i <= 3; i++) {
@@ -31,7 +32,7 @@ const requestBrand = async () => {
 
 const requestProduct = async () => {
   let array: any[] = [];
-  for (let i =10; i <= 15; i++) {
+  for (let i = 10; i <= 15; i++) {
     const { data }: any = await axios
       .get(`https://the-funko-api.herokuapp.com//api/v1/items/?page=${i}`)
       .then((response: AxiosResponse) => response.data);
@@ -67,6 +68,7 @@ export const init = async () => {
           },
         });
       });
+
 
       allProducts.map(async (product: any) => {
         await prisma.product.create({

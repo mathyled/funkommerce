@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
 .subContainer {
   display: flex;
@@ -13,15 +13,19 @@
   padding-top: 25px;
   padding-bottom: 25px;
 }
-.myCartAndButtonEmpty{
-    display: flex;
-    justify-content: space-between;
-    background-color: transparent;
+
+.myCartAndButtonEmpty {
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
 }
-.myCart{
-    background-color: transparent;
-    margin-top: 20px;
+
+.myCart {
+  background-color: transparent;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
 .emptyCart {
   margin-right: 50px;
   margin-top: 5px;
@@ -31,48 +35,62 @@
   padding: 1px 15px;
   border-radius: 5px;
   height: 50px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: bold;
   /* letter-spacing: 1px; */
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 0.7s;
+  width: 200px;
+  color: #111;
 }
-.emptyCart:hover{
-    background-color: rgb(255, 103, 103);
-    
+.emptyCart:hover {
+  background-color: #111;
+  color: white;
 }
 
-.home{
+.checkOut {
+  color: #111;
+  /* transition-property: background-color, color, border;
+  transition-duration: 0.7s; */
+}
+.checkOut:hover {
+  background-color: #111;
+  color: white;
+  border: 2px solid rgb(255, 255, 255);
+}
+.home {
   font-size: 2rem;
   margin-top: 10px;
   background-color: transparent;
   transition-property: color;
   transition-duration: 0.5s;
-  
 }
 
-.home:hover{
-  color:rgb(85, 255, 113);
+.home:hover {
+  color: rgb(85, 255, 113);
 }
 
-.linkToHome{
+.linkToHome {
   text-decoration: none;
   color: black;
 }
 
-
-.totalToPay{
-  background-color:  rgb(194, 255, 103);
-  /* margin-right: 75vw;
-  margin-left: 5vw; */
+.totalToPay {
+  display: flex;
+  justify-content: center;
+  background-color: #111;
+  color: white;
   margin-left: 50px;
   margin-top: 10px;
   border-radius: 5px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
   padding: 10px 10px;
+  width: 250px;
 }
 
 .li {
@@ -90,50 +108,60 @@
 
 .price {
   margin: 5px 5px;
-  background-color: rgb(255, 172, 147);
+  background-color: #f3f3f7;
   width: 120%;
   overflow: hidden;
   padding: 5px;
+  color: #111;
 }
 
-.buttonsMoreAndLessDiv{
+.buttonsMoreAndLessDiv {
   background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  background-color: transparent;
 }
 .buttonsMoreAndLess {
-  margin: 5px;
-  width: 30%;
+  margin: 10px 0 5px 0;
   background-color: transparent;
   border: none;
-  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
-  border-radius: 50px;
-  font-size: 1rem;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.582);
+  border-radius: 50px 0px 0px 50px;
+  font-size: 15px;
   font-weight: bold;
-  padding: 1px;
+  color: #111;
+  height: 30px;
+  padding-top: 5px;
 }
 .buttonsMoreAndLess:hover {
-  background-color: rgb(194, 255, 103);
+  background-color: #111;
+  color: white;
 }
-.lessButton:hover{
-  background-color: rgb(255, 103, 103);
+.lessButton {
+  border-radius: 0px 50px 50px 0px;
+}
+.lessButton:hover {
+  background-color: #111;
+  color: white;
 }
 .deleteButton {
-  margin: 5px;
   background-color: transparent;
-  border: none;
+  width: 30px;
   height: 25px;
-  margin: 5px 50px;
-  font-size: 1rem;
-  padding: 4px 5px 5px 5px;
-  color: rgb(0, 0, 0);
+  padding-top: 2px;
+  padding-left: 5px;
+  font-size: 20px;
+  color: #111;
+  margin-top: 10px;
 }
 
 .deleteButton:hover {
-  box-shadow: 1px 1px 4px -1px rgba(122, 114, 114, 0.75);
+  box-shadow: 1px 1px 2px 1px rgba(122, 114, 114, 0.514);
   border-radius: 50px;
+  /* background-color: #111;
+  color: white; */
 }
 
 .title {

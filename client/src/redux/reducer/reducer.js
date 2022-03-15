@@ -1,25 +1,29 @@
-
 import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
 
 
+
 const initialState = {
   funkos: [],
   funkosBackUp: [],
-
-  cart: JSON.parse(localStorage.getItem("funkosInCart")) === null ?
-    [] :
-    JSON.parse(localStorage.getItem("funkosInCart")),
+  cart:
+    JSON.parse(localStorage.getItem("funkosInCart")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("funkosInCart")),
   user: null, //Usuario de la sesion
   detail: [],
   categories: [],
   license: [],
   brand: [],
-
+  reviews:[],
+  totalToPay: 0, 
+  actualPage: 1, 
 };
 
+
 export default function rootReducer(state = initialState, action) {
+
   switch (action.type) {
     case TYPES.GET_FUNKOS:
       return {
@@ -87,6 +91,7 @@ export default function rootReducer(state = initialState, action) {
             ],
           };
 
+
     case TYPES.REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
         (item) => String(item.id) === String(action.payload)
@@ -111,6 +116,7 @@ export default function rootReducer(state = initialState, action) {
             ),
           };
 
+
     case TYPES.REMOVE_ALL_FROM_CART:
       return {
         ...state,
@@ -118,6 +124,7 @@ export default function rootReducer(state = initialState, action) {
           (item) => String(item.id) !== String(action.payload)
         ),
       };
+
 
     case TYPES.CLEAR_CART:
       localStorage.clear();
@@ -143,6 +150,7 @@ export default function rootReducer(state = initialState, action) {
         funkos: action.payload,
       };
     }
+    
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
@@ -176,7 +184,7 @@ export default function rootReducer(state = initialState, action) {
           else return 0;
         });
       }
-      console.log("hola", funkoSort);
+  
       return {
         ...state,
         funkos: [...funkoSort],
@@ -184,10 +192,10 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case TYPES.GET_FUNKO_DETAIL:
-      let detail = state.funkos.find((f) => String(f.id) === action.id);
+      // let detail = state.funkos.find((f) => String(f.id) === action.id);
       return {
         ...state,
-        detail: [detail],
+        detail: [action.payload],
       };
 
     //FILTRADO
@@ -202,67 +210,49 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         license: action.payload,
       };
-      case TYPES.GET_BRANDS:
-        return {
-          ...state,
-          brand: action.payload,
-        };
+    case TYPES.GET_BRANDS:
+      return {
+        ...state,
+        brand: action.payload,
+      };
 
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkosBackUp;
+     // console.log("categories",action.payload)
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos1.filter((i) => i.category.includes(action.payload));
+          : allFunkos1.filter((e) => e.Category.name.includes(action.payload));
       //console.log(categoryFilter);
       return {
         ...state,
         funkos: categoryFilter,
       };
 
+    // case TYPES.HANDLE_LICENSE:
+    //     const allFunkos3 = state.funkos;
 
-      // case TYPES.HANDLE_LICENSE:
-      //     const allFunkos3 = state.funkos;
+    //     // eslint-disable-next-line array-callback-return
+    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
+    //     ))
+    //     console.log(licenseFilter)
+    //     return {
+    //       ...state,
+    //       funkos: licenseFilter
+    //    }
 
-      //     // eslint-disable-next-line array-callback-return
-      //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
-      //     ))
-      //     console.log(licenseFilter)
-      //     return {
-      //       ...state,
-      //       funkos: licenseFilter
-      //    }
-
-
-      case TYPES.GET_USER:
-
-         Storage.set('user',action.paylaod);
-
-         return {
-           ...state,
-           user:action.payload
-         }
-
-      case TYPES.CREATE_USER:
-         Storage.set("user", action.paylaod);
-         
-         return{
-           ...state,
-           user:action.payload
-         }
-
+   
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
       let brandFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos2.filter((i) => i.brand.includes(action.payload));
+          : allFunkos2.filter((e) => e.Brand.name.includes(action.payload));
       return {
         ...state,
         funkos: brandFilter,
       };
-
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
@@ -275,11 +265,51 @@ export default function rootReducer(state = initialState, action) {
           : allFunkos3.filter(
               (e) => e.license && e.license?.includes(action.payload)
             );
-     // console.log(licenseFilter);
+      // console.log(licenseFilter);
       return {
         ...state,
         funkos: licenseFilter,
       };
+
+      case TYPES.GET_USER:
+      
+        Storage.set("loggedUser", action.payload);
+
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case TYPES.CREATE_USER:
+        
+      Storage.set("loggedUser", action.payload);
+
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+      case TYPES.GET_REVIEWS:
+        return{
+          ...state,
+          reviews:action.payload
+        }
+
+    case TYPES.MODIFIED_TOTAL:
+      let sum = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        sum += state.cart[i].price * state.cart[i].quantity;
+      }
+      return {
+        ...state,
+        totalToPay: sum,
+      };
+
+      case TYPES.CHANGE_PAGE:
+        return{
+          ...state,
+          actualPage: action.payload, 
+        }
 
     default:
       return {

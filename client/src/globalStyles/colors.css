@@ -1,0 +1,47 @@
+:root {
+
+    --fds-blue-30: #AAC9FF;
+    --fds-blue-40: #77A7FF;
+    --border: #1877F2;
+    --fds-blue-70: #2851A3;
+    --fds-comment-background: #F2F3F5;
+    --fds-gray-25: #CCD0D5;
+    --fds-gray-30: #BEC3C9;
+    --fds-gray-45: #8D949E;
+    --fds-gray-70: #606770;
+    --fds-gray-80: #444950;
+    --fds-gray-90: #303338;
+    --fds-gray-100: #1C1E21;
+    --fds-green-55: #00A400;
+    --fds-highlight: #3578E5;
+    --fds-highlight: #3578E5;
+    --fds-highlight-cell-background: #ECF3FF;
+    --fds-red-55: #FA383E;
+    --fds-spectrum-aluminum-tint-70: #E4F0F6;
+    --fds-spectrum-blue-gray-tint-70: #CFD1D5;
+    --fds-spectrum-cherry: #F35369;
+    --fds-spectrum-grape-tint-70: #DDD5F0;
+    --fds-spectrum-grape-tint-90: rgb(185, 162, 238);
+    --fds-spectrum-lime: #A3CE71;
+    --fds-spectrum-teal: #6BCEBB;
+    --fds-spectrum-teal-dark-1: #4DBBA6;
+    --fds-spectrum-teal-dark-2: #31A38D;
+    --fds-spectrum-tomato: #FB724B;
+    --fds-spectrum-grape-tint-90: rgb(185, 162, 238);
+    --color-form:rgb(26, 115, 232);
+    --button: #279dfe;
+    --success:#00a650;
+    --failure: #FA383E;
+    --border-card:rgba(0,0,0,.1);
+    --pasdasdasd: #575757;
+    --input-color: #99A3BA;
+    --input-border: #CDD9ED;
+    --input-background: #fff;
+    --input-placeholder: #CBD1DC;
+    --input-border-focus: #275EFE;
+    --green: #e8fff3;
+    --red:#fff5f8;
+    --blue:#f1faff;
+    --yellow: #fff8dd
+
+}

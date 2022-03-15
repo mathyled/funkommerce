@@ -4,3 +4,29 @@
     justify-content: center; */
 
 }
+
+.comment{
+    padding: 16px;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+    color: #575757;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    background-color: #f3f3f7;
+    margin: 10px;
+}
+
+.imgComent{
+    display: flex;
+}
+.imgLogo{
+    border-radius: 50px;
+    height: 32px;
+    width: 32px;
+}
+.divSpan{
+    padding-left:10px
+}
