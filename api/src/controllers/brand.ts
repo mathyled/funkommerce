@@ -11,6 +11,7 @@ export const getAllBrands = async (req: Request, res: Response) => {
       console.error(error);
     }
   };
+
   export const createBrand = async (req: Request, res: Response) => {
     try{
       const {name}=req.body;
