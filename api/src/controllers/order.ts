@@ -1,6 +1,6 @@
-import { helpersPostOrder } from "../helpers/order";
+import { helpersPostOrder, helpersDeleteOrder } from "../helpers/order";
 import { Request, Response } from "express";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const postOrder = async (req: Request, res: Response) => {
@@ -23,5 +23,17 @@ export const detailOrder = async (req: Request, res: Response) => {
     res.send(detalleOrder);
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const deleteOrder = async (req: Request, res: Response) => {
+  try {
+    let props = req.body;
+    const orderDelete: any = await helpersDeleteOrder(props);
+    orderDelete
+    ? res.send(orderDelete) 
+    : res.send({ msg: "n" });
+  } catch (err) {
+    console.error(err);
   }
 };
