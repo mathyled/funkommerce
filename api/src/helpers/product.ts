@@ -55,7 +55,7 @@ export const helperPostProduct = async (props: any) => {
         number: number,
         Category: { connect: { id: categoryId } },
         image: image,
-        License: {connect: {id: licenseId}},
+        License: { connect: { id: licenseId } },
         price: price,
         stock: stock,
         formFactor: formFactor,
@@ -64,8 +64,6 @@ export const helperPostProduct = async (props: any) => {
       },
     });
 
-    newProduct 
-    ? newProduct 
-      : [];
+    newProduct ? newProduct : [];
   } catch (error) {}
 };

@@ -45,10 +45,10 @@ const requestProduct = async () => {
 
 export const init = async () => {
   try {
-    const [allCategory, allProducts, allbrands] = await Promise.all([
+    const [allCategory, allbrands, allProducts] = await Promise.all([
       requestCategory(),
-      requestProduct(),
       requestBrand(),
+      requestProduct(),
     ]);
     const verification = await prisma.product.findMany({});
 
@@ -77,28 +77,36 @@ export const init = async () => {
             number: product.attributes.number,
             price: (Math.random() * (50 - 5) + 5).toFixed(2),
             stock: Math.floor(Math.random() * (25 - 0)) + 0,
-            License: {
-              connectOrCreate: {
-                where: { name: product.attributes.license },
-                create: { name: product.attributes.license }
-              }
-            },
             formFactor: product.attributes["form-factor"],
             image:
               product.attributes["image-url"] ||
               "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones.jpg?v=1577791303",
-              Category: {
-                connectOrCreate: {
-                  where: { name: product.attributes.category },
-                  create: { name: product.attributes.category }
-                }
+            Category: {
+              connectOrCreate: {
+                where: { name: product.attributes.category },
+                create: { name: product.attributes.category }
               },
-              Brand: {
-                connectOrCreate: {
-                  where: { name: product.attributes.brand },
-                  create: { name: product.attributes.brand }
-                }
+            },
+            Brand: {
+              connectOrCreate: {
+                where: { name: product.attributes.brand },
+                create: { name: product.attributes.brand }
               },
+            },
+            License: {
+              connectOrCreate: {
+                where: {
+                  name: product.attributes.license
+                    ? product.attributes.license
+                    : "Otros",
+                },
+                create: {
+                  name: product.attributes.license
+                    ? product.attributes.license
+                    : "Otros",
+                },
+              },
+            },
           },
         });
       });
