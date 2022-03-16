@@ -50,10 +50,10 @@ const Login = () => {
             >
               
               <Input type="email" name="email" placeholder="Email" />
-              {error.email && <b>{error.email}</b>}
+              {error.email && <span  className={styles.err}>{error.email}</span>}
         
               <Input type="password" name="password" placeholder="password" />
-              {error.password && <b>{error.password}</b>}
+              {error.password && <span  className={styles.err}>{error.password}</span>}
 
 
               <Button>Submit</Button>

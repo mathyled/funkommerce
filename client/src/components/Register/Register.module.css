@@ -38,7 +38,7 @@
 
 .err{
     margin:-2px 0px 10px 0px;
-    color: #f56565;
+    color: var(--failure);
     font-weight: bold;
     font-size: 12px;
 }
