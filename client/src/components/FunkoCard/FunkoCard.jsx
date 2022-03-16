@@ -25,7 +25,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     dispatch(changePage(numberPage));
   }
 
-  if (funkos.length < 1) {
+  if (funkos.length < 1) { 
     return (
       <div className={styles.notFound2}>
         <h2>Product not found</h2>

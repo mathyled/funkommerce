@@ -5,13 +5,13 @@ import { TYPES } from "../actions/types";
 
 
 const initialState = {
-  funkos: [],
+  funkos: [], 
   funkosBackUp: [],
   cart:
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
-  user: null, //Usuario de la sesion
+  user: null, //Usuario de la sesion {cartUser: [...state.cart]}
   detail: [],
   categories: [],
   license: [],
@@ -128,6 +128,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CLEAR_CART:
       localStorage.clear();
+      //storage.removeItem(keyName);
       return {
         ...state,
         cart: [],
