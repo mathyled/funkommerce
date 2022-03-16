@@ -21,25 +21,25 @@ const CreateFunko = () => {
     "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones_1024x1024.jpg?v=1577791303";
 
   const [input, setInput] = useState({
-    title: chosenProduct? chosenProduct.title : "",
-    number: chosenProduct? chosenProduct.number : "",
-    brand: chosenProduct? chosenProduct.brand : "",
-    category: chosenProduct? chosenProduct.category : "",
-    license: chosenProduct? chosenProduct.license : "",
-    image: chosenProduct? chosenProduct.image : "",
-    price: chosenProduct? chosenProduct.price : 0,
-    stock: chosenProduct? chosenProduct.stock : 0,
+    title: "",
+    number: "",
+    brand: "",
+    category: "",
+    license: "",
+    image: "",
+    price: 0,
+    stock: 0,
   });
 
   const [error, setError] = useState({});
   const [product, setProduct] = useState({
-    product: ""
-  })
+    name: "",
+  });
 
-  const chosenProduct = allFunkos.find(e => e.name === product)
+  const chosenProduct = allFunkos?.find((e) => e.title === product);
 
   useEffect(() => {
-    dispatch(getFunkos())
+    dispatch(getFunkos());
     dispatch(getCategories());
     dispatch(getLicense());
     dispatch(getBrand());
@@ -56,10 +56,22 @@ const CreateFunko = () => {
   const handleProduct = (event) => {
     setProduct({
       ...product,
-      [event.target.name]: event.target.value
-    })
+      [event.target.name]: event.target.value,
+    });
+    if(chosenProduct !== undefined) {
+      setInput({
+      title: chosenProduct.title,
+      number: chosenProduct.number,
+      brand: chosenProduct.brand,
+      category: chosenProduct.category,
+      license: chosenProduct.license,
+      image: chosenProduct.image,
+      price: chosenProduct.price,
+      stock: chosenProduct.stock
+      })
+    }
     setError(validator(error, event.target));
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -121,28 +133,27 @@ const CreateFunko = () => {
         </div>
         <form className={styles.gridRight} onSubmit={handleSubmit}>
           <div className={styles.formTop}>
-            <h1>{input.title ? input.title : "Modify Product"}</h1>
+            <input
+              type="text"
+              name="product"
+              list="products"
+              placeholder="Article..."
+              value={product.name}
+              className={error.product ? styles.error : styles.input}
+              onChange={handleProduct}
+            />
+            <datalist id="products">
+              {allFunkos?.map((c) => {
+                return (
+                  <option key={c.id} value={c.title}>
+                    {c.title}
+                  </option>
+                );
+              })}
+            </datalist>
           </div>
           <div className={styles.formMiddle}>
-          <input
-                type="text"
-                name="product"
-                list="products"
-                placeholder="Article..."
-                value={input.brand}
-                className={error.product ? styles.error : styles.input}
-                onChange={handleProduct}
-              />
-              <datalist id="products">
-                {allFunkos?.map((c) => {
-                  return (
-                    <option key={c.id} value={c.name}>
-                      {c.name}
-                    </option>
-                  );
-                })}
-              </datalist>
-              <p>{error.product && <b>{error.product}</b>}</p>
+            <p>{error.product && <b>{error.product}</b>}</p>
             <div className={styles.formLeft}>
               <input
                 type="text"

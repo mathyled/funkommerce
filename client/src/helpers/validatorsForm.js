@@ -97,6 +97,27 @@ export const validator = (error, input) => {
           };
           break;
         }
+        if (Number.isInteger(value)) {
+          errors = {
+            ...error,
+            [name]: "Stock must be a whole number",
+          };
+          break;
+        }
+        errors = {
+          ...error,
+          [name]: "",
+        };
+        break;
+      }
+      if (name === "number") {
+        if (Number.isInteger(value)) {
+          errors = {
+            ...error,
+            [name]: "Number must be a whole number",
+          };
+          break;
+        }
         errors = {
           ...error,
           [name]: "",

@@ -239,3 +239,67 @@ export const changePage = (number) =>{
     payload: number
   }
 }
+
+export const createFunko = (funko) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", funko);
+      dispatch({
+        type: TYPES.CREATE_FUNKO,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createFunko");
+      console.log(e);
+    }
+  };
+};
+
+export const createLicense = (license) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", license);
+      dispatch({
+        type: TYPES.CREATE_LICENSE,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createLicense");
+      console.log(e);
+    }
+  };
+};
+
+export const createBrand = (brand) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", brand);
+      dispatch({
+        type: TYPES.CREATE_BRAND,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createBrand");
+      console.log(e);
+    }
+  };
+};
+
+export const createCategory = (category) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", category);
+      dispatch({
+        type: TYPES.CREATE_CATEGORY,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createCategory");
+      console.log(e);
+    }
+  };
+};

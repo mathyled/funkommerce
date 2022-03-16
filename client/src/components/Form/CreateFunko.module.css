@@ -75,7 +75,7 @@
     margin-right: 10px;
 }
 
-input::placeholder {
+.input::placeholder {
     color: var(--input-placeholder);
 }
 
@@ -158,10 +158,10 @@ input::placeholder {
     margin-top: 10px;
 }
 
-button:hover {
+.createBtn:hover {
     background-color: #a8a2ffea;
 }
 
-button:active {
+.createBtn:active {
     color: black;
   }
