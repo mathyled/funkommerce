@@ -1,12 +1,4 @@
 
-.login{
-    /* width:92%; */
-    /* margin:4% 4%; */
-    /* height:95%; */
- /* display: flex;
- justify-content: center; */
-}
-
 .login h3{ 
     color:#111;
     margin-top:35px;
@@ -41,6 +33,7 @@
     color: #f56565;
     font-weight: bold;
     font-size: 12px;
+    max-width: 250px;
 }
 
 .invalid{
@@ -49,7 +42,7 @@
 
 .register {
     background-color: #ffffff;
-    border-radius: 0px 6px 6px 0px;
+    border-radius: 6px;
     border-style: none;
     /* box-sizing: border-box; */
     color:#111;
@@ -69,8 +62,6 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    border-left: #111 solid 1px;
-
 
     transition-property: color;
     transition-duration: 0.7s;

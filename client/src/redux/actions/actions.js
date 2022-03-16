@@ -64,14 +64,13 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
-export const createUser = ({name, lastName, email, userName, password}) => {
+export const createUser = ({name, lastName, email, password}) => {
   return async (dispatch) => {
 
     const user = {
       name,
       lastName,
       email,
-      userName,
       password,
     };
 
@@ -87,7 +86,7 @@ export const createUser = ({name, lastName, email, userName, password}) => {
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
-          payload: response.data,
+          payload: {user:response.data.user,token:response.data.token},
         });
         console.log(response)
         alert(response.data.msg)
@@ -105,18 +104,19 @@ export const createUser = ({name, lastName, email, userName, password}) => {
 export const salveUser = () => {
 
   const user = window.localStorage.getItem("loggedUser");
+  const token = window.localStorage.getItem("token");
  
   if(user){
 
     return {
-      type:TYPES.FIND_USER,
-      payload:user
-    }
+      type: TYPES.FIND_USER,
+      payload: { user: user, token: token },
+    };
   }
 
   return {
     type:TYPES.FIND_USER,
-    payload:null
+    payload:{user:null,token:null}
   }
 };
 
@@ -126,7 +126,7 @@ export const logoutUser=()=>{
 
   return {
     type:TYPES.LOGOUT_USER,
-    payload:null
+    payload:{user:null,token:null}
   }
 }
 

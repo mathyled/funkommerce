@@ -37,18 +37,13 @@
 
 .login {
     background-color: WHITE;
-    border-radius: 6px 0px 0px 6px;
+    border-radius: 6px;
     border-style: none;
     box-sizing: border-box;
     color: #111;
     cursor: pointer;
     display: inline-block;
     font-family: 'Ubuntu', sans-serif;
-    /* font-size: 14px; */
-    /* font-weight: 500; */
-    /* height: 42px;
-    width: 90px; */
-    /* line-height: 20px; */
     list-style: none;
     margin: 0;
     outline: none;
@@ -74,4 +69,13 @@
   .buttonSubmit{
     margin-top: 15px;
     margin-bottom: 20px;
+}
+
+
+.err{
+    margin:-2px 0px 10px 0px;
+    color: #f56565;
+    font-weight: bold;
+    font-size: 12px;
+    max-width: 250px;
 }
