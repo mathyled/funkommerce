@@ -52,6 +52,7 @@ model User {
   role      Role     @default(USERS)
   createdAt DateTime @default(now())
   Order     Order[]
+  status    Status   @default(PENDING)
 }
 
 model Order {
@@ -77,4 +78,9 @@ model Order_detail {
 enum Role {
   USERS
   ADMIN
+}
+
+enum Status {
+  ACTIVE
+  PENDING
 }
