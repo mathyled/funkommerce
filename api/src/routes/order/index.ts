@@ -8,8 +8,7 @@ import {
 
 const router = Router();
 
-router.post("/", postOrder)
-router.put("/updateQ",)
+router.post("/", getAllOrderIncart)
 router.get("/", detailOrder);
 router.delete("/", deleteOrder);
 router.get("/status", getAllOrderIncart);
