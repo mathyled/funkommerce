@@ -18,28 +18,39 @@ import { Link } from "react-router-dom";
 import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
 import Footer from '../Footer/Footer'
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const totalToPay2 = useSelector((state) => state.totalToPay);
-  // const[total, setTotal] = useState(arr)
-  //console.log(totalToPay2);
+ 
+  const dispatch = useDispatch();
+  
+  
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
   }, [dispatch, cart, totalToPay2]);
 
-  // const [total, setTotal] = useState(0);
-  // let sum = 0;
+  const user2 = useSelector(state => state.user);
+  // console.log("jjjj",user2);
+   const connectWithDb = async () =>{
+    // const db  = await axios.post ("http://localhost:3001/api/order", {
+    //   UserId: 1,
+    //   Items: cart
+    // })
+   console.log(cart)
+    // console.log(db)
 
-  // useEffect(() => {
-  //   for (let i = 0; i < cart.length; i++) {
-  //     sum += cart[i].price * cart[i].quantity;
-  //   }
-  //   setTotal(sum);
+  }
+  const deleteInDb = async () =>{
+    const db  = await axios.delete ("http://localhost:3001/api/order", {
+      idUser: 1
+    })
+  // console.log(cart)
+    console.log(db)
 
-  // }, [cart]);
+  }
 
   const addOneToCart = (id) => {
     dispatch(sumInCart(id));
@@ -54,7 +65,7 @@ const Cart = () => {
   };
 
   const emptyCart = () => {
-    //console.log(cart.length)
+ 
     if (cart.lenght < 1 || cart.length === 0) {
       Swal.fire({
         title: "The cart is already empty",
@@ -70,7 +81,7 @@ const Cart = () => {
   return (
     <div className={styles.container}>
       <Nav></Nav>
-      {/* {console.log(cart)} */}
+      
       <h1 className={styles.myCart}>MY CART</h1>
       <div className={styles.myCartAndButtonEmpty}>
         <h3 className={styles.totalToPay}>
@@ -78,14 +89,14 @@ const Cart = () => {
           TOTAL: {tab} <TotalToPay totalToPay2={totalToPay2}></TotalToPay>{" "}
         </h3>
         <Link to="/checkout">
-          <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+          <button className={`${styles.checkOut} ${styles.emptyCart}`} onClick={connectWithDb}>
             Checkout{" "}
           </button>
         </Link>
-        <button onClick={() => emptyCart()} className={styles.emptyCart}>
+        <button onClick={() => {emptyCart(); deleteInDb()}} className={styles.emptyCart}>
           Empty cart{" "}
         </button>
-        {/* */}
+    
       </div>
 
       <div className={styles.subContainer}>

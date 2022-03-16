@@ -5,13 +5,13 @@ import { TYPES } from "../actions/types";
 
 
 const initialState = {
-  funkos: [],
+  funkos: [], 
   funkosBackUp: [],
   cart:
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
-  user: null, //Usuario de la sesion
+  user: null, //Usuario de la sesion {cartUser: [...state.cart]}
   detail: [],
   categories: [],
   license: [],
@@ -128,6 +128,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CLEAR_CART:
       localStorage.clear();
+      //storage.removeItem(keyName);
       return {
         ...state,
         cart: [],
@@ -289,7 +290,15 @@ export default function rootReducer(state = initialState, action) {
         user: action.payload,
       };
 
-      case TYPES.GET_REVIEWS:
+    case TYPES.FIND_USER:
+
+
+      return {
+        ...state,
+        user:action.payload,
+      }
+
+    case TYPES.GET_REVIEWS:
         return{
           ...state,
           reviews:action.payload
@@ -311,6 +320,26 @@ export default function rootReducer(state = initialState, action) {
           actualPage: action.payload, 
         }
 
+      case TYPES.CREATE_FUNKO: 
+        return {
+          ...state
+        }
+      
+      case TYPES.CREATE_LICENSE: 
+        return {
+            ...state
+        }
+      
+      case TYPES.CREATE_BRAND: 
+        return {
+            ...state
+        }
+
+      case TYPES.CREATE_CATEGORY: 
+        return {
+            ...state
+        }
+        
     default:
       return {
         ...state,

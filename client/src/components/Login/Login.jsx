@@ -5,31 +5,27 @@ import Button from "../componentsReusable/Button";
 import { Link } from "react-router-dom";
 import { validator } from "../../helpers/validatorsForm";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { findUser } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from "react-redux";
+import { findUser } from "../../redux/actions/actions";
 
 const Login = () => {
+  const user = useSelector((state) => state.user);
 
-
-  const [inputs,setInputs]=useState({
-    email:'',
-    password:''
-
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
   });
   const [error, setError] = useState({
     name: "",
     password: "",
   });
 
+  const dispatch = useDispatch();
 
-  const dispatch=useDispatch();
-
-
-
-  const sendLogin=(event)=>{
-
+  const sendLogin = (event) => {
     event.preventDefault();
     dispatch(findUser(inputs));
+
 
   }
 
@@ -63,6 +59,10 @@ const Login = () => {
         <div className={styles.loginFooter}> <Link to="/forgotpassword"><p>Forgot your password?</p></Link></div>
       </main>
     </Modal>
+
+  };
+
+ 
   );
 };
 

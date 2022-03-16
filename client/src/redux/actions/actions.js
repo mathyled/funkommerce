@@ -9,12 +9,12 @@ export const getFunkos = () => {
     return dispatch({
       type: TYPES.GET_FUNKOS,
       payload: json.data,
-    });
+    }); 
   };
 };
 
 export const addToCart = (id) => {
-  // console.log('action',id)
+  
   return {
     type: TYPES.ADD_TO_CART,
     payload: id,
@@ -64,16 +64,17 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
-export const createUser = (name, lastName, email, userName, password) => {
+
+export const createUser = (input) => {
   return async (dispatch) => {
 
-    const user = {
-      name,
-      lastName,
-      email,
-      userName,
-      password,
-    };
+    // const user = {
+    //   name,
+    //   lastName,
+    //   email,
+    //   userName,
+    //   password,
+    // };
 
 
 
@@ -81,7 +82,7 @@ export const createUser = (name, lastName, email, userName, password) => {
       //Espera por crear un ususario
       const response = await axios.post(
         "http://localhost:3001/api/user/signUp",
-        user
+        input
       );
 
       if (response.data) {
@@ -89,7 +90,7 @@ export const createUser = (name, lastName, email, userName, password) => {
           type: TYPES.CREATE_USER,
           payload: response.data,
         });
-        console.log(response)
+        console.log("holaq",response)
         
       } else {
         alert("User not found");
@@ -99,6 +100,27 @@ export const createUser = (name, lastName, email, userName, password) => {
     }
   };
 };
+
+//ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
+export const salveUser = () => {
+
+  const user = window.localStorage.getItem("loggedUser");
+ 
+  if(user){
+
+    return {
+      type:TYPES.FIND_USER,
+      payload:user
+    }
+  }
+
+  return {
+    type:TYPES.FIND_USER,
+    payload:null
+  }
+};
+
+
 
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
@@ -115,11 +137,15 @@ export const findUser = (correo, pass) => {
         email:correo,
         password:pass
       }
+      console.log('118- ',config)
 
-      const {data} = await axios.post("http:/localhost:3001/api/user/signIn",config);
+      const { data } = await axios.post(
+        "http://localhost:3001/api/user/signIn",
+        config
+      );
       
 
-      if (data) {
+      if (data) { 
         dispatch({
           type: TYPES.GET_USER,
           payload: data,
@@ -134,6 +160,11 @@ export const findUser = (correo, pass) => {
   };
 };
 
+// export const logOutUser = function () =>{
+//   return {
+//     type: 
+//   }
+// }
 
 
 export const getDetails = (id) => {
@@ -166,21 +197,21 @@ export const getCategories = () => {
 
 //LICENCIA INVALIDA DE MOMENTO
 export const getLicense = () => {
-  return {
-    type: TYPES.GET_LICENSE,
-  };
-  // return async ( dispatch )=> {
-  //   try {
-  //     const {data} = await axios.get(`http://localhost:3001/api/license`);
-  //    // console.log(data)
-  //     dispatch({type: TYPES.GET_LICENSE, payload: data})
-  //   }
-  //   catch(error) {
-  //     dispatch({type: TYPES.GET_LICENSE, payload: []})
-  //     console.log("error in action searchFunko")
-  //     console.log(error)
-  //   }
-  // }
+  // return {
+  //   type: TYPES.GET_LICENSE,
+  // };
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/api/license`);
+     // console.log(data)
+      dispatch({type: TYPES.GET_LICENSE, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_LICENSE, payload: []})
+      console.log("error in action searchFunko",error)
+      // console.log(error)
+    }
+  }
 };
 
 export const getBrand = () => {
@@ -232,10 +263,74 @@ export const modifiedTotal = () => {
     type: TYPES.MODIFIED_TOTAL,
   };
 };
-
+ 
 export const changePage = (number) =>{
   return{
     type: TYPES.CHANGE_PAGE,
     payload: number
   }
 }
+
+export const createFunko = (funko) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", funko);
+      dispatch({
+        type: TYPES.CREATE_FUNKO,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createFunko");
+      console.log(e);
+    }
+  };
+};
+
+export const createLicense = (license) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", license);
+      dispatch({
+        type: TYPES.CREATE_LICENSE,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createLicense");
+      console.log(e);
+    }
+  };
+};
+
+export const createBrand = (brand) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", brand);
+      dispatch({
+        type: TYPES.CREATE_BRAND,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createBrand");
+      console.log(e);
+    }
+  };
+};
+
+export const createCategory = (category) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/", category);
+      dispatch({
+        type: TYPES.CREATE_CATEGORY,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createCategory");
+      console.log(e);
+    }
+  };
+};
