@@ -29,7 +29,6 @@ const Login = () => {
 
   return (
     <div>
-      {console.log('before- ',user)}
 
       {user ? 
         null
@@ -60,7 +59,6 @@ const Login = () => {
             </form>
           </main>
         </Modal> )}
-      {console.log(user)}
     </div>
   );
 };

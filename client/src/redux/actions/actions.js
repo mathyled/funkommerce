@@ -64,7 +64,7 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
-export const createUser = (name, lastName, email, userName, password) => {
+export const createUser = ({name, lastName, email, userName, password}) => {
   return async (dispatch) => {
 
     const user = {
@@ -90,6 +90,7 @@ export const createUser = (name, lastName, email, userName, password) => {
           payload: response.data,
         });
         console.log(response)
+        alert(response.data.msg)
         
       } else {
         alert("User not found");
@@ -119,22 +120,33 @@ export const salveUser = () => {
   }
 };
 
+//PAra deslogearnos:
+
+export const logoutUser=()=>{
+
+  return {
+    type:TYPES.LOGOUT_USER,
+    payload:null
+  }
+}
+
 
 
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (correo, pass) => {
+export const findUser = ({email, password}) => {
 
+  console.log(email,password)
   return async (dispatch) => {
 
 
     try {
 
       const config={
-        email:correo,
-        password:pass
+        email:email,
+        password:password
       }
       console.log('118- ',config)
 
@@ -147,8 +159,9 @@ export const findUser = (correo, pass) => {
       if (data) {
         dispatch({
           type: TYPES.GET_USER,
-          payload: data,
+          payload: {user:data.user,token:data.token},
         });
+        alert(data.msg);
         console.log(data)
       } else {
         alert("algo paso");

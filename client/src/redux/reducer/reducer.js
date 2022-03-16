@@ -271,7 +271,7 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
-      case TYPES.GET_USER:
+    case TYPES.GET_USER:
       
         Storage.set("loggedUser", action.payload);
 
@@ -286,7 +286,7 @@ export default function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
       };
 
     case TYPES.FIND_USER:
@@ -295,6 +295,14 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         user:action.payload,
+      }
+
+    case TYPES.LOGOUT_USER:
+
+      Storage.remove("loggedUser");
+      return {
+        ...state,
+        user:action.payload
       }
 
     case TYPES.GET_REVIEWS:
