@@ -40,10 +40,10 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     return (
      
       <div className={styles.containerAll}>
+        <div className={styles.container}>
         <div className={styles.order}>
           <Order />
         </div>
-        <div className={styles.container}>
           <div className={styles.funkosCard}>
             {currentFunko &&
               currentFunko.map((product) => (

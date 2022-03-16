@@ -278,6 +278,7 @@ const CreateFunko = () => {
             </div>
           </div>
           <div className={styles.formBottom}>
+
             <button type="submit" className={styles.createBtn}>
               Create
             </button>
