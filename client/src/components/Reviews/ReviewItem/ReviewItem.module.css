@@ -18,6 +18,13 @@
     background-color: #f3f3f7;
     margin: 10px;
 }
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
 
 .imgComent{
     display: flex;

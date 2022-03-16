@@ -16,7 +16,7 @@
 .container {
   display: flex;
   /* flex-wrap: wrap; */
-  align-items: center;
+  align-items: flex-end;
   flex-direction: column;
 }
 .order {
@@ -26,6 +26,7 @@
   justify-content: flex-end; 
   /* align-content: flex-end; */
   margin-top: 30px;
+  margin-right: 5vw;
   /* margin-left: calc(100vw - 5px); */
   /* width: 20%; */
   /* margin-left: 80%; */

@@ -2,7 +2,7 @@ import styles from "./Login.module.css";
 import Modal from "../componentsReusable/Modal";
 import Input from "../componentsReusable/Input";
 import Button from "../componentsReusable/Button";
-
+import { Link } from "react-router-dom";
 import { validator } from "../../helpers/validatorsForm";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
@@ -60,6 +60,7 @@ const Login = () => {
      
           </div>
         </form>
+        <div className={styles.loginFooter}> <Link to="/forgotpassword"><p>Forgot your password?</p></Link></div>
       </main>
     </Modal>
   );

@@ -75,3 +75,10 @@
     margin-top: 15px;
     margin-bottom: 20px;
 }
+
+.loginFooter{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}

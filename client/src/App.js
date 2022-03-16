@@ -20,7 +20,7 @@ import StarRating from "./components/Reviews/StartRatting/StarRating"
 import { DarkModeContext } from "./components/AdminPanel/PanelHome/DarkMode/context/darkModeContext";
 import "./components/AdminPanel/PanelHome/dark.css"
 import React,{useContext} from "react";
-
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
   
@@ -47,6 +47,7 @@ function App() {
         <Route path='/admin' element={< PanelHome />} />
         <Route path= '/footer' element={<ChatbotBtn />}/>
         <Route path= '/rating' element={<StarRating />}/>
+        <Route path= '/forgotpassword' element={<ForgotPassword />}/>
         </Routes>
         </div>
 
