@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <div>
-      {console.log('before- ',user)}
+     {/* {console.log('before- ',user)} */}
 
       {user ? 
         null
@@ -60,7 +60,7 @@ const Login = () => {
             </form>
           </main>
         </Modal> )}
-      {console.log(user)}
+      {/* {console.log(user)} */}
     </div>
   );
 };
