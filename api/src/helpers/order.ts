@@ -62,3 +62,32 @@ export const helpersDeleteOrder = async (props: any) => {
     console.error(error);
   }
 };
+
+export const helpersgetAllOrderIncart = async (props: any) => {
+  let { idUser }: any = props;
+  try {
+    let findOrderStatus = await order.findFirst({
+      where: {
+        UserId: idUser,
+      },
+      include: { Order_detail: true },
+    });
+    if (findOrderStatus?.status_pay == "INCART") {
+      return findOrderStatus;
+    }
+    return [];
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateOrderDetailsQuantity = async (props: any) => {
+  let { UserID, idProduct, Quantity } = props;
+  let findOrderUser = await order.findFirst({
+    where: { UserId: UserID },
+    include: { Order_detail: true },
+  });
+  console.log(findOrderUser?.Order_detail);
+
+  console.log(findOrderUser);
+};
