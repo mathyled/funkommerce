@@ -158,10 +158,10 @@
     margin-top: 10px;
 }
 
-.createBtn:hover {
+.createbtn:hover {
     background-color: #a8a2ffea;
 }
 
-.createBtn:active {
+.createbtn:active {
     color: black;
   }

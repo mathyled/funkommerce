@@ -11,7 +11,7 @@ import "./globalStyles/colors.css";
 // import Footer from './components/Footer/Footer';
 import About from "./components/About/About";
 import Confirm from "./components/componentsReusable/SendMail/Confirm";
-
+import ModifyFunko from "./components/Form/Modification/ModifyFunko";
 import {useEffect} from 'react';
 import SendMail from "./components/componentsReusable/SendMail/SendMail";
 import PanelHome from "./components/AdminPanel/PanelHome/PanelHome";
@@ -49,6 +49,7 @@ function App() {
         <Route path='/admin' element={< PanelHome />} />
         <Route path= '/footer' element={<ChatbotBtn />}/>
         <Route path= '/rating' element={<StarRating />}/>
+        <Route path="/modify" element={<ModifyFunko />}/>
         </Routes>
         </div>
 

@@ -319,6 +319,26 @@ export default function rootReducer(state = initialState, action) {
           actualPage: action.payload, 
         }
 
+      case TYPES.CREATE_FUNKO: 
+        return {
+          ...state
+        }
+      
+      case TYPES.CREATE_LICENSE: 
+        return {
+            ...state
+        }
+      
+      case TYPES.CREATE_BRAND: 
+        return {
+            ...state
+        }
+
+      case TYPES.CREATE_CATEGORY: 
+        return {
+            ...state
+        }
+        
     default:
       return {
         ...state,
