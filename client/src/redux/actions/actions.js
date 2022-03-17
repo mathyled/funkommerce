@@ -81,7 +81,7 @@ export const createUser = ({name, lastName, email, password}) => {
       //Espera por crear un ususario
       const response = await axios.post(
         "http://localhost:3001/api/user/signUp",
-        input
+        user
       );
 
       if (response.data) {

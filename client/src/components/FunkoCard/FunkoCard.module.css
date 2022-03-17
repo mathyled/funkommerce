@@ -173,7 +173,7 @@
   margin-top: 5px;
   font-weight: 600;
 }
-
+ 
 .buttonAdd:hover {
   background-color: #e7e7eb;
   /* color:rgb(255, 255, 255); */
@@ -181,7 +181,7 @@
   /* background: linear-gradient(90deg, rgb(194, 255, 103) 0%, rgba(82, 255, 13, 0.9) 35%, rgb(194, 255, 100) 100%);
 } */
 }
-.pagination {
+/* .pagination { */
   /* width: 100%; */
   /* margin-left: 40%; */
-}
+/* } */
