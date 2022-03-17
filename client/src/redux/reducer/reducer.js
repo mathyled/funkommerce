@@ -252,7 +252,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: brandFilter,
-      };
+      }; 
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;

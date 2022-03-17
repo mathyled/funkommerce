@@ -56,22 +56,20 @@ select:focus {
   text-indent: 15px;
 }
 
-option{
-  /* font-size: 1.2rem; */
-}
+/* option{
+   font-size: 1.2rem; 
+} */
 
 .allFunkos {
   font-size: 0.9rem;
   background-color: #111111;
-
   box-shadow: 1px 1px 1px 1px rgb(177, 177, 177);
   color: white;
-  /* padding: 0.2rem; */
+  padding: 0.5rem;
   width: 130px;
-margin: 0 25px;
+  margin: 0 25px;
   border-radius: 5px;
   border: none;
-
   font-weight: bold;
   margin-top: 15px;
 }

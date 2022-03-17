@@ -17,6 +17,7 @@
 .formButton {
   display: flex;
   flex-direction: row-reverse;
+  border: none;
 }
 
 .close {
@@ -30,9 +31,9 @@
   height: 28px;
   border-radius: 50px;
   margin-left: -34px;
-  /* margin-top:5px; */
   z-index: 2;
   padding: 1px 1px;
+
 }
 
 
@@ -64,4 +65,5 @@
     border-left: #111 solid 1px;
     transition-property: color;
     transition-duration: 0.7s;
+ 
 }

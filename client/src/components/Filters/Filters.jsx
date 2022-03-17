@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCategories,
   filterBrands,
   filterLicense,
-  getFunkos,
+  getFunkos, 
   changePage,
 } from "../../redux/actions/actions";
 
 const Filters = () => {
-  const funkos = useSelector((state) => state.funkos);
-
-  const page = useSelector((state) => state.actualPage);
+ 
 
   const dispatch = useDispatch();
 
