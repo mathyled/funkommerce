@@ -10,8 +10,7 @@ import { changePage } from "../../redux/actions/actions";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   ///PAGINADO
-  // console.log('jjjjj',funkos)
-  const [actualFunko, setActualpage] = useState(1);
+  // const [actualFunko, setActualpage] = useState(1);
   const page = useSelector((state) => state.actualPage);
   const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);

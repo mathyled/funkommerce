@@ -53,8 +53,6 @@
 
 .checkOut {
   color: #111;
-  /* transition-property: background-color, color, border;
-  transition-duration: 0.7s; */
 }
 .checkOut:hover {
   background-color: #111;
@@ -101,17 +99,17 @@
   margin: 12px;
   box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
   border-radius: 5px;
-  padding: 15px 15px;
-  /* width: 200px; */
+  padding: 15px 5px;
   overflow: hidden;
+  width: 200px;
 }
 
 .price {
-  margin: 5px 5px;
+  margin: 5px 0px;
   background-color: #f3f3f7;
   width: 120%;
   overflow: hidden;
-  padding: 5px;
+  padding: 5px 0px;
   color: #111;
 }
 
@@ -133,7 +131,10 @@
   font-weight: bold;
   color: #111;
   height: 30px;
-  padding-top: 5px;
+  padding: 15px 35px 15px 35px;
+  display: flex;
+  align-items: center;
+
 }
 .buttonsMoreAndLess:hover {
   background-color: #111;
@@ -149,12 +150,12 @@
 .deleteButton {
   background-color: transparent;
   width: 30px;
-  height: 25px;
-  padding-top: 2px;
-  padding-left: 5px;
+  height: 26px;
+  padding-top: 3px;
   font-size: 20px;
   color: #111;
   margin-top: 10px;
+  border: none;
 }
 
 .deleteButton:hover {

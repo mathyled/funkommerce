@@ -43,7 +43,7 @@ export const clearCart = () => (dispatch) => {
 };
 
 export const searchFunkos = (name) => {
-  return async (dispatch) => {
+  return async (dispatch) => { 
     try {
       const { data } = await axios.get(
         `http://localhost:3001/api/product/s?name=${name}`
