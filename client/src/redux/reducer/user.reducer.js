@@ -2,6 +2,7 @@ import { TYPES } from "../actions/types";
 
 const initialState = {
   user: null, //Usuario de la sesion
+  confirm:[]
 };
 
 
@@ -21,6 +22,13 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
+      };
+
+      case TYPES.GET_CONFIRM : 
+      return{
+        ...state,
+        confirm: [...state.confirm,action.payload]
+
       };
     default:
       return {

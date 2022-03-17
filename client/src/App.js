@@ -44,7 +44,7 @@ function App() {
         <Route  path="/email" element={ < ContactUs/>} />
         <Route  path="/checkout" element={ < CheckoutContainer/>} />
         <Route path='/about' element={<About />} />
-        <Route path='/confirm' element={< Confirm />} />
+        <Route path='/confirm/:token' element={< Confirm />} />
         <Route path='/sendmail' element={< SendMail />} />
         <Route path='/admin' element={< PanelHome />} />
         <Route path= '/footer' element={<ChatbotBtn />}/>
