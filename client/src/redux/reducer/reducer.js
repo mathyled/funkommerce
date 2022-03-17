@@ -272,8 +272,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USER:
-      Storage.set("loggedUser", action.payload.user);
-      Storage.set("token", action.payload.token);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
@@ -282,8 +282,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
-      Storage.set("loggedUser", action.payload.user);
-      Storage.set("token", action.payload.token);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
@@ -292,8 +292,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.FIND_USER:
-      Storage.set("loggedUser", action.payload.user);
-      Storage.set("token", action.payload.token);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
@@ -302,8 +302,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.LOGOUT_USER:
-      Storage.remove("loggedUser");
-      Storage.remove("token");
+      localStorage.removeItem("loggedUser");
+      localStorage.removeItem("token");
 
       return {
         ...state,

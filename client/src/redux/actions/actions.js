@@ -64,12 +64,51 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
+// <<<<<<< HEAD
+// export const createUser = ({name, lastName, email, password}) => {
+//   return async (dispatch) => {
+
+//     const user = {
+//       name,
+//       lastName,
+//       email,
+//       password,
+//     };
+
+
+
+
+//     try {
+//       //Espera por crear un ususario
+//       const response = await axios.post(
+//         "http://localhost:3001/api/user/signUp",
+//         user
+//       );
+// //console.log(response)
+//       if (response.data) {
+//         dispatch({
+//           type: TYPES.CREATE_USER,
+//           payload: {user:response.data.user,token:response.data.token},
+//         });
+//         //console.log(response)
+//         alert(response.data.msg)
+
+        
+//       } else {
+//         alert("User not found");
+//       }
+//     } catch (error) {
+//       console.log("CREATEUSER__ACTION: ", error);
+//     }
+//   };
+// =======
 export const createUser = (user,token) => {
   
   return {
     type:TYPES.CREATE_USER,
     payload:{user,token}
   }
+
 };
 
 //ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
@@ -108,7 +147,23 @@ export const logoutUser=()=>{
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
+// <<<<<<< HEAD
+// export const findUser = ({email, password}) => {
+
+//   console.log(email,password)
+//   return async (dispatch) => {
+
+
+//     try {
+
+//       const config={
+//         email:email,
+//         password:password
+//       }
+//      // console.log('118- ',config)
+// =======
 export const findUser = (user,token) => {
+
 
   return {
     type:TYPES.FIND_USER,
