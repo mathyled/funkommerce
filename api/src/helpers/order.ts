@@ -22,7 +22,7 @@ export const helpersDeleteOrder = async (props: any) => {
   }
 };
 
-export const helpersPostOrder = async (props: any) => {
+export const helpersAllOrderIncart = async (props: any) => {
   let { idUser }: any = props;
   try {
     let findOrderStatus = await order.findFirst({
@@ -74,3 +74,7 @@ export const helpersPostOrderAll = async (props: any) => {
     console.error(error);
   }
 };
+
+
+
+
