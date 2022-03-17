@@ -334,3 +334,16 @@ export const createCategory = (category) => {
     }
   };
 };
+
+
+
+export const getConfirm = (token) => {
+  return async (dispatch) => {
+    var json = await axios.get(`http://localhost:3001/api/user/confirm/${token}`);
+    // console.log("TOKEN",token)
+    return dispatch({
+      type: TYPES.GET_CONFIRM,
+      payload: json.data,
+    }); 
+  };
+};

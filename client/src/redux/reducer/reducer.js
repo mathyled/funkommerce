@@ -19,6 +19,7 @@ const initialState = {
   reviews:[],
   totalToPay: 0, 
   actualPage: 1, 
+  confirm:{}
 };
 
 
@@ -339,6 +340,12 @@ export default function rootReducer(state = initialState, action) {
         return {
             ...state
         }
+        case TYPES.GET_CONFIRM : 
+        return{
+          ...state,
+          confirm: action.payload
+  
+        };
         
     default:
       return {
