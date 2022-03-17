@@ -83,13 +83,13 @@ export const createUser = ({name, lastName, email, password}) => {
         "http://localhost:3001/api/user/signUp",
         user
       );
-
+//console.log(response)
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
           payload: {user:response.data.user,token:response.data.token},
         });
-        console.log(response)
+        //console.log(response)
         alert(response.data.msg)
 
         
@@ -150,7 +150,7 @@ export const findUser = ({email, password}) => {
         email:email,
         password:password
       }
-      console.log('118- ',config)
+     // console.log('118- ',config)
 
       const { data } = await axios.post(
         "http://localhost:3001/api/user/signIn",

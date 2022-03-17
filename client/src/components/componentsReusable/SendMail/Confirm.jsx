@@ -12,6 +12,7 @@ const dispatch = useDispatch()
 const  confirm = useSelector(state=> state.confirm)
 console.log( confirm)
 
+
 useEffect(()=>{
     dispatch(getConfirm(token))
 },[dispatch,token])
@@ -27,7 +28,7 @@ useEffect(()=>{
                             <p>{confirm.msg}</p>
                             <div className={styles.cardTwo} ></div>
                         </div>
-                        <img src={success} className={styles.img} />
+                        <img src={success} className={styles.img} alt="succesIcon"/>
                         <p className={styles.p}>Thanks, you can sign in</p>
                     </div>
 

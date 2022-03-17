@@ -29,7 +29,7 @@ export const signUp = async (req: Request, res: Response) => {
         const props = req.body;
         //comprobamos si ya se creo la cuenta
         const userAlreadyExist = await prisma.user.findFirst({ where: { email: props.email } });
-        if (userAlreadyExist) return res.status(400).json({ message: "User already exist" }); 
+        if (userAlreadyExist) return res.status(200).json({ message: "User already exist" }); 
 
         let newUser: User = await helperCreateUser(props);
         newUser.password = await encryptPassword(newUser.password);
