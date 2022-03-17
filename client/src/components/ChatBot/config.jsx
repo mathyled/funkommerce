@@ -8,7 +8,7 @@ const config = {
   customComponents: {
     header: () => (
       <div
-        style = {{ color: 'white', backgroundColor: '#2d3748', padding: '5px', borderRadius: '3px' }}>
+        style = {{ color: 'white', backgroundColor: '#111', padding: '5px', borderRadius: '3px' }}>
         Chat de ayuda
       </div>
     ),
@@ -16,11 +16,11 @@ const config = {
   customStyles: {
     // Overrides the chatbot message styles
     botMessageBox: {
-      backgroundColor: "#2d3748",
+      backgroundColor: "#111",
     },
     // Overrides the chat button styles
     chatButton: {
-      backgroundColor: "#2d3748",
+      backgroundColor: "#111",
     },
   },
   initialMessages: [createChatBotMessage("Hi! I'm Funko. ¿What can I do for you?", {
