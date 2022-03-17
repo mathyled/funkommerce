@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 const prisma = new PrismaClient();
 import { Request, Response } from "express";
 import { helperCreateUser } from "../helpers/user";
@@ -98,7 +98,11 @@ export const signIn = async (req: Request, res: Response) => {
         const token: string = jwt.sign({ id: user.id }, process.env.SECRET || "tokenTest", {
             expiresIn: "1d",
         })
-        res.status(200).send({ msg: "User signed in successfully" });
+        const userLoged:User = await prisma.user.update({
+            where: { id: user.id },
+            data: { LogedIn: true }
+        });
+        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully" });
     }
     } catch (error) {
         console.error(error);
@@ -133,7 +137,7 @@ export const confirm = async (req: Request, res: Response) => {
             where: { id: parseInt(decoded.id) },
             data: { status: "ACTIVE" }
         });
-        res.status(200).send({ msg: `Confirmed!, wellcome ${user.name}` });
+        res.status(200).send({ msg: `Confirmed!, welcome ${user.name}` });
     } catch (error) {
         console.error(error);
     }
@@ -200,6 +204,22 @@ export const newPassword = async (req: Request, res: Response) => {
         });
         res.status(200).send({ msg: `Password changed!, try to login again ${user.name}` });
     }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const logOut = async (req: Request, res: Response) => {
+    try {
+        
+        const token = req.header("auth-token");
+        if (!token) return res.status(401).send({ msg: "Acces denied" });
+        const decoded = jwt.verify(token, process.env.SECRET || "tokenTest") as IDecoded;
+        const userLoged:User = await prisma.user.update({
+            where: { id: parseInt(decoded.id) },
+            data: { LogedIn: false }
+        });
+        res.status(200).send({ msg: "User signed out successfully" });
     } catch (error) {
         console.error(error);
     }

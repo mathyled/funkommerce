@@ -53,6 +53,7 @@ model User {
   createdAt DateTime @default(now())
   Order     Order[]
   status    Status   @default(PENDING)
+  LogedIn   Boolean  @default(false)
 }
 
 model Order {
@@ -83,4 +84,9 @@ enum Role {
 enum Status {
   ACTIVE
   PENDING
+}
+
+enum LogedIn {
+  TRUE
+  FALSE
 }
