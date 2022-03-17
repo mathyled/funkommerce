@@ -23,7 +23,7 @@
     font-size: 20px;
     padding: 0px 18px 19px;
     text-decoration: none;
-    border: 5px solid #ff8839;
+    border: 5px solid #111;
     transition: .35s;
     justify-content: center;
     padding-left: 1.5rem;
@@ -44,7 +44,7 @@
     font-size: 20px;
     padding: 16px;
     text-decoration: none;
-    border: 3px solid #ff8839;
+    border: 3px solid #111;
     margin-top: 1em;
     height: 3em;
     width: 14em
@@ -167,11 +167,11 @@
 }
 
 .react-chatbot-kit-user-chat-message {
-    background-color: #f1f1f1;
+    background-color: #7c92e2;
     padding: 10px;
     border-radius: 5px;
     font-size: 0.9rem;
-    color: #585858;
+    color: white;
     font-weight: medium;
     position: relative;
     text-align: left;
