@@ -6,50 +6,58 @@ import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/actions/actions";
+import {useNavigate} from 'react-router-dom';
 import axios from "axios";
 
-const Register = ({ close, closeValue }) => {
-  const user = useSelector((state) => state.user);
 
-  const deleteInputs = (event) => {
-    setInputs({
-      name: "",
-      password: "",
-      lastName: "",
-      email: "",
-    });
-    event.target.name.value = "";
-    event.target.password.value = "";
-    event.target.lastName.value = "";
-    event.target.email.value = "";
-  };
 
-  const viewErrorAndInputs = (errores, inputs) => {
-    const result = [];
-
-    for (let index in errores) {
-      // console.log(error[index]);
-      if (errores[index]) {
-        result[0] = "Existen errores";
-      }
+const Register = ({close,closeValue}) => {
+    const user = useSelector((state) => state.user);
+    
+    const navigate=useNavigate();
+    const deleteInputs=(event)=>{
+        setInputs({
+          name: "",
+          password: "",
+          lastName: "",
+          email: "",
+        });
+        event.target.name.value = "";
+        event.target.password.value = "";
+        event.target.lastName.value = "";
+        event.target.email.value = "";
+    
     }
 
-    for (let index in inputs) {
-      // console.log(input[index]);
-      if (!inputs[index]) {
-        result[0] = "Faltan campos";
-      }
+    const viewErrorAndInputs=(errores,inputs) => {
+
+        const result=[];
+
+        for (let index in errores) {
+          // console.log(error[index]);
+          if (errores[index]) {
+            result[0] = "Existen errores";
+          }
+        }
+
+        for (let index in inputs) {
+          // console.log(input[index]);
+          if (!inputs[index]) {
+            result[0] = "Faltan campos";
+          }
+        }
+
+        return result;
+
     }
 
-    return result;
-  };
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({
-    name: "",
-    password: "",
-    lastName: "",
-    email: "",
+        name: "",
+        password: "",
+        lastName: "",
+        email: "",
   });
   const [inputs, setInputs] = useState({
     name: "",
@@ -58,14 +66,15 @@ const Register = ({ close, closeValue }) => {
     email: "",
   });
 
-  const sendForm = async (event) => {
+  const sendForm = async(event) => {
     event.preventDefault();
 
     const resultados = viewErrorAndInputs(errors, inputs);
-
+        
     if (resultados.length) {
       alert(resultados[0]);
     } else {
+
       let verification = await axios.post(
         "http://localhost:3001/api/user/signUp",
         inputs
@@ -74,18 +83,21 @@ const Register = ({ close, closeValue }) => {
       if (verification.data.message) {
         alert(verification.data.message);
       } else {
-        dispatch(createUser(inputs));
+        // dispatch(createUser(inputs));
+        // deleteInputs(ev
         deleteInputs(event);
         close(!closeValue);
+        navigate('/sendmail');
         alert(verification.data.msg);
       }
     }
-  };
+
+    } 
 
   return (
     <div>
       {user ? null : (
-        <div className={styles.register}>
+        <div  className={styles.register}>
           <main className={styles.containerForm}>
             <form
               className={styles.login}

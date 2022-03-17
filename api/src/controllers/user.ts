@@ -43,7 +43,7 @@ export const signUp = async (req: Request, res: Response) => {
         });
         newUser
             ? res.status(200).header('auth-token', token).send({ msg: "User created successfully, pls check your email to confirm", token})
-            : res.status(400).send({ msg: "Error, could not create user" });
+            : res.send({ msg: "Error, could not create user" });
 
             const sendMail = async (newUser: any) => {
 
@@ -89,14 +89,14 @@ export const signIn = async (req: Request, res: Response) => {
         const user = await prisma.user.findFirst({ where: { email } });
         // console.log(user);
         if (!user) {
-            return res.status(404).send({ msg: "User not found" });
+            return res.status(200).send({ msg: "User not found" });
         }
         const validPassword: boolean = await validatePassword(password, user.password || ""); //PROBABLEMENTE ESTA MAL
         if (!validPassword) {
-            return res.status(401).send({ msg: "Password is incorrect" });
+            return res.status(200).send({ msg: "Password is incorrect" });
         }
         if(user.status === "PENDING"){
-            return res.status(401).send({ msg: "User not confirmed, please check your Email" });
+            return res.status(200).send({ msg: "User not confirmed, please check your Email" });
         } else{
         // token
         const token: string = jwt.sign({ id: user.id }, process.env.SECRET || "tokenTest", {
@@ -106,7 +106,7 @@ export const signIn = async (req: Request, res: Response) => {
             where: { id: user.id },
             data: { LogedIn: true }
         });
-        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully", token });
+        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully", token ,user:{name:userLoged.name,email:userLoged.email}});
     }
     } catch (error) {
         console.error(error);

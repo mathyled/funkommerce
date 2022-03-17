@@ -11,7 +11,7 @@ const ReviewRoot = () => {
             <button
                 className={styles.btn}
                 onClick={() => setVisible(v => !v)}
-            >
+            > 
                 <span>Leave a Review</span>
             </button>
             <div className={styles.container} >
