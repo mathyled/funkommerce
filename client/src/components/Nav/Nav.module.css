@@ -41,6 +41,33 @@
   display: flex;
 }
 
+.userbtns .logout{
+  background-color: #fff;
+    /* border-radius: 0px 6px 6px 0px; */
+    border-style: none;
+    /* box-sizing: border-box; */
+    color: #111;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    border-left: #111 solid 1px;
+    transition-property: color;
+    transition-duration: 0.7s;
+}
+
 .home{
   color: black;
   font-size: 1.8rem;

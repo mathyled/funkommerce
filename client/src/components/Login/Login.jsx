@@ -1,69 +1,38 @@
-import styles from "./Login.module.css";
-import Modal from "../componentsReusable/Modal";
-import Input from "../componentsReusable/Input";
-import Button from "../componentsReusable/Button";
-import { Link } from "react-router-dom";
-import { validator } from "../../helpers/validatorsForm";
+
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { findUser } from "../../redux/actions/actions";
+import Login from './Loginn';
 
-const Login = () => {
-  const user = useSelector((state) => state.user);
+import S from "./Loginn.module.css";
 
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState({
-    name: "",
-    password: "",
-  });
+const Modal = () => {
+  const [visible, setVisible] = useState(false);
 
-  const dispatch = useDispatch();
+  const vista = visible ? "modal-visible" : "modal-hidden";
 
-  const sendLogin = (event) => {
-    event.preventDefault();
-    dispatch(findUser(inputs));
-
-
-  }
-
-    return (
-      <Modal buttonText="Login" className={styles.login}>
-        <main className={styles.container} onSubmit={sendLogin}>
-          <form autoComplete="off">
-            <h3>LOGIN</h3>
-            <div
-              className={styles.inputGroup}
-              onChange={(e) => {
-                setInputs({
-                  ...inputs,
-                  [e.target.name]: e.target.value,
-                });
-                setError(validator(error, e.target));
-              }}
-            >
-              
-              <Input type="email" name="email" placeholder="Email" />
-              {error.email && <span  className={styles.err}>{error.email}</span>}
-        
-              <Input type="password" name="password" placeholder="password" />
-              {error.password && <span  className={styles.err}>{error.password}</span>}
-
-
-              <Button>Submit</Button>
-     
-          </div>
-        </form>
-        <div className={styles.loginFooter}> <Link to="/forgotpassword"><p>Forgot your password?</p></Link></div>
+  return (
+    <section>
+      <button className={S.button} onClick={() => setVisible(!visible)}>
+        Login
+      </button>
+      <main className={S[vista]}>
+        <div className={S.formButton}>
+          <button className={S.close} onClick={() => setVisible(!visible)}>
+            x
+          </button>
+          <Login close={setVisible} closeValue={visible}/>
+        </div>
       </main>
-    </Modal>
+    </section>
+  )
+  // const sendLogin = (event) => {
+  //   event.preventDefault();
+  //   dispatch(findUser(inputs));
+  // }
+
+  
 
 
-
- 
-  );
+  
+  
 };
-
-export default Login;
+export default Modal;

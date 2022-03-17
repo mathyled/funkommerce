@@ -64,17 +64,16 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
-
-export const createUser = (input) => {
+export const createUser = ({name, lastName, email, password}) => {
   return async (dispatch) => {
 
-    // const user = {
-    //   name,
-    //   lastName,
-    //   email,
-    //   userName,
-    //   password,
-    // };
+    const user = {
+      name,
+      lastName,
+      email,
+      password,
+    };
+
 
 
 
@@ -82,15 +81,17 @@ export const createUser = (input) => {
       //Espera por crear un ususario
       const response = await axios.post(
         "http://localhost:3001/api/user/signUp",
-        input
+        user
       );
 
       if (response.data) {
         dispatch({
           type: TYPES.CREATE_USER,
-          payload: response.data,
+          payload: {user:response.data.user,token:response.data.token},
         });
-        console.log("holaq",response)
+        console.log(response)
+        alert(response.data.msg)
+
         
       } else {
         alert("User not found");
@@ -105,20 +106,31 @@ export const createUser = (input) => {
 export const salveUser = () => {
 
   const user = window.localStorage.getItem("loggedUser");
+  const token = window.localStorage.getItem("token");
  
   if(user){
 
     return {
-      type:TYPES.FIND_USER,
-      payload:user
-    }
+      type: TYPES.FIND_USER,
+      payload: { user: user, token: token },
+    };
   }
 
   return {
     type:TYPES.FIND_USER,
-    payload:null
+    payload:{user:null,token:null}
   }
 };
+
+//PAra deslogearnos:
+
+export const logoutUser=()=>{
+
+  return {
+    type:TYPES.LOGOUT_USER,
+    payload:{user:null,token:null}
+  }
+}
 
 
 
@@ -126,16 +138,17 @@ export const salveUser = () => {
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (correo, pass) => {
+export const findUser = ({email, password}) => {
 
+  console.log(email,password)
   return async (dispatch) => {
 
 
     try {
 
       const config={
-        email:correo,
-        password:pass
+        email:email,
+        password:password
       }
       console.log('118- ',config)
 
@@ -148,8 +161,9 @@ export const findUser = (correo, pass) => {
       if (data) { 
         dispatch({
           type: TYPES.GET_USER,
-          payload: data,
+          payload: {user:data.user,token:data.token},
         });
+        alert(data.msg);
         console.log(data)
       } else {
         alert("algo paso");
@@ -332,5 +346,18 @@ export const createCategory = (category) => {
       console.log("Error in createCategory");
       console.log(e);
     }
+  };
+};
+
+
+
+export const getConfirm = (token) => {
+  return async (dispatch) => {
+    var json = await axios.get(`http://localhost:3001/api/user/confirm/${token}`);
+    // console.log("TOKEN",token)
+    return dispatch({
+      type: TYPES.GET_CONFIRM,
+      payload: json.data,
+    }); 
   };
 };
