@@ -23,12 +23,18 @@ const Nav = () => {
   return (
     <section className={styles.nav}>
       <Link to="/">
+        {console.log('el usuario es: ',usuario)}
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
-        <Login />
-        <Register />
+        {!usuario && (
+          <>
+            <Login />
+            <Register />
+          </>
+        )}
+
         {usuario && (
           <button
             className={styles.logout}

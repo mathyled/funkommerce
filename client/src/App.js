@@ -23,6 +23,7 @@ import React,{useContext} from "react";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import {useDispatch} from 'react-redux';
 import {salveUser} from './redux/actions/actions';
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
