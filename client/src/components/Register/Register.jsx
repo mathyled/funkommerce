@@ -22,5 +22,6 @@ const Register = () => {
       </main>
     </section>
   );
+
 };
 export default Register;

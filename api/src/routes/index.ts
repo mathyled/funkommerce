@@ -11,7 +11,6 @@ const router = Router();
 router.use("/product", productRoute);
 router.use("/brand", brandRoute);
 router.use("/category", categoryRouter);
-
 router.use("/order", orderRouter);
 router.use("/user", userRoute);
 router.use("/license", licenseRoute)

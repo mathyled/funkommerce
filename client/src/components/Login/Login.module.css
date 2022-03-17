@@ -16,6 +16,11 @@
     font-family: 'Secular One';
 }
 
+.err{
+    color: red;
+    font-size: 12px;
+}
+
 .inputGroup{
     display: flex;
     flex-direction: column;
@@ -25,15 +30,15 @@
 /* .inputGroup b{
     color:#c9f2ac;
 } */
-.inputGroup span{
+/* .inputGroup span{
     text-align: start;
-    color:#ebf0dd;
+    color:#82a818;
     font-weight: bold;
     border-left:3px solid white;
     padding-left:8px;
     border-bottom: 0.5px solid #ffffff17;
     margin-bottom: 5px;
-}
+} */
 
 .login {
     background-color: WHITE;
@@ -78,4 +83,11 @@
     font-weight: bold;
     font-size: 12px;
     max-width: 250px;
+  
+.loginFooter{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+
 }

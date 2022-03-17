@@ -21,16 +21,12 @@
 }
 .order {
   display: flex;
-  /* background-color: red; */
-   /* align-items: flex-end; */
-  justify-content: flex-end; 
-  /* align-content: flex-end; */
+  align-items: flex-end;
+  justify-content: flex-end;
   margin-top: 30px;
-  /* margin-left: calc(100vw - 5px); */
-  /* width: 20%; */
-  /* margin-left: 80%; */
-  /* margin-right: 10%;
-  padding-right: 25px; */
+  margin-right: 5vw;
+  width: 100%;
+  padding-right: 25px;
 }
 .notFound2 {
   display: flex;

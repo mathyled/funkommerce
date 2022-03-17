@@ -67,8 +67,9 @@ model Order {
 model Order_detail {
   id        Int      @id @unique @default(autoincrement())
   DateTime  DateTime @default(now())
-  price     Decimal? @db.Money
   quantity  Int
+  price     Decimal? @db.Money
+  subtotal  Decimal? @db.Money
   Order     Order?   @relation(fields: [OrderId], references: [id])
   OrderId   Int?
   Product   Product? @relation(fields: [productId], references: [id])

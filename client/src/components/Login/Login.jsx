@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Login from './Loginn';
 
@@ -22,6 +23,14 @@ const Modal = () => {
         </div>
       </main>
     </section>
+  const sendLogin = (event) => {
+    event.preventDefault();
+    dispatch(findUser(inputs));
+
+
+  }
+
+   
   );
 };
 export default Modal;
