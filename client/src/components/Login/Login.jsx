@@ -1,4 +1,5 @@
 
+
 import { useState } from "react";
 import Login from './Loginn';
 
@@ -31,8 +32,5 @@ const Modal = () => {
 
   
 
-
-  
-  
 };
 export default Modal;
