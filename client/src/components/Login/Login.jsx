@@ -60,7 +60,7 @@ const Login = () => {
       </main>
     </Modal>
 
-  };
+
 
  
   );
