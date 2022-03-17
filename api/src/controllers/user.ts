@@ -26,8 +26,12 @@ const validatePassword = function (password: string, hash: string): Promise<bool
 export const signUp = async (req: Request, res: Response) => {
     try {
         // console.log(req.body);
-        const props = req.body
-        let newUser: any = await helperCreateUser(props);
+        const props = req.body;
+        //comprobamos si ya se creo la cuenta
+        const userAlreadyExist = await prisma.user.findFirst({ where: { email: props.email } });
+        if (userAlreadyExist) return res.status(400).json({ message: "User already exist" }); 
+
+        let newUser: User = await helperCreateUser(props);
         newUser.password = await encryptPassword(newUser.password);
         newUser = await prisma.user.update({
             where: { id: newUser.id },
@@ -38,7 +42,7 @@ export const signUp = async (req: Request, res: Response) => {
             expiresIn: "1d", //token expires in 2 hours
         });
         newUser
-            ? res.status(200).header('auth-token', token).send({ msg: "User created successfully, pls check your email to confirm" })
+            ? res.status(200).header('auth-token', token).send({ msg: "User created successfully, pls check your email to confirm", token})
             : res.status(400).send({ msg: "Error, could not create user" });
 
             const sendMail = async (newUser: any) => {
@@ -66,7 +70,7 @@ export const signUp = async (req: Request, res: Response) => {
                         html:`<h1>Email Confirmation</h1>
                         <h2>Hello ${newUser.name}</h2>
                         <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-                        <a href=http://localhost:3001/api/user/confirm/${token}> Click here</a>
+                        <a href=http://localhost:3000/confirm/${token}> Click here </a>
                         </div>`,
                     }
                     const result = await transport.sendMail(mailOptions)
@@ -102,7 +106,7 @@ export const signIn = async (req: Request, res: Response) => {
             where: { id: user.id },
             data: { LogedIn: true }
         });
-        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully" });
+        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully", token });
     }
     } catch (error) {
         console.error(error);
@@ -116,10 +120,12 @@ interface IDecoded {
 export const profile = async (req: Request, res: Response) => {
     try {
         const token = req.header("auth-token");
+        console.log(token);
         if (!token) return res.status(401).send({ msg: "Acces denied" });
-    
         const decoded = jwt.verify(token, process.env.SECRET || "tokenTest") as IDecoded;
-        console.log(decoded);
+        const user1: any = await prisma.user.findUnique({ where: { id: parseInt(decoded.id) } });
+        console.log(user1);
+        if(user1.status === "PENDING" || user1.LogedIn === false) return res.status(401).send({ msg: "Acces denied" });
         const userId = await prisma.user.findUnique({
           where: { id: parseInt(decoded.id) },
         } );
@@ -176,7 +182,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
                 html:`<h1>Change your Password</h1>
                 <h2>Dont worry! ${userNewPassword.name}</h2>
                 <p>If you forgot your password click in the link donw below to get a new one!</p>
-                <a href=http://localhost:3001/api/user/newPassword/confirm/${token}> Click here</a>
+                <a href=http://localhost:3000/confirmnewpassword/${token}> Click here </a>
                 </div>`,
             }
             const result = await transport.sendMail(mailOptions)
@@ -220,6 +226,22 @@ export const logOut = async (req: Request, res: Response) => {
             data: { LogedIn: false }
         });
         res.status(200).send({ msg: "User signed out successfully" });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteUser = async (req: Request, res: Response) => {
+    try {
+        const token = req.header("auth-token");
+        if (!token) return res.status(401).send({ msg: "Acces denied" });
+        const decoded = jwt.verify(token, process.env.SECRET || "tokenTest") as IDecoded;
+        const user1: any = await prisma.user.findUnique({ where: { id: parseInt(decoded.id) } });
+        if(user1.status === "PENDING" || user1.LogedIn === false) return res.status(401).send({ msg: "Acces denied" });
+        const user = await prisma.user.delete({
+            where: { id: parseInt(decoded.id) },
+        });
+        res.status(200).send({ msg: `User deleted!, ${user.name}` });
     } catch (error) {
         console.error(error);
     }
