@@ -11,7 +11,10 @@ const initialState = {
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
-  user: null, //Usuario de la sesion {cartUser: [...state.cart]}
+
+  user: null, //Usuario de la sesion
+  token:null,
+
   detail: [],
   categories: [],
   license: [],
@@ -272,31 +275,46 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
-      case TYPES.GET_USER:
+    case TYPES.GET_USER:
       
-        Storage.set("loggedUser", action.payload);
+        Storage.set("loggedUser", action.payload.user);
+        Storage.set("token", action.payload.token);
 
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        token: action.payload.token,
       };
 
     case TYPES.CREATE_USER:
         
-      Storage.set("loggedUser", action.payload);
+      Storage.set("loggedUser", action.payload.user);
+        Storage.set("token", action.payload.token);
 
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        token: action.payload.token,
       };
-
     case TYPES.FIND_USER:
 
 
       return {
         ...state,
-        user:action.payload,
+        user:action.payload.user,
+        token:action.payload.token
       }
+
+    case TYPES.LOGOUT_USER:
+
+      Storage.remove("loggedUser");
+        Storage.remove("token");
+
+      return {
+        ...state,
+        user: null,
+        token: null,
+      };
 
     case TYPES.GET_REVIEWS:
         return{
