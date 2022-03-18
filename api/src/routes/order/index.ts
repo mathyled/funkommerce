@@ -3,6 +3,7 @@ import {
   postOrder,
   detailOrder,
   deleteOrder,
+  StatusIncart,
   deleteProduct,
   insertProduct,
   updataquantity,
@@ -13,6 +14,7 @@ const router = Router();
 
 router.post("/", postOrder)
 router.get("/", detailOrder);
+router.get("/status",StatusIncart)
 router.delete("/", deleteOrder);
 router.delete("/product", deleteProduct);
 router.get("/incart", getAllOrderIncart);

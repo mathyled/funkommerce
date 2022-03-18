@@ -2,6 +2,7 @@ import {
   helpersUpQuantity,
   helpersDeleteOrder,
   helpersPostOrderAll,
+  helpersStatusIncart,
   helpersdeleteProduct,
   helpersInsertProduct,
   helpersAllOrderIncart,
@@ -91,4 +92,14 @@ export const insertProduct = async (req: Request, res: Response) => {
   }
 };
 
-
+export const StatusIncart = async (req: Request, res: Response) => {
+  try {
+    const props = req.body;
+    let statusInCart: any = await helpersStatusIncart(props);
+    statusInCart
+      ? res.status(200).send(statusInCart)
+      : res.status(404).send({ msg: "not order in the cart" });
+  } catch (error) {
+    console.error(error);
+  }
+};
