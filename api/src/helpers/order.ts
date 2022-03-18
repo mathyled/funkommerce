@@ -196,3 +196,17 @@ export const helpersInsertProduct = async (props: any) => {
     console.error(error);
   }
 };
+
+export const helpersStatusIncart = async (props: any) => {
+  const { idUser } = props;
+  try {
+    let findUserOrder = await order.findFirst({
+      where: { UserId: idUser, status_pay: "INCART" },
+      include: { Order_detail: true },
+    });
+
+    return findUserOrder;
+  } catch (error) {
+    console.error(error);
+  }
+};
