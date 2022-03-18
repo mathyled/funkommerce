@@ -95,7 +95,6 @@ export default function rootReducer(state = initialState, action) {
             ],
           };
 
-
     case TYPES.REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
         (item) => String(item.id) === String(action.payload)
@@ -120,7 +119,6 @@ export default function rootReducer(state = initialState, action) {
             ),
           };
 
-
     case TYPES.REMOVE_ALL_FROM_CART:
       return {
         ...state,
@@ -128,7 +126,6 @@ export default function rootReducer(state = initialState, action) {
           (item) => String(item.id) !== String(action.payload)
         ),
       };
-
 
     case TYPES.CLEAR_CART:
       localStorage.clear();
@@ -155,7 +152,6 @@ export default function rootReducer(state = initialState, action) {
         funkos: action.payload,
       };
     }
-    
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
@@ -189,7 +185,7 @@ export default function rootReducer(state = initialState, action) {
           else return 0;
         });
       }
-  
+
       return {
         ...state,
         funkos: [...funkoSort],
@@ -223,7 +219,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkosBackUp;
-     // console.log("categories",action.payload)
+      // console.log("categories",action.payload)
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
@@ -246,7 +242,6 @@ export default function rootReducer(state = initialState, action) {
     //       funkos: licenseFilter
     //    }
 
-   
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -257,7 +252,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: brandFilter,
-      };
+      }; 
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
@@ -277,9 +272,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USER:
-      
-        Storage.set("loggedUser", action.payload.user);
-        Storage.set("token", action.payload.token);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
@@ -288,28 +282,28 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
-        
-      Storage.set("loggedUser", action.payload.user);
-        Storage.set("token", action.payload.token);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
       };
-    case TYPES.FIND_USER:
 
+    case TYPES.FIND_USER:
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
-        user:action.payload.user,
-        token:action.payload.token
-      }
+        user: action.payload.user,
+        token: action.payload.token,
+      };
 
     case TYPES.LOGOUT_USER:
-
-      Storage.remove("loggedUser");
-        Storage.remove("token");
+      localStorage.removeItem("loggedUser");
+      localStorage.removeItem("token");
 
       return {
         ...state,
@@ -318,10 +312,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_REVIEWS:
-        return{
-          ...state,
-          reviews:action.payload
-        }
+      return {
+        ...state,
+        reviews: action.payload,
+      };
 
     case TYPES.MODIFIED_TOTAL:
       let sum = 0;
@@ -333,38 +327,37 @@ export default function rootReducer(state = initialState, action) {
         totalToPay: sum,
       };
 
-      case TYPES.CHANGE_PAGE:
-        return{
-          ...state,
-          actualPage: action.payload, 
-        }
+    case TYPES.CHANGE_PAGE:
+      return {
+        ...state,
+        actualPage: action.payload,
+      };
 
-      case TYPES.CREATE_FUNKO: 
-        return {
-          ...state
-        }
-      
-      case TYPES.CREATE_LICENSE: 
-        return {
-            ...state
-        }
-      
-      case TYPES.CREATE_BRAND: 
-        return {
-            ...state
-        }
+    case TYPES.CREATE_FUNKO:
+      return {
+        ...state,
+      };
 
-      case TYPES.CREATE_CATEGORY: 
-        return {
-            ...state
-        }
-        case TYPES.GET_CONFIRM : 
-        return{
-          ...state,
-          confirm: action.payload
-  
-        };
-        
+    case TYPES.CREATE_LICENSE:
+      return {
+        ...state,
+      };
+
+    case TYPES.CREATE_BRAND:
+      return {
+        ...state,
+      };
+
+    case TYPES.CREATE_CATEGORY:
+      return {
+        ...state,
+      };
+    case TYPES.GET_CONFIRM:
+      return {
+        ...state,
+        confirm: action.payload,
+      };
+
     default:
       return {
         ...state,

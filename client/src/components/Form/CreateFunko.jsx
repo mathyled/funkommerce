@@ -9,7 +9,7 @@ import {
   createFunko,
   createLicense,
   createBrand,
-  createCategory
+  createCategory,
 } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Nav from "../Nav/Nav";
@@ -22,10 +22,6 @@ const CreateFunko = () => {
   let defaultImage =
     "https://cdn.shopify.com/s/files/1/0154/8877/8288/products/1-Mystery-funko-pop-Brand-new-unopened-ones_1024x1024.jpg?v=1577791303";
 
-  let searchLicense = allLicenses?.filter(l => l.name === input.license)
-  let searchBrand = allBrands?.filter(l => l.name === input.brand)
-  let searchCategory = allCategories?.filter(l => l.name === input.category)
-
   const [input, setInput] = useState({
     title: "",
     number: "",
@@ -36,6 +32,10 @@ const CreateFunko = () => {
     price: 0,
     stock: 0,
   });
+
+  let searchLicense = allLicenses?.find((l) => l.name === input.license);
+  let searchBrand = allBrands?.find((l) => l.name === input.brand);
+  let searchCategory = allCategories?.find((l) => l.name === input.category);
 
   const [error, setError] = useState({});
 
@@ -78,55 +78,73 @@ const CreateFunko = () => {
       });
       return;
     }
-    if(!searchBrand?.length) {
+    if (!searchBrand.name) {
       Swal.fire({
         title: `The brand ${input.brand} doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
-        showCancelButton: true
+        showDenyButton: true,
+        denyButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(createBrand(input.brand));
+        } else if (result.isDenied) {
+          return;
+        }
       });
-      dispatch(createBrand(input.brand))
     }
-    if(!searchCategory?.length) {
+    if (!searchCategory.name) {
       Swal.fire({
         title: `The category ${input.category} doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
-        showCancelButton: true
+        showDenyButton: true,
+        denyButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(createCategory(input.category));
+        } else if (result.isDenied) {
+          return;
+        }
       });
-      dispatch(createCategory(input.category))
     }
-    if(!searchLicense?.length) {
+    if (!searchLicense.name) {
       Swal.fire({
         title: `The license ${input.license} doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
-        showCancelButton: true
+        showDenyButton: true,
+        denyButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(createLicense(input.license));
+        } else if (result.isDenied) {
+          return;
+        }
       });
-      dispatch(createLicense(input.license))
     }
-      dispatch(createFunko(input));
-      Swal.fire({
-        title: `${input.title} Successfully Created`,
-        icon: "success",
-        position: "center",
-        timer: 1500,
-        showConfirmButton: false,
-        timerProgressBar: true,
-      });
-      setInput({
-        title: "",
-        number: "",
-        brand: "",
-        category: "",
-        license: "",
-        image: "",
-        price: 0,
-        stock: 0,
-      });
+    dispatch(createFunko(input));
+    Swal.fire({
+      title: `${input.title} Successfully Created`,
+      icon: "success",
+      position: "center",
+      timer: 1500,
+      showConfirmButton: false,
+      timerProgressBar: true,
+    });
+    setInput({
+      title: "",
+      number: "",
+      brand: "",
+      category: "",
+      license: "",
+      image: "",
+      price: 0,
+      stock: 0,
+    });
   };
 
   return (
@@ -154,7 +172,9 @@ const CreateFunko = () => {
                 className={error.title ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
-              <p className={styles.errors}>{error.title && <b>{error.title}</b>}</p>
+              <p className={styles.errors}>
+                {error.title && <b>{error.title}</b>}
+              </p>
 
               <input
                 type="text"
@@ -174,7 +194,9 @@ const CreateFunko = () => {
                   );
                 })}
               </datalist>
-              <p className={styles.errors}>{error.brand && <b>{error.brand}</b>}</p>
+              <p className={styles.errors}>
+                {error.brand && <b>{error.brand}</b>}
+              </p>
 
               <input
                 type="text"
@@ -278,7 +300,6 @@ const CreateFunko = () => {
             </div>
           </div>
           <div className={styles.formBottom}>
-
             <button type="submit" className={styles.createBtn}>
               Create
             </button>

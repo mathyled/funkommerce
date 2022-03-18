@@ -5,12 +5,15 @@ import Nav from "../../Nav/Nav";
 import success from "../../../assets/success.png";
 import {useParams} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
-import {getConfirm} from "../../../redux/actions/actions"
+import {getConfirm} from "../../../redux/actions/actions";
+import {Link} from "react-router-dom";
+
 const Confirm = () => {
 const {token} = useParams()
 const dispatch = useDispatch()
 const  confirm = useSelector(state=> state.confirm)
 console.log( confirm)
+
 
 useEffect(()=>{
     dispatch(getConfirm(token))
@@ -27,8 +30,11 @@ useEffect(()=>{
                             <p>{confirm.msg}</p>
                             <div className={styles.cardTwo} ></div>
                         </div>
-                        <img src={success} className={styles.img} />
-                        <p className={styles.p}>Thanks, you can sign in</p>
+
+                       
+                        <img src={success} className={styles.img} alt="succesIcon"/>
+                        <p className={styles.p}>Thanks, you can <Link to="/">sign in</Link></p>
+
                     </div>
 
                 </div>
