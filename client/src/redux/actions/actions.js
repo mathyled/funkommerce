@@ -352,3 +352,21 @@ export const getConfirm = (token) => {
     }); 
   };
 };
+
+//    http://localhost:3001/api/user/newPassword
+
+export const resetPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/user/newPassword", email);
+      dispatch({
+        type: TYPES.RESET_PASSWORD,
+        payload: data.msg,
+      });
+      console.log(data.msg);
+    } catch (e) {
+      console.log("Error in resetPassword");
+     
+    }
+  };
+};

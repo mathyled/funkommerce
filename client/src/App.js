@@ -24,6 +24,8 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import {useDispatch} from 'react-redux';
 import {salveUser} from './redux/actions/actions';
 import Footer from "./components/Footer/Footer";
+import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -52,6 +54,7 @@ function App() {
         <Route path= '/rating' element={<StarRating />}/>
         <Route path= '/forgotpassword' element={<ForgotPassword />}/>
         <Route path="/modify" element={<ModifyFunko />}/>
+        <Route path="/sendnewpassword" element={<SendConfirmNewPassword />}/>
         </Routes>
         </div>
 
