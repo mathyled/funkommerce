@@ -14,7 +14,7 @@ const initialState = {
 
   user: null, //Usuario de la sesion
   token:null,
-
+  msg:null,
   detail: [],
   categories: [],
   license: [],
@@ -357,6 +357,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         confirm: action.payload,
       };
+
+      case TYPES.RESET_PASSWORD:
+        return{
+          ...state,
+          msg: action.payload
+        }
 
     default:
       return {
