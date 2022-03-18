@@ -6,7 +6,7 @@ import { validator } from "../../helpers/validatorsForm";
 import { useState } from "react";
 
 import {useDispatch} from 'react-redux';
-import { createUser } from '../../redux/actions/actions';
+import { resetPassword } from '../../redux/actions/actions';
 
 
  const ForgotPassword=()=>{
@@ -16,13 +16,13 @@ import { createUser } from '../../redux/actions/actions';
   const [errors,setErrors]=useState({
     email:''
   });
-  const [inputs, setInputs] = useState({
+  const [email, setEmail] = useState({
     email: "",
   });
 
     const sendForm=(event) => {
       event.preventDefault();
-      dispatch(createUser(inputs))
+      dispatch(resetPassword(email))
 
     }
 
@@ -39,14 +39,14 @@ import { createUser } from '../../redux/actions/actions';
           <form  className={styles.login} autoComplete="off" onSubmit={sendForm} >
             <h3>RESET PASSWORD</h3>
             <div >
-           <p font-family= "Secular One">We'll send you a link to reset your password.</p>
+           <p fontFamily= "Secular One">We'll send you a link to reset your password.</p>
             </div>
 
             <div
               className={styles.inputGroup}
               onChange={(e) => {
-                setInputs({
-                  ...inputs,
+                setEmail({
+                  ...email,
                   [e.target.name]: e.target.value,
                 });
                 setErrors(validator(errors, e.target));

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findUser } from "../../redux/actions/actions";
 import axios from "axios";
-
+import {Link} from "react-router-dom"
 
 
 
@@ -116,6 +116,7 @@ const Login = ({close,closeValue}) => {
                 <Button>Submit</Button>
               </div>
             </form>
+            <Link to="/forgotpassword" ><p>Forgot your password?</p></Link>
           </main>
         </div>
       )}
