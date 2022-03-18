@@ -22,7 +22,7 @@ export const helpersDeleteOrder = async (props: any) => {
   }
 };
 
-export const helpersPostOrder = async (props: any) => {
+export const helpersAllOrderIncart = async (props: any) => {
   let { idUser }: any = props;
   try {
     let findOrderStatus = await order.findFirst({
@@ -43,7 +43,7 @@ export const helpersPostOrder = async (props: any) => {
 export const helpersPostOrderAll = async (props: any) => {
   let { Items, UserId } = props;
   try {
-    let amount = 0;
+    // let amount = 0;
     let newOrder = await order.create({
       data: {
         UserId,
@@ -53,7 +53,7 @@ export const helpersPostOrderAll = async (props: any) => {
     const promesa = await Promise.all([
       Items.map(async (item: any) => {
         let FindProductId: any = await getFindProductId(item.id);
-        amount = amount + FindProductId.price * item.quantity;
+        // amount = amount + FindProductId.price * item.quantity;
         await order_detail.create({
           data: {
             OrderId: newOrder.id,
@@ -63,13 +63,135 @@ export const helpersPostOrderAll = async (props: any) => {
             subtotal: FindProductId.price * item.quantity,
           },
         });
+        let sumAmount = await order_detail.groupBy({
+          by: ["OrderId"],
+          where: {
+            OrderId: newOrder?.id,
+          },
+          _sum: { subtotal: true },
+        });
+
         await order.update({
-          where: { id: newOrder.id },
-          data: { amount: amount },
+          where: { id: newOrder?.id },
+          data: { amount: sumAmount[0]._sum.subtotal },
         });
       }),
     ]);
-    return newOrder
+    return newOrder;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const helpersUpQuantity = async (props: any) => {
+  let { idUser, Items } = props;
+
+  try {
+    if (idUser) {
+      let findUserOrder = await order.findFirst({
+        where: { UserId: idUser },
+        include: { Order_detail: true },
+      });
+      const promesa2 = await Promise.all([
+        Items.map(async (item: any) => {
+          findUserOrder?.Order_detail.map(async (product: any) => {
+            if (product.productId == item.id) {
+              let precio = item.quantity * product.price;
+              await order_detail.update({
+                where: { id: product.id },
+                data: { quantity: item.quantity },
+              });
+              await order_detail.update({
+                where: { id: product.id },
+                data: { subtotal: precio },
+              });
+              let sumAmount = await order_detail.groupBy({
+                by: ["OrderId"],
+                where: {
+                  OrderId: findUserOrder?.id,
+                },
+                _sum: { subtotal: true },
+              });
+
+              await order.update({
+                where: { id: findUserOrder?.id },
+                data: { amount: sumAmount[0]._sum.subtotal },
+              });
+            }
+          });
+        }),
+      ]);
+      return findUserOrder;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const helpersdeleteProduct = async (props: any) => {
+  const { idUser, idProduct }: any = props;
+  try {
+    let findUserOrder = await order.findFirst({
+      where: { UserId: idUser },
+      include: { Order_detail: true },
+    });
+    let findProduct = findUserOrder?.Order_detail.map(
+      async (orderDetail: any) => {
+        orderDetail.productId == idProduct
+          ? await order_detail.delete({ where: { id: orderDetail.id } })
+          : null;
+        let sumAmount = await order_detail.groupBy({
+          by: ["OrderId"],
+          where: {
+            OrderId: findUserOrder?.id,
+          },
+          _sum: { subtotal: true },
+        });
+
+        await order.update({
+          where: { id: findUserOrder?.id },
+          data: { amount: sumAmount[0]._sum.subtotal },
+        });
+      }
+    );
+    return findProduct;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const helpersInsertProduct = async (props: any) => {
+  const { idUser, item } = props;
+  try {
+    let findUserOrder = await order.findFirst({
+      where: { UserId: idUser, status_pay: "INCART" },
+      include: { Order_detail: true },
+    });
+    let FindProductId: any = await getFindProductId(item.id);
+    let newOrderDetail = await order_detail.create({
+      data: {
+        OrderId: findUserOrder?.id,
+        productId: item.id,
+        quantity: item.quantity,
+        price: FindProductId.price,
+        subtotal: FindProductId.price * item.quantity,
+      },
+    });
+
+    let sumAmount = await order_detail.groupBy({
+      by: ["OrderId"],
+      where: {
+        OrderId: findUserOrder?.id,
+      },
+      _sum: { subtotal: true },
+    });
+
+    await order.update({
+      where: { id: findUserOrder?.id },
+      data: { amount: sumAmount[0]._sum.subtotal },
+    });
+
+    return newOrderDetail;
   } catch (error) {
     console.error(error);
   }
