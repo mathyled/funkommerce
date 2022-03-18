@@ -64,11 +64,11 @@ const Login = ({close,closeValue}) => {
                "http://localhost:3001/api/user/signIn",
                inputs
              );
-             console.log('data: ',data)
+             //console.log('data: ',data)
 
              if (data.msg ==="User signed in successfully"){
-
-               dispatch(findUser(data.user,data.token));
+                //console.log("hhh",data.user.id)
+               dispatch(findUser(data.user,data.token, data.user.id));
   
   
                setInputs({

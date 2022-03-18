@@ -1,20 +1,36 @@
-import React, { useEffect, useState } from "react";
-import styles from './CartFromDb.module.css';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./CartFromDb.module.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const CartFromDb = () => {
-  const token = useSelector((state) => state.token);
-  useEffect(() => {}, [token]);
-  //const [cartFromDb,setCartFromDb] = useState([])
-  const getCartUserFromDb = () => {
-    // const getCartFromDb  = await axios.get ("http://localhost:3001/api/order");
-    //setCartFromDb(getCartFromDb)
-    console.log("Hago get al back pidiendo cart del user");
-  };
+  const [cartDb, setCartDb] = useState();
+  const UserID = useSelector(state => state.idUser)
+  useEffect(() => {
+    async function cartFromDb() {
+      let getCartFromDb = await axios.get("http://localhost:3001/api/order",{
+        UserID: UserID,
+      });
+      setCartDb(getCartFromDb)
+      console.log("test",cartDb)
+      console.log("hi",getCartFromDb)
+    }
+    cartFromDb();
+  }, []);
+
+ if(cartDb){
   return (
     <div>
       <div className={styles.subContainer}>
-          <h1>Hola</h1>
+        {/* <h5>{console.log("hola2",cartDb.data)}</h5> */}
+     {cartDb.data?.map(e =>  (
+       <ul>
+         <li>
+           <h4> {e.UserId}</h4>
+         </li>
+       </ul>
+     )    ) }
+        
         {/* {cartFromDb.map((product) => (
           <ul key={product.id} className={styles.ul}>
             <li className={styles.li}>
@@ -68,6 +84,11 @@ const CartFromDb = () => {
       </div>
     </div>
   );
+      
+ }else {
+   return( <h1>Hola que tal</h1>
+   )
+ }
 };
 
 export default CartFromDb;

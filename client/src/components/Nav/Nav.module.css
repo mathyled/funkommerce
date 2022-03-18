@@ -1,13 +1,7 @@
-
 .nav {
   height: 75px;
-  /* box-shadow: 0.5px 0px 0.5px 0.5px rgb(175, 175, 175); */
-  /* margin-top: 5px; */
-   /* background-color: #000000;
-  background-image: linear-gradient(315deg, #5c5c5c 0%, #ffc1c1 74%);  */
-  /* border-radius: 0px 0px 5px 5px; */
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -17,73 +11,63 @@
   flex-wrap: nowrap;
 }
 
-.img{
+.img {
   height: 120px;
   width: auto;
   margin-top: 7px;
   margin-left: 10px;
   transition-property: transform;
   transition-duration: 1.5s;
-  /* filter: saturate(0%);
-  filter: contrast(200%) brightness(1%); */
-  
 }
 
 .img:hover {
-  /* transform: scale(1); */
-  /* filter: saturate(150%);
-  filter: contrast(25%) brightness(150%);  */
-  /* filter: opacity(0.5) drop-shadow(0 0 0   #F3F3F7) */
- transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .userbtns {
   display: flex;
 }
 
-.userbtns .logout{
+.userbtns .logout {
   background-color: #fff;
-    /* border-radius: 0px 6px 6px 0px; */
-    border-style: none;
-    /* box-sizing: border-box; */
-    color: #111;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    border-left: #111 solid 1px;
-    transition-property: color;
-    transition-duration: 0.7s;
+  border-style: none;
+  color: #111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-left: #111 solid 1px;
+  transition-property: color;
+  transition-duration: 0.7s;
 }
 
-.home{
+.home {
   color: black;
   font-size: 1.8rem;
   transition-property: color;
   transition-duration: 0.5s;
 }
 
-.cartImg{
+.cartImg {
   color: white;
   font-size: 3rem;
-  margin-top: 5px; 
+  margin-top: 5px;
   transition-property: color;
   transition-duration: 0.5s;
- 
 }
-.linkToCart{
+.linkToCart {
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -96,6 +80,5 @@
 
 .cartImg:hover,
 .cartImg:focus {
-  /* color: #98ea4c; */
   color: #275dfe;
 }

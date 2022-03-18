@@ -17,25 +17,24 @@ import { logoutUser } from "../../redux/actions/actions";
 const Nav = () => {
 
   const dispatch = useDispatch();
-  const usuario=useSelector(state=>state.user);
-
+  const user2 = useSelector(state=>state.user);
+  const token=useSelector(state=>state.token);
 
   return (
     <section className={styles.nav}>
       <Link to="/">
-        {console.log('el usuario es: ',usuario)}
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
-        {!usuario && (
+        {!token && (
           <>
             <Login />
             <Register />
           </>
         )}
 
-        {usuario && (
+        { token &&(
           <button
             className={styles.logout}
             onClick={(event) => {

@@ -35,7 +35,7 @@ function App() {
       
       dispatch(salveUser());
       
-    }, [])
+    }, [dispatch])
   return (
     <div  className={darkMode ? "app  " : "App"}>
       <Routes >

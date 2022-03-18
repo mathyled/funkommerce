@@ -14,6 +14,7 @@ const initialState = {
 
   user: null, //Usuario de la sesion
   token:null,
+  idUser: null,
   msg:null,
   detail: [],
   categories: [],
@@ -272,8 +273,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USER:
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.set("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.set("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
@@ -282,23 +283,30 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      let userCreated = localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      let tokenCreated = localStorage.setItem("token", JSON.stringify(action.payload.token));
+      let idUser = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        idUser: action.payload.idUser,
       };
 
-    case TYPES.FIND_USER:
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
-
+    case TYPES.FIND_USER: 
+      //console.log(action.payload.user)
+      let userLoaded = localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      let tokenLoaded = localStorage.setItem("token", JSON.stringify(action.payload.token));
+      // let verifyUser = userLoaded  === "null" ? null : userLoaded;
+      // let verifyToken = tokenLoaded  === "null" ? null : userLoaded;
+      let idUser2 = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
+      console.log(tokenLoaded)
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        idUser: action.payload.idUser,
       };
 
     case TYPES.LOGOUT_USER:

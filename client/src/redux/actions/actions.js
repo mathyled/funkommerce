@@ -63,50 +63,11 @@ export const orderFunkos = (order) => {
 }
 
 
-//ACTIONS FOR CREATE USER
-// <<<<<<< HEAD
-// export const createUser = ({name, lastName, email, password}) => {
-//   return async (dispatch) => {
-
-//     const user = {
-//       name,
-//       lastName,
-//       email,
-//       password,
-//     };
-
-
-
-
-//     try {
-//       //Espera por crear un ususario
-//       const response = await axios.post(
-//         "http://localhost:3001/api/user/signUp",
-//         user
-//       );
-// //console.log(response)
-//       if (response.data) {
-//         dispatch({
-//           type: TYPES.CREATE_USER,
-//           payload: {user:response.data.user,token:response.data.token},
-//         });
-//         //console.log(response)
-//         alert(response.data.msg)
-
-        
-//       } else {
-//         alert("User not found");
-//       }
-//     } catch (error) {
-//       console.log("CREATEUSER__ACTION: ", error);
-//     }
-//   };
-// =======
-export const createUser = (user,token) => {
+export const createUser = (user,token, idUser) => {
   
   return {
     type:TYPES.CREATE_USER,
-    payload:{user,token}
+    payload:{user,token,idUser}
   }
 
 };
@@ -116,18 +77,19 @@ export const salveUser = () => {
 
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
+  const idUser = window.localStorage.getItem("idUser");
  
   if(user){
 
     return {
       type: TYPES.FIND_USER,
-      payload: { user: user, token: token },
+      payload: { user: user, token: token, idUser:idUser },
     };
   }
 
   return {
     type:TYPES.FIND_USER,
-    payload:{user:null,token:null}
+    payload:{user:null,token:null,idUser:null}
   }
 };
 
@@ -137,7 +99,7 @@ export const logoutUser=()=>{
 
   return {
     type:TYPES.LOGOUT_USER,
-    payload:{user:null,token:null}
+    payload:{user:null,token:null, idUser:null}
   }
 }
 
@@ -146,28 +108,10 @@ export const logoutUser=()=>{
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
-
-// <<<<<<< HEAD
-// export const findUser = ({email, password}) => {
-
-//   console.log(email,password)
-//   return async (dispatch) => {
-
-
-//     try {
-
-//       const config={
-//         email:email,
-//         password:password
-//       }
-//      // console.log('118- ',config)
-// =======
-export const findUser = (user,token) => {
-
-
+export const findUser = (user,token, idUser) => {
   return {
     type:TYPES.FIND_USER,
-    payload:{user,token}
+    payload:{user,token, idUser}
   }
 };
 
