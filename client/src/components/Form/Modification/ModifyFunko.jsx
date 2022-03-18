@@ -11,7 +11,7 @@ import {
 import Swal from "sweetalert2";
 import Nav from "../../Nav/Nav";
 
-const CreateFunko = () => {
+const ModifyFunko = () => {
   let allFunkos = useSelector((state) => state.funkosBackUp);
   let allCategories = useSelector((state) => state.categories);
   let allLicenses = useSelector((state) => state.license);
@@ -23,12 +23,12 @@ const CreateFunko = () => {
   const [input, setInput] = useState({
     title: "",
     number: "",
-    brand: "",
-    category: "",
-    license: "",
     image: "",
     price: 0,
     stock: 0,
+    CategoryId: 0,
+    BrandId: 0,
+    licenseId: 0,
   });
 
   const [error, setError] = useState({});
@@ -46,6 +46,7 @@ const CreateFunko = () => {
   }, []);
 
   const handleChange = (event) => {
+    event.preventDefault();
     setInput({
       ...input,
       [event.target.name]: event.target.value,
@@ -54,6 +55,7 @@ const CreateFunko = () => {
   };
 
   const handleProduct = (event) => {
+    event.preventDefault();
     setProduct({
       ...product,
       [event.target.name]: event.target.value,
@@ -62,9 +64,9 @@ const CreateFunko = () => {
       setInput({
       title: chosenProduct.title,
       number: chosenProduct.number,
-      brand: chosenProduct.Brand.name,
-      category: chosenProduct.Category.name,
-      // license: chosenProduct.License.name,
+      BrandId: chosenProduct.Brand.id,
+      CategoryId: chosenProduct.Category.id,
+      // licenseId: chosenProduct.License.name,
       image: chosenProduct.image,
       price: chosenProduct.price,
       stock: chosenProduct.stock
@@ -78,21 +80,21 @@ const CreateFunko = () => {
     if (
       !input.title ||
       !input.number ||
-      !input.brand ||
-      !input.category ||
-      !input.license ||
+      input.BrandId ||
+      input.CategoryId === 0 ||
+      input.licenseId === 0||
       !input.image ||
       input.price < 0.99 ||
       input.price > 999.99 ||
       input.stock < 1 ||
       input.stock > 100 ||
-      error !== {}
+      Object.entries(error).length === 0
     ) {
       Swal.fire({
         title: "Some fields are wrong or empty",
-        icon: "info",
+        icon: "error",
         position: "center",
-        timer: 1500,
+        timer: 2500,
         showConfirmButton: false,
         timerProgressBar: true,
       });
@@ -110,12 +112,12 @@ const CreateFunko = () => {
       setInput({
         title: "",
         number: "",
-        brand: "",
-        category: "",
-        license: "",
         image: "",
         price: 0,
         stock: 0,
+        CategoryId: 0,
+        BrandId: 0,
+        licenseId: 0,
       });
     }
   };
@@ -167,66 +169,66 @@ const CreateFunko = () => {
 
               <input
                 type="text"
-                name="brand"
+                name="BrandId"
                 list="brands"
                 placeholder="Brand..."
-                value={input.brand}
-                className={error.brand ? styles.wrong : styles.input}
+                value={input.BrandId === 0 ? "" : input.BrandId}
+                className={error.BrandId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="brands">
                 {allBrands?.map((c) => {
                   return (
-                    <option key={c.id} value={c.name}>
+                    <option key={c.id} value={c.id}>
                       {c.name}
                     </option>
                   );
                 })}
               </datalist>
-              <p className={styles.errors}>{error.brand && <b>{error.brand}</b>}</p>
+              <p className={styles.errors}>{error.BrandId === 0 ? "" : error.BrandId && <b>{error.BrandId}</b>}</p>
 
               <input
                 type="text"
-                name="category"
+                name="CategoryId"
                 list="categories"
                 placeholder="Category..."
-                value={input.category}
-                className={error.category ? styles.wrong : styles.input}
+                value={input.CategoryId === 0 ? "" : input.CategoryId}
+                className={error.CategoryId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="categories">
                 {allCategories?.map((c) => {
                   return (
-                    <option key={c.id} value={c.name}>
+                    <option key={c.id} value={c.id} data-text={c.name}>
                       {c.name}
                     </option>
                   );
                 })}
               </datalist>
               <p className={styles.errors}>
-                {error.category && <b>{error.category}</b>}
+                {error.CategoryId === 0 ? "" : error.CategoryId && <b>{error.CategoryId}</b>}
               </p>
 
               <input
                 type="text"
-                name="license"
+                name="licenseId"
                 list="licenses"
                 placeholder="License..."
-                value={input.license}
-                className={error.license ? styles.wrong : styles.input}
+                value={input.licenseId === 0 ? "" : input.licenseId}
+                className={error.licenseId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="licenses">
                 {allLicenses?.map((l) => {
                   return (
-                    <option key={l.id} value={l.name}>
+                    <option key={l.id} value={l.id}>
                       {l.name}
                     </option>
                   );
                 })}
               </datalist>
               <p className={styles.errors}>
-                {error.license && <b>{error.license}</b>}
+                {error.licenseId === 0 ? "" : error.licenseId && <b>{error.licenseId}</b>}
               </p>
             </div>
 
@@ -295,4 +297,4 @@ const CreateFunko = () => {
   );
 };
 
-export default CreateFunko;
+export default ModifyFunko;
