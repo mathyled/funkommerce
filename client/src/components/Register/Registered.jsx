@@ -6,13 +6,15 @@ import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/actions/actions";
-
+import {useNavigate} from 'react-router-dom';
+import axios from "axios";
 
 
 
 const Register = ({close,closeValue}) => {
     const user = useSelector((state) => state.user);
     
+    const navigate=useNavigate();
     const deleteInputs=(event)=>{
         setInputs({
           name: "",
@@ -64,28 +66,33 @@ const Register = ({close,closeValue}) => {
     email: "",
   });
 
-  const sendForm = (event) => {
+  const sendForm = async(event) => {
     event.preventDefault();
 
     const resultados = viewErrorAndInputs(errors, inputs);
-
-    if (resultados.length){
-        alert(resultados[0]);
-
-    }else{
-
-        if(user){
-            dispatch(createUser(inputs));
-            deleteInputs(event);
-            close(!closeValue); 
         
-        }else{
-            alert('User not found')
-        }
-       
-    } 
+    if (resultados.length) {
+      alert(resultados[0]);
+    } else {
 
-  };
+      let verification = await axios.post(
+        "http://localhost:3001/api/user/signUp",
+        inputs
+      );
+      console.log(verification)
+      if (verification.data.message) {
+        alert(verification.data.message);
+      } else {
+        // dispatch(createUser(inputs));
+        // deleteInputs(ev
+        deleteInputs(event);
+        close(!closeValue);
+        navigate('/sendmail');
+        alert(verification.data.msg);
+      }
+    }
+
+    } 
 
   return (
     <div>

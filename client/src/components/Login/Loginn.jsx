@@ -1,11 +1,15 @@
 import styles from "./Login.module.css";
 import Input from "../componentsReusable/Input";
 import Button from "../componentsReusable/Button";
-
+ 
 import { validator } from "../../helpers/validatorsForm";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findUser } from "../../redux/actions/actions";
+import axios from "axios";
+
+
+
 
 const Login = ({close,closeValue}) => {
   const user = useSelector((state) => state.user);
@@ -40,9 +44,10 @@ const Login = ({close,closeValue}) => {
     password: "",
   });
 
+
   const dispatch = useDispatch();
 
-  const sendLogin = (event) => {
+  const sendLogin = async(event) => {
     event.preventDefault();
 
     const resultados = viewErrorAndInputs(error,inputs);
@@ -51,20 +56,37 @@ const Login = ({close,closeValue}) => {
        alert(resultados[0]);
 
      } else {
-       dispatch(findUser(inputs));
-       if (user) {
+      //  dispatch(findUser(inputs,close,closeValue));
          
-          setInputs({
-            email: "",
-            password: "",
-          });
-          event.target.email.value = "";
-          event.target.password.value = "";
-          close(!closeValue);
-       } else {
-         alert("User not found");
+          
+           try {
+             const {data} = await axios.post(
+               "http://localhost:3001/api/user/signIn",
+               inputs
+             );
+             console.log('data: ',data)
+
+             if (data.msg ==="User signed in successfully"){
+
+               dispatch(findUser(data.user,data.token));
+  
+  
+               setInputs({
+                 email: "",
+                 password: "",
+               });
+               event.target.email.value = "";
+               event.target.password.value = "";
+             }else{
+                 alert(data.msg); 
+             }
+
+             
+           } catch (error) {
+             console.log("FINDUSER_ACTION: ", error);
+           }
        }
-     } 
+     
 
   };
 

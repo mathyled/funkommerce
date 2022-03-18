@@ -141,11 +141,11 @@ const FunkoDetail = () => {
 
             <div className={styles["ui-pdp-payment-icon"]}>
               <div className={styles["ui-pdp-payment-icon__size"]}>
-                <img src={imgCredit.american} width="24px" height="24px" />
+                <img src={imgCredit.american} width="24px" height="24px" alt="creditAmerican"/>
               </div>
 
               <div className={styles["ui-pdp-payment-icon__size"]}>
-                <img src={imgCredit.visa} width="45px" height="14px" />
+                <img src={imgCredit.visa} width="45px" height="14px" alt="creditVisa" />
               </div>
             </div>
 

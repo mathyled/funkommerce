@@ -36,7 +36,7 @@ const CreateFunko = () => {
     name: "",
   });
 
-  const chosenProduct = allFunkos?.find((e) => e.title === product);
+  const chosenProduct = allFunkos?.find((e) => e.title === product.name);
 
   useEffect(() => {
     dispatch(getFunkos());
@@ -58,13 +58,13 @@ const CreateFunko = () => {
       ...product,
       [event.target.name]: event.target.value,
     });
-    if(chosenProduct !== undefined) {
+    if(chosenProduct) {
       setInput({
       title: chosenProduct.title,
       number: chosenProduct.number,
-      brand: chosenProduct.brand,
-      category: chosenProduct.category,
-      license: chosenProduct.license,
+      brand: chosenProduct.Brand.name,
+      category: chosenProduct.Category.name,
+      // license: chosenProduct.License.name,
       image: chosenProduct.image,
       price: chosenProduct.price,
       stock: chosenProduct.stock
@@ -135,7 +135,7 @@ const CreateFunko = () => {
           <div className={styles.formTop}>
             <input
               type="text"
-              name="product"
+              name="name"
               list="products"
               placeholder="Article..."
               value={product.name}
@@ -160,10 +160,10 @@ const CreateFunko = () => {
                 name="title"
                 placeholder="Title..."
                 value={input.title}
-                className={error.title ? styles.error : styles.input}
+                className={error.title ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
-              <p>{error.title && <b>{error.title}</b>}</p>
+              <p className={styles.errors}>{error.title && <b>{error.title}</b>}</p>
 
               <input
                 type="text"
@@ -171,7 +171,7 @@ const CreateFunko = () => {
                 list="brands"
                 placeholder="Brand..."
                 value={input.brand}
-                className={error.brand ? styles.error : styles.input}
+                className={error.brand ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="brands">
@@ -183,7 +183,7 @@ const CreateFunko = () => {
                   );
                 })}
               </datalist>
-              <p>{error.brand && <b>{error.brand}</b>}</p>
+              <p className={styles.errors}>{error.brand && <b>{error.brand}</b>}</p>
 
               <input
                 type="text"
@@ -213,7 +213,7 @@ const CreateFunko = () => {
                 list="licenses"
                 placeholder="License..."
                 value={input.license}
-                className={error.license ? styles.error : styles.input}
+                className={error.license ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="licenses">
@@ -237,7 +237,7 @@ const CreateFunko = () => {
                 placeholder="Number..."
                 min="0"
                 value={input.number}
-                className={error.number ? styles.error : styles.input}
+                className={error.number ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <p className={styles.errors}>
@@ -249,7 +249,7 @@ const CreateFunko = () => {
                 name="image"
                 placeholder="Image URL..."
                 value={input.image}
-                className={error.image ? styles.error : styles.input}
+                className={error.image ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <p className={styles.errors}>
@@ -263,7 +263,7 @@ const CreateFunko = () => {
                 step=".01"
                 min="0"
                 value={input.price === 0 ? "" : input.price}
-                className={error.price ? styles.error : styles.input}
+                className={error.price ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <p className={styles.errors}>
@@ -276,7 +276,7 @@ const CreateFunko = () => {
                 placeholder="Stock..."
                 min="0"
                 value={input.stock === 0 ? "" : input.stock}
-                className={error.stock ? styles.error : styles.input}
+                className={error.stock ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <p className={styles.errors}>
@@ -286,7 +286,7 @@ const CreateFunko = () => {
           </div>
           <div className={styles.formBottom}>
             <button type="submit" className={styles.createBtn}>
-              Create
+              Modify
             </button>
           </div>
         </form>
