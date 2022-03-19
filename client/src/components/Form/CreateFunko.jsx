@@ -25,17 +25,23 @@ const CreateFunko = () => {
   const [input, setInput] = useState({
     title: "",
     number: "",
-    brand: "",
-    category: "",
-    license: "",
     image: "",
     price: 0,
     stock: 0,
+    CategoryId: 0,
+    BrandId: 0,
+    licenseId: 0,
   });
 
-  let searchLicense = allLicenses?.find((l) => l.name === input.license);
-  let searchBrand = allBrands?.find((l) => l.name === input.brand);
-  let searchCategory = allCategories?.find((l) => l.name === input.category);
+  const [create, setCreate] = useState({
+    CategoryId: "",
+    BrandId: "",
+    licenseId: "",
+  })
+
+  let searchLicense = allLicenses?.find((l) => l.id === input.licenseId);
+  let searchBrand = allBrands?.find((l) => l.id === input.BrandId);
+  let searchCategory = allCategories?.find((l) => l.id === input.CategoryId);
 
   const [error, setError] = useState({});
 
@@ -48,7 +54,11 @@ const CreateFunko = () => {
   const handleChange = (event) => {
     setInput({
       ...input,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
+    });
+    setCreate({
+      ...create,
+      [event.target.name]: event.target.value
     });
     setError(validator(error, event.target));
   };
@@ -58,9 +68,9 @@ const CreateFunko = () => {
     if (
       !input.title ||
       !input.number ||
-      !input.brand ||
-      !input.category ||
-      !input.license ||
+      input.BrandId === 0||
+      input.CategoryId === 0 ||
+      input.licenseId === 0||
       !input.image ||
       input.price < 0.99 ||
       input.price > 999.99 ||
@@ -72,15 +82,15 @@ const CreateFunko = () => {
         title: "Some fields are wrong or empty",
         icon: "error",
         position: "center",
-        timer: 2500,
+        timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true,
       });
       return;
     }
-    if (!searchBrand.name) {
+    if (!searchBrand) {
       Swal.fire({
-        title: `The brand ${input.brand} doesn't exist and will be created`,
+        title: `The brand you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -88,15 +98,15 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createBrand(input.brand));
+          dispatch(createBrand(create.BrandId));
         } else if (result.isDenied) {
           return;
         }
       });
     }
-    if (!searchCategory.name) {
+    if (!searchCategory) {
       Swal.fire({
-        title: `The category ${input.category} doesn't exist and will be created`,
+        title: `The category you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -104,15 +114,15 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createCategory(input.category));
+          dispatch(createCategory(create.CategoryId));
         } else if (result.isDenied) {
           return;
         }
       });
     }
-    if (!searchLicense.name) {
+    if (!searchLicense) {
       Swal.fire({
-        title: `The license ${input.license} doesn't exist and will be created`,
+        title: `The license you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -120,7 +130,7 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createLicense(input.license));
+          dispatch(createLicense(create.licenseId));
         } else if (result.isDenied) {
           return;
         }
@@ -138,12 +148,12 @@ const CreateFunko = () => {
     setInput({
       title: "",
       number: "",
-      brand: "",
-      category: "",
-      license: "",
       image: "",
       price: 0,
       stock: 0,
+      CategoryId: 0,
+      BrandId: 0,
+      licenseId: 0,
     });
   };
 
@@ -178,68 +188,68 @@ const CreateFunko = () => {
 
               <input
                 type="text"
-                name="brand"
+                name="BrandId"
                 list="brands"
                 placeholder="Brand..."
-                value={input.brand}
-                className={error.brand ? styles.wrong : styles.input}
+                value={input.BrandId === 0 ? "" : input.BrandId}
+                className={error.BrandId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="brands">
                 {allBrands?.map((c) => {
                   return (
-                    <option key={c.id} value={c.name}>
+                    <option key={c.id} value={c.id}>
                       {c.name}
                     </option>
                   );
                 })}
               </datalist>
               <p className={styles.errors}>
-                {error.brand && <b>{error.brand}</b>}
+                {error.BrandId && <b>{error.BrandId}</b>}
               </p>
 
               <input
                 type="text"
-                name="category"
+                name="CategoryId"
                 list="categories"
                 placeholder="Category..."
-                value={input.category}
-                className={error.category ? styles.wrong : styles.input}
+                value={input.CategoryId === 0 ? "" : input.CategoryId}
+                className={error.CategoryId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="categories">
                 {allCategories?.map((c) => {
                   return (
-                    <option key={c.id} value={c.name}>
+                    <option key={c.id} value={c.id}>
                       {c.name}
                     </option>
                   );
                 })}
               </datalist>
               <p className={styles.errors}>
-                {error.category && <b>{error.category}</b>}
+                {error.CategoryId && <b>{error.CategoryId}</b>}
               </p>
 
               <input
                 type="text"
-                name="license"
+                name="licenseId"
                 list="licenses"
                 placeholder="License..."
-                value={input.license}
-                className={error.license ? styles.wrong : styles.input}
+                value={input.licenseId === 0 ? "" : input.licenseId}
+                className={error.licenseId ? styles.wrong : styles.input}
                 onChange={handleChange}
               />
               <datalist id="licenses">
                 {allLicenses?.map((l) => {
                   return (
-                    <option key={l.id} value={l.name}>
+                    <option key={l.id} value={l.id}>
                       {l.name}
                     </option>
                   );
                 })}
               </datalist>
               <p className={styles.errors}>
-                {error.license && <b>{error.license}</b>}
+                {error.licenseId && <b>{error.licenseId}</b>}
               </p>
             </div>
 

@@ -279,7 +279,7 @@ export const changePage = (number) =>{
 export const createFunko = (funko) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.post("http://localhost:3001/", funko);
+      const { data } = axios.post("http://localhost:3001/api/product", funko);
       dispatch({
         type: TYPES.CREATE_FUNKO,
         payload: data,
@@ -295,7 +295,7 @@ export const createFunko = (funko) => {
 export const createLicense = (license) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.post("http://localhost:3001/", license);
+      const { data } = axios.post("http://localhost:3001/api/license", license);
       dispatch({
         type: TYPES.CREATE_LICENSE,
         payload: data,
@@ -311,7 +311,7 @@ export const createLicense = (license) => {
 export const createBrand = (brand) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.post("http://localhost:3001/", brand);
+      const { data } = axios.post("http://localhost:3001/api/brand", brand);
       dispatch({
         type: TYPES.CREATE_BRAND,
         payload: data,
@@ -327,7 +327,7 @@ export const createBrand = (brand) => {
 export const createCategory = (category) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.post("http://localhost:3001/", category);
+      const { data } = axios.post("http://localhost:3001/api/category", category);
       dispatch({
         type: TYPES.CREATE_CATEGORY,
         payload: data,
