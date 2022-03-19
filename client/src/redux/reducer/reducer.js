@@ -11,18 +11,22 @@ const initialState = {
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
-
+ 
   user: null, //Usuario de la sesion
   token:null,
-  idUser: null,
+  idUser: null, 
+
   msg:null,
   detail: [],
+
   categories: [],
   license: [],
   brand: [],
+
   reviews:[],
   totalToPay: 0, 
   actualPage: 1, 
+
   confirm:{}
 };
 
@@ -275,7 +279,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.GET_USER:
       localStorage.set("loggedUser", JSON.stringify(action.payload.user));
       localStorage.set("token", JSON.stringify(action.payload.token));
-
+      let idUser1 = localStorage.setItem("userId", JSON.stringify(action.payload.idUser)); 
       return {
         ...state,
         user: action.payload.user,
@@ -285,7 +289,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.CREATE_USER:
       let userCreated = localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       let tokenCreated = localStorage.setItem("token", JSON.stringify(action.payload.token));
-      let idUser = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
+      let idUser2 = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
@@ -300,7 +304,7 @@ export default function rootReducer(state = initialState, action) {
       let tokenLoaded = localStorage.setItem("token", JSON.stringify(action.payload.token));
       // let verifyUser = userLoaded  === "null" ? null : userLoaded;
       // let verifyToken = tokenLoaded  === "null" ? null : userLoaded;
-      let idUser2 = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
+      let idUser3 = localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       console.log(tokenLoaded)
       return {
         ...state,
@@ -312,11 +316,12 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.LOGOUT_USER:
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
-
+      localStorage.removeItem("userId");
       return {
         ...state,
         user: null,
         token: null,
+        userId: null,
       };
 
     case TYPES.GET_REVIEWS:

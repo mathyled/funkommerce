@@ -10,7 +10,7 @@ import {
   getAllOrderIncart,
 } from "../../controllers/order";
 
-const router = Router();
+const router = Router(); 
 
 router.post("/", postOrder)
 router.get("/", detailOrder);

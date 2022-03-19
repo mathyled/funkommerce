@@ -7,14 +7,20 @@ import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../redux/actions/actions";
+import axios from "axios";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
-  ///PAGINADO
+  //PAGINADO
   // const [actualFunko, setActualpage] = useState(1);
   const page = useSelector((state) => state.actualPage);
+
+  const token = useSelector((state) => state.token);
+
+  const idUser = useSelector((state) => state.idUser);
+
   const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);
-
+  console.log(cart);
   const indexOfLastFunko = page * funkoPerPage;
   const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
   const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko);
@@ -24,7 +30,35 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     dispatch(changePage(numberPage));
   }
 
-  if (funkos.length < 1) { 
+  const addOneObjectToCartDb = async () => {
+   
+   
+   setTimeout(()=>{
+   
+    console.log("cart3S",cart)
+   },3000)
+
+   setTimeout(()=>{
+    if (token) {
+      axios.post("http://localhost:3001/api/order", {
+        Items: cart,
+        UserId: 1,
+      });
+    }
+    console.log("cart5S",cart)
+   },5000)
+    
+  };
+
+
+
+
+
+
+
+
+
+  if (funkos.length < 1) {
     return (
       <div className={styles.notFound2}>
         <h2>Product not found</h2>
@@ -37,12 +71,11 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     );
   } else {
     return (
-     
       <div className={styles.containerAll}>
         <div className={styles.container}>
-        <div className={styles.order}>
-          <Order />
-        </div>
+          <div className={styles.order}>
+            <Order />
+          </div>
           <div className={styles.funkosCard}>
             {currentFunko &&
               currentFunko.map((product) => (
@@ -71,7 +104,10 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                       </Link>
                       <div>
                         <button
-                          onClick={() => addToCart1(product.id)}
+                          onClick={() => {
+                            addToCart1(product.id);
+                            addOneObjectToCartDb();
+                          }}
                           className={styles.buttonAdd}
                         >
                           {cart.find((item) => item.id === product.id)

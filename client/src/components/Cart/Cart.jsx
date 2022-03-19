@@ -12,15 +12,15 @@ import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import TotalToPay from "../TotalToPay/TotalToPay";
-import { AiOutlineHome } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
 import axios from "axios";
 import CartGeneric from "../CartGeneric/CartGeneric.jsx";
 import CartFromDb from "../CartFromDb/CartFromDb.jsx";
+
+
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalToPay2 = useSelector((state) => state.totalToPay);
@@ -33,17 +33,18 @@ const Cart = () => {
     console.log("t:", token);
   }, [dispatch, cart, totalToPay2, token]);
 
-  useEffect(() => {
-    async function j() {
-      let getCartFromDb = await axios.get("http://localhost:3001/api/order");
-      //console.log("getCartFromDb",getCartFromDb);
-    }
-    j();
-  }, []);
+  // useEffect(() => {
+  //   async function j() {
+  //     let getCartFromDb = await axios.get("http://localhost:3001/api/order");
+  //     //console.log("getCartFromDb",getCartFromDb);
+  //   }
+  //   j();
+  // }, []);
+
   // const addOrLessOneInDb = async () => {
   //   if (token) {
   //     const cartUserdb = await axios.post("http://localhost:3001/api/order", {
-  //       UserId: 1,
+  //       UserId: idUser, //viene del estado global
   //       Items: cart,
   //     });
   //     console.log("hh", cartUserdb);
@@ -103,7 +104,7 @@ const Cart = () => {
           <button className={`${styles.checkOut} ${styles.emptyCart}`}>
             Checkout{" "}
           </button>
-        </Link>
+        </Link> 
 
         <button
           onClick={() => {
