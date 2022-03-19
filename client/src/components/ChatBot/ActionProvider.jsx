@@ -40,7 +40,7 @@ handleHelp = () => {
 }
 
 handleAboutUs = () => {
-  const message = this.createChatBotMessage(<div><p>If you want to know more about us</p><a href='#'>Click Here 🧙</a></div>)
+  const message = this.createChatBotMessage(<div><p>If you want to know more about us</p><a href='http://localhost:3000/about'>Click Here 🧙</a></div>)
   this.addMessageToState(message)
 }
 
