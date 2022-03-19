@@ -23,7 +23,7 @@ import React,{useContext} from "react";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import {useDispatch} from 'react-redux';
 import {salveUser} from './redux/actions/actions';
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
 
 
