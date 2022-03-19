@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 export const getAllProductsDb = async () => {
   try {
     let allProducts = await prisma.product.findMany({
-      include:{Category: true, Brand:true},
+      include:{Category: true, Brand:true , License:true},
     });
     return allProducts;
   } catch (error) {
@@ -48,6 +48,7 @@ export const helperPostProduct = async (props: any) => {
     brandId,
     description,
   } = props;
+  
   try {
     let newProduct = await prisma.product.create({
       data: {
@@ -64,6 +65,9 @@ export const helperPostProduct = async (props: any) => {
       },
     });
 
-    newProduct ? newProduct : [];
-  } catch (error) {}
+    return newProduct
+  } catch (error) {
+    console.error(error);
+    
+  }
 };
