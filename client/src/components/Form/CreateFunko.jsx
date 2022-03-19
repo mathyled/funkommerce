@@ -181,6 +181,7 @@ const CreateFunko = () => {
                 value={input.title}
                 className={error.title ? styles.wrong : styles.input}
                 onChange={handleChange}
+                autofocus
               />
               <p className={styles.errors}>
                 {error.title && <b>{error.title}</b>}

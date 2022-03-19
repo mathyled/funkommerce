@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./ModifyFunko.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { validator } from "../../../helpers/validatorsForm";
+import { BiSearchAlt } from "react-icons/bi"
 import {
   getBrand,
   getCategories,
   getFunkos,
   getLicense,
+  modifyFunko,
+  deleteFunko
 } from "../../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Nav from "../../Nav/Nav";
@@ -100,7 +103,7 @@ const ModifyFunko = () => {
       });
       return;
     } else {
-      //dispatch(modifyFunko(input));
+      dispatch(modifyFunko(input));
       Swal.fire({
         title: `${input.title} Successfully Modified`,
         icon: "success",
@@ -122,6 +125,47 @@ const ModifyFunko = () => {
     }
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault()
+    if(chosenProduct) {
+      Swal.fire({
+        title: `Are you sure you want to delete ${chosenProduct.title}?`,
+        icon: "warning",
+        position: "center",
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(deleteFunko(chosenProduct.id));
+          setInput({
+            title: "",
+            number: "",
+            image: "",
+            price: 0,
+            stock: 0,
+            CategoryId: 0,
+            BrandId: 0,
+            licenseId: 0,
+          });
+        } else if (result.isDenied) {
+          return;
+        }
+      });
+    }
+    else {
+      Swal.fire({
+        title: "Choose a product to delete!",
+        icon: "error",
+        position: "center",
+        timer: 2500,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    }
+  }
+
   return (
     <div className={styles.all}>
       <Nav />
@@ -133,8 +177,9 @@ const ModifyFunko = () => {
             className={styles.img}
           />
         </div>
-        <form className={styles.gridRight} onSubmit={handleSubmit}>
+        <div  className={styles.gridRight}>
           <div className={styles.formTop}>
+        <form onSubmit={handleProduct}>
             <input
               type="text"
               name="name"
@@ -142,20 +187,26 @@ const ModifyFunko = () => {
               placeholder="Article..."
               value={product.name}
               className={error.product ? styles.error : styles.input}
+              autoFocus
               onChange={handleProduct}
             />
             <datalist id="products">
               {allFunkos?.map((c) => {
                 return (
-                  <option key={c.id} value={c.title}>
+                  <option onClick={handleProduct} key={c.id} value={c.title}>
                     {c.title}
                   </option>
                 );
               })}
             </datalist>
-          </div>
-          <div className={styles.formMiddle}>
             <p>{error.product && <b>{error.product}</b>}</p>
+            <button type="submit">
+              <BiSearchAlt/>
+            </button>
+          </form>
+          </div>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formMiddle}>
             <div className={styles.formLeft}>
               <input
                 type="text"
@@ -287,11 +338,15 @@ const ModifyFunko = () => {
             </div>
           </div>
           <div className={styles.formBottom}>
-            <button type="submit" className={styles.createBtn}>
+            <button type="submit" className={styles.modifyBtn}>
               Modify
             </button>
           </div>
         </form>
+        <button type="button" onClick={handleDelete} className={styles.deleteBtn}>
+              Delete
+            </button>
+            </div>
       </div>
     </div>
   );
