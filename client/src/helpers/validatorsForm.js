@@ -16,7 +16,7 @@ export const validator = (error, input) => {
           };
         }
       }
-      else if(name !== "brand" && name !== "license" && name !== "category") {
+      else if(name !== "BrandId" && name !== "licenseId" && name !== "CategoryId") {
         if (/[^a-zA-Z\x20]/.test(value)) {
         //Si es true es poque tiene signos extraños
         errors = {
