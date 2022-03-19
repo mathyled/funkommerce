@@ -394,4 +394,20 @@ export const resetPassword = (email) => {
      
     }
   };
+}; 
+
+export const ConfirmResetPassword = (token,newPassword) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put(`http://localhost:3001/api/user/newPassword/confirm/${token}`, newPassword);
+      dispatch({
+        type: TYPES.RESET_PASSWORD,
+        payload: data.msg,
+      });
+      console.log(data.msg);
+    } catch (e) {
+      console.log("Error in ConfirmResetPassword");
+     
+    }
+  };
 };

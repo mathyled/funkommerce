@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 export const getAllProductsDb = async () => {
   try {
     let allProducts = await prisma.product.findMany({
-      include:{Category: true, Brand:true},
+      include: { Category: true, Brand: true, License: true },
     });
     return allProducts;
   } catch (error) {
@@ -15,7 +15,7 @@ export const getFindProductsDb = async (name: any) => {
   try {
     let findProducts = await prisma.product.findMany({
       where: { title: { contains: name, mode: "insensitive" } },
-      include:{Category: true, Brand:true},
+      include: { Category: true, Brand: true },
     });
     return findProducts;
   } catch (error) {
@@ -26,9 +26,10 @@ export const getFindProductId = async (id: any) => {
   try {
     let findProduct = await prisma.product.findUnique({
       where: { id: Number(id) },
-    include:{
-      Category:true
-    }});
+      include: {
+        Category: true,
+      },
+    });
     return findProduct;
   } catch (error) {
     console.error(error);
@@ -39,31 +40,49 @@ export const helperPostProduct = async (props: any) => {
   const {
     title,
     number,
-    categoryId,
+    category,
     image,
-    licenseId,
+    license,
     price,
     formFactor,
     stock,
-    brandId,
+    brand,
     description,
   } = props;
+
   try {
     let newProduct = await prisma.product.create({
       data: {
         title: title,
         number: number,
-        Category: { connect: { id: categoryId } },
+        Category: {
+          connectOrCreate: {
+            where: { name: category },
+            create: { name: category },
+          },
+        },
+        License: {
+          connectOrCreate: {
+            where: { name: license },
+            create: { name: license },
+          },
+        },
         image: image,
-        License: { connect: { id: licenseId } },
         price: price,
         stock: stock,
         formFactor: formFactor,
         description: description,
-        Brand: { connect: { id: brandId } },
+        Brand: {
+          connectOrCreate: {
+            where: { name: brand },
+            create: { name: brand },
+          },
+        },
       },
     });
 
-    newProduct ? newProduct : [];
-  } catch (error) {}
+    return newProduct;
+  } catch (error) {
+    console.error(error);
+  }
 };

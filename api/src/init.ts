@@ -75,7 +75,7 @@ export const init = async () => {
           data: {
             title: product.attributes.title,
             number: product.attributes.number,
-            price: (Math.random() * (50 - 5) + 5).toFixed(2),
+            price: Math.floor(Math.random() * (50 - 5) + 5).toFixed(2),
             stock: Math.floor(Math.random() * (25 - 0)) + 0,
             formFactor: product.attributes["form-factor"],
             image:
