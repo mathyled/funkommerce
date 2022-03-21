@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+.subContainer {
+  display: flex;
+  
+}
+
+
+
+.li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.75);
+  border-radius: 5px;
+  padding: 15px 5px;
+  overflow: hidden;
+  width: 200px;
+  /* height: 350px; */
+}
+.title {
+  overflow: hidden;
+  height: 25px;
+}
+.price {
+  margin: 5px 0px;
+  background-color: #f3f3f7;
+  width: 120%;
+  overflow: hidden;
+  padding: 5px 0px;
+  color: #111;
+}
+
+.buttonsMoreAndLessDiv {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  background-color: transparent;
+}
+.buttonsMoreAndLess {
+  margin: 10px 0 5px 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 1px 5px -1px rgba(122, 114, 114, 0.582);
+  border-radius: 50px 0px 0px 50px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #111;
+  height: 30px;
+  padding: 15px 35px 15px 35px;
+  display: flex;
+  align-items: center;
+}
+.buttonsMoreAndLess:hover {
+  background-color: #111;
+  color: white;
+}
+.lessButton {
+  border-radius: 0px 50px 50px 0px;
+}
+.lessButton:hover {
+  background-color: #111;
+  color: white;
+}
+.deleteButton {
+  background-color: transparent;
+  width: 30px;
+  height: 26px;
+  padding-top: 3px;
+  font-size: 20px;
+  color: #111;
+  margin-top: 10px;
+  border: none;
+}
+
+.deleteButton:hover {
+  box-shadow: 1px 1px 2px 1px rgba(122, 114, 114, 0.514);
+  border-radius: 50px;
+  /* background-color: #111;
+  color: white; */
+}
+
+.title {
+  font-size: 15px;
+  font-family: "Secular One";
+  text-transform: uppercase;
+}
+.funkoImg {
+  width: auto;
+  height: 150px;
+  background-color: transparent;
+}
+
+.img {
+  width: auto;
+  height: 150px;
+  transition-property: transform;
+  transition-duration: 0.6s;
+}
+
+.img:hover {
+  transform: scale(1.1);
+}

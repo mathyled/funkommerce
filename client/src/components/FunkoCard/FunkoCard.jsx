@@ -6,7 +6,7 @@ import Paged from "../Paged/Paged";
 import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
-import { changePage } from "../../redux/actions/actions";
+import { changePage, addCartDb } from "../../redux/actions/actions";
 import axios from "axios";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
@@ -20,41 +20,39 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
 
   const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);
-  console.log(cart);
+
   const indexOfLastFunko = page * funkoPerPage;
   const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
   const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko);
 
   function paginate(e, numberPage) {
-    //setActualpage(numberPage);
     dispatch(changePage(numberPage));
   }
+  const [arrVerfication, setarrVerfication] = useState([]);
+  const[times, setTimes] =useState(0);
 
-  const addOneObjectToCartDb = async () => {
-   
-   
-   setTimeout(()=>{
-   
-    console.log("cart3S",cart)
-   },3000)
+  const addOneObjectToCartDb = async (id) => {
 
-   setTimeout(()=>{
-    if (token) {
-      axios.post("http://localhost:3001/api/order", {
-        Items: cart,
-        UserId: 1,
-      });
-    }
-    console.log("cart5S",cart)
-   },5000)
+    let funkoAAgregar = funkos.find((e) => e.id === id);
+    let modifyQuantityToFunkoDb = { ...funkoAAgregar, quantity: 1 };
     
+    setarrVerfication((prevState) => prevState.concat(modifyQuantityToFunkoDb));
+    let obj = {
+      Items: [modifyQuantityToFunkoDb],
+      UserId: 2,
+    };
+    let findObject = arrVerfication.find(e => e.id === id);
+    if (token && arrVerfication.length < 1) {
+      dispatch(addCartDb(obj));
+      setTimes(1)
+    } else if(token && !findObject && times === 1 ){
+      const cartUserdb = await axios.put("http://localhost:3001/api/order/insertproduct", {
+        item: modifyQuantityToFunkoDb,
+        idUser: 2,
+      });
+     
+    }
   };
-
-
-
-
-
-
 
 
 
@@ -106,7 +104,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                         <button
                           onClick={() => {
                             addToCart1(product.id);
-                            addOneObjectToCartDb();
+                            addOneObjectToCartDb(product.id);
                           }}
                           className={styles.buttonAdd}
                         >

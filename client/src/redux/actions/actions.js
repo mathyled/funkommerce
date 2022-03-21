@@ -307,7 +307,7 @@ export const resetPassword = (email) => {
         type: TYPES.RESET_PASSWORD,
         payload: data.msg,
       });
-      console.log(data.msg);
+     // console.log(data.msg);
     } catch (e) {
       console.log("Error in resetPassword");
      
@@ -330,3 +330,50 @@ export const ConfirmResetPassword = (token,newPassword) => {
     }
   };
 };
+
+export const addCartDb = (obj) => {
+  //console.log("111",obj)
+  
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post(`http://localhost:3001/api/order`, obj);
+      dispatch({
+        type: TYPES.ADD_TO_CART_DB,
+        payload: data,
+      });
+    } catch (e) {
+      console.log("Error in addCartDb");
+    }
+  };
+} 
+
+export const getCartDb = (obj) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/api/order/incart", obj )
+   //   console.log("jorge",data)
+      dispatch({
+        type: TYPES.GET_CART_DB,
+        payload: data.Order_detail,
+      });
+    } catch (e) {
+      console.log("Error in ConfirmResetPassword");
+    }
+  };
+};
+
+export const updateQuantityInCartDb = (obj) => {
+  //console.log("111",obj)
+  
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/order/updataquantity", obj);
+      dispatch({
+        type: TYPES.UPDATE_QUANTITY_TO_CART_DB,
+        payload: data,
+      });
+    } catch (e) {
+      console.log("Error in updateQuantityInCartDb");
+    }
+  };
+} 

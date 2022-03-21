@@ -6,10 +6,11 @@ import {
   sumInCart,
   clearCart,
   modifiedTotal,
+  
 } from "../../redux/actions/actions";
-import notFound from "../../assets/notFound.png";
+
 import { useEffect, useState } from "react";
-import { RiDeleteBin5Line } from "react-icons/ri";
+
 
 import TotalToPay from "../TotalToPay/TotalToPay";
 import Swal from "sweetalert2";
@@ -30,47 +31,21 @@ const Cart = () => {
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
-    console.log("t:", token);
+   // console.log("t:", token);
   }, [dispatch, cart, totalToPay2, token]);
 
-  // useEffect(() => {
-  //   async function j() {
-  //     let getCartFromDb = await axios.get("http://localhost:3001/api/order");
-  //     //console.log("getCartFromDb",getCartFromDb);
-  //   }
-  //   j();
-  // }, []);
-
-  // const addOrLessOneInDb = async () => {
-  //   if (token) {
-  //     const cartUserdb = await axios.post("http://localhost:3001/api/order", {
-  //       UserId: idUser, //viene del estado global
-  //       Items: cart,
-  //     });
-  //     console.log("hh", cartUserdb);
-  //   }
-
-  //   //recordar cambiar en if del onclick a if(token)...
-
-  //   console.log("Hago post al back con el array de objetos");
-  //   // console.log(db)
-  // };
-  // const deleteOneInCartDb = async () => {
-  //   //   const db  = await axios.delete ("http://localhost:3001/api/order", {
-  //   //     idUser: 1
-  //   //   })
-  //   // // console.log(cart)
-  //   //   console.log(db)
-  //   console.log("Hago delete un objeto entero al back con el array de objetos");
-  // };
+  let funkosfromdb = useSelector((state) => state.cartDb);
+  useEffect(() => {}, [funkosfromdb]);
   const emptyCartInDb = async () => {
-    //   const db  = await axios.delete ("http://localhost:3001/api/order", {
-    //     idUser: 1
-    //   })
-    // // console.log(cart)
-    //   console.log(db)
+     //console.log("idddd", id);
+     const cartUserdb2 = await axios.delete(
+      "http://localhost:3001/api/order/",
+      {
+        data: { idUser: 2},
+      }
+    );
     console.log(
-      "Hago delete de vaciar  cart entero al back con el array de objetos"
+      "Hago delete de vaciar/borrar  cart entero al back"
     );
   };
 
