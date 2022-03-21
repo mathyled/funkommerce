@@ -22,13 +22,16 @@ const Filters = () => {
     e.preventDefault();
 
     dispatch(filterCategories(e.target.value));
+
     dispatch(changePage(1));
+  
   };
 
   const handleBrand = async (e) => {
     e.preventDefault();
 
     dispatch(filterBrands(e.target.value));
+  
     dispatch(changePage(1));
   };
 
@@ -42,6 +45,7 @@ const Filters = () => {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getFunkos());
+
   }
 
   return (
@@ -50,7 +54,7 @@ const Filters = () => {
 
       <div className={styles.customSelect}>
         <select onChange={(e) => handleBrand(e)}>
-          <option value="Brand" hidden>
+          <option value="Brand" >
             {" "}
             Brand{" "}
           </option>
