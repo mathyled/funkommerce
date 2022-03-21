@@ -335,23 +335,34 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CREATE_FUNKO:
       return {
-        ...state,
+        ...state
       };
 
     case TYPES.CREATE_LICENSE:
       return {
-        ...state,
+        ...state
       };
 
     case TYPES.CREATE_BRAND:
       return {
-        ...state,
+        ...state
       };
 
     case TYPES.CREATE_CATEGORY:
       return {
-        ...state,
+        ...state
       };
+
+    case TYPES.MODIFY_FUNKO:
+      return {
+        ...state
+      }
+
+    case TYPES.DELETE_FUNKO:
+      return {
+        ...state
+      };
+
     case TYPES.GET_CONFIRM:
       return {
         ...state,

@@ -340,7 +340,32 @@ export const createCategory = (category) => {
   };
 };
 
+export const modifyFunko = (funko) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/product", funko);
+      dispatch({
+        type: TYPES.MODIFY_FUNKO,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in modifyFunko");
+      console.log(e);
+    }
+  };
+};
 
+export const deleteFunko = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`http://localhost:3001/api/product/${id}`);
+      dispatch({ type: TYPES.DELETE_FUNKO, payload: data });
+    } catch (error) {
+      console.log("error in deleteFunko", error);
+    }
+  };
+};
 
 export const getConfirm = (token) => {
   return async (dispatch) => {
