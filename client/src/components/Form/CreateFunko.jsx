@@ -7,14 +7,13 @@ import {
   getCategories,
   getLicense,
   createFunko,
-  createLicense,
-  createBrand,
-  createCategory,
+  getFunkos
 } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import Nav from "../Nav/Nav";
 
 const CreateFunko = () => {
+  let allFunkos = useSelector((state) => state.funkos)
   let allCategories = useSelector((state) => state.categories);
   let allLicenses = useSelector((state) => state.license);
   let allBrands = useSelector((state) => state.brand);
@@ -25,21 +24,20 @@ const CreateFunko = () => {
   const [input, setInput] = useState({
     title: "",
     number: "",
-    brand: "",
-    category: "",
-    license: "",
     image: "",
     price: 0,
     stock: 0,
+    category: "",
+    brand: "",
+    license: "",
+    formFactor: "",
+    description: "",
   });
-
-  let searchLicense = allLicenses?.find((l) => l.name === input.license);
-  let searchBrand = allBrands?.find((l) => l.name === input.brand);
-  let searchCategory = allCategories?.find((l) => l.name === input.category);
 
   const [error, setError] = useState({});
 
   useEffect(() => {
+    dispatch(getFunkos());
     dispatch(getCategories());
     dispatch(getLicense());
     dispatch(getBrand());
@@ -55,6 +53,18 @@ const CreateFunko = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let validation = Object.values(error).filter(e => e !== "")
+    let searchName = allFunkos.find((l) => l.title === input.title)
+    let searchLicense = allLicenses?.find((l) => l.name === input.license);
+    let searchBrand = allBrands?.find((l) => l.name === input.brand);
+    let searchCategory = allCategories?.find((l) => l.name === input.category);
+    console.log(searchBrand)
+    console.log(searchCategory)
+    console.log(searchLicense)
+    if (typeof input.stock === "string") {
+      let number = parseInt(input.stock);
+      input.stock = number;
+    }
     if (
       !input.title ||
       !input.number ||
@@ -66,21 +76,32 @@ const CreateFunko = () => {
       input.price > 999.99 ||
       input.stock < 1 ||
       input.stock > 100 ||
-      Object.entries(error).length === 0
+      validation.length > 0
     ) {
       Swal.fire({
         title: "Some fields are wrong or empty",
         icon: "error",
         position: "center",
-        timer: 2500,
+        timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true,
       });
       return;
     }
-    if (!searchBrand.name) {
+    if (searchName?.title) {
       Swal.fire({
-        title: `The brand ${input.brand} doesn't exist and will be created`,
+        title: "The name is already taken",
+        icon: "error",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+      return;
+    }
+    if (!searchBrand?.name) {
+      Swal.fire({
+        title: `The brand you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -88,15 +109,35 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createBrand(input.brand));
+          dispatch(createFunko(input));
+          Swal.fire({
+            title: `${input.title} Successfully Created`,
+            icon: "success",
+            position: "center",
+            timer: 1500,
+            showConfirmButton: false,
+            timerProgressBar: true,
+          });
+          setInput({
+            title: "",
+            number: "",
+            image: "",
+            price: 0,
+            stock: 0,
+            category: "",
+            brand: "",
+            license: "",
+            formFactor: "",
+            description: "",
+          });
         } else if (result.isDenied) {
           return;
         }
       });
     }
-    if (!searchCategory.name) {
+    if (!searchCategory?.name) {
       Swal.fire({
-        title: `The category ${input.category} doesn't exist and will be created`,
+        title: `The category you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -104,15 +145,35 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createCategory(input.category));
+          dispatch(createFunko(input));
+          Swal.fire({
+            title: `${input.title} Successfully Created`,
+            icon: "success",
+            position: "center",
+            timer: 1500,
+            showConfirmButton: false,
+            timerProgressBar: true,
+          });
+          setInput({
+            title: "",
+            number: "",
+            image: "",
+            price: 0,
+            stock: 0,
+            category: "",
+            brand: "",
+            license: "",
+            formFactor: "",
+            description: "",
+          });
         } else if (result.isDenied) {
           return;
         }
       });
     }
-    if (!searchLicense.name) {
+    if (!searchLicense?.name) {
       Swal.fire({
-        title: `The license ${input.license} doesn't exist and will be created`,
+        title: `The license you selected doesn't exist and will be created`,
         icon: "warning",
         position: "center",
         showConfirmButton: true,
@@ -120,31 +181,55 @@ const CreateFunko = () => {
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(createLicense(input.license));
+          dispatch(createFunko(input));
+          Swal.fire({
+            title: `${input.title} Successfully Created`,
+            icon: "success",
+            position: "center",
+            timer: 1500,
+            showConfirmButton: false,
+            timerProgressBar: true,
+          });
+          setInput({
+            title: "",
+            number: "",
+            image: "",
+            price: 0,
+            stock: 0,
+            category: "",
+            brand: "",
+            license: "",
+            formFactor: "",
+            description: "",
+          });
         } else if (result.isDenied) {
           return;
         }
       });
     }
-    dispatch(createFunko(input));
-    Swal.fire({
-      title: `${input.title} Successfully Created`,
-      icon: "success",
-      position: "center",
-      timer: 1500,
-      showConfirmButton: false,
-      timerProgressBar: true,
-    });
-    setInput({
-      title: "",
-      number: "",
-      brand: "",
-      category: "",
-      license: "",
-      image: "",
-      price: 0,
-      stock: 0,
-    });
+    if (searchBrand.name && searchCategory.name && searchLicense.name) {
+      dispatch(createFunko(input));
+      Swal.fire({
+        title: `${input.title} Successfully Created`,
+        icon: "success",
+        position: "center",
+        timer: 1500,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+      setInput({
+        title: "",
+        number: "",
+        image: "",
+        price: 0,
+        stock: 0,
+        category: "",
+        brand: "",
+        license: "",
+        formFactor: "",
+        description: "",
+      });
+    }
   };
 
   return (
@@ -171,6 +256,7 @@ const CreateFunko = () => {
                 value={input.title}
                 className={error.title ? styles.wrong : styles.input}
                 onChange={handleChange}
+                autoFocus
               />
               <p className={styles.errors}>
                 {error.title && <b>{error.title}</b>}

@@ -11,6 +11,7 @@ import i18next from "i18next";
 import global_es from "./translations/ES/global.json";
 import global_en from "./translations/EN/global.json";
 import { DarkModeContextProvider } from "./components/AdminPanel/PanelHome/DarkMode/context/darkModeContext";
+import { ContextRouter } from "./components/AdminPanel/PanelHome/context/RoutesContext/routerContext";
 i18next.init({
   interpolation: { escapeValue: false },
   lng:"en",
@@ -29,11 +30,13 @@ ReactDOM.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next} >
     <DarkModeContextProvider>
+      <ContextRouter>
       <Provider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </Provider>
+      </ContextRouter>
       </DarkModeContextProvider>
     </I18nextProvider>
 

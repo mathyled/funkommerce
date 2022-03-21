@@ -1,8 +1,7 @@
 import { init } from "./src/init";
-
 import server from "./src/app";
-
-server.listen(3001, () => {
+const PORT = process.env.PORT || 3001
+server.listen(PORT, () => {
   init();
-  console.log("server is runing");
+  console.log("server is runing ",PORT);
 });

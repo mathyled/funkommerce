@@ -2,12 +2,11 @@ export const validator = (error, input) => {
   const value = input.value;
   const name = input.name;
   const url =
-  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let errors = {};
- 
+
   switch (input.type) {
     case "text":
-
       if (name === "image") {
         if (!url.test(value)) {
           errors = {
@@ -15,23 +14,25 @@ export const validator = (error, input) => {
             [name]: "Must enter a URL",
           };
         }
-      }
-      else if(name !== "brand" && name !== "license" && name !== "category") {
+      } else if (
+        name !== "brand" &&
+        name !== "license" &&
+        name !== "category"
+      ) {
         if (/[^a-zA-Z\x20]/.test(value)) {
-        //Si es true es poque tiene signos extraños
+          //Si es true es poque tiene signos extraños
+          errors = {
+            ...error,
+            [name]: "The field cannot have signs",
+          };
+        }
+      } else {
         errors = {
           ...error,
-          [name]: "The field cannot have signs",
+          [name]: "",
         };
-      
       }
-    } else {
-      errors = {
-        ...error,
-        [name]: "",
-      };
-    }
-    break;
+      break;
 
     case "password":
       if (value.length < 5 || value.length > 15) {
@@ -125,10 +126,10 @@ export const validator = (error, input) => {
         break;
       }
 
-    default:
-      break;
+    default: 
+      return {errors}
+    
   }
-
   if (value === "") {
     errors = {
       ...error,
