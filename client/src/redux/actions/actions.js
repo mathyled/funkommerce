@@ -401,10 +401,10 @@ export const ConfirmResetPassword = (token,newPassword) => {
     try {
       const { data } = axios.put(`http://localhost:3001/api/user/newPassword/confirm/${token}`, newPassword);
       dispatch({
-        type: TYPES.RESET_PASSWORD,
+        type: TYPES.CONFIRM_PASSWORD,
         payload: data.msg,
       });
-      console.log(data.msg);
+      console.log("MENSAJEEEE",data.msg);
     } catch (e) {
       console.log("Error in ConfirmResetPassword");
      
