@@ -9,8 +9,8 @@ export default function PageHome() {
   return (
     <div className={styles.home}>
       {/* <FeaturedInfo /> */}
-      <Chart data={userData} title="User Analytics" grid dataKey="Active User" />
       <div className={styles.homeWidgets}>
+      <Chart data={userData} title="User Analytics" grid dataKey="Active User" />
         {/* <WidgetSm />
         <WidgetLg /> */}
       </div>
