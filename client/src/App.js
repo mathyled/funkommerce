@@ -26,17 +26,18 @@ import {salveUser} from './redux/actions/actions';
 // import Footer from "./components/Footer/Footer";
 import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
 import ConfirmNewPassword from "./components/ConfirmNewPassword/ConfirmNewPassword";
+import PurchaseOrders from "./components/PurcharseOrders/PurchaseOrders"
 
 function App() {
+
   const { darkMode } = useContext(DarkModeContext);
   const dispatch=useDispatch();
   const user=useSelector(state=>state.user);
 
     useEffect(() => {
-      
       dispatch(salveUser());
-      
     }, [])
+
   return (
     <div className={darkMode ? "app  " : "App"}>
       <Routes>
@@ -71,10 +72,13 @@ function App() {
           path="/confirmnewpassword/:token"
           element={<ConfirmNewPassword />}
         />
+        <Route path="/orders" element={<PurchaseOrders/>} />
+
         <Route path="*" element={<Home />} />
       </Routes>
     </div>
   );
+
 }
 
 export default App;

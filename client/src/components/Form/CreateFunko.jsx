@@ -234,7 +234,7 @@ const CreateFunko = () => {
 
   return (
     <div className={styles.all}>
-      <Nav />
+      {/* <Nav /> */}
       <div className={styles.create}>
         <div className={styles.gridLeft}>
           <img

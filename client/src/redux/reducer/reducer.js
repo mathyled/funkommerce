@@ -1,10 +1,8 @@
 
 import { TYPES } from "../actions/types";
 
-
-
 const initialState = {
-  funkos: [], 
+  funkos: [],
   funkosBackUp: [],
   cart:
     JSON.parse(localStorage.getItem("funkosInCart")) === null
@@ -17,19 +15,19 @@ const initialState = {
     users:[]
   },
   msg:null,
+
   detail: [],
   categories: [],
   license: [],
   brand: [],
-  reviews:[],
-  totalToPay: 0, 
-  actualPage: 1, 
-  confirm:{}
+  reviews: [],
+  totalToPay: 0,
+  actualPage: 1,
+  confirm: {},
+  orders: [],
 };
 
-
 export default function rootReducer(state = initialState, action) {
-
   switch (action.type) {
     case TYPES.GET_FUNKOS:
       return {
@@ -254,7 +252,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: brandFilter,
-      }; 
+      };
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
@@ -348,32 +346,17 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CREATE_FUNKO:
       return {
-        ...state
-      };
-
-    case TYPES.CREATE_LICENSE:
-      return {
-        ...state
-      };
-
-    case TYPES.CREATE_BRAND:
-      return {
-        ...state
-      };
-
-    case TYPES.CREATE_CATEGORY:
-      return {
-        ...state
+        ...state,
       };
 
     case TYPES.MODIFY_FUNKO:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.DELETE_FUNKO:
       return {
-        ...state
+        ...state,
       };
 
     case TYPES.GET_CONFIRM:
@@ -382,11 +365,22 @@ export default function rootReducer(state = initialState, action) {
         confirm: action.payload,
       };
 
-      case TYPES.RESET_PASSWORD:
-        return{
-          ...state,
-          msg: action.payload
-        }
+    case TYPES.RESET_PASSWORD:
+      return {
+        ...state,
+        msg: action.payload,
+      };
+
+    case TYPES.GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case TYPES.CHANGE_STATUS:
+      return {
+        ...state,
+      };
 
     default:
       return {
