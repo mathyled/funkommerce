@@ -10,8 +10,7 @@ import { changePage } from "../../redux/actions/actions";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   ///PAGINADO
-  // console.log('jjjjj',funkos)
-  const [actualFunko, setActualpage] = useState(1);
+  // const [actualFunko, setActualpage] = useState(1);
   const page = useSelector((state) => state.actualPage);
   const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);
@@ -25,7 +24,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     dispatch(changePage(numberPage));
   }
 
-  if (funkos.length < 1) {
+  if (funkos.length < 1) { 
     return (
       <div className={styles.notFound2}>
         <h2>Product not found</h2>
@@ -40,10 +39,10 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     return (
      
       <div className={styles.containerAll}>
+        <div className={styles.container}>
         <div className={styles.order}>
           <Order />
         </div>
-        <div className={styles.container}>
           <div className={styles.funkosCard}>
             {currentFunko &&
               currentFunko.map((product) => (

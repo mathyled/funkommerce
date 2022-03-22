@@ -15,7 +15,7 @@ const SendMail = () => {
                             <h1 className={styles.h1} >Verify your email</h1>
                             <div className={styles.cardTwo} ></div>
                         </div>
-                        <img src={sendEmail} className={styles.img} />
+                        <img src={sendEmail} className={styles.img} alt="sendingEmail"/>
                         <p className={styles.p}>please go to your inbox to confirm</p>
                     </div>
                 </div>

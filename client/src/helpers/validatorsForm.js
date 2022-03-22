@@ -2,19 +2,11 @@ export const validator = (error, input) => {
   const value = input.value;
   const name = input.name;
   const url =
-  /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let errors = {};
- 
+
   switch (input.type) {
     case "text":
-
-      if (/[^a-zA-Z\x20]/.test(value)) {
-        //Si es true es poque tiene signos extraños
-        errors = {
-          ...error,
-          [name]: "The field cannot have signs",
-        };
-
       if (name === "image") {
         if (!url.test(value)) {
           errors = {
@@ -22,8 +14,18 @@ export const validator = (error, input) => {
             [name]: "Must enter a URL",
           };
         }
-      }
-      
+      } else if (
+        name !== "brand" &&
+        name !== "license" &&
+        name !== "category"
+      ) {
+        if (/[^a-zA-Z\x20]/.test(value)) {
+          //Si es true es poque tiene signos extraños
+          errors = {
+            ...error,
+            [name]: "The field cannot have signs",
+          };
+        }
       } else {
         errors = {
           ...error,
@@ -96,6 +98,27 @@ export const validator = (error, input) => {
           };
           break;
         }
+        if (Number.isInteger(value)) {
+          errors = {
+            ...error,
+            [name]: "Stock must be a whole number",
+          };
+          break;
+        }
+        errors = {
+          ...error,
+          [name]: "",
+        };
+        break;
+      }
+      if (name === "number") {
+        if (Number.isInteger(value)) {
+          errors = {
+            ...error,
+            [name]: "Number must be a whole number",
+          };
+          break;
+        }
         errors = {
           ...error,
           [name]: "",
@@ -103,11 +126,11 @@ export const validator = (error, input) => {
         break;
       }
 
-    default:
-      break;
+    default: 
+      return {errors}
+    
   }
-
-  if (!value) {
+  if (value === "") {
     errors = {
       ...error,
       [name]: "The field cannot be empty",

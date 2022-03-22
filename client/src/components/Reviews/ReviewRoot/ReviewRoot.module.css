@@ -13,7 +13,7 @@
 .btn {
     box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
     /* margin: 2px 30% 2px; */
-    padding: 8px 45px;
+    padding: 8px;
     background-color: transparent;
     border-radius: 50px;
     border: none;
@@ -23,9 +23,11 @@
     transition-duration: 0.8s;
     cursor: pointer;
     color: rgba(0,0,0,0.72);
-    width: 50%;
+    width: 198px; 
     display: flex;
     align-items: center;
+    justify-content: center;
+
   }
   
   .btn:hover {

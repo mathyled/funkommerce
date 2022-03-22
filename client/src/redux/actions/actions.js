@@ -9,12 +9,12 @@ export const getFunkos = () => {
     return dispatch({
       type: TYPES.GET_FUNKOS,
       payload: json.data,
-    });
+    }); 
   };
 };
 
 export const addToCart = (id) => {
-  // console.log('action',id)
+  
   return {
     type: TYPES.ADD_TO_CART,
     payload: id,
@@ -43,7 +43,7 @@ export const clearCart = () => (dispatch) => {
 };
 
 export const searchFunkos = (name) => {
-  return async (dispatch) => {
+  return async (dispatch) => { 
     try {
       const { data } = await axios.get(
         `http://localhost:3001/api/product/s?name=${name}`
@@ -64,60 +64,82 @@ export const orderFunkos = (order) => {
 
 
 //ACTIONS FOR CREATE USER
-export const createUser = (name, lastName, email, userName, password) => {
-  return async (dispatch) => {
+// <<<<<<< HEAD
+// export const createUser = ({name, lastName, email, password}) => {
+//   return async (dispatch) => {
 
-    const user = {
-      name,
-      lastName,
-      email,
-      userName,
-      password,
-    };
+//     const user = {
+//       name,
+//       lastName,
+//       email,
+//       password,
+//     };
 
 
 
-    try {
-      //Espera por crear un ususario
-      const response = await axios.post(
-        "http://localhost:3001/api/user/signUp",
-        user
-      );
 
-      if (response.data) {
-        dispatch({
-          type: TYPES.CREATE_USER,
-          payload: response.data,
-        });
-        console.log(response)
+//     try {
+//       //Espera por crear un ususario
+//       const response = await axios.post(
+//         "http://localhost:3001/api/user/signUp",
+//         user
+//       );
+// //console.log(response)
+//       if (response.data) {
+//         dispatch({
+//           type: TYPES.CREATE_USER,
+//           payload: {user:response.data.user,token:response.data.token},
+//         });
+//         //console.log(response)
+//         alert(response.data.msg)
+
         
-      } else {
-        alert("User not found");
-      }
-    } catch (error) {
-      console.log("CREATEUSER__ACTION: ", error);
-    }
-  };
+//       } else {
+//         alert("User not found");
+//       }
+//     } catch (error) {
+//       console.log("CREATEUSER__ACTION: ", error);
+//     }
+//   };
+// =======
+export const createUser = (user,token) => {
+  
+  return {
+    type:TYPES.CREATE_USER,
+    payload:{user,token}
+  }
+
 };
 
 //ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
 export const salveUser = () => {
 
   const user = window.localStorage.getItem("loggedUser");
+  const token = window.localStorage.getItem("token");
  
   if(user){
 
     return {
-      type:TYPES.FIND_USER,
-      payload:user
-    }
+      type: TYPES.FIND_USER,
+      payload: { user: user, token: token },
+    };
   }
 
   return {
     type:TYPES.FIND_USER,
-    payload:null
+    payload:{user:null,token:null}
   }
 };
+
+//PAra deslogearnos:
+
+export const logoutUser=()=>{
+
+  return {
+    type:TYPES.LOGOUT_USER,
+    payload:{user:null,token:null}
+  }
+}
 
 
 
@@ -125,40 +147,29 @@ export const salveUser = () => {
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (correo, pass) => {
+// <<<<<<< HEAD
+// export const findUser = ({email, password}) => {
 
-  return async (dispatch) => {
+//   console.log(email,password)
+//   return async (dispatch) => {
 
 
-    try {
+//     try {
 
-      const config={
-        email:correo,
-        password:pass
-      }
-      console.log('118- ',config)
+//       const config={
+//         email:email,
+//         password:password
+//       }
+//      // console.log('118- ',config)
+// =======
+export const findUser = (user,token) => {
 
-      const { data } = await axios.post(
-        "http://localhost:3001/api/user/signIn",
-        config
-      );
-      
 
-      if (data) {
-        dispatch({
-          type: TYPES.GET_USER,
-          payload: data,
-        });
-        console.log(data)
-      } else {
-        alert("algo paso");
-      }
-    } catch (error) {
-      console.log("FINDUSER_ACTION: ", error);
-    }
-  };
+  return {
+    type:TYPES.FIND_USER,
+    payload:{user,token}
+  }
 };
-
 
 
 export const getDetails = (id) => {
@@ -191,21 +202,21 @@ export const getCategories = () => {
 
 //LICENCIA INVALIDA DE MOMENTO
 export const getLicense = () => {
-  return {
-    type: TYPES.GET_LICENSE,
-  };
-  // return async ( dispatch )=> {
-  //   try {
-  //     const {data} = await axios.get(`http://localhost:3001/api/license`);
-  //    // console.log(data)
-  //     dispatch({type: TYPES.GET_LICENSE, payload: data})
-  //   }
-  //   catch(error) {
-  //     dispatch({type: TYPES.GET_LICENSE, payload: []})
-  //     console.log("error in action searchFunko")
-  //     console.log(error)
-  //   }
-  // }
+  // return {
+  //   type: TYPES.GET_LICENSE,
+  // };
+  return async ( dispatch )=> {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/api/license`);
+     // console.log(data)
+      dispatch({type: TYPES.GET_LICENSE, payload: data})
+    }
+    catch(error) {
+      dispatch({type: TYPES.GET_LICENSE, payload: []})
+      console.log("error in action searchFunko",error)
+      // console.log(error)
+    }
+  }
 };
 
 export const getBrand = () => {
@@ -257,10 +268,146 @@ export const modifiedTotal = () => {
     type: TYPES.MODIFIED_TOTAL,
   };
 };
-
+ 
 export const changePage = (number) =>{
   return{
     type: TYPES.CHANGE_PAGE,
     payload: number
   }
 }
+
+export const createFunko = (funko) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/product", funko);
+      dispatch({
+        type: TYPES.CREATE_FUNKO,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createFunko");
+      console.log(e);
+    }
+  };
+};
+
+export const createLicense = (license) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/license", license);
+      dispatch({
+        type: TYPES.CREATE_LICENSE,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createLicense");
+      console.log(e);
+    }
+  };
+};
+
+export const createBrand = (brand) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/brand", brand);
+      dispatch({
+        type: TYPES.CREATE_BRAND,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createBrand");
+      console.log(e);
+    }
+  };
+};
+
+export const createCategory = (category) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/category", category);
+      dispatch({
+        type: TYPES.CREATE_CATEGORY,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in createCategory");
+      console.log(e);
+    }
+  };
+};
+
+export const modifyFunko = (funko) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/product", funko);
+      dispatch({
+        type: TYPES.MODIFY_FUNKO,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in modifyFunko");
+      console.log(e);
+    }
+  };
+};
+
+export const deleteFunko = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`http://localhost:3001/api/product/${id}`);
+      dispatch({ type: TYPES.DELETE_FUNKO, payload: data });
+    } catch (error) {
+      console.log("error in deleteFunko", error);
+    }
+  };
+};
+
+export const getConfirm = (token) => {
+  return async (dispatch) => {
+    var json = await axios.get(`http://localhost:3001/api/user/confirm/${token}`);
+    // console.log("TOKEN",token)
+    return dispatch({
+      type: TYPES.GET_CONFIRM,
+      payload: json.data,
+    }); 
+  };
+};
+
+//    http://localhost:3001/api/user/newPassword
+
+export const resetPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post("http://localhost:3001/api/user/newPassword", email);
+      dispatch({
+        type: TYPES.RESET_PASSWORD,
+        payload: data.msg,
+      });
+      console.log(data.msg);
+    } catch (e) {
+      console.log("Error in resetPassword");
+     
+    }
+  };
+}; 
+
+export const ConfirmResetPassword = (token,newPassword) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put(`http://localhost:3001/api/user/newPassword/confirm/${token}`, newPassword);
+      dispatch({
+        type: TYPES.CONFIRM_PASSWORD,
+        payload: data.msg,
+      });
+      console.log("MENSAJEEEE",data.msg);
+    } catch (e) {
+      console.log("Error in ConfirmResetPassword");
+     
+    }
+  };
+};

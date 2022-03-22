@@ -21,16 +21,12 @@
 }
 .order {
   display: flex;
-  /* background-color: red; */
-   /* align-items: flex-end; */
-  justify-content: flex-end; 
-  /* align-content: flex-end; */
+  align-items: flex-end;
+  justify-content: flex-end;
   margin-top: 30px;
-  /* margin-left: calc(100vw - 5px); */
-  /* width: 20%; */
-  /* margin-left: 80%; */
-  /* margin-right: 10%;
-  padding-right: 25px; */
+  margin-right: 5vw;
+  width: 100%;
+  padding-right: 25px;
 }
 .notFound2 {
   display: flex;
@@ -160,11 +156,8 @@
   color: rgb(83, 81, 81);
 }
 
-.buttonAdd {
+.buttonAdd { 
   box-shadow: 0px 0.5px 2.5px -1px rgba(0, 0, 0, 0.75);
-  /* margin: 2px 30% 2px; */
-  /* padding: 8px 150px; */
-
   background-color: #f3f3f7;
   border-radius: 25px;
   border: none;
@@ -176,8 +169,9 @@
   width: 80%;
   margin-top: 5px;
   font-weight: 600;
+  padding: 8px;
 }
-
+ 
 .buttonAdd:hover {
   background-color: #e7e7eb;
   /* color:rgb(255, 255, 255); */
@@ -185,7 +179,7 @@
   /* background: linear-gradient(90deg, rgb(194, 255, 103) 0%, rgba(82, 255, 13, 0.9) 35%, rgb(194, 255, 100) 100%);
 } */
 }
-.pagination {
+/* .pagination { */
   /* width: 100%; */
   /* margin-left: 40%; */
-}
+/* } */

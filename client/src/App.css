@@ -2,15 +2,15 @@
   text-align: center;
 }
 a {
-  color: #dadce1;;
+  /* color: #dadce1;; */
   text-decoration: none;;
 }
 
-ul {
+/* ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
+} */
 
 .App-logo {
   height: 40vmin;

@@ -40,13 +40,16 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: #5958584d;
+  /* background-color: #5958584d; */
   display: flex;
   justify-content: center;
   align-items: center;
   /* flex-direction: row-reverse; */
   z-index: 20;
   overflow: hidden;
+  backdrop-filter: blur(0.2rem);
+  background-color: hsla(0, 0%, 1%, 0.281);
+
 }
 
 .modal-hidden {
@@ -67,6 +70,7 @@
   /* margin-top:5px; */
   z-index: 2;
   padding: 1px 1px;
+   cursor: pointer;
 }
 
 .formButton {

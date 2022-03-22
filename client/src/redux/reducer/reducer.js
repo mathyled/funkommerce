@@ -5,13 +5,16 @@ import { TYPES } from "../actions/types";
 
 
 const initialState = {
-  funkos: [],
+  funkos: [], 
   funkosBackUp: [],
   cart:
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
+
   user: null, //Usuario de la sesion
+  token:null,
+  msg:null,
   detail: [],
   categories: [],
   license: [],
@@ -19,6 +22,7 @@ const initialState = {
   reviews:[],
   totalToPay: 0, 
   actualPage: 1, 
+  confirm:{}
 };
 
 
@@ -91,7 +95,6 @@ export default function rootReducer(state = initialState, action) {
             ],
           };
 
-
     case TYPES.REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
         (item) => String(item.id) === String(action.payload)
@@ -116,7 +119,6 @@ export default function rootReducer(state = initialState, action) {
             ),
           };
 
-
     case TYPES.REMOVE_ALL_FROM_CART:
       return {
         ...state,
@@ -125,9 +127,9 @@ export default function rootReducer(state = initialState, action) {
         ),
       };
 
-
     case TYPES.CLEAR_CART:
       localStorage.clear();
+      //storage.removeItem(keyName);
       return {
         ...state,
         cart: [],
@@ -150,7 +152,6 @@ export default function rootReducer(state = initialState, action) {
         funkos: action.payload,
       };
     }
-    
 
     case TYPES.ORDER_FUNKOS: {
       let funkoSort;
@@ -184,7 +185,7 @@ export default function rootReducer(state = initialState, action) {
           else return 0;
         });
       }
-  
+
       return {
         ...state,
         funkos: [...funkoSort],
@@ -218,7 +219,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_CATEGORIES:
       const allFunkos1 = state.funkosBackUp;
-     // console.log("categories",action.payload)
+      // console.log("categories",action.payload)
       let categoryFilter =
         action.payload === "ALL"
           ? state.funkos
@@ -241,7 +242,6 @@ export default function rootReducer(state = initialState, action) {
     //       funkos: licenseFilter
     //    }
 
-   
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -252,7 +252,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: brandFilter,
-      };
+      }; 
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
@@ -271,37 +271,51 @@ export default function rootReducer(state = initialState, action) {
         funkos: licenseFilter,
       };
 
-      case TYPES.GET_USER:
-      
-        Storage.set("loggedUser", action.payload);
+    case TYPES.GET_USER:
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        token: action.payload.token,
       };
 
     case TYPES.CREATE_USER:
-        
-      Storage.set("loggedUser", action.payload);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        token: action.payload.token,
       };
 
     case TYPES.FIND_USER:
-
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
 
       return {
         ...state,
-        user:action.payload,
-      }
+        user: action.payload.user,
+        token: action.payload.token,
+      };
+
+    case TYPES.LOGOUT_USER:
+      localStorage.removeItem("loggedUser");
+      localStorage.removeItem("token");
+
+      return {
+        ...state,
+        user: null,
+        token: null,
+      };
 
     case TYPES.GET_REVIEWS:
-        return{
-          ...state,
-          reviews:action.payload
-        }
+      return {
+        ...state,
+        reviews: action.payload,
+      };
 
     case TYPES.MODIFIED_TOTAL:
       let sum = 0;
@@ -313,10 +327,52 @@ export default function rootReducer(state = initialState, action) {
         totalToPay: sum,
       };
 
-      case TYPES.CHANGE_PAGE:
+    case TYPES.CHANGE_PAGE:
+      return {
+        ...state,
+        actualPage: action.payload,
+      };
+
+    case TYPES.CREATE_FUNKO:
+      return {
+        ...state
+      };
+
+    case TYPES.CREATE_LICENSE:
+      return {
+        ...state
+      };
+
+    case TYPES.CREATE_BRAND:
+      return {
+        ...state
+      };
+
+    case TYPES.CREATE_CATEGORY:
+      return {
+        ...state
+      };
+
+    case TYPES.MODIFY_FUNKO:
+      return {
+        ...state
+      }
+
+    case TYPES.DELETE_FUNKO:
+      return {
+        ...state
+      };
+
+    case TYPES.GET_CONFIRM:
+      return {
+        ...state,
+        confirm: action.payload,
+      };
+
+      case TYPES.RESET_PASSWORD:
         return{
           ...state,
-          actualPage: action.payload, 
+          msg: action.payload
         }
 
     default:

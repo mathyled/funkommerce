@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Funkommerce3 from "../../assets/funkommerce3.png";
+import { useDispatch, useSelector} from "react-redux";
+import { logoutUser } from "../../redux/actions/actions";
 // import { AiOutlineHome } from "react-icons/ai";
 // import Order from "../Order/Order"
 // import Filters from '../Filters/Filters'
@@ -13,15 +15,36 @@ import Funkommerce3 from "../../assets/funkommerce3.png";
 
 
 const Nav = () => {
+
+  const dispatch = useDispatch();
+  const usuario=useSelector(state=>state.user);
+
+
   return (
     <section className={styles.nav}>
       <Link to="/">
-   <img src={Funkommerce3} alt="img-not found" className={styles.img} /> 
+        {console.log('el usuario es: ',usuario)}
+        <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
-      <Login />
-      <Register />
+        {!usuario && (
+          <>
+            <Login />
+            <Register />
+          </>
+        )}
+
+        {usuario && (
+          <button
+            className={styles.logout}
+            onClick={(event) => {
+              dispatch(logoutUser());
+            }}
+          >
+            LOGOUT
+          </button>
+        )}
       </div>
 
       <Link to="/cart" className={styles.linkToCart}>

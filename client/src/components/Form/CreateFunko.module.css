@@ -75,7 +75,12 @@
     margin-right: 10px;
 }
 
-input {
+.input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.input {
+    border: 1px solid var(--input-border);
     display: block;
     width: 300px;
     padding: 8px 16px;
@@ -86,24 +91,45 @@ input {
     border-radius: 6px;
     -webkit-appearance: none;
     color: var(--input-color);
-    border: 1px solid var(--input-border);
     background: var(--input-background);
     transition: border .3s ease;
-    margin: 10px;
+    margin: 12px;
 }
-input::placeholder {
-    color: var(--input-placeholder);
-}
-input:focus {
+
+.input:focus {
     outline: none;
     border-color: var(--input-border-focus);
 }
 
-.btn {
-    grid-column: 1.5 / 2.5;
+.wrong {
+    border: 1px solid red;
+    display: block;
+    width: 300px;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    background: var(--input-background);
+    transition: border .3s ease;
+    margin: 12px;
 }
 
-button {
+.wrong:focus {
+    outline: none;
+    border-color: rgb(160, 0, 0);
+}
+
+.errors {
+    color: red;
+    font-size: 10px;
+    line-height: 0px;
+}
+
+.createBtn {
     background-color: #796fffea;
     border-radius: 6px;
     border-style: none;
@@ -129,4 +155,13 @@ button {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-top: 10px;
 }
+
+.createBtn:hover {
+    background-color: #a8a2ffea;
+}
+
+.createBtn:active {
+    color: black;
+  }

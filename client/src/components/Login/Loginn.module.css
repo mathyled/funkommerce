@@ -1,0 +1,69 @@
+.modal-visible {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #5958584d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: row-reverse; */
+  z-index: 20;
+  overflow: hidden;
+}
+
+
+.formButton {
+  display: flex;
+  flex-direction: row-reverse;
+  border: none;
+}
+
+.close {
+  border: none;
+  box-shadow: 0.5px 0.5px 2px 0.5px rgba(67, 67, 67, 0.199);
+  background-color: white;
+  margin-top: 3px;
+  color: #111;
+  font-weight: bold;
+  width: 30px;
+  height: 28px;
+  border-radius: 50px;
+  margin-left: -34px;
+  z-index: 2;
+  padding: 1px 1px;
+
+}
+
+
+.modal-hidden {
+  display: none;
+}
+
+.button{
+    background-color: #fff;
+    border-style: none;
+    /* box-sizing: border-box; */
+    color: #111;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    border-left: #111 solid 1px;
+    transition-property: color;
+    transition-duration: 0.7s;
+ 
+}

@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCategories,
   filterBrands,
   filterLicense,
-  getFunkos,
+  getFunkos, 
   changePage,
 } from "../../redux/actions/actions";
 
 const Filters = () => {
-  const funkos = useSelector((state) => state.funkos);
-
-  const page = useSelector((state) => state.actualPage);
+ 
 
   const dispatch = useDispatch();
 
@@ -24,13 +22,16 @@ const Filters = () => {
     e.preventDefault();
 
     dispatch(filterCategories(e.target.value));
+
     dispatch(changePage(1));
+  
   };
 
   const handleBrand = async (e) => {
     e.preventDefault();
 
     dispatch(filterBrands(e.target.value));
+  
     dispatch(changePage(1));
   };
 
@@ -44,6 +45,7 @@ const Filters = () => {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getFunkos());
+
   }
 
   return (
@@ -52,7 +54,7 @@ const Filters = () => {
 
       <div className={styles.customSelect}>
         <select onChange={(e) => handleBrand(e)}>
-          <option value="Brand" hidden>
+          <option value="Brand" >
             {" "}
             Brand{" "}
           </option>

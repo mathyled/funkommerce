@@ -4,7 +4,7 @@ import Profile from './Profile';
 
 const profiles = [
   {
-    url: "https://media-exp1.licdn.com/dms/image/D4D35AQEXF_HeZ19P9Q/profile-framedphoto-shrink_400_400/0/1645148341909?e=1647028800&v=beta&t=9EQtyvr4BuTq0ErmA6YZalNs0BLdOEYz9fKW6cVbdG8",
+    url: "https://avatars.githubusercontent.com/u/86900322?v=4",
     name: "Paul Jhon",
   },
   {
