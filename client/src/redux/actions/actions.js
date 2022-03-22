@@ -377,3 +377,9 @@ export const updateQuantityInCartDb = (obj) => {
     }
   };
 } 
+export const setPost = () => {
+  
+  return {
+    type: TYPES.SET_POST
+   };
+} 

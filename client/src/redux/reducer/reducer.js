@@ -12,10 +12,16 @@ const initialState = {
 
   cartDb: [],
 
+  post:
+    JSON.parse(localStorage.getItem("post")) === null
+      ? false
+      : JSON.parse(localStorage.getItem("post")),
+
   user: null, //Usuario de la sesion
+
   token: null,
   idUser: null,
-
+  // loggedUser  token  userId
   msg: null,
   detail: [],
 
@@ -131,7 +137,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CLEAR_CART:
-     localStorage.removeItem("funkosInCart");
+      localStorage.removeItem("funkosInCart");
       //storage.removeItem(keyName);
       return {
         ...state,
@@ -269,12 +275,9 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USER:
-      localStorage.set("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.set("token", JSON.stringify(action.payload.token));
-      let idUser1 = localStorage.setItem(
-        "userId",
-        JSON.stringify(action.payload.idUser)
-      );
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       return {
         ...state,
         user: action.payload.user,
@@ -282,18 +285,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
-      let userCreated = localStorage.setItem(
-        "loggedUser",
-        JSON.stringify(action.payload.user)
-      );
-      let tokenCreated = localStorage.setItem(
-        "token",
-        JSON.stringify(action.payload.token)
-      );
-      let idUser2 = localStorage.setItem(
-        "userId",
-        JSON.stringify(action.payload.idUser)
-      );
+      console.log(action.payload);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
@@ -303,22 +298,13 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.FIND_USER:
-      //console.log(action.payload.user)
-      let userLoaded = localStorage.setItem(
-        "loggedUser",
-        JSON.stringify(action.payload.user)
-      );
-      let tokenLoaded = localStorage.setItem(
-        "token",
-        JSON.stringify(action.payload.token)
-      );
-      // let verifyUser = userLoaded  === "null" ? null : userLoaded;
-      // let verifyToken = tokenLoaded  === "null" ? null : userLoaded;
-      let idUser3 = localStorage.setItem(
-        "userId",
-        JSON.stringify(action.payload.idUser)
-      );
-    //  console.log(tokenLoaded);
+      console.log(action.payload.user);
+      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
+
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
+      //  console.log(tokenLoaded);
       return {
         ...state,
         user: action.payload.user,
@@ -390,25 +376,35 @@ export default function rootReducer(state = initialState, action) {
         msg: action.payload,
       };
 
-
-      
     case TYPES.GET_CART_DB:
       let funkosInDb = state.funkosBackUp;
-     // console.log(funkosInDb)
-      let arr3 = []
-      funkosInDb.filter(funko=>{
-        action.payload.filter(funkoFromdb=>{
-          if(funko.id === funkoFromdb.productId){
-            arr3.push({...funko, quantity:  funkoFromdb.quantity })
+      // console.log(funkosInDb)
+      let arr3 = [];
+      funkosInDb.filter((funko) => {
+        action.payload.filter((funkoFromdb) => {
+          if (funko.id === funkoFromdb.productId) {
+            arr3.push({ ...funko, quantity: funkoFromdb.quantity });
           }
-        })
-      })
+        });
+      });
+      // localStorage.setItem(
+      //   "CartdB",
+      //   JSON.stringify([...arr3])
+      // )
       //arrToRenderFromDb.push({ tittle: "jorge" });
-     // console.log("yeye",arr3);
+      // console.log("yeye",arr3);
       return {
         ...state,
         cartDb: arr3,
       };
+
+    case TYPES.SET_POST:
+      localStorage.setItem("post", JSON.stringify(true));
+      return {
+        ...state,
+        post: true,
+      };
+
     default:
       return {
         ...state,

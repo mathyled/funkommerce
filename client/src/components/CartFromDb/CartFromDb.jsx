@@ -5,26 +5,19 @@ import axios from "axios";
 import { getCartDb } from "../../redux/actions/actions";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const CartFromDb = () => {
-  let funkos = useSelector((state) => state.funkos);
+const CartFromDb = ({render2}) => {
   let funkosfromdb = useSelector((state) => state.cartDb);
   let addOne = "addOne";
   let substractOne = "substractOne";
   const dispatch = useDispatch();
-  const [render, setRender] = useState(true);
-  const [render2, setRender2] = useState(true);
-  
-  useEffect(() => { let objUser = {
-    UserID: 2,
-  }; }, [funkosfromdb,funkosfromdb.length]);
-  useEffect(() => {
-    let objUser = {
-      UserID: 2,
-    };
 
-    dispatch(getCartDb(objUser));
-    //console.log("funkosfromdb", funkosfromdb);
-  }, [dispatch]);
+console.log(render2)
+  const [render, setRender] = useState(true);
+  // const [render2, setRender2] = useState(true);
+  
+  
+  
+ 
 
  
 
@@ -46,11 +39,11 @@ const CartFromDb = () => {
       "http://localhost:3001/api/order/updataquantity",
       {
         Items: cartToPut,
-        idUser: 2,
+        idUser: 4,
       }
     );
-    setRender2(()=>!render2);
-    // console.log("cartToPut", cartToPut);
+     setRender(!render);
+     console.log("cartToPut", cartToPut);
     // console.log("updateQuantityInCartDb", "se despachó el put de quantity");
   };
 
@@ -59,13 +52,20 @@ const CartFromDb = () => {
     const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/product",
       {
-        data: { idUser: 2, idProduct: id },
+        data: { idUser: 4, idProduct: id },
       }
     );
-    setRender(()=>!render);
+    setRender(!render);
   };
 
- 
+  useEffect(() => {
+    let objUser = {
+      UserID: 4,
+    };
+
+    dispatch(getCartDb(objUser));
+    //console.log("funkosfromdb", funkosfromdb);
+  }, [dispatch, render,render2]);
   return (
     <div className={styles.subContainer}>
       {funkosfromdb?.map((funko) => (

@@ -26,27 +26,28 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalToPay2 = useSelector((state) => state.totalToPay);
   const token = useSelector((state) => state.token);
+  const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
+
+  const [render2, setRender2] = useState(true);
 
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
    // console.log("t:", token);
-  }, [dispatch, cart, totalToPay2, token]);
+  }, [dispatch, cart, totalToPay2, token, funkosfromdb]);
+ 
+  
 
-  let funkosfromdb = useSelector((state) => state.cartDb);
-  useEffect(() => {}, [funkosfromdb]);
   const emptyCartInDb = async () => {
      //console.log("idddd", id);
      const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/",
       {
-        data: { idUser: 2},
+        data: { idUser: 4},
       }
     );
-    console.log(
-      "Hago delete de vaciar/borrar  cart entero al back"
-    );
+    setRender2(!render2);
   };
 
   const emptyCart = () => {
@@ -92,7 +93,7 @@ const Cart = () => {
         </button>
       </div>
       <div className={styles.subContainer}>
-        {token ? <CartFromDb></CartFromDb> : <CartGeneric />}
+        {token ? <CartFromDb render2={render2}></CartFromDb> : <CartGeneric />}
       </div>
     </div>
   );

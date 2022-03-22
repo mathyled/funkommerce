@@ -12,9 +12,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 
 const CartGeneric = () => {
   const cart = useSelector((state) => state.cart);
-  console.log("cart",cart)
+  //console.log("cart",cart)
+  const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
-  useEffect(() => {}, []);
+  useEffect(() => {}, [funkosfromdb]);
   const addOneToCart = (id) => {
     dispatch(sumInCart(id));
   };

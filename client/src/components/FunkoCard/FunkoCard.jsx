@@ -1,12 +1,12 @@
 import styles from "./FunkoCard.module.css";
 import { Link } from "react-router-dom";
 import notFound from "../../assets/notFound.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Paged from "../Paged/Paged";
 import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
-import { changePage, addCartDb } from "../../redux/actions/actions";
+import { changePage, addCartDb, setPost } from "../../redux/actions/actions";
 import axios from "axios";
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
@@ -17,6 +17,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
   const token = useSelector((state) => state.token);
 
   const idUser = useSelector((state) => state.idUser);
+  const post = useSelector((state) => state.post);
 
   const dispatch = useDispatch();
   const [funkoPerPage] = useState(20);
@@ -25,36 +26,38 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
   const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
   const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko);
 
+  useEffect(() => {}, [post]);
   function paginate(e, numberPage) {
     dispatch(changePage(numberPage));
   }
   const [arrVerfication, setarrVerfication] = useState([]);
-  const[times, setTimes] =useState(0);
+  const [times, setTimes] = useState(0);
 
   const addOneObjectToCartDb = async (id) => {
-
     let funkoAAgregar = funkos.find((e) => e.id === id);
     let modifyQuantityToFunkoDb = { ...funkoAAgregar, quantity: 1 };
-    
     setarrVerfication((prevState) => prevState.concat(modifyQuantityToFunkoDb));
     let obj = {
-      Items: [modifyQuantityToFunkoDb],
-      UserId: 2,
+      Items: cart.length < 1 ? [modifyQuantityToFunkoDb] : cart,
+      UserId: 4,
     };
-    let findObject = arrVerfication.find(e => e.id === id);
-    if (token && arrVerfication.length < 1) {
+    let findObject = arrVerfication.find((e) => e.id === id);
+
+    console.log("pp", post);
+    if (token && arrVerfication.length < 1 && post === false) {
       dispatch(addCartDb(obj));
-      setTimes(1)
-    } else if(token && !findObject && times === 1 ){
-      const cartUserdb = await axios.put("http://localhost:3001/api/order/insertproduct", {
-        item: modifyQuantityToFunkoDb,
-        idUser: 2,
-      });
-     
+      dispatch(setPost());
+      setTimes(1);
+    } else if (token && post) {
+      const cartUserdb = await axios.put(
+        "http://localhost:3001/api/order/insertproduct",
+        {
+          item: modifyQuantityToFunkoDb,
+          idUser: 4,
+        }
+      );
     }
   };
-
-
 
   if (funkos.length < 1) {
     return (
