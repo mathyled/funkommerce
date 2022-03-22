@@ -1,6 +1,10 @@
 import axios from "axios";
 import { TYPES } from "./types";
 
+
+const URL_USER="http://localhost:3001/api/";
+
+
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get("http://localhost:3001/api/product");
@@ -105,18 +109,24 @@ export const createUser = (user, token) => {
 export const salveUser = () => {
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
+  console.log('se obtiene el usuario del local storage con la llamada del componente APP')
+ 
+  if(user){
 
-  if (user) {
+    console.log('el usuario ya existia');
+
     return {
       type: TYPES.FIND_USER,
       payload: { user: user, token: token },
     };
   }
+    console.log("el usuario no existia");
 
   return {
-    type: TYPES.FIND_USER,
-    payload: { user: null, token: null },
-  };
+    type:TYPES.FIND_USER,
+    payload:null
+  }
+
 };
 
 //PAra deslogearnos:
@@ -130,26 +140,47 @@ export const logoutUser = () => {
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
-// <<<<<<< HEAD
-// export const findUser = ({email, password}) => {
 
-//   console.log(email,password)
-//   return async (dispatch) => {
-
-//     try {
-
-//       const config={
-//         email:email,
-//         password:password
-//       }
-//      // console.log('118- ',config)
-// =======
 export const findUser = (user, token) => {
   return {
     type: TYPES.FIND_USER,
     payload: { user, token },
   };
 };
+
+
+/*
+  Action para obtener todos los usuarios para el admin
+*/
+
+export const getUsersAdmin=(token,email) => {
+
+  return async(dispatch)=>{
+
+    try{
+
+      const  {data } = await axios.post(URL_USER + "user/adminUsers", {token,email});
+      console.log(data)
+      if(data.msg !== 'todo ok') return alert('algo salio mal!');
+
+      console.log(data);
+      dispatch({
+        type:TYPES.GET_USERS_ADMIN,
+        payload:data.users
+      })
+
+    }catch(error){
+
+      console.log('errores getUSer: ',error)
+    }
+
+
+
+  }
+
+
+}
+
 
 export const getDetails = (id) => {
   console.log(id);
@@ -200,6 +231,7 @@ export const getLicense = () => {
 };
 
 export const getBrand = () => {
+  
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`http://localhost:3001/api/brand`);

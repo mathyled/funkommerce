@@ -7,6 +7,7 @@ import PageHome from "../Pages/Home/PageHome";
 import { DarkModeContext } from "./DarkMode/context/darkModeContext";
 import "./dark.css"
 import {RouterContext} from './context/RoutesContext/routerContext';
+import UsersTable from "./UserPanel/UsersTable";
 
 
 const switchView=(valor)=>{
@@ -14,7 +15,8 @@ const switchView=(valor)=>{
     console.log('dentro de switch :',valor)
     switch (valor) {
       case "users":
-        return <h1>Soy usuario</h1>;
+        console.log('se monta los usuarios')
+        return <UsersTable/>;
       case "products":
         return <h1>Soy productos</h1>;
 
