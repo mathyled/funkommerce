@@ -1,4 +1,3 @@
-import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
 
