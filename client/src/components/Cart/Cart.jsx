@@ -2,15 +2,12 @@ import React from "react";
 import styles from "./Cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteFromCart,
-  sumInCart,
   clearCart,
   modifiedTotal,
-  
+  restartingPost,
 } from "../../redux/actions/actions";
 
 import { useEffect, useState } from "react";
-
 
 import TotalToPay from "../TotalToPay/TotalToPay";
 import Swal from "sweetalert2";
@@ -20,8 +17,6 @@ import axios from "axios";
 import CartGeneric from "../CartGeneric/CartGeneric.jsx";
 import CartFromDb from "../CartFromDb/CartFromDb.jsx";
 
-
-
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalToPay2 = useSelector((state) => state.totalToPay);
@@ -29,26 +24,19 @@ const Cart = () => {
   const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
 
-  const [render2, setRender2] = useState(true);
+  const post = useSelector((state) => state.post);
 
-  useEffect(() => {
-    localStorage.setItem("funkosInCart", JSON.stringify(cart));
-    dispatch(modifiedTotal());
-   // console.log("t:", token);
-  }, [dispatch, cart, totalToPay2, token, funkosfromdb]);
- 
   
-
   const emptyCartInDb = async () => {
-     //console.log("idddd", id);
-     const cartUserdb2 = await axios.delete(
-      "http://localhost:3001/api/order/",
-      {
-        data: { idUser: 4},
-      }
-    );
-    setRender2(!render2);
+
+
+    const cartUserdb2 = await axios.delete("http://localhost:3001/api/order/", {
+      data: { idUser: 4 },
+    });
+    dispatch(restartingPost());
   };
+
+
 
   const emptyCart = () => {
     if (cart.lenght < 1 || cart.length === 0) {
@@ -65,6 +53,15 @@ const Cart = () => {
 
   const tab = <>&nbsp;</>;
 
+
+
+  useEffect(() => {
+    localStorage.setItem("funkosInCart", JSON.stringify(cart));
+    dispatch(modifiedTotal());
+  }, [dispatch, post, cart, totalToPay2, token, funkosfromdb]);
+
+
+
   return (
     <div className={styles.container}>
       <Nav></Nav>
@@ -80,7 +77,7 @@ const Cart = () => {
           <button className={`${styles.checkOut} ${styles.emptyCart}`}>
             Checkout{" "}
           </button>
-        </Link> 
+        </Link>
 
         <button
           onClick={() => {
@@ -93,7 +90,7 @@ const Cart = () => {
         </button>
       </div>
       <div className={styles.subContainer}>
-        {token ? <CartFromDb render2={render2}></CartFromDb> : <CartGeneric />}
+        {token ? <CartFromDb></CartFromDb> : <CartGeneric />}
       </div>
     </div>
   );

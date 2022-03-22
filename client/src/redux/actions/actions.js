@@ -383,3 +383,9 @@ export const setPost = () => {
     type: TYPES.SET_POST
    };
 } 
+export const restartingPost = () => {
+  
+  return {
+    type: TYPES.RESTARTING_POST
+   };
+} 

@@ -5,15 +5,17 @@ import axios from "axios";
 import { getCartDb } from "../../redux/actions/actions";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const CartFromDb = ({render2}) => {
+const CartFromDb = () => {
   let funkosfromdb = useSelector((state) => state.cartDb);
+  const post = useSelector((state) => state.post);
+
   let addOne = "addOne";
   let substractOne = "substractOne";
   const dispatch = useDispatch();
 
-console.log(render2)
+
   const [render, setRender] = useState(true);
-  // const [render2, setRender2] = useState(true);
+  
   
   
   
@@ -24,7 +26,7 @@ console.log(render2)
 
   const updateQuantityInCartDb = async (id, operation) => {
     let itemInCart = funkosfromdb.find((item) => item.id === id);
-    //itemInCart.quantity = operation === addOne ? itemInCart.quantity +1 : itemInCart.quantity -1
+   
 
     let cartToPut = await funkosfromdb.map((item2) =>
       item2.id === itemInCart.id
@@ -44,11 +46,11 @@ console.log(render2)
     );
      setRender(!render);
      console.log("cartToPut", cartToPut);
-    // console.log("updateQuantityInCartDb", "se despachó el put de quantity");
+    
   };
 
   const deleteProductFromCartDb = async (id) => {
-    //console.log("idddd", id);
+  
     const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/product",
       {
@@ -64,14 +66,20 @@ console.log(render2)
     };
 
     dispatch(getCartDb(objUser));
-    //console.log("funkosfromdb", funkosfromdb);
-  }, [dispatch, render,render2]);
+    
+  }, [dispatch, render,post]);
+
+
+
+
+
+
   return (
     <div className={styles.subContainer}>
       {funkosfromdb?.map((funko) => (
         <ul key={funko.id}>
           <li key={funko.id} className={styles.li}>
-            <div className={styles.title}>
+            <div className={styles.title}> 
               <h2 className={styles.title}>{funko.title}</h2>
             </div>
 

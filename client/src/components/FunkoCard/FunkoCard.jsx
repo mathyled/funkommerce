@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changePage, addCartDb, setPost } from "../../redux/actions/actions";
 import axios from "axios";
 
-const FunkoCard = ({ funkos, addToCart1, cart }) => {
+const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   //PAGINADO
   // const [actualFunko, setActualpage] = useState(1);
   const page = useSelector((state) => state.actualPage);
@@ -26,12 +26,12 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
   const indexOfFirstFunko = indexOfLastFunko - funkoPerPage;
   const currentFunko = funkos.slice(indexOfFirstFunko, indexOfLastFunko);
 
-  useEffect(() => {}, [post]);
+  useEffect(() => {}, [post,choosenCart]);
   function paginate(e, numberPage) {
     dispatch(changePage(numberPage));
   }
   const [arrVerfication, setarrVerfication] = useState([]);
-  const [times, setTimes] = useState(0);
+ 
 
   const addOneObjectToCartDb = async (id) => {
     let funkoAAgregar = funkos.find((e) => e.id === id);
@@ -47,7 +47,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
     if (token && arrVerfication.length < 1 && post === false) {
       dispatch(addCartDb(obj));
       dispatch(setPost());
-      setTimes(1);
+    
     } else if (token && post) {
       const cartUserdb = await axios.put(
         "http://localhost:3001/api/order/insertproduct",
@@ -106,12 +106,12 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                       <div>
                         <button
                           onClick={() => {
-                            addToCart1(product.id);
-                            addOneObjectToCartDb(product.id);
+                            !token ? addToCart1(product.id)
+                            : addOneObjectToCartDb(product.id);
                           }}
                           className={styles.buttonAdd}
                         >
-                          {cart.find((item) => item.id === product.id)
+                          {choosenCart.find((item) => item.id === product.id)
                             ? "In cart"
                             : "Add to cart"}
                         </button>

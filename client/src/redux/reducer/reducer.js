@@ -330,9 +330,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
+     let choosenCart =  state.token ? state.cartDb : state.cart
       let sum = 0;
-      for (let i = 0; i < state.cart.length; i++) {
-        sum += state.cart[i].price * state.cart[i].quantity;
+      for (let i = 0; i < choosenCart.length; i++) {
+        sum += choosenCart[i].price * choosenCart[i].quantity;
       }
       return {
         ...state,
@@ -387,12 +388,7 @@ export default function rootReducer(state = initialState, action) {
           }
         });
       });
-      // localStorage.setItem(
-      //   "CartdB",
-      //   JSON.stringify([...arr3])
-      // )
-      //arrToRenderFromDb.push({ tittle: "jorge" });
-      // console.log("yeye",arr3);
+ 
       return {
         ...state,
         cartDb: arr3,
@@ -404,7 +400,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         post: true,
       };
-
+    case TYPES.RESTARTING_POST:
+      localStorage.setItem("post", JSON.stringify(false));
+      return {
+        ...state,
+        post: false,
+      };
     default:
       return {
         ...state,
