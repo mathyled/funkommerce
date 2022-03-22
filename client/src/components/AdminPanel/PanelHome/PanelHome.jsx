@@ -7,7 +7,8 @@ import PageHome from "../Pages/Home/PageHome";
 import { DarkModeContext } from "./DarkMode/context/darkModeContext";
 import "./dark.css"
 import {RouterContext} from './context/RoutesContext/routerContext';
-
+import Create from "../../Form/CreateFunko";
+import Modify from "../../Form/Modification/ModifyFunko"
 
 const switchView=(valor)=>{
 
@@ -15,14 +16,14 @@ const switchView=(valor)=>{
     switch (valor) {
       case "users":
         return <h1>Soy usuario</h1>;
-      case "products":
-        return <h1>Soy productos</h1>;
+        case "products":
+          return <h1>Soy producto</h1>;
 
-      case "transactions":
-        return <h1>Soy transacciones</h1>;
+      case "create": 
+        return <Create/>;
 
-      case "analitics":
-        return <h1>Soy analitics</h1>;
+      case "modify":
+        return <Modify />;
 
       case "reports":
         return <h1>Soy reports</h1>;

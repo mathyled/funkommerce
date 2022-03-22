@@ -68,9 +68,13 @@ const SideBar = () => {
                 <MdStorefront class="sidebarIcon_sd" />
                 Products
               </li>
-              <li class="sidebarListItem_sd">
+              <li class="sidebarListItem_sd"  onClick={()=>changePage('create')} >
                 <MdAttachMoney class="sidebarIcon_sd" />
-                Transactions
+                Create
+              </li>
+              <li class="sidebarListItem_sd"  onClick={()=>changePage('modify')} >
+                <MdAttachMoney class="sidebarIcon_sd" />
+               Modify/Delete
               </li>
               <li class="sidebarListItem_sd" onClick={()=>changePage('reports')}>
                 <MdBarChart class="sidebarIcon_sd" />
