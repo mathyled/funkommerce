@@ -1,7 +1,6 @@
 import axios from "axios";
 import { TYPES } from "./types";
 
-
 export const getFunkos = () => {
   return async (dispatch) => {
     var json = await axios.get("http://localhost:3001/api/product");
@@ -9,12 +8,11 @@ export const getFunkos = () => {
     return dispatch({
       type: TYPES.GET_FUNKOS,
       payload: json.data,
-    }); 
+    });
   };
 };
 
 export const addToCart = (id) => {
-  
   return {
     type: TYPES.ADD_TO_CART,
     payload: id,
@@ -43,7 +41,7 @@ export const clearCart = () => (dispatch) => {
 };
 
 export const searchFunkos = (name) => {
-  return async (dispatch) => { 
+  return async (dispatch) => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/api/product/s?name=${name}`
@@ -58,10 +56,8 @@ export const searchFunkos = (name) => {
 };
 
 export const orderFunkos = (order) => {
-
-  return {type: TYPES.ORDER_FUNKOS, payload: order}
-}
-
+  return { type: TYPES.ORDER_FUNKOS, payload: order };
+};
 
 //ACTIONS FOR CREATE USER
 // <<<<<<< HEAD
@@ -74,9 +70,6 @@ export const orderFunkos = (order) => {
 //       email,
 //       password,
 //     };
-
-
-
 
 //     try {
 //       //Espera por crear un ususario
@@ -93,7 +86,6 @@ export const orderFunkos = (order) => {
 //         //console.log(response)
 //         alert(response.data.msg)
 
-        
 //       } else {
 //         alert("User not found");
 //       }
@@ -102,23 +94,19 @@ export const orderFunkos = (order) => {
 //     }
 //   };
 // =======
-export const createUser = (user,token) => {
-  
+export const createUser = (user, token) => {
   return {
-    type:TYPES.CREATE_USER,
-    payload:{user,token}
-  }
-
+    type: TYPES.CREATE_USER,
+    payload: { user, token },
+  };
 };
 
 //ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
 export const salveUser = () => {
-
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
- 
-  if(user){
 
+  if (user) {
     return {
       type: TYPES.FIND_USER,
       payload: { user: user, token: token },
@@ -126,33 +114,27 @@ export const salveUser = () => {
   }
 
   return {
-    type:TYPES.FIND_USER,
-    payload:{user:null,token:null}
-  }
+    type: TYPES.FIND_USER,
+    payload: { user: null, token: null },
+  };
 };
 
 //PAra deslogearnos:
 
-export const logoutUser=()=>{
-
+export const logoutUser = () => {
   return {
-    type:TYPES.LOGOUT_USER,
-    payload:{user:null,token:null}
-  }
-}
-
-
-
+    type: TYPES.LOGOUT_USER,
+    payload: { user: null, token: null },
+  };
+};
 
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
-
 
 // <<<<<<< HEAD
 // export const findUser = ({email, password}) => {
 
 //   console.log(email,password)
 //   return async (dispatch) => {
-
 
 //     try {
 
@@ -162,22 +144,21 @@ export const logoutUser=()=>{
 //       }
 //      // console.log('118- ',config)
 // =======
-export const findUser = (user,token) => {
-
-
+export const findUser = (user, token) => {
   return {
-    type:TYPES.FIND_USER,
-    payload:{user,token}
-  }
+    type: TYPES.FIND_USER,
+    payload: { user, token },
+  };
 };
 
-
 export const getDetails = (id) => {
-  console.log(id)
+  console.log(id);
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/api/product/${id}`);
-      console.log(data)
+      const { data } = await axios.get(
+        `http://localhost:3001/api/product/${id}`
+      );
+      console.log(data);
       dispatch({ type: TYPES.GET_FUNKO_DETAIL, payload: data });
     } catch (error) {
       dispatch({ type: TYPES.GET_CATEGORIES, payload: [] });
@@ -205,18 +186,17 @@ export const getLicense = () => {
   // return {
   //   type: TYPES.GET_LICENSE,
   // };
-  return async ( dispatch )=> {
+  return async (dispatch) => {
     try {
-      const {data} = await axios.get(`http://localhost:3001/api/license`);
-     // console.log(data)
-      dispatch({type: TYPES.GET_LICENSE, payload: data})
-    }
-    catch(error) {
-      dispatch({type: TYPES.GET_LICENSE, payload: []})
-      console.log("error in action searchFunko",error)
+      const { data } = await axios.get(`http://localhost:3001/api/license`);
+      // console.log(data)
+      dispatch({ type: TYPES.GET_LICENSE, payload: data });
+    } catch (error) {
+      dispatch({ type: TYPES.GET_LICENSE, payload: [] });
+      console.log("error in action searchFunko", error);
       // console.log(error)
     }
-  }
+  };
 };
 
 export const getBrand = () => {
@@ -234,7 +214,7 @@ export const getBrand = () => {
 };
 
 export const filterCategories = (payload) => {
- // console.log("pp", payload);
+  // console.log("pp", payload);
   return {
     type: TYPES.HANDLE_CATEGORIES,
     payload,
@@ -268,13 +248,13 @@ export const modifiedTotal = () => {
     type: TYPES.MODIFIED_TOTAL,
   };
 };
- 
-export const changePage = (number) =>{
-  return{
+
+export const changePage = (number) => {
+  return {
     type: TYPES.CHANGE_PAGE,
-    payload: number
-  }
-}
+    payload: number,
+  };
+};
 
 export const createFunko = (funko) => {
   return async (dispatch) => {
@@ -287,54 +267,6 @@ export const createFunko = (funko) => {
       console.log(data);
     } catch (e) {
       console.log("Error in createFunko");
-      console.log(e);
-    }
-  };
-};
-
-export const createLicense = (license) => {
-  return async (dispatch) => {
-    try {
-      const { data } = axios.post("http://localhost:3001/api/license", license);
-      dispatch({
-        type: TYPES.CREATE_LICENSE,
-        payload: data,
-      });
-      console.log(data);
-    } catch (e) {
-      console.log("Error in createLicense");
-      console.log(e);
-    }
-  };
-};
-
-export const createBrand = (brand) => {
-  return async (dispatch) => {
-    try {
-      const { data } = axios.post("http://localhost:3001/api/brand", brand);
-      dispatch({
-        type: TYPES.CREATE_BRAND,
-        payload: data,
-      });
-      console.log(data);
-    } catch (e) {
-      console.log("Error in createBrand");
-      console.log(e);
-    }
-  };
-};
-
-export const createCategory = (category) => {
-  return async (dispatch) => {
-    try {
-      const { data } = axios.post("http://localhost:3001/api/category", category);
-      dispatch({
-        type: TYPES.CREATE_CATEGORY,
-        payload: data,
-      });
-      console.log(data);
-    } catch (e) {
-      console.log("Error in createCategory");
       console.log(e);
     }
   };
@@ -359,7 +291,9 @@ export const modifyFunko = (funko) => {
 export const deleteFunko = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`http://localhost:3001/api/product/${id}`);
+      const { data } = await axios.delete(
+        `http://localhost:3001/api/product/${id}`
+      );
       dispatch({ type: TYPES.DELETE_FUNKO, payload: data });
     } catch (error) {
       console.log("error in deleteFunko", error);
@@ -369,12 +303,14 @@ export const deleteFunko = (id) => {
 
 export const getConfirm = (token) => {
   return async (dispatch) => {
-    var json = await axios.get(`http://localhost:3001/api/user/confirm/${token}`);
+    var json = await axios.get(
+      `http://localhost:3001/api/user/confirm/${token}`
+    );
     // console.log("TOKEN",token)
     return dispatch({
       type: TYPES.GET_CONFIRM,
       payload: json.data,
-    }); 
+    });
   };
 };
 
@@ -383,7 +319,10 @@ export const getConfirm = (token) => {
 export const resetPassword = (email) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.post("http://localhost:3001/api/user/newPassword", email);
+      const { data } = axios.post(
+        "http://localhost:3001/api/user/newPassword",
+        email
+      );
       dispatch({
         type: TYPES.RESET_PASSWORD,
         payload: data.msg,
@@ -391,15 +330,17 @@ export const resetPassword = (email) => {
       console.log(data.msg);
     } catch (e) {
       console.log("Error in resetPassword");
-     
     }
   };
-}; 
+};
 
-export const ConfirmResetPassword = (token,newPassword) => {
+export const ConfirmResetPassword = (token, newPassword) => {
   return async (dispatch) => {
     try {
-      const { data } = axios.put(`http://localhost:3001/api/user/newPassword/confirm/${token}`, newPassword);
+      const { data } = axios.put(
+        `http://localhost:3001/api/user/newPassword/confirm/${token}`,
+        newPassword
+      );
       dispatch({
         type: TYPES.RESET_PASSWORD,
         payload: data.msg,
@@ -407,7 +348,44 @@ export const ConfirmResetPassword = (token,newPassword) => {
       console.log(data.msg);
     } catch (e) {
       console.log("Error in ConfirmResetPassword");
-     
     }
+  };
+};
+
+export const getOrders = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/api/order");
+      dispatch({ type: TYPES.GET_ORDERS, payload: data });
+    }
+    catch (e) {
+    console.log("Error in getOrders", e);
+    }
+  }
+};
+
+export const changeStatus = (status) => {
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/order/setstatus", status);
+      dispatch({
+        type: TYPES.CHANGE_STATUS,
+        payload: data,
+      });
+      console.log(data);
+    } catch (e) {
+      console.log("Error in changeStatus");
+      console.log(e);
+    }
+  };
+};
+
+export const filterStatus = (status) => {
+  return async (dispatch) => {
+    var {data} = await axios.get("http://localhost:3001/api/order", status);
+    return dispatch({
+      type: TYPES.FILTER_STATUS,
+      payload: data,
+    });
   };
 };
