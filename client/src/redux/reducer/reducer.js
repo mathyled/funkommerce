@@ -14,6 +14,9 @@ const initialState = {
 
   user: null, //Usuario de la sesion
   token:null,
+  admin:{
+    users:[]
+  },
   msg:null,
   detail: [],
   categories: [],
@@ -292,6 +295,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.FIND_USER:
+      if(action.payload===null) return state;
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
 
@@ -310,6 +314,16 @@ export default function rootReducer(state = initialState, action) {
         user: null,
         token: null,
       };
+
+    case TYPES.GET_USERS_ADMIN:
+
+      return {
+        ...state,
+        admin:{
+          ...state.admin,
+          users:action.payload
+        }
+      }
 
     case TYPES.GET_REVIEWS:
       return {
