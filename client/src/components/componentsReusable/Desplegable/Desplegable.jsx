@@ -1,28 +1,27 @@
-import styles from "./Desplegable.module.css"
-import { ReactComponent as CaretIcon } from './icons/caret.svg';
-import React, { useState, useEffect, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import Detail from '../../FunkoDetail/Detail/Detail';
+import styles from "./Desplegable.module.css";
+import { ReactComponent as CaretIcon } from "./icons/caret.svg";
+import React, { useState, useEffect, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+import Detail from "../../FunkoDetail/Detail/Detail";
 
 function Desplegable() {
   return (
-
-          <Navbar>
+    <Navbar>
       <NavItem icon={<CaretIcon />}>
         <DropdownMenu></DropdownMenu>
       </NavItem>
     </Navbar>
-
   );
 }
 
 function Navbar(props) {
   return (
-       <nav className={styles.navbar} >
-      <ul className={styles["navbar-nav"]}><p>Product Details</p>{props.children}</ul>
+    <nav className={styles.navbar}>
+      <ul className={styles["navbar-nav"]}>
+        <p>Product Details</p>
+        {props.children}
+      </ul>
     </nav>
- 
-   
   );
 }
 
@@ -41,13 +40,13 @@ function NavItem(props) {
 }
 
 function DropdownMenu() {
-  const [activeMenu] = useState('main');
+  const [activeMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
-  }, [])
+    setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
+  }, []);
 
   function calcHeight(el) {
     const height = el.offsetHeight;
@@ -55,12 +54,17 @@ function DropdownMenu() {
   }
 
   return (
-    <div className={styles.dropdown} style={{ height: menuHeight }} ref={dropdownRef}>
+    <div
+      className={styles.dropdown}
+      style={{ height: menuHeight }}
+      ref={dropdownRef}
+    >
       <CSSTransition
-        in={activeMenu === 'main'}
+        in={activeMenu === "main"}
         timeout={500}
         unmountOnExit
-        onEnter={calcHeight}>
+        onEnter={calcHeight}
+      >
         <div className="menu">
           <Detail />
         </div>

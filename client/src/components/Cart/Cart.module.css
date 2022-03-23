@@ -5,6 +5,7 @@
 .subContainer {
   display: flex;
   flex-wrap: wrap;
+  
   align-content: space-between;
   background-color: rgb(255, 255, 255);
   justify-content: center;
@@ -12,6 +13,7 @@
   margin: 20px 50px;
   padding-top: 25px;
   padding-bottom: 25px;
+
 }
 
 .myCartAndButtonEmpty {
@@ -102,8 +104,12 @@
   padding: 15px 5px;
   overflow: hidden;
   width: 200px;
+  /* height: 350px; */
 }
-
+.title {
+  overflow: hidden;
+  height: 25px;
+}
 .price {
   margin: 5px 0px;
   background-color: #f3f3f7;
@@ -134,7 +140,6 @@
   padding: 15px 35px 15px 35px;
   display: flex;
   align-items: center;
-
 }
 .buttonsMoreAndLess:hover {
   background-color: #111;

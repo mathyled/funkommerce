@@ -63,53 +63,22 @@ export const orderFunkos = (order) => {
   return { type: TYPES.ORDER_FUNKOS, payload: order };
 };
 
-//ACTIONS FOR CREATE USER
-// <<<<<<< HEAD
-// export const createUser = ({name, lastName, email, password}) => {
-//   return async (dispatch) => {
-
-//     const user = {
-//       name,
-//       lastName,
-//       email,
-//       password,
-//     };
-
-//     try {
-//       //Espera por crear un ususario
-//       const response = await axios.post(
-//         "http://localhost:3001/api/user/signUp",
-//         user
-//       );
-// //console.log(response)
-//       if (response.data) {
-//         dispatch({
-//           type: TYPES.CREATE_USER,
-//           payload: {user:response.data.user,token:response.data.token},
-//         });
-//         //console.log(response)
-//         alert(response.data.msg)
-
-//       } else {
-//         alert("User not found");
-//       }
-//     } catch (error) {
-//       console.log("CREATEUSER__ACTION: ", error);
-//     }
-//   };
-// =======
-export const createUser = (user, token) => {
+export const createUser = (user,token, idUser) => {
+  
   return {
-    type: TYPES.CREATE_USER,
-    payload: { user, token },
-  };
+    type:TYPES.CREATE_USER,
+    payload:{user,token,idUser}
+  }
+
 };
 
 //ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
 export const salveUser = () => {
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
+  const idUser = window.localStorage.getItem("idUser");
   console.log('se obtiene el usuario del local storage con la llamada del componente APP')
+
  
   if(user){
 
@@ -117,14 +86,15 @@ export const salveUser = () => {
 
     return {
       type: TYPES.FIND_USER,
-      payload: { user: user, token: token },
+      payload: { user: user, token: token, idUser:idUser },
     };
   }
     console.log("el usuario no existia");
 
   return {
     type:TYPES.FIND_USER,
-    payload:null
+    payload:{user:null,token:null,idUser:null}
+
   }
 
 };
@@ -143,10 +113,11 @@ export const logoutUser = () => {
 
 export const findUser = (user, token) => {
   return {
-    type: TYPES.FIND_USER,
-    payload: { user, token },
-  };
-};
+    type:TYPES.LOGOUT_USER,
+    payload:{user:null,token:null, idUser:null}
+  }
+}
+
 
 
 /*
@@ -157,24 +128,10 @@ export const getUsersAdmin=(token,email) => {
 
   return async(dispatch)=>{
 
-    try{
-
-      const  {data } = await axios.post(URL_USER + "user/adminUsers", {token,email});
-      console.log(data)
-      if(data.msg !== 'todo ok') return alert('algo salio mal!');
-
-      console.log(data);
-      dispatch({
-        type:TYPES.GET_USERS_ADMIN,
-        payload:data.users
-      })
-
-    }catch(error){
-
-      console.log('errores getUSer: ',error)
-    }
-
-
+export const findUser = (user,token, idUser) => {
+  return {
+    type:TYPES.FIND_USER,
+    payload:{user,token, idUser}
 
   }
 
@@ -359,7 +316,7 @@ export const resetPassword = (email) => {
         type: TYPES.RESET_PASSWORD,
         payload: data.msg,
       });
-      console.log(data.msg);
+     // console.log(data.msg);
     } catch (e) {
       console.log("Error in resetPassword");
     }
@@ -384,6 +341,34 @@ export const ConfirmResetPassword = (token, newPassword) => {
   };
 };
 
+export const addCartDb = (obj) => {
+  //console.log("111",obj)
+  
+  return async (dispatch) => {
+    try {
+      const { data } = axios.post(`http://localhost:3001/api/order`, obj);
+      dispatch({
+        type: TYPES.ADD_TO_CART_DB,
+        payload: data,
+      });
+    } catch (e) {
+      console.log("Error in addCartDb");
+    }
+  };
+} 
+
+export const getCartDb = (obj) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/api/order/incart", obj )
+   //   console.log("jorge",data)
+      dispatch({
+        type: TYPES.GET_CART_DB,
+        payload: data.Order_detail,
+      });
+    } catch (e) {
+      console.log("Error in ConfirmResetPassword");
+      
 export const getOrders = () => {
   return async (dispatch) => {
     try {
@@ -412,6 +397,33 @@ export const changeStatus = (status) => {
   };
 };
 
+export const updateQuantityInCartDb = (obj) => {
+  //console.log("111",obj)
+  
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/order/updataquantity", obj);
+      dispatch({
+        type: TYPES.UPDATE_QUANTITY_TO_CART_DB,
+        payload: data,
+      });
+    } catch (e) {
+      console.log("Error in updateQuantityInCartDb");
+    }
+  };
+} 
+export const setPost = () => {
+  
+  return {
+    type: TYPES.SET_POST
+   };
+} 
+export const restartingPost = () => {
+  
+  return {
+    type: TYPES.RESTARTING_POST
+   };
+} 
 export const filterStatus = (status) => {
   return async (dispatch) => {
     var {data} = await axios.get("http://localhost:3001/api/order/setstatus", status);

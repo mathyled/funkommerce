@@ -35,7 +35,8 @@ function App() {
   
     useEffect(() => {
       dispatch(salveUser());
-    }, [])
+      
+    }, [dispatch])
 
   return (
     <div  className={darkMode ? "app  " : "App"}>

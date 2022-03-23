@@ -21,6 +21,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Nav = () => {
 
   const dispatch = useDispatch();
+
+  const user2 = useSelector(state=>state.user);
+  const token=useSelector(state=>state.token);
+
+  return (
+    <section className={styles.nav}>
+      <Link to="/">
+
   const usuario = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0()
   console.log(isAuthenticated)
@@ -28,11 +36,12 @@ const Nav = () => {
     <section className={styles.nav}>
       <Link to="/">
         {console.log('el usuario es: ', usuario)}
+
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
-        {!usuario && (
+        {!token && (
           <>
             {
               isAuthenticated ?
@@ -56,7 +65,7 @@ const Nav = () => {
           </>
         )}
 
-        {usuario && (
+        { token &&(
           <button
             className={styles.logout}
             onClick={(event) => {

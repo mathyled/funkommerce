@@ -9,15 +9,19 @@ import {
   getCategories,
   getLicense,
   getBrand,
+  getCartDb,
 } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
-
 
 const FunkoCardContainer = () => {
   const funkos = useSelector((state) => state.funkos);
 
   let cart = useSelector((state) => state.cart);
+  
+  let cartDb = useSelector((state) => state.cartDb);
+  let token = useSelector((state) => state.cartDb);
+  let choosenCart =  token ? cartDb : cart
 
   const dispatch = useDispatch();
   const [load, setLoad] = useState(true);
@@ -27,6 +31,12 @@ const FunkoCardContainer = () => {
     dispatch(getCategories());
     dispatch(getLicense());
     dispatch(getBrand());
+
+    let objUser = {
+      UserID: 4,
+    };
+
+    dispatch(getCartDb(objUser));
   }, [dispatch]);
 
   function handleClick(e) {
@@ -60,8 +70,7 @@ const FunkoCardContainer = () => {
   }
   return (
     <div>
-      
-      <FunkoCard funkos={funkos} addToCart1={addToCart1} cart={cart} />
+      <FunkoCard funkos={funkos} addToCart1={addToCart1} choosenCart={choosenCart} cart={cart}/>
     </div>
   );
 };
