@@ -104,7 +104,8 @@ export const signIn = async (req: Request, res: Response) => {
 
         if(user.status === "PENDING"){
             return res.status(200).send({ msg: "User not confirmed, please check your Email" });
-        } else{
+        } 
+        else{
         // token
         const token: string = jwt.sign({ id: user.id }, process.env.SECRET || "tokenTest", {
             expiresIn: "1d",
@@ -254,3 +255,38 @@ export const deleteUser = async (req: Request, res: Response) => {
         console.error(error);
     }
 }
+
+
+export const getUsersAdmin=async(req:Request,res:Response)=>{
+
+    const email=req.body.email;
+    const token=req.body.token;
+    try{
+
+        const Admin=await prisma.user.findUnique({
+            where:{email:email}
+        });
+
+        if(Admin!.role !=='ADMIN')return res.send({msg:'User Not Admin'});
+
+        const users=await prisma.user.findMany({
+            select:{
+                name:true,
+                lastName:true,
+                email:true,
+                role:true,
+                LogedIn:true
+            }
+        });
+        console.log('los usuario son: ',users)
+        return res.send({msg:'todo ok',users})
+
+
+    }catch(error){
+        console.log('error en Get_User_Admin');
+        return res.send({msg:'error XD'})
+    }
+
+}
+
+

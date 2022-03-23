@@ -17,7 +17,7 @@ const navigate = useNavigate()
   });
   const [input, setInput] = useState({
     password1: "",
-    password2:''
+    password2:""
   });
 
     const sendForm=(e) => {
@@ -53,9 +53,9 @@ const navigate = useNavigate()
               }} 
             >
               <div  className={styles.footer}>
-              <Input type="password" name="password" placeholder="password" />
+              <Input type="password" name="password1" placeholder="password" value={input.password1}/>
                 {errors.input && <span className={styles.err}>{errors.input}</span>}
-                <Input type="password" name="password" placeholder="password" />
+                <Input type="password" name="password2" placeholder="password" value={input.password2} />
                 {errors.input && <span className={styles.err}>{errors.input}</span>}
               <button  className={styles.buttonSubmit}>Submit</button>
             </div>

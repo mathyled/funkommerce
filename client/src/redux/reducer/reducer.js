@@ -1,4 +1,4 @@
-import { Storage } from "../../helpers/salveStorage";
+// import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
 
@@ -19,10 +19,14 @@ const initialState = {
 
   user: null, //Usuario de la sesion
 
-  token: null,
   idUser: null,
   // loggedUser  token  userId
   msg: null,
+  token: null,
+  admin: {
+    users: [],
+  },
+
   detail: [],
 
   categories: [],
@@ -36,6 +40,7 @@ const initialState = {
   actualPage: 1,
 
   confirm: {},
+  orders:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -301,6 +306,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.FIND_USER:
       console.log(action.payload.user);
+      if (action.payload === null) return state;
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
 
       localStorage.setItem("token", JSON.stringify(action.payload.token));
@@ -323,6 +329,15 @@ export default function rootReducer(state = initialState, action) {
         user: null,
         token: null,
         userId: null,
+      };
+
+    case TYPES.GET_USERS_ADMIN:
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          users: action.payload,
+        },
       };
 
     case TYPES.GET_REVIEWS:
@@ -353,20 +368,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
-    case TYPES.CREATE_LICENSE:
+    case TYPES.MODIFY_FUNKO:
       return {
         ...state,
       };
 
-    case TYPES.CREATE_BRAND:
+    case TYPES.DELETE_FUNKO:
       return {
         ...state,
       };
 
-    case TYPES.CREATE_CATEGORY:
-      return {
-        ...state,
-      };
     case TYPES.GET_CONFIRM:
       return {
         ...state,
@@ -377,6 +388,17 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         msg: action.payload,
+      };
+
+    case TYPES.GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case TYPES.CHANGE_STATUS:
+      return {
+        ...state,
       };
 
     case TYPES.GET_CART_DB:
@@ -408,10 +430,17 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         post: false,
       };
+
     case TYPES.SET_ITEMS_QUANTITY:
       return {
         ...state,
-        itemsQuantity: state.itemsQuantity +1,
+        itemsQuantity: state.itemsQuantity + 1,
+      };
+
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
       };
 
     default:

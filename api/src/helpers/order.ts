@@ -212,3 +212,40 @@ export const helpersStatusIncart = async (props: any) => {
     console.error(error);
   }
 };
+
+export const helpersAllOrder = async () => {
+  try {
+    let allOrder = await order.findMany({ include: { Order_detail: true } });
+    return allOrder;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const helpersOneStatusAllOrder = async (props: any) => {
+  const { status } = props;
+  try {
+    let allOrderStatus = await order.findMany({
+      where: { status_order: status },
+      include: { Order_detail: true },
+    });
+    return allOrderStatus;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const helpersUpStatus = async (props: any) => {
+  const { idOrder, status } = props;
+  try {
+    let findOrderId = await order.findUnique({ where: { id: idOrder } });
+    let allStatusSet = await order.update({
+      where: { id: idOrder },
+      data: { status_order: status },
+    });
+
+    return allStatusSet;
+  } catch (error) {
+    console.error(error);
+  }
+};

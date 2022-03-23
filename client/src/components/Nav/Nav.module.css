@@ -82,3 +82,9 @@
 .cartImg:focus {
   color: #275dfe;
 }
+
+
+.auth{
+  display: flex;
+  align-items: center;
+}

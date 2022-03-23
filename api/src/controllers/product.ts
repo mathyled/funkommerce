@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 import {
   getAllProductsDb,
   getFindProductsDb,
+  helperPutProduct,
   getFindProductId,
   helperPostProduct,
 } from "../helpers/product";
@@ -58,6 +59,21 @@ export const postProduct = async (req: Request, res: Response) => {
   }
 };
 
+// Put product 
+export const putProduct = async (req: Request, res: Response)=>{
+  try {
+    const props = req.body;
+    let putProduct: any = await helperPutProduct(props);
+    putProduct
+      ? res.status(200).send({ msg: "Product has been update" })
+      : res.status(404).send({ msg: "Product not update" });
+    
+  } catch (error) {
+    console.error(error);
+    
+  }
+}
+
 // delete Product
 
 export const deleteProduct = async (req: Request, res: Response) => {
@@ -73,3 +89,4 @@ export const deleteProduct = async (req: Request, res: Response) => {
     console.error(error);
   }
 };
+
