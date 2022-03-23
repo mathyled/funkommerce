@@ -57,13 +57,15 @@ model User {
 }
 
 model Order {
-  id           Int            @id @unique @default(autoincrement())
-  status_pay   String         @default("PENDING")
-  amount       Decimal?       @db.Money
-  DateTime     DateTime       @default(now())
-  User         User           @relation(fields: [UserId], references: [id])
-  UserId       Int
-  Order_detail Order_detail[]
+  id            Int            @id @unique @default(autoincrement())
+  status_pay    String         @default("PENDING")
+  status_order  String         @default("PENDING")
+  order_address String?
+  amount        Decimal?       @db.Money
+  DateTime      DateTime       @default(now())
+  User          User           @relation(fields: [UserId], references: [id])
+  UserId        Int
+  Order_detail  Order_detail[]
 }
 
 model Order_detail {

@@ -23,39 +23,42 @@ import React,{useContext} from "react";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import {useDispatch} from 'react-redux';
 import {salveUser} from './redux/actions/actions';
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
 import ConfirmNewPassword from "./components/ConfirmNewPassword/ConfirmNewPassword";
+import PurchaseOrders from "./components/PurcharseOrders/PurchaseOrders"
 
 function App() {
+
   const { darkMode } = useContext(DarkModeContext);
   const dispatch=useDispatch();
   
     useEffect(() => {
-      
       dispatch(salveUser());
       
     }, [dispatch])
+
   return (
     <div  className={darkMode ? "app  " : "App"}>
       <Routes >
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/cart" element={<Cart/>} />
-        <Route path="/header" element={ <Header />} />
-        <Route  path="/detail/:id" element={ < FunkoDetail/>} />
-        <Route path="/create" element={ <CreateFunko />} />
-        <Route  path="/email" element={ < ContactUs/>} />
-        <Route  path="/checkout" element={ < CheckoutContainer/>} />
-        <Route path='/about' element={<About />} />
-        <Route path='/confirm/:token' element={< Confirm />} />
-        <Route path='/sendmail' element={< SendMail />} />
-        <Route path='/admin' element={< PanelHome />} />
-        <Route path= '/footer' element={<ChatbotBtn />}/>
-        <Route path= '/rating' element={<StarRating />}/>
-        <Route path= '/forgotpassword' element={<ForgotPassword />}/>
-        <Route path="/modify" element={<ModifyFunko />}/>
-        <Route path="/sendnewpassword" element={<SendConfirmNewPassword />}/>
-        <Route path="/confirmnewpassword/:token" element={<ConfirmNewPassword />}/>
+        <Route path="/header" element={<Header/>}/>
+        <Route path="/detail/:id" element={<FunkoDetail/>} />
+        <Route path="/create" element={<CreateFunko/>} />
+        <Route path="/email" element={<ContactUs/>} />
+        <Route path="/checkout" element={<CheckoutContainer/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/confirm/:token" element={<Confirm/>} />
+        <Route path="/sendmail" element={< SendMail/>} />
+        <Route path="/admin" element={<PanelHome/>} />
+        <Route path="/footer" element={<ChatbotBtn/>} />
+        <Route path="/rating" element={<StarRating/>} />
+        <Route path="/forgotpassword" element={<ForgotPassword/>} />
+        <Route path="/modify" element={<ModifyFunko/>} />
+        <Route path="/sendnewpassword" element={<SendConfirmNewPassword/>} />
+        <Route path="/confirmnewpassword/:token" element={<ConfirmNewPassword/>} />
+        <Route path="/orders" element={<PurchaseOrders/>} />
         </Routes>
         </div>
 
