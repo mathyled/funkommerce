@@ -9,18 +9,36 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
 
+  cartDb: [],
+
+  post:
+    JSON.parse(localStorage.getItem("post")) === null
+      ? false
+      : JSON.parse(localStorage.getItem("post")),
+
   user: null, //Usuario de la sesion
+
+  idUser: null,
+  // loggedUser  token  userId
+  msg: null,
   token:null,
   admin:{
     users:[]
   },
-  msg:null,
-
+  
   detail: [],
+
   categories: [],
   license: [],
   brand: [],
+
   reviews: [],
+  totalToPay: 0,
+  actualPage: 1,
+
+  confirm: {},
+};
+
   totalToPay: 0,
   actualPage: 1,
   confirm: {},
@@ -128,7 +146,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CLEAR_CART:
-      localStorage.clear();
+      localStorage.removeItem("funkosInCart");
       //storage.removeItem(keyName);
       return {
         ...state,
@@ -234,7 +252,7 @@ export default function rootReducer(state = initialState, action) {
     //     const allFunkos3 = state.funkos;
 
     //     // eslint-disable-next-line array-callback-return
-    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
+    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((e) => ( e.License.name && e.attributes.license?.includes(action.payload)
     //     ))
     //     console.log(licenseFilter)
     //     return {
@@ -256,16 +274,10 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
-
-      // eslint-disable-next-line array-callback-return
-      //console.log(action.payload);
       let licenseFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos3.filter(
-              (e) => e.license && e.license?.includes(action.payload)
-            );
-      // console.log(licenseFilter);
+          : allFunkos3.filter((e) => e.License.name.includes(action.payload));
       return {
         ...state,
         funkos: licenseFilter,
@@ -274,7 +286,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.GET_USER:
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
-
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       return {
         ...state,
         user: action.payload.user,
@@ -282,13 +294,16 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
+      console.log(action.payload);
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        idUser: action.payload.idUser,
       };
 
     case TYPES.DELETE_USER:
@@ -319,24 +334,31 @@ export default function rootReducer(state = initialState, action) {
       }
 
     case TYPES.FIND_USER:
+      console.log(action.payload.user);
       if(action.payload===null) return state;
+
       // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       // localStorage.setItem("token", JSON.stringify(action.payload.token));
 
+      //  console.log(tokenLoaded);
       return {
         ...state,
+
         user: JSON.parse(action.payload.user),
         token: JSON.parse(action.payload.token),
+        idUser: JSON.parse(action.payload.idUser),
+
       };
 
     case TYPES.LOGOUT_USER:
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
-
+      localStorage.removeItem("userId");
       return {
         ...state,
         user: null,
         token: null,
+        userId: null,
       };
 
     case TYPES.GET_USERS_ADMIN:
@@ -356,9 +378,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
+     let choosenCart =  state.token ? state.cartDb : state.cart
       let sum = 0;
-      for (let i = 0; i < state.cart.length; i++) {
-        sum += state.cart[i].price * state.cart[i].quantity;
+      for (let i = 0; i < choosenCart.length; i++) {
+        sum += choosenCart[i].price * choosenCart[i].quantity;
       }
       return {
         ...state,
@@ -398,7 +421,10 @@ export default function rootReducer(state = initialState, action) {
         msg: action.payload,
       };
 
-    case TYPES.GET_ORDERS:
+    case TYPES.RESET_PASSWORD:
+      return {
+        ...state,
+        msg: action.payload,
       return {
         ...state,
         orders: action.payload,
@@ -408,6 +434,44 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+
+    case TYPES.GET_CART_DB:
+      let funkosInDb = state.funkosBackUp;
+      // console.log(funkosInDb)
+      let arr3 = [];
+      funkosInDb.filter((funko) => {
+        action.payload.filter((funkoFromdb) => {
+          if (funko.id === funkoFromdb.productId) {
+            arr3.push({ ...funko, quantity: funkoFromdb.quantity });
+          }
+        });
+      });
+ 
+      return {
+        ...state,
+        cartDb: arr3,
+      };
+
+    case TYPES.SET_POST:
+      localStorage.setItem("post", JSON.stringify(true));
+      return {
+        ...state,
+        post: true,
+      };
+    case TYPES.RESTARTING_POST:
+      localStorage.setItem("post", JSON.stringify(false));
+      return {
+        ...state,
+        post: false,
+      };
+
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
+        };
+
 
     default:
       return {

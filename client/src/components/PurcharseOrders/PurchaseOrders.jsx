@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../redux/actions/actions";
 import EachOrder from "./EachOrder";
 import FilterStatus from "./FilterStatus";
+import styles from "./PurchaseOrders.module.css"
 
 const PurchaseOrders = () => {
   const purchaseOrders = useSelector((state) => state.orders);
@@ -10,18 +11,19 @@ const PurchaseOrders = () => {
 
   useEffect(() => {
     dispatch(getOrders());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <div>
         <FilterStatus />
       </div>
-      <div>
+      <div className={styles.all}>
         {purchaseOrders?.map((o) => {
           return (
             <EachOrder
               key={o.id}
+              orderId={o.id}
               date={o.DateTime}
               userId={o.UserId}
               amount={o.amount}

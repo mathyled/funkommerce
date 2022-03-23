@@ -14,7 +14,7 @@ export const helpersDeleteOrder = async (props: any) => {
       async (item) => await order_detail.delete({ where: { id: item.id } })
     );
 
-    let deleteOrder = await order.delete({ where: { id: findOrder?.id } });
+    let deleteOrder  = await order.delete({ where: { id: findOrder?.id } });
 
     findOrder ? findOrder : [];
   } catch (error) {
@@ -42,7 +42,8 @@ export const helpersAllOrderIncart = async (props: any) => {
 
 export const helpersPostOrderAll = async (props: any) => {
   let { Items, UserId } = props;
-  try {
+  console.log(props)
+  try { 
     // let amount = 0;
     let newOrder = await order.create({
       data: {
@@ -83,7 +84,7 @@ export const helpersPostOrderAll = async (props: any) => {
   }
 };
 
-export const helpersUpQuantity = async (props: any) => {
+export const helpersUpQuantity = async (props: any) => { 
   let { idUser, Items } = props;
 
   try {
@@ -130,6 +131,7 @@ export const helpersUpQuantity = async (props: any) => {
 
 export const helpersdeleteProduct = async (props: any) => {
   const { idUser, idProduct }: any = props;
+  console.log( idUser, idProduct)
   try {
     let findUserOrder = await order.findFirst({
       where: { UserId: idUser },
