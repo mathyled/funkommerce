@@ -12,6 +12,7 @@ import Create from "../../Form/CreateFunko";
 import Modify from "../../Form/Modification/ModifyFunko"
 
 import UsersTable from "./UserPanel/UsersTable";
+import PurchaseOrders from "../../PurcharseOrders/PurchaseOrders"
 
 
 const switchView=(valor)=>{
@@ -35,7 +36,7 @@ const switchView=(valor)=>{
         return <h1>Soy reports</h1>;
 
       case "sales":
-        return <h1>Sales</h1>;
+        return <PurchaseOrders/>;
 
       case "home":
         return <PageHome />;

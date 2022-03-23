@@ -426,7 +426,7 @@ export const restartingPost = () => {
 } 
 export const filterStatus = (status) => {
   return async (dispatch) => {
-    var {data} = await axios.get("http://localhost:3001/api/order", status);
+    var {data} = await axios.get("http://localhost:3001/api/order/setstatus", status);
     return dispatch({
       type: TYPES.FILTER_STATUS,
       payload: data,

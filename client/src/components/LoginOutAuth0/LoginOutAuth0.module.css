@@ -1,0 +1,13 @@
+.btn{
+    background-color: transparent;
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    border: none;
+    color: white;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #434141;
+}

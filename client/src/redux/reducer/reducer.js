@@ -408,6 +408,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
+
     case TYPES.GET_CART_DB:
       let funkosInDb = state.funkosBackUp;
       // console.log(funkosInDb)
@@ -437,6 +438,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         post: false,
       };
+
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
+        };
+
+
     default:
       return {
         ...state,
