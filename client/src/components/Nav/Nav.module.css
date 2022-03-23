@@ -99,3 +99,8 @@
   /* color: #98ea4c; */
   color: #275dfe;
 }
+
+.auth{
+  display: flex;
+  align-items: center;
+}
