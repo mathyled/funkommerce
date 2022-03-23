@@ -1,11 +1,11 @@
 import {TYPES} from './types';
 import axios from 'axios';
 
-const URL_USER = "http://localhost:3001/api/";
+const URL_USER = "http://localhost:3001/api";
 
 
 
-export const deleteUser=(token)=>{
+export const deleteUser=(token,id)=>{
 
     return async(dispatch)=>{
 
@@ -18,7 +18,7 @@ export const deleteUser=(token)=>{
                 }
             }
 
-            const {data}=await axios.delete(URL_USER,config);
+            const { data } = await axios.delete(`${URL_USER}/user/${id}`, config);
 
             console.log('La data del delete es: ',data);
             dispatch({
@@ -37,7 +37,7 @@ export const deleteUser=(token)=>{
 }
 
 
-export const Update_User=(email,token) => {
+export const Update_User=(id,role,token) => {
 
     return async(dispatch)=>{
 
@@ -48,7 +48,7 @@ export const Update_User=(email,token) => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 },
-                data:{email}
+                data:{id,role}
             }
 
             const {data}=await axios.put(URL,config);

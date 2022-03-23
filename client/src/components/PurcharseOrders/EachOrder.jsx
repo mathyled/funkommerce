@@ -36,7 +36,7 @@ const EachOrder = ({
       <h3>Shipping: {statusOrder}</h3>
       {orderDetail?.map((d) => {
         let funkoName = allFunkos?.find((f) => {
-          f.id === d.productId;
+         return f.id === d.productId;
         });
         return (
           <div key={d.id}>

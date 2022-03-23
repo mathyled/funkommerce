@@ -143,7 +143,7 @@ export const logoutUser = () => {
 
 export const findUser = (user, token) => {
   return {
-    type: TYPES.FIND_USER,
+    type: TYPES.GET_USER,
     payload: { user, token },
   };
 };

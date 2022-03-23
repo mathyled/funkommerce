@@ -291,15 +291,42 @@ export default function rootReducer(state = initialState, action) {
         token: action.payload.token,
       };
 
-    case TYPES.FIND_USER:
-      if(action.payload===null) return state;
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+    case TYPES.DELETE_USER:
+      console.log('user payload: ',action.payload);
+      const users=state.admin.users.filter(user=>user.id !== action.payload.id);
 
       return {
         ...state,
-        user: action.payload.user,
-        token: action.payload.token,
+        admin:{
+          ...state.admin,
+          users:users
+        }
+      }
+
+    case TYPES.UPDATE_USER:
+
+      console.log('user update payload: ',action.payload);
+      const indexUpdate=state.admin.users.findIndex(user=>user.id === action.payload.id);
+      const copyUser=state.admin.users;
+      copyUser[indexUpdate]=action.payload;
+
+      return {
+        ...state,
+        admin:{
+          ...state.admin,
+          users: copyUser,
+        }
+      }
+
+    case TYPES.FIND_USER:
+      if(action.payload===null) return state;
+      // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      // localStorage.setItem("token", JSON.stringify(action.payload.token));
+
+      return {
+        ...state,
+        user: JSON.parse(action.payload.user),
+        token: JSON.parse(action.payload.token),
       };
 
     case TYPES.LOGOUT_USER:
