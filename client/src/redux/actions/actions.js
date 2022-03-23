@@ -113,10 +113,12 @@ export const logoutUser = () => {
 
 export const findUser = (user, token) => {
   return {
-    type:TYPES.LOGOUT_USER,
-    payload:{user:null,token:null, idUser:null}
+
+    type:TYPES.GET_USER,
+    payload:{user,token, idUser}
   }
 }
+
 
 
 
