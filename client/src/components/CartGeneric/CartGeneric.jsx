@@ -15,7 +15,7 @@ const CartGeneric = () => {
   //console.log("cart",cart)
   const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
-  useEffect(() => {}, [funkosfromdb]);
+  useEffect(() => {}, [cart]);
   const addOneToCart = (id) => {
     dispatch(sumInCart(id));
   };

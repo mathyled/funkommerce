@@ -8,6 +8,7 @@ import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Funkommerce3 from "../../assets/funkommerce3.png";
 import { useDispatch, useSelector} from "react-redux";
 import { logoutUser } from "../../redux/actions/actions";
+import { useEffect } from "react";
 // import { AiOutlineHome } from "react-icons/ai";
 // import Order from "../Order/Order"
 // import Filters from '../Filters/Filters'
@@ -19,7 +20,10 @@ const Nav = () => {
   const dispatch = useDispatch();
   const user2 = useSelector(state=>state.user);
   const token=useSelector(state=>state.token);
+  let itemsQuantity = useSelector((state) => state.setItemsQuantity);
+  useEffect(()=>{
 
+},[itemsQuantity])
   return (
     <section className={styles.nav}>
       <Link to="/">

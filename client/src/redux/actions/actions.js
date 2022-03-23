@@ -389,3 +389,10 @@ export const restartingPost = () => {
     type: TYPES.RESTARTING_POST
    };
 } 
+
+export const setItemsQuantity = () => {
+  
+  return {
+    type: TYPES.SET_ITEMS_QUANTITY
+   };
+} 

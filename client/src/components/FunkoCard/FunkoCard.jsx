@@ -6,7 +6,7 @@ import Paged from "../Paged/Paged";
 import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
-import { changePage, addCartDb, setPost } from "../../redux/actions/actions";
+import { changePage, addCartDb, setPost, setItemsQuantity} from "../../redux/actions/actions";
 import axios from "axios";
 
 const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
@@ -32,7 +32,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   }
   const [arrVerfication, setarrVerfication] = useState([]);
  
-
+  let itemsQuantity = useSelector((state) => state.setItemsQuantity);
   const addOneObjectToCartDb = async (id) => {
     let funkoAAgregar = funkos.find((e) => e.id === id);
     let modifyQuantityToFunkoDb = { ...funkoAAgregar, quantity: 1 };
@@ -43,11 +43,11 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
     };
     let findObject = arrVerfication.find((e) => e.id === id);
 
-    console.log("pp", post);
+    
     if (token && arrVerfication.length < 1 && post === false) {
       dispatch(addCartDb(obj));
       dispatch(setPost());
-    
+      dispatch(setItemsQuantity());
     } else if (token && post) {
       const cartUserdb = await axios.put(
         "http://localhost:3001/api/order/insertproduct",
@@ -56,6 +56,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
           idUser: 4,
         }
       );
+      dispatch(setItemsQuantity());
     }
   };
 

@@ -30,7 +30,9 @@ const initialState = {
   brand: [],
 
   reviews: [],
+
   totalToPay: 0,
+  itemsQuantity: 0,
   actualPage: 1,
 
   confirm: {},
@@ -330,7 +332,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
-     let choosenCart =  state.token ? state.cartDb : state.cart
+      let choosenCart = state.token ? state.cartDb : state.cart;
       let sum = 0;
       for (let i = 0; i < choosenCart.length; i++) {
         sum += choosenCart[i].price * choosenCart[i].quantity;
@@ -388,7 +390,7 @@ export default function rootReducer(state = initialState, action) {
           }
         });
       });
- 
+
       return {
         ...state,
         cartDb: arr3,
@@ -406,6 +408,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         post: false,
       };
+    case TYPES.SET_ITEMS_QUANTITY:
+      return {
+        ...state,
+        itemsQuantity: state.itemsQuantity +1,
+      };
+
     default:
       return {
         ...state,
