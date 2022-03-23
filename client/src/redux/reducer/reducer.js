@@ -383,6 +383,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
+        };
+
     default:
       return {
         ...state,
