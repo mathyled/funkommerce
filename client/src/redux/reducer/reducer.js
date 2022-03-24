@@ -33,7 +33,7 @@ const initialState = {
   license: [],
   brand: [],
 
-  favoritePost: []
+  favoritePost: [],
 
   reviews: [],
   totalToPay: 0,
@@ -518,17 +518,16 @@ export default function rootReducer(state = initialState, action) {
         return {
           ...state,
 
-          msg: action.payload
+          msg: action.payload,
            token:action.payload.accessToken,
           userGoogle: action.payload,
         };
-        }
-////////////////FAVORITO
-        case TYPES.GET_FAVORITE_POST:
-          return {
-              ...state,
-              favoritePost: action.payload
-          }
+
+      case TYPES.GET_FAVORITE_POST:
+        return {
+          ...state,
+          favoritePost: action.payload
+        };
       case TYPES.ADD_FAVORITE_POST:
           return {
               ...state,
