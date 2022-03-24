@@ -344,9 +344,9 @@ export default function rootReducer(state = initialState, action) {
 
       // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       // localStorage.setItem("token", JSON.stringify(action.payload.token));
-      console.log( action.payload.user);
+    //  console.log( action.payload.user);
       const user=action.payload.user ? JSON.parse(action.payload.user) : null;
-      console.log(  action.payload.token);
+     // console.log(  action.payload.token);
       const token=(action.payload.token==='undefined') ? null : JSON.parse(action.payload.token) ;
 
       //  console.log(tokenLoaded);
