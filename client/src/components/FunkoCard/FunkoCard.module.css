@@ -163,7 +163,7 @@
   border: none;
   text-transform: uppercase;
   font-family: "Secular One";
-  transition-property: background-color, color;
+  transition-property: background-color, color,border;
   transition-duration: 0.8s;
   color: #111;
   width: 80%;
@@ -173,13 +173,10 @@
 }
  
 .buttonAdd:hover {
-  background-color: #e7e7eb;
-  /* color:rgb(255, 255, 255); */
-  /* background: rgb(2,0,36); */
-  /* background: linear-gradient(90deg, rgb(194, 255, 103) 0%, rgba(82, 255, 13, 0.9) 35%, rgb(194, 255, 100) 100%);
-} */
+border: solid 1px #111;
 }
-/* .pagination { */
-  /* width: 100%; */
-  /* margin-left: 40%; */
-/* } */
+
+.buttonAddInCart{
+  background-color:#111;
+  color:rgb(255, 255, 255);
+}

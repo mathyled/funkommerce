@@ -6,9 +6,11 @@ import {
   modifiedTotal,
   restartingPost,
   getCartDb,
-  modifiedCartDb
+  modifiedCartDb,
+  getFunkos,
+  resetCounter,
 } from "../../redux/actions/actions";
- 
+
 import { useEffect, useState } from "react";
 
 import TotalToPay from "../TotalToPay/TotalToPay";
@@ -28,23 +30,40 @@ const Cart = () => {
 
   const post = useSelector((state) => state.post);
 
-  
   const emptyCartInDb = async () => {
+    Swal.fire({
+      title: "Do you want to empty cart?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+      customClass: {
+        actions: "my-actions",
+        cancelButton: "order-1 right-gap",
+        confirmButton: "order-2",
+        denyButton: "order-3",
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const cartUserdb2 = await axios.delete(
+          "http://localhost:3001/api/order/",
+          {
+            data: { idUser: 2 },
+          }
+        );
+        dispatch(restartingPost());
 
-    dispatch(modifiedCartDb());
-    const cartUserdb2 = await axios.delete("http://localhost:3001/api/order/", {
-      data: { idUser: 2 },
+        let objUser = {
+          UserID: 2,
+        };
+        dispatch(getFunkos());
+       dispatch(getCartDb(objUser));
+        dispatch(modifiedCartDb());
+        dispatch(resetCounter);
+        Swal.fire("Empty!", "", "success");
+      }
     });
-    dispatch(restartingPost());
-    
-    let objUser = {
-      UserID: 2,
-    };
-
-    dispatch(getCartDb(objUser));
   };
-
-
 
   const emptyCart = () => {
     if (cart.lenght < 1 || cart.length === 0) {
@@ -55,13 +74,24 @@ const Cart = () => {
         timerProgressBar: true,
       });
     } else {
-      dispatch(clearCart());
+      Swal.fire({
+        title: "Do you want to empty cart?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(clearCart());
+          Swal.fire("Empty!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   };
 
   const tab = <>&nbsp;</>;
-
-
 
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
@@ -70,10 +100,16 @@ const Cart = () => {
       UserID: 4,
     };
     dispatch(getCartDb(objUser));
-  }, [dispatch, post, cart, totalToPay2, token, funkosfromdb.length]);
+  }, [dispatch, post, cart, totalToPay2, token]);
 
-
-
+  const youMustBeLoggedIn = () => {
+    Swal.fire({
+      title: "You must be logged in to checkout",
+      icon: "info",
+      timer: 4000,
+      timerProgressBar: true,
+    });
+  };
   return (
     <div className={styles.container}>
       <Nav></Nav>
@@ -84,17 +120,23 @@ const Cart = () => {
           {" "}
           TOTAL: {tab} <TotalToPay totalToPay2={totalToPay2}></TotalToPay>{" "}
         </h3>
-
-        <Link to="/checkout">
-          <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+        {token ? (
+          <Link to="/checkout">
+            <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+              Checkout{" "}
+            </button>
+          </Link>
+        ) : (
+          <button
+            onClick={youMustBeLoggedIn}
+            className={`${styles.checkOut} ${styles.emptyCart}`}
+          >
             Checkout{" "}
           </button>
-        </Link>
-
+        )}
         <button
           onClick={() => {
-           !token ? emptyCart()
-            :emptyCartInDb();
+            !token ? emptyCart() : emptyCartInDb();
           }}
           className={styles.emptyCart}
         >

@@ -354,11 +354,13 @@ export default function rootReducer(state = initialState, action) {
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem("funkosInCart");
       return {
         ...state,
         user: null,
         token: null,
         userId: null,
+        cart:[],
       };
 
     case TYPES.GET_USERS_ADMIN:
@@ -476,13 +478,21 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_CART_DB:
-      return initialState;
+     return {
+       ...state,
+       cartDb: []
+     }
 
 
     case TYPES.ADD_TO_CART_DB:
       return {
         ...state,
-        cartDb: state.cartDb.concat(action.payload),
+        cartDb: state.cartDb.concat([{...action.payload}]),
+      };
+      case TYPES.RESET_COUNTER:
+      return {
+        ...state,
+        itemsQuantity: 0,
       };
 
     default:
