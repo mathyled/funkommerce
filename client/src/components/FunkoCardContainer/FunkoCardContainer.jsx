@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./FunkoCardContainer.module.css";
+//import styles from "./FunkoCardContainer.module.css";
 import FunkoCard from "../FunkoCard/FunkoCard";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";

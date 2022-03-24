@@ -1,4 +1,7 @@
 
+//import { Storage } from "../../helpers/salveStorage";
+
+
 import { TYPES } from "../actions/types";
 
 const initialState = {
@@ -29,6 +32,9 @@ const initialState = {
   categories: [],
   license: [],
   brand: [],
+
+  favoritePost: []
+
   reviews: [],
   totalToPay: 0,
   itemsQuantity: 0,
@@ -36,6 +42,7 @@ const initialState = {
   confirm: {},
   orders: [],
   userGoogle:{}
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -510,9 +517,29 @@ export default function rootReducer(state = initialState, action) {
       case TYPES.USER_GOOGLE:
         return {
           ...state,
-          token:action.payload.accessToken,
+
+          msg: action.payload
+           token:action.payload.accessToken,
           userGoogle: action.payload,
         };
+        }
+////////////////FAVORITO
+        case TYPES.GET_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: action.payload
+          }
+      case TYPES.ADD_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: [...state.favoritePost, action.payload]
+          }
+      case TYPES.REMOVE_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: state.favoritePost.filter(e => e.id !== action.payload)
+          }
+
 
     default:
       return {

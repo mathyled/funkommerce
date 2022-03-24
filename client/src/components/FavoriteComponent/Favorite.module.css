@@ -1,0 +1,161 @@
+/* FAVORITE BUTTON */
+.menu1{
+  text-align: center;
+}
+
+.menu2 {
+  position: relative;
+}
+
+.menuButton{
+  background: none;
+  align-items: center;
+  
+  border: none;
+
+ 
+}
+.text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.svg {
+    height: 2rem;
+    width: 1.75rem;
+    display: block; 
+    text-decoration: none;
+}
+
+.span{
+  left: .0209rem;
+  bottom: 1.385rem;
+  position: relative; 
+  color: white;
+  opacity: 1;
+}
+
+.menuItems {
+  background-color: rgba(255,255,255);
+  padding: 1.5em;
+  position: absolute;
+  right: 24em;
+  margin-top: 1.5em;
+  z-index: 50;
+  border-radius: .375rem;
+}
+
+.font{
+  font-weight: 700;
+  font-size: inherit;
+}
+
+.menuText1{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  margin-top: .75rem;
+}
+
+.menuText2{
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.menuText3{
+  font-size: .875rem;
+  line-height: 1.25rem;
+  flex: 1 1 auto;
+  width: 8rem;
+}
+
+/* FAVORITE COMPONENT */
+
+.relative {
+  position: relative;
+}
+
+.btnFavCom{
+  display: flex;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  border-radius: 9999px;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+  text-transform: none;
+}
+
+.svg1{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* FAVORITE CARD */
+
+.container{
+  max-width: 640px;
+  width: 100%;
+}
+
+.fav1{
+  padding: 1.5rem;
+  display: flex;
+  margin: .5rem;
+  flex-direction: column;
+}
+
+.fav2{
+  padding: .5rem;
+  border-color: rgba(243,244,246);
+  border-bottom-width: 1px;
+  cursor: pointer;
+  display: flex;
+}
+
+.fav3{
+  padding: .5rem;  
+  width: 5rem;
+}
+
+.imgFav{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-style: solid;
+
+}
+
+.fav4{
+  font-size: .875rem;
+  line-height: 1.25rem;
+  flex: 1 1 auto;
+  width: 8rem;
+}
+
+.fontFav{
+  font-weight: 700;
+}
+
+.fav5{
+  font-weight: 500;
+  align-items: flex-end;
+  flex-direction: column;
+  display: flex;
+}
+
+.fav6{
+  color: rgba(185,28,28);
+  border-radius: 9999px;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fav7{
+  display: block;
+  align: middle;
+}

@@ -8,6 +8,7 @@ import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Funkommerce3 from "../../assets/funkommerce3.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../redux/actions/actions";
+import FavoriteButton from "../FavoriteComponent/FavoriteButton";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -15,6 +16,7 @@ import { useEffect } from "react";
  import Profile from "../Profile/Profile";
 // import LoginOutAuth0 from "../LoginOutAuth0/LoginOutAuth0";
 // import { useAuth0 } from "@auth0/auth0-react";
+
 
 // import { AiOutlineHome } from "react-icons/ai";
 // import Order from "../Order/Order"
@@ -43,6 +45,7 @@ const Nav = () => {
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
+      <FavoriteButton />
       <div className={styles.userbtns}>
         {!token ? (
           <>
@@ -73,9 +76,12 @@ const Nav = () => {
           </button>
         )}
       </div>
+
+
       <div>
         {userLocal ? userLocal?.user.role === "ADMIN" ? <button className={styles.panel}> <Link to ="/admin" >Admin</Link> </button> : <button className={styles.panel}> <Link to ="/myorders" >My Orders</Link> </button> : ""}
       </div>
+
       <Link to="/cart" className={styles.linkToCart}>
         <ItemsQuantity />
         <MdOutlineAddShoppingCart className={styles.cartImg} />

@@ -1,5 +1,5 @@
 import styles from "./Nav2.module.css";
-import Order from "../Order/Order";
+//import Order from "../Order/Order";
 import Filters from "../Filters/Filters";
 // import Desplegable from "../componentsReusable/Desplegable/Desplegable";
 
