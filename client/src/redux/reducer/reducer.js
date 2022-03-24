@@ -40,6 +40,7 @@ const initialState = {
 
   confirm: {},
   orders: [],
+  userGoogle:{}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -485,6 +486,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cartDb: state.cartDb.concat(action.payload),
       };
+
+      case TYPES.USER_GOOGLE:
+        return {
+          ...state,
+          token:action.payload.accessToken,
+          userGoogle: action.payload,
+        };
 
     default:
       return {

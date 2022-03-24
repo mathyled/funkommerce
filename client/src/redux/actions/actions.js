@@ -454,3 +454,12 @@ export const modifiedCartDb = () => {
   
 };
   
+
+
+export const getUserGoogle = (response) => {
+  return {
+       type: TYPES.USER_GOOGLE,
+       payload:response
+     };
+   
+ };
