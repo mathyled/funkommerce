@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+
 const {product, order, user} = new PrismaClient()
 import Stripe from 'stripe';
 const {STRIPE_URL} = process.env 
@@ -22,13 +23,13 @@ const oAuth2Client = new google.auth.OAuth2(
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 
-
 export const postCheckout = async (req:Request, res:Response)=>{
     try{
         const {userId, id}=req.body
         const findUser = await user.findFirst({where:{
           id:userId
         }})
+
         const findOrder = await order.findFirst({
             where:{UserId:userId},include:{Order_detail:true}
     })

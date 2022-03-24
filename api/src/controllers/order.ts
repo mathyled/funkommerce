@@ -1,4 +1,6 @@
 import {
+  helpersAllOrder,
+  helpersUpStatus,
   helpersUpQuantity,
   helpersDeleteOrder,
   helpersPostOrderAll,
@@ -6,6 +8,7 @@ import {
   helpersdeleteProduct,
   helpersInsertProduct,
   helpersAllOrderIncart,
+  helpersOneStatusAllOrder,
 } from "../helpers/order";
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
@@ -99,6 +102,41 @@ export const StatusIncart = async (req: Request, res: Response) => {
     statusInCart
       ? res.status(200).send(statusInCart)
       : res.status(404).send({ msg: "not order in the cart" });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const allStatusOrder = async (req: Request, res: Response) => {
+  try {
+    const statusOrder: any = await helpersAllOrder();
+    statusOrder
+      ? res.status(200).send(statusOrder)
+      : res.status(404).send({ msg: "not order status" });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const OrderAccordingState = async (req: Request, res: Response) => {
+  try {
+    const props = req.params;
+    const statusOrder: any = await helpersOneStatusAllOrder(props);
+    statusOrder.length
+      ? res.status(200).send(statusOrder)
+      : res.status(404).send({ msg: "not order status" });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const OrderSetStatus = async (req: Request, res: Response) => {
+  try {
+    const props = req.body;
+    let setStatus: any = await helpersUpStatus(props);
+    setStatus
+      ? res.status(200).send(setStatus)
+      : res.status(404).send({ msg: "not update order status" });
   } catch (error) {
     console.error(error);
   }

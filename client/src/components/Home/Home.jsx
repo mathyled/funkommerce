@@ -3,7 +3,9 @@ import Nav from "../Nav/Nav";
 import FunkoCardContainer from "../FunkoCardContainer/FunkoCardContainer";
 import Nav2 from "../Nav/Nav2";
 
+
 const Home = () => {
+ 
   return (
     <div className={styles.containerHome}>
       <div>

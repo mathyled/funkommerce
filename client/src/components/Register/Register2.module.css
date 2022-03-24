@@ -8,11 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: row-reverse; */
   z-index: 20;
   overflow: hidden;
 }
-
 
 .formButton {
   display: flex;
@@ -30,7 +28,6 @@
   height: 28px;
   border-radius: 50px;
   margin-left: -34px;
-  /* margin-top:5px; */
   z-index: 2;
   padding: 1px 1px;
 }
@@ -38,28 +35,31 @@
   display: none;
 }
 
-.button{
-    background-color: #fff;
-    border-style: none;
-    /* box-sizing: border-box; */
-    color: #111;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    border-left: #111 solid 1px;
-    transition-property: color;
-    transition-duration: 0.7s;
+.button {
+  background-color: #fff;
+  border-style: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-left: #111 solid 1px;
+  transition-property: color;
+  transition-duration: 0.7s;
+  border-radius: 0px 5px 5px 0;
+  color: #275efe;
+}
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.926);
 }

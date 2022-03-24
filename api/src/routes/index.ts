@@ -17,5 +17,4 @@ router.use("/user", userRoute);
 router.use("/license", licenseRoute)
 router.use("/checkout", checkoutRoute)
 
-
 export default router;

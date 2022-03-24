@@ -79,7 +79,7 @@ const Register = ({close,closeValue}) => {
         "http://localhost:3001/api/user/signUp",
         inputs
       );
-      console.log(verification)
+     // console.log(verification)
       if (verification.data.message) {
         alert(verification.data.message);
       } else {
@@ -135,7 +135,7 @@ const Register = ({close,closeValue}) => {
                   <span className={styles.err}>{errors.password}</span>
                 )}
                 <div className={styles.buttonSubmit}>
-                  <Button>Submit</Button>
+                  <Button>Create account</Button>
                 </div>
               </div>
             </form>
