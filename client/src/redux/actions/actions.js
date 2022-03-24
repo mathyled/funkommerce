@@ -111,7 +111,7 @@ export const logoutUser = () => {
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (user, token) => {
+export const findUser = (user, token, idUser) => {
   return {
 
     type:TYPES.GET_USER,
@@ -119,26 +119,16 @@ export const findUser = (user, token) => {
   }
 }
 
-
-
+export const getUsersAdmin = (payload) => {
+  return {
+    type: TYPES.GET_USERS_ADMIN,
+    payload,
+  }
+}
 
 /*
   Action para obtener todos los usuarios para el admin
 */
-
-export const getUsersAdmin=(token,email) => {
-
-  return async(dispatch)=>{
-
-export const findUser = (user,token, idUser) => {
-  return {
-    type:TYPES.FIND_USER,
-    payload:{user,token, idUser}
-
-  }
-
-
-}
 
 
 export const getDetails = (id) => {
@@ -370,6 +360,9 @@ export const getCartDb = (obj) => {
       });
     } catch (e) {
       console.log("Error in ConfirmResetPassword");
+    }
+  }
+}
       
 export const getOrders = () => {
   return async (dispatch) => {
@@ -401,7 +394,6 @@ export const changeStatus = (status) => {
 
 export const updateQuantityInCartDb = (obj) => {
   //console.log("111",obj)
-  
   return async (dispatch) => {
     try {
       const { data } = axios.put("http://localhost:3001/api/order/updataquantity", obj);
@@ -414,6 +406,7 @@ export const updateQuantityInCartDb = (obj) => {
     }
   };
 } 
+
 export const setPost = () => {
   
   return {
@@ -428,10 +421,18 @@ export const restartingPost = () => {
 } 
 export const filterStatus = (status) => {
   return async (dispatch) => {
-    var {data} = await axios.get("http://localhost:3001/api/order/setstatus", status);
-    return dispatch({
-      type: TYPES.FILTER_STATUS,
-      payload: data,
-    });
+    try {
+      var {data} = await axios.get(`http://localhost:3001/api/order/setstatusfilter/${status}`);
+      return dispatch({
+        type: TYPES.FILTER_STATUS,
+        payload: data,
+      });
+    }
+    catch {
+      return dispatch({
+        type: TYPES.FILTER_STATUS,
+        payload: [],
+      });
+    }
   };
 };

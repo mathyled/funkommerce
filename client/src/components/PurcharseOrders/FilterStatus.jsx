@@ -7,7 +7,7 @@ const FilterStatus = () => {
 
     const dispatch = useDispatch();
     const [input, setInput] = useState({
-        status: ""
+        status: "DELIVERED"
     })
 
     const handleFilter = (e) => {
@@ -15,7 +15,7 @@ const FilterStatus = () => {
         if(e.target.value === "ALL") {
             dispatch(getOrders())
         } else {
-            // console.log(e.target.value)
+            console.log(e.target.value)
             // setInput({
             //     status: e.target.value
             // })
