@@ -51,6 +51,15 @@
   border-left: #111 solid 1px;
   transition-property: color;
   transition-duration: 0.7s;
+  border-radius: 200px;
+  padding-right: 25px;
+  padding-left: 25px;
+  font-weight: bold;
+}
+.logout:hover{
+  background-color: #111;
+  color: #fff;
+  border: solid 1px #fff;
 }
 
 .home {

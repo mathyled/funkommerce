@@ -10,6 +10,7 @@ import {
   getLicense,
   getBrand,
   getCartDb,
+  setItemsQuantity
 } from "../../redux/actions/actions";
 import Swal from "sweetalert2";
 import gifLoader from "../../assets/gifLoader.gif";
@@ -19,8 +20,10 @@ const FunkoCardContainer = () => {
 
   let cart = useSelector((state) => state.cart);
   
-  let cartDb = useSelector((state) => state.cartDb);
-  let token = useSelector((state) => state.cartDb);
+  let cartDb  = useSelector((state) => state.cartDb);
+  let token = useSelector((state) => state.token);
+  let itemsQuantity = useSelector((state) => state.setItemsQuantity);
+  
   let choosenCart =  token ? cartDb : cart
 
   const dispatch = useDispatch();
@@ -39,10 +42,10 @@ const FunkoCardContainer = () => {
     dispatch(getCartDb(objUser));
   }, [dispatch]);
 
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getFunkos());
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   dispatch(getFunkos());
+  // }
 
   const addToCart1 = (id) => {
     let funkoAlreadyInCart = cart.find(
@@ -57,13 +60,21 @@ const FunkoCardContainer = () => {
         timerProgressBar: true,
       });
     } else {
+      
       dispatch(addToCart(id));
+      dispatch(setItemsQuantity());
     }
   };
 
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
   }, [cart]);
+
+  
+
+
+
+
 
   if (load) {
     return <img src={gifLoader} alt="gifLoader" />;

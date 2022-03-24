@@ -10,34 +10,31 @@ const initialState = {
       : JSON.parse(localStorage.getItem("funkosInCart")),
 
   cartDb: [],
-
+  user12: null,
   post:
     JSON.parse(localStorage.getItem("post")) === null
       ? false
       : JSON.parse(localStorage.getItem("post")),
 
-  user: null, //Usuario de la sesion
+  user: null, //Usuario de la sesion {}
 
   idUser: null,
   // loggedUser  token  userId
   msg: null,
-  token:null,
-  admin:{
-    users:[]
+  token: null,
+  admin: {
+    users: [],
   },
-  
   detail: [],
-
   categories: [],
   license: [],
   brand: [],
-
   reviews: [],
   totalToPay: 0,
+  itemsQuantity: 0,
   actualPage: 1,
-
   confirm: {},
-  orders: []
+  orders: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -302,35 +299,39 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.DELETE_USER:
-      console.log('user payload: ',action.payload);
-      const users=state.admin.users.filter(user=>user.id !== action.payload.id);
+
+     // console.log("user payload: ", action.payload);
+      const users = state.admin.users.filter(
+        (user) => user.id !== action.payload.id
+      );
 
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
-          users:users
-        }
-      }
+          users: users,
+        },
+      };
 
     case TYPES.UPDATE_USER:
-
-      console.log('user update payload: ',action.payload);
-      const indexUpdate=state.admin.users.findIndex(user=>user.id === action.payload.id);
-      const copyUser=state.admin.users;
-      copyUser[indexUpdate]=action.payload;
+      console.log("user update payload: ", action.payload);
+      const indexUpdate = state.admin.users.findIndex(
+        (user) => user.id === action.payload.id
+      );
+      const copyUser = state.admin.users;
+      copyUser[indexUpdate] = action.payload;
 
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
           users: copyUser,
-        }
-      }
+        },
+      };
 
     case TYPES.FIND_USER:
-      console.log(action.payload.user);
-      if(action.payload===null) return state;
+    //  console.log(action.payload.user);
+      if (action.payload === null) return state;
 
       // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       // localStorage.setItem("token", JSON.stringify(action.payload.token));
@@ -349,22 +350,23 @@ export default function rootReducer(state = initialState, action) {
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem("funkosInCart");
       return {
         ...state,
         user: null,
         token: null,
         userId: null,
+        cart:[],
       };
 
     case TYPES.GET_USERS_ADMIN:
-
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
-          users:action.payload
-        }
-      }
+          users: action.payload,
+        },
+      };
 
     case TYPES.GET_REVIEWS:
       return {
@@ -373,7 +375,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
-     let choosenCart =  state.token ? state.cartDb : state.cart
+      let choosenCart = state.token ? state.cartDb : state.cart;
       let sum = 0;
       for (let i = 0; i < choosenCart.length; i++) {
         sum += choosenCart[i].price * choosenCart[i].quantity;
@@ -427,7 +429,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
-
     case TYPES.GET_CART_DB:
       let funkosInDb = state.funkosBackUp;
       // console.log(funkosInDb)
@@ -439,7 +440,7 @@ export default function rootReducer(state = initialState, action) {
           }
         });
       });
- 
+
       return {
         ...state,
         cartDb: arr3,
@@ -458,12 +459,37 @@ export default function rootReducer(state = initialState, action) {
         post: false,
       };
 
+     case TYPES.SET_ITEMS_QUANTITY:
+      // console.log(action.payload);
+       return {
+         ...state,
+         itemsQuantity: state.itemsQuantity + 1,
+         cartDb: [...state.cartDb,{...action.payload}]
+       };
+
     case TYPES.FILTER_STATUS:
       return {
         ...state,
         orders: action.payload,
-        };
+      };
 
+    case TYPES.MODIFIED_CART_DB:
+     return {
+       ...state,
+       cartDb: []
+     }
+
+
+    case TYPES.ADD_TO_CART_DB:
+      return {
+        ...state,
+        cartDb: state.cartDb.concat([{...action.payload}]),
+      };
+      case TYPES.RESET_COUNTER:
+      return {
+        ...state,
+        itemsQuantity: 0,
+      };
 
     default:
       return {
