@@ -300,20 +300,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.DELETE_USER:
-<<<<<<< HEAD
-      console.log('user payload: ',action.payload);
-      const users = state.admin.users.filter(
-        (user) => parseInt(user.id) !== parseInt(action.payload)
-      );
-        console.log('users filtrados: ',users)
-=======
-
      // console.log("user payload: ", action.payload);
       const users = state.admin.users.filter(
         (user) => user.id !== action.payload.id
       );
-
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       return {
         ...state,
         admin: {
@@ -323,23 +313,13 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.UPDATE_USER:
-<<<<<<< HEAD
 
-      console.log('user update payload: ',action.payload);
-      const indexUpdate=state.admin.users.findIndex(user=>user.id === action.payload.id);
-      const copyUser=state.admin.users;
-      // console.log(state.admin.users)
-      // console.log(indexUpdate)
-      copyUser[indexUpdate]=action.payload;
-      // console.log(copyUser)
-=======
       console.log("user update payload: ", action.payload);
       const indexUpdate = state.admin.users.findIndex(
         (user) => user.id === action.payload.id
       );
       const copyUser = state.admin.users;
       copyUser[indexUpdate] = action.payload;
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
 
       return {
         ...state,
@@ -384,16 +364,10 @@ export default function rootReducer(state = initialState, action) {
       //  console.log(tokenLoaded);
       return {
         ...state,
-<<<<<<< HEAD
-        user: user,
-        token: token,
-=======
-
         user: JSON.parse(action.payload.user),
         token: JSON.parse(action.payload.token),
         idUser: JSON.parse(action.payload.idUser),
 
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       };
 
     case TYPES.LOGOUT_USER:
@@ -410,10 +384,6 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USERS_ADMIN:
-<<<<<<< HEAD
-      console.log('users: ',action.payload);
-=======
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       return {
         ...state,
         admin: {
