@@ -386,6 +386,7 @@ export default function rootReducer(state = initialState, action) {
       for (let i = 0; i < choosenCart.length; i++) {
         sum += choosenCart[i].price * choosenCart[i].quantity;
       }
+      console.log("choosenCart", choosenCart)
       return {
         ...state,
         totalToPay: sum,

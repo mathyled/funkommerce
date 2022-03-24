@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./CartFromDb.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getCartDb } from "../../redux/actions/actions";
+import { getCartDb,modifiedTotal } from "../../redux/actions/actions";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 const CartFromDb = () => {
@@ -11,12 +11,14 @@ const CartFromDb = () => {
 
   let addOne = "addOne";
   let substractOne = "substractOne";
+  const totalToPay = useSelector(state=>state.totalToPay)
   const dispatch = useDispatch();
 
   const [render, setRender] = useState(true);
 
   const updateQuantityInCartDb = async (id, operation) => {
     let itemInCart = funkosfromdb.find((item) => item.id === id);
+   
     if (itemInCart.stock > itemInCart.quantity) {
       let cartToPut = await funkosfromdb.map((item2) =>
         item2.id === itemInCart.id
@@ -36,10 +38,13 @@ const CartFromDb = () => {
       );
       setRender(!render);
       console.log("cartToPut", cartToPut);
+      dispatch(modifiedTotal)
+     
     } else if (
       itemInCart.stock === itemInCart.quantity &&
       operation === substractOne
     ) {
+      
       let cartToPut = await funkosfromdb.map((item2) =>
         item2.id === itemInCart.id
           ? {
@@ -55,8 +60,10 @@ const CartFromDb = () => {
           idUser: 2,
         }
       );
+     
       setRender(!render);
       console.log("cartToPut", cartToPut);
+      dispatch(modifiedTotal)
     } else {
       Swal.fire({
         title: "Maximum quantity of this product reaches",
@@ -81,9 +88,10 @@ const CartFromDb = () => {
     setRender(!render);
 
     console.log("hice delete del product");
+    dispatch(modifiedTotal)
   };
 
-  useEffect(() => {}, [dispatch, post, funkosfromdb]);
+  useEffect(() => {}, [dispatch, post, funkosfromdb,totalToPay]);
 
   return (
     <div className={styles.subContainer}>
