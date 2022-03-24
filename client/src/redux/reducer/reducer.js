@@ -37,12 +37,7 @@ const initialState = {
   actualPage: 1,
 
   confirm: {},
-};
-
-  totalToPay: 0,
-  actualPage: 1,
-  confirm: {},
-  orders: [],
+  orders: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -421,10 +416,7 @@ export default function rootReducer(state = initialState, action) {
         msg: action.payload,
       };
 
-    case TYPES.RESET_PASSWORD:
-      return {
-        ...state,
-        msg: action.payload,
+    case TYPES.GET_ORDERS:
       return {
         ...state,
         orders: action.payload,

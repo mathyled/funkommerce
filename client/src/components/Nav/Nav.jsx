@@ -25,10 +25,6 @@ const Nav = () => {
   const user2 = useSelector(state=>state.user);
   const token=useSelector(state=>state.token);
 
-  return (
-    <section className={styles.nav}>
-      <Link to="/">
-
   const usuario = useSelector(state => state.user);
   const { isAuthenticated } = useAuth0()
   console.log(isAuthenticated)
