@@ -60,16 +60,15 @@ const Login = ({close,closeValue}) => {
          
           
            try {
-             const {data} = await axios.post(
+             const response = await axios.post(
                "http://localhost:3001/api/user/signIn",
                inputs
              );
-             console.log('data: ',data)
+             console.log('data: ',response)
 
-             if (data.msg ==="User signed in successfully"){
+             if (response.data.msg ==="User signed in successfully"){
 
-               dispatch(findUser(data.user,data.token));
-  
+               dispatch(findUser(response.data.user,response.data.token));
   
                setInputs({
                  email: "",
@@ -78,7 +77,7 @@ const Login = ({close,closeValue}) => {
                event.target.email.value = "";
                event.target.password.value = "";
              }else{
-                 alert(data.msg); 
+                 alert(response.data.msg); 
              }
 
              

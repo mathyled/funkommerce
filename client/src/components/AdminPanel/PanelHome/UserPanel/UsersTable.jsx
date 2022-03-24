@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import{useDispatch,useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom'
 import {getUsersAdmin} from '../../../../redux/actions/actions';
-import {deleteUser, Update_User} from '../../../../redux/actions/ActionAdmin';
+import {deleteUser, resetPass, Update_User} from '../../../../redux/actions/ActionAdmin';
 import Styles from './User.module.css';
 
 
@@ -9,12 +10,18 @@ const UsersTable=()=>{
     const dispatch = useDispatch();
     const usuario=useSelector((state) => state.user);
     const token=useSelector((state) => state.token);
-    const users = useSelector((state) => state.admin.users);
-
+    const listUser = useSelector((state) => state.admin.users);
+    // const [users,setUsers]=useState(listUser)
+    const navigate=useNavigate();
+    let users=listUser;
     useEffect(()=>{
 
         if(!usuario || !token){
             alert('usuario no logueado');
+            navigate('/');
+            window.localStorage.removeItem('loggedUser');
+            window.localStorage.removeItem("token");
+
         }else{
 
             console.log('se monto el users');
@@ -29,19 +36,36 @@ const UsersTable=()=>{
         }
     },[])
 
+    useEffect(() => {
+
+      users=listUser;
+    },[listUser])
 
     const userDelete=(event)=>{
       event.preventDefault();
       console.log('borrando el user : ',event.target.id);
-      // dispatch(deleteUser(token,event.target.id));
+      dispatch(deleteUser(token,event.target.id,navigate));
     }
     const userUpdate=(event)=>{
       event.preventDefault();
       const userUpdate=users.find(user=>user.id === parseInt(event.target.id));
-      console.log('el user es: ',userUpdate)
+      // console.log('el user es: ',userUpdate)
 
-      console.log('actualizando el user : ',event.target.id);
-      // dispatch(Update_User(event.target.id,userUpdate.role,token));
+      const changeRole=(userUpdate.role === 'ADMIN') ? 'USERS': 'ADMIN';
+
+      // console.log('actualizando el user : ',event.target.id,changeRole);
+      // console.log('el id a actualizar es: ',event.target.id);
+      dispatch(Update_User(event.target.id,changeRole,token,navigate));
+
+    }
+
+    const resetPassword=(event)=>{
+      event.preventDefault();
+      // const userUpdate = users.find(
+      //   (user) => user.id === parseInt(event.target.id)
+      // );
+      
+      dispatch(resetPass(event.target.id,token,true,navigate))
 
     }
 
@@ -49,6 +73,7 @@ const UsersTable=()=>{
 
     return (
       <section className={Styles.userContent}>
+        {console.log('se renderizo el user: ',users)}
         Soy Usuario
         <article>
           <div>N°</div>
@@ -59,8 +84,9 @@ const UsersTable=()=>{
           <div>LogedIn</div>
           <div>Delete</div>
           <div>Update</div>
-          {users.map((user, index) => {
-            console.log('id:',user.id)
+          <div>ResetPass</div>
+          { users.map((user, index) => {
+            console.log("id:", user);
             return (
               <>
                 <span>{index}</span>
@@ -74,6 +100,9 @@ const UsersTable=()=>{
                 </button>
                 <button title="User Update" id={user.id} onClick={userUpdate}>
                   <img src="/images/update.svg" alt="trash" id={user.id} />
+                </button>
+                <button title="Reset Password" id={user.id} onClick={resetPassword}>
+                  <img src="/images/reset.svg" alt="reset" id={user.id} />
                 </button>
               </>
             );

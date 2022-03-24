@@ -293,8 +293,10 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.DELETE_USER:
       console.log('user payload: ',action.payload);
-      const users=state.admin.users.filter(user=>user.id !== action.payload.id);
-
+      const users = state.admin.users.filter(
+        (user) => parseInt(user.id) !== parseInt(action.payload)
+      );
+        console.log('users filtrados: ',users)
       return {
         ...state,
         admin:{
@@ -308,7 +310,10 @@ export default function rootReducer(state = initialState, action) {
       console.log('user update payload: ',action.payload);
       const indexUpdate=state.admin.users.findIndex(user=>user.id === action.payload.id);
       const copyUser=state.admin.users;
+      // console.log(state.admin.users)
+      // console.log(indexUpdate)
       copyUser[indexUpdate]=action.payload;
+      // console.log(copyUser)
 
       return {
         ...state,
@@ -318,15 +323,40 @@ export default function rootReducer(state = initialState, action) {
         }
       }
 
+    case TYPES.RESET_PASSWORD_ADMIN:
+
+    const indexDel=state.admin.users.findIndex(user=>user.id === action.payload.id);
+    const userCopy=state.admin.users;
+      // console.log(state.admin.users)
+      // console.log(indexUpdate)
+      const newUser = {
+        ...copyUser[indexDel],
+        password: "",
+      };
+      copyUser[indexDel]=newUser;
+    
+      return {
+        ...state,
+        admin:{
+          ...state.admin,
+          users:copyUser
+        }
+      }
+
+
     case TYPES.FIND_USER:
       if(action.payload===null) return state;
       // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       // localStorage.setItem("token", JSON.stringify(action.payload.token));
+      console.log( action.payload.user);
+      const user=action.payload.user ? JSON.parse(action.payload.user) : null;
+      console.log(  action.payload.token);
+      const token=(action.payload.token==='undefined') ? null : JSON.parse(action.payload.token) ;
 
       return {
         ...state,
-        user: JSON.parse(action.payload.user),
-        token: JSON.parse(action.payload.token),
+        user: user,
+        token: token,
       };
 
     case TYPES.LOGOUT_USER:
@@ -340,7 +370,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.GET_USERS_ADMIN:
-
+      console.log('users: ',action.payload);
       return {
         ...state,
         admin:{
