@@ -27,7 +27,7 @@
 
 .orderInfo {
     display: flex;
-    justify-content: stretch;
+    justify-content: space-evenly;
     width: 50%;
     align-items: center;
 

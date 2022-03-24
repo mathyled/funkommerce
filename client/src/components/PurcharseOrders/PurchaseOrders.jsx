@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../../redux/actions/actions";
+import { getOrders, getFunkos } from "../../redux/actions/actions";
 import EachOrder from "./EachOrder";
 import FilterStatus from "./FilterStatus";
 import styles from "./PurchaseOrders.module.css"
@@ -10,8 +10,9 @@ const PurchaseOrders = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOrders());
-  }, [dispatch]);
+    
+    dispatch(getFunkos()).then(() => dispatch(getOrders()))
+  }, []);
 
   return (
     <div>
