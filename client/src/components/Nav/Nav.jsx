@@ -11,10 +11,10 @@ import { logoutUser } from "../../redux/actions/actions";
 
 import { useEffect } from "react";
 
-import LoginAunth0 from "../LoginAuth0/LoginAuth0";
-import Profile from "../Profile/Profile";
-import LoginOutAuth0 from "../LoginOutAuth0/LoginOutAuth0";
-import { useAuth0 } from "@auth0/auth0-react";
+// import LoginAunth0 from "../LoginAuth0/LoginAuth0";
+ import Profile from "../Profile/Profile";
+// import LoginOutAuth0 from "../LoginOutAuth0/LoginOutAuth0";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 // import { AiOutlineHome } from "react-icons/ai";
 // import Order from "../Order/Order"
@@ -24,12 +24,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Nav = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.userGoogle);
   const token = useSelector((state) => state.token);
   
 
-  const { isAuthenticated } = useAuth0();
-  
+
+  // const { isAuthenticated } = useAuth0();
+  useEffect(() => {}, [itemsQuantity]);
+
 
 
   return (
@@ -41,16 +43,18 @@ const Nav = () => {
       <div className={styles.userbtns}>
         {!token ? (
           <>
-            {isAuthenticated ? (
+            { token ? (
               <div className={styles.auth}>
-                <Profile />
-                <LoginOutAuth0 />
+              <button>Logout</button>
+              <Profile />
               </div>
             ) : (
-              <div>
-                <Login />
-                <LoginAunth0 />
-                <Register />
+              <div className={styles.auth}>
+            
+                <Login />  
+                  <Register />
+             
+            
               </div>
             )}
           </>

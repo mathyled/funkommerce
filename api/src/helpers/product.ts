@@ -28,6 +28,7 @@ export const getFindProductId = async (id: any) => {
       where: { id: Number(id) },
       include: {
         Category: true,
+        License:true
       },
     });
     return findProduct;

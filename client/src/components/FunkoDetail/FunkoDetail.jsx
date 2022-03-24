@@ -11,7 +11,7 @@ import ReviewRoot from "../Reviews/ReviewRoot/ReviewRoot";
 import Detail from '../../components/FunkoDetail/Detail/Detail';
 import imgCredit from "./image.js";
 import ImageCredit from "../componentsReusable/ImageCredit";
-import ReviewList from "../Reviews/ReviewList/ReviewList";
+// import ReviewList from "../Reviews/ReviewList/ReviewList";
 import Footer from "../Footer/Footer";
 
 const FunkoDetail = () => {
@@ -100,15 +100,15 @@ const FunkoDetail = () => {
                 </button>
               </div>
 
-              <ReviewRoot />
+              {/* <ReviewRoot /> */}
 
             </div>
 
           </div>
-          <div className={styles["item-review"]}>
+          {/* <div className={styles["item-review"]}>
             <ReviewList reviews={reviews} />
-          </div>
-          <div className={styles["item-medium"]}></div>
+          </div> */}
+          {/* <div className={styles["item-medium"]}></div>
           <div className={styles["item-pay"]}>
             <h4>Payment methods</h4>
 
@@ -149,9 +149,9 @@ const FunkoDetail = () => {
               </div>
             </div>
 
-          </div>
+          </div> */}
         </div>
-<Footer></Footer>
+{/* <Footer></Footer> */}
       </div>
     )
   }

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findUser, addCartDb, setPost } from "../../redux/actions/actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import LoginBtn from "../LoginBtn/LoginBtn"
 const Login = ({ close, closeValue }) => {
   //const user = useSelector((state) => state.user);
 
@@ -124,6 +124,7 @@ const Login = ({ close, closeValue }) => {
                 <Button type="submit">Submit</Button>
               </div>
             </form>
+            <LoginBtn />
             <Link to="/forgotpassword">
               <p>Forgot your password?</p>
             </Link>
