@@ -63,68 +63,38 @@ export const orderFunkos = (order) => {
   return { type: TYPES.ORDER_FUNKOS, payload: order };
 };
 
-//ACTIONS FOR CREATE USER
-// <<<<<<< HEAD
-// export const createUser = ({name, lastName, email, password}) => {
-//   return async (dispatch) => {
-
-//     const user = {
-//       name,
-//       lastName,
-//       email,
-//       password,
-//     };
-
-//     try {
-//       //Espera por crear un ususario
-//       const response = await axios.post(
-//         "http://localhost:3001/api/user/signUp",
-//         user
-//       );
-// //console.log(response)
-//       if (response.data) {
-//         dispatch({
-//           type: TYPES.CREATE_USER,
-//           payload: {user:response.data.user,token:response.data.token},
-//         });
-//         //console.log(response)
-//         alert(response.data.msg)
-
-//       } else {
-//         alert("User not found");
-//       }
-//     } catch (error) {
-//       console.log("CREATEUSER__ACTION: ", error);
-//     }
-//   };
-// =======
-export const createUser = (user, token) => {
+export const createUser = (user,token, idUser) => {
+  
   return {
-    type: TYPES.CREATE_USER,
-    payload: { user, token },
-  };
+    type:TYPES.CREATE_USER,
+    payload:{user,token,idUser}
+  }
+
 };
 
 //ACION PARA BUSCAR EL USER EN EL LOCAL STORAGE:
 export const salveUser = () => {
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
-  console.log('se obtiene el usuario del local storage con la llamada del componente APP')
+  const idUser = window.localStorage.getItem("idUser");
+ // console.log('se obtiene el usuario del local storage con la llamada del componente APP')
+
  
   if(user){
 
-    console.log('el usuario ya existia');
+    //console.log('el usuario ya existia');
 
     return {
       type: TYPES.FIND_USER,
-      payload: { user: user, token: token },
+      payload: { user: user, token: token, idUser:idUser },
     };
   }
-    console.log("el usuario no existia");
+   // console.log("el usuario no existia");
 
   return {
     type:TYPES.FIND_USER,
-    payload:null
+    payload:{user:null,token:null,idUser:null}
+
   }
 
 };
@@ -141,18 +111,28 @@ export const logoutUser = () => {
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (user, token) => {
-  return {
-    type: TYPES.GET_USER,
-    payload: { user, token },
-  };
-};
 
+export const findUser = (user, token,idUser) => {
+
+  return {
+
+    type:TYPES.GET_USER,
+    payload:{user,token, idUser}
+  }
+}
+
+export const getUsersAdmin = (payload) => {
+  return {
+    type: TYPES.GET_USERS_ADMIN,
+    payload,
+  }
+}
 
 /*
   Action para obtener todos los usuarios para el admin
 */
 
+<<<<<<< HEAD
 export const getUsersAdmin=(token) => {
 
   return async(dispatch)=>{
@@ -179,13 +159,24 @@ export const getUsersAdmin=(token) => {
 
       console.log('errores getUSer: ',error)
     }
+=======
 
+export const getUsersAdmin=(token,email) => {
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
 
-
-  }
-
-
+  // return async(dispatch)=>{
+  // }}
 }
+// export const findUser = (user,token, idUser) => {
+//   return {
+//     type:TYPES.FIND_USER,
+//     payload:{user,token, idUser}
+
+//   }
+
+
+// }
+
 
 
 export const getDetails = (id) => {
@@ -365,7 +356,7 @@ export const resetPassword = (email) => {
         type: TYPES.RESET_PASSWORD,
         payload: data.msg,
       });
-      console.log(data.msg);
+     // console.log(data.msg);
     } catch (e) {
       console.log("Error in resetPassword");
     }
@@ -389,6 +380,36 @@ export const ConfirmResetPassword = (token, newPassword) => {
     }
   };
 };
+
+export const addCartDb = (obj, funkoAAgregar) => {
+  
+  
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`http://localhost:3001/api/order`, obj);
+      dispatch({
+        type: TYPES.ADD_TO_CART_DB,
+        payload: funkoAAgregar,
+      });
+    } catch (e) {
+      console.error("Error in addCartDb",e);
+    }
+  };
+} 
+
+export const getCartDb = (obj) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/api/order/incart", obj )
+      //console.log("jorge",data)
+      dispatch({
+        type: TYPES.GET_CART_DB,
+        payload: data.Order_detail,
+      });
+    } catch (e) {
+      console.log("Error in ConfirmResetPassword");
+
+    }}  }
 
 export const getOrders = () => {
   return async (dispatch) => {
@@ -418,12 +439,81 @@ export const changeStatus = (status) => {
   };
 };
 
+export const updateQuantityInCartDb = (obj) => {
+  //console.log("111",obj)
+  return async (dispatch) => {
+    try {
+      const { data } = axios.put("http://localhost:3001/api/order/updataquantity", obj);
+      dispatch({
+        type: TYPES.UPDATE_QUANTITY_TO_CART_DB,
+        payload: data,
+      });
+    } catch (e) {
+      console.log("Error in updateQuantityInCartDb");
+    }
+  };
+} 
+
+export const setPost = () => {
+  
+  return {
+    type: TYPES.SET_POST
+   };
+} 
+export const restartingPost = () => {
+  
+  return {
+    type: TYPES.RESTARTING_POST
+   };
+} 
+
+
+export const setItemsQuantity = (funkoAAgregar) => {
+  //console.log("fffffffffff",funkoAAgregar)
+  return {
+    type: TYPES.SET_ITEMS_QUANTITY,
+    payload:funkoAAgregar
+   };
+} 
+
 export const filterStatus = (status) => {
   return async (dispatch) => {
-    var {data} = await axios.get("http://localhost:3001/api/order", status);
-    return dispatch({
-      type: TYPES.FILTER_STATUS,
-      payload: data,
-    });
+    try {
+      var {data} = await axios.get(`http://localhost:3001/api/order/setstatusfilter/${status}`);
+      return dispatch({
+        type: TYPES.FILTER_STATUS,
+        payload: data,
+      });
+    }
+    catch {
+      return dispatch({
+        type: TYPES.FILTER_STATUS,
+        payload: [],
+      });
+    }
   };
 };
+
+export const modifiedCartDb = () => {
+ return {
+      type: TYPES.MODIFIED_CART_DB,
+    };
+  
+};
+
+export const resetCounter = () => {
+  return {
+       type: TYPES.RESET_COUNTER
+     };
+   
+ };
+  
+
+
+export const getUserGoogle = (response) => {
+  return {
+       type: TYPES.USER_GOOGLE,
+       payload:response
+     };
+   
+ };

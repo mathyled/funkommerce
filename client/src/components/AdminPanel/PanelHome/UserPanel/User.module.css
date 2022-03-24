@@ -20,8 +20,11 @@
     grid-template-rows: repeat(auto-fill,1fr);
     justify-items: stretch;
 }
-.userContent article div,span,button{
+.userContent article div,button{
     border:none;
+ 
+}
+.span{
     border:1px solid var(--color-form);
 }
 .userContent article div{

@@ -2,75 +2,67 @@ import React from "react";
 import styles from "./Cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteFromCart,
-  sumInCart,
   clearCart,
   modifiedTotal,
+  restartingPost,
+  getCartDb,
+  modifiedCartDb,
+  getFunkos,
+  resetCounter,
 } from "../../redux/actions/actions";
-import notFound from "../../assets/notFound.png";
+
 import { useEffect, useState } from "react";
-import { RiDeleteBin5Line } from "react-icons/ri";
-//MdOutlineAddShoppingCart
+
 import TotalToPay from "../TotalToPay/TotalToPay";
-import { AiOutlineHome } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import Funkommerce from "../../assets/Funkommerce.png";
 import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
 import axios from "axios";
+import CartGeneric from "../CartGeneric/CartGeneric.jsx";
+import CartFromDb from "../CartFromDb/CartFromDb.jsx";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalToPay2 = useSelector((state) => state.totalToPay);
-
+  const token = useSelector((state) => state.token);
+  const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    localStorage.setItem("funkosInCart", JSON.stringify(cart));
-    dispatch(modifiedTotal());
-  }, [dispatch, cart, totalToPay2]);
+  const post = useSelector((state) => state.post);
 
-  const token = useSelector((state) => state.token);
-  // console.log("jjjj",user2);
-  const connectWithDb = () => {
-    // const db  = await axios.post ("http://localhost:3001/api/order", {
-    //   UserId: 1,
-    //   Items: cart
-    // })
-
-    //recordar cambiar en if del onclick a if(token)...
-
-    console.log("Hago post al back con el array de objetos");
-    // console.log(db)
-  };
-  const deleteOneInCartDb = async () => {
-    //   const db  = await axios.delete ("http://localhost:3001/api/order", {
-    //     idUser: 1
-    //   })
-    // // console.log(cart)
-    //   console.log(db)
-    console.log("Hago delete un objeto entero al back con el array de objetos");
-  };
   const emptyCartInDb = async () => {
-    //   const db  = await axios.delete ("http://localhost:3001/api/order", {
-    //     idUser: 1
-    //   })
-    // // console.log(cart)
-    //   console.log(db)
-    console.log("Hago delete de vaciar  cart entero al back con el array de objetos");
-  };
+    Swal.fire({
+      title: "Do you want to empty cart?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+      customClass: {
+        actions: "my-actions",
+        cancelButton: "order-1 right-gap",
+        confirmButton: "order-2",
+        denyButton: "order-3",
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const cartUserdb2 = await axios.delete(
+          "http://localhost:3001/api/order/",
+          {
+            data: { idUser: 2 },
+          }
+        );
+        dispatch(restartingPost());
 
-  const addOneToCart = (id) => {
-    dispatch(sumInCart(id));
-  };
-
-  const deleteOneInTheCart = (id) => {
-    dispatch(deleteFromCart(id));
-  };
-
-  const deleteAllInTheCart = (id, boolean) => {
-    dispatch(deleteFromCart(id, boolean));
+        let objUser = {
+          UserID: 2,
+        };
+        dispatch(getFunkos());
+       dispatch(getCartDb(objUser));
+        dispatch(modifiedCartDb());
+        dispatch(resetCounter);
+        Swal.fire("Empty!", "", "success");
+      }
+    });
   };
 
   const emptyCart = () => {
@@ -82,10 +74,42 @@ const Cart = () => {
         timerProgressBar: true,
       });
     } else {
-      dispatch(clearCart());
+      Swal.fire({
+        title: "Do you want to empty cart?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(clearCart());
+          Swal.fire("Empty!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   };
+
   const tab = <>&nbsp;</>;
+
+  useEffect(() => {
+    localStorage.setItem("funkosInCart", JSON.stringify(cart));
+    dispatch(modifiedTotal());
+    let objUser = {
+      UserID: 4,
+    };
+    dispatch(getCartDb(objUser));
+  }, [dispatch, post, cart, totalToPay2, token]);
+
+  const youMustBeLoggedIn = () => {
+    Swal.fire({
+      title: "You must be logged in to checkout",
+      icon: "info",
+      timer: 4000,
+      timerProgressBar: true,
+    });
+  };
   return (
     <div className={styles.container}>
       <Nav></Nav>
@@ -96,75 +120,32 @@ const Cart = () => {
           {" "}
           TOTAL: {tab} <TotalToPay totalToPay2={totalToPay2}></TotalToPay>{" "}
         </h3>
-        <Link to="/checkout">
-          <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+        {token ? (
+          <Link to="/checkout">
+            <button className={`${styles.checkOut} ${styles.emptyCart}`}>
+              Checkout{" "}
+            </button>
+          </Link>
+        ) : (
+          <button
+            onClick={youMustBeLoggedIn}
+            className={`${styles.checkOut} ${styles.emptyCart}`}
+          >
             Checkout{" "}
           </button>
-        </Link>
+        )}
         <button
           onClick={() => {
-            emptyCart();
-            emptyCartInDb();
+            !token ? emptyCart() : emptyCartInDb();
           }}
           className={styles.emptyCart}
         >
           Empty cart{" "}
         </button>
       </div>
-
       <div className={styles.subContainer}>
-        {cart.map((product) => (
-          <ul key={product.id} className={styles.ul}>
-            <li className={styles.li}>
-              <h2 className={styles.title}>{product.title}</h2>
-              <img
-                src={product["image"] || notFound}
-                alt="Funko-Img"
-                className={styles.funkoImg}
-              ></img>
-              <div className={styles.price}>
-                <h5>
-                  US$ {product.price} x {product.quantity} ={" "}
-                  {(product.price * product.quantity).toFixed(2)}
-                </h5>
-              </div>
-              <div className={styles.buttonsMoreAndLessDiv}>
-                <button
-                  onClick={() => {
-                    addOneToCart(product.id);
-                    if (!token) {
-                      connectWithDb();
-                    }
-                  }}
-                  className={styles.buttonsMoreAndLess}
-                >
-                  +
-                </button>
-                <button
-                  onClick={() => {
-                    deleteOneInTheCart(product.id);
-                    if (!token) {
-                      connectWithDb();
-                    }
-                  }}
-                  className={`${styles.buttonsMoreAndLess} ${styles.lessButton}`}
-                >
-                  -
-                </button>
-              </div>
-              <div>
-                <button
-                  onClick={() => {deleteAllInTheCart(product.id, true); if(!token)deleteOneInCartDb()}}
-                  className={styles.deleteButton}
-                >
-                  <RiDeleteBin5Line></RiDeleteBin5Line>
-                </button>
-              </div>
-            </li>
-          </ul>
-        ))}
+        {token ? <CartFromDb></CartFromDb> : <CartGeneric />}
       </div>
-      {/* <Footer></Footer> */}
     </div>
   );
 };

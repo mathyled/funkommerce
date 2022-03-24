@@ -21,7 +21,9 @@ import { DarkModeContext } from "./components/AdminPanel/PanelHome/DarkMode/cont
 import "./components/AdminPanel/PanelHome/dark.css"
 import {useContext} from "react";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import {useDispatch,useSelector} from 'react-redux';
+
+import {useDispatch, useSelector} from 'react-redux';
+
 import {salveUser} from './redux/actions/actions';
 // import Footer from "./components/Footer/Footer";
 import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
@@ -32,11 +34,18 @@ function App() {
 
   const { darkMode } = useContext(DarkModeContext);
   const dispatch=useDispatch();
+
+ 
+
   const user=useSelector(state=>state.user);
+
 
     useEffect(() => {
       dispatch(salveUser());
-    }, [])
+
+    }, [dispatch ])
+
+
 
   return (
     <div className={darkMode ? "app  " : "App"}>

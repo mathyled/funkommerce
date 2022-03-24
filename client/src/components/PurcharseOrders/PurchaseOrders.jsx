@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../../redux/actions/actions";
+import { getOrders, getFunkos } from "../../redux/actions/actions";
 import EachOrder from "./EachOrder";
 import FilterStatus from "./FilterStatus";
+import styles from "./PurchaseOrders.module.css"
 
 const PurchaseOrders = () => {
   const purchaseOrders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOrders());
+    
+    dispatch(getFunkos()).then(() => dispatch(getOrders()))
   }, []);
 
   return (
@@ -17,11 +19,12 @@ const PurchaseOrders = () => {
       <div>
         <FilterStatus />
       </div>
-      <div>
+      <div className={styles.all}>
         {purchaseOrders?.map((o) => {
           return (
             <EachOrder
               key={o.id}
+              orderId={o.id}
               date={o.DateTime}
               userId={o.UserId}
               amount={o.amount}

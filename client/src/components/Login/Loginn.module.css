@@ -44,7 +44,6 @@
 .button{
     background-color: #fff;
     border-style: none;
-    /* box-sizing: border-box; */
     color: #111;
     cursor: pointer;
     display: inline-block;
@@ -65,5 +64,8 @@
     border-left: #111 solid 1px;
     transition-property: color;
     transition-duration: 0.7s;
- 
+    border-radius: 5px 0 0 5px;
+}
+.button:hover{
+  color: #275EFE;
 }

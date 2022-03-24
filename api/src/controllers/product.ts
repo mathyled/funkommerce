@@ -79,6 +79,7 @@ export const putProduct = async (req: Request, res: Response)=>{
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { id }: any = req.params;
+    
     let findProduct = await prisma.product.findUnique({ where: { id:Number(id)} });
     if (findProduct) {
       await prisma.product.delete({ where: {  id:Number(id) } });

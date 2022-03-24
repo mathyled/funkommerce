@@ -1,73 +1,148 @@
 import React, { useEffect, useState } from "react";
-import styles from './CartFromDb.module.css';
-import { useSelector } from "react-redux";
-
+import styles from "./CartFromDb.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { getCartDb } from "../../redux/actions/actions";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 const CartFromDb = () => {
-  const token = useSelector((state) => state.token);
-  useEffect(() => {}, [token]);
-  //const [cartFromDb,setCartFromDb] = useState([])
-  const getCartUserFromDb = () => {
-    // const getCartFromDb  = await axios.get ("http://localhost:3001/api/order");
-    //setCartFromDb(getCartFromDb)
-    console.log("Hago get al back pidiendo cart del user");
+  let funkosfromdb = useSelector((state) => state.cartDb);
+  const post = useSelector((state) => state.post);
+
+  let addOne = "addOne";
+  let substractOne = "substractOne";
+  const dispatch = useDispatch();
+
+  const [render, setRender] = useState(true);
+
+  const updateQuantityInCartDb = async (id, operation) => {
+    let itemInCart = funkosfromdb.find((item) => item.id === id);
+    if (itemInCart.stock > itemInCart.quantity) {
+      let cartToPut = await funkosfromdb.map((item2) =>
+        item2.id === itemInCart.id
+          ? {
+              ...item2,
+              quantity:
+                operation === addOne ? ++item2.quantity : --item2.quantity,
+            }
+          : item2
+      );
+      const cartUserdb = await axios.put(
+        "http://localhost:3001/api/order/updataquantity",
+        {
+          Items: cartToPut,
+          idUser: 2,
+        }
+      );
+      setRender(!render);
+      console.log("cartToPut", cartToPut);
+    } else if (
+      itemInCart.stock === itemInCart.quantity &&
+      operation === substractOne
+    ) {
+      let cartToPut = await funkosfromdb.map((item2) =>
+        item2.id === itemInCart.id
+          ? {
+              ...item2,
+              quantity: --item2.quantity,
+            }
+          : item2
+      );
+      const cartUserdb = await axios.put(
+        "http://localhost:3001/api/order/updataquantity",
+        {
+          Items: cartToPut,
+          idUser: 2,
+        }
+      );
+      setRender(!render);
+      console.log("cartToPut", cartToPut);
+    } else {
+      Swal.fire({
+        title: "Maximum quantity of this product reaches",
+        icon: "info",
+        timer: 4000,
+        timerProgressBar: true,
+      });
+    }
   };
+
+  const deleteProductFromCartDb = async (id) => {
+    const cartUserdb2 = await axios.delete(
+      "http://localhost:3001/api/order/product",
+      {
+        data: { idProduct: id, idUser: 2 },
+      }
+    );
+    let objUser = {
+      UserID: 4,
+    };
+    dispatch(getCartDb(objUser));
+    setRender(!render);
+
+    console.log("hice delete del product");
+  };
+
+  useEffect(() => {}, [dispatch, post, funkosfromdb]);
+
   return (
-    <div>
-      <div className={styles.subContainer}>
-          <h1>Hola</h1>
-        {/* {cartFromDb.map((product) => (
-          <ul key={product.id} className={styles.ul}>
-            <li className={styles.li}>
-              <h2 className={styles.title}>{product.title}</h2>
-              <img
-                src={product["image"] || notFound}
-                alt="Funko-Img"
-                className={styles.funkoImg}
-              ></img>
-              <div className={styles.price}>
-                <h5>
-                  US$ {product.price} x {product.quantity} ={" "}
-                  {(product.price * product.quantity).toFixed(2)}
-                </h5>
-              </div>
-              <div className={styles.buttonsMoreAndLessDiv}>
-                <button
-                  onClick={() => {
-                    addOneToCart(product.id);
-                    if (!token) {
-                      connectWithDb();
-                    }
-                  }}
-                  className={styles.buttonsMoreAndLess}
-                >
-                  +
-                </button>
-                <button
-                  onClick={() => {
-                    deleteOneInTheCart(product.id);
-                    if (!token) {
-                      connectWithDb();
-                    }
-                  }}
-                  className={`${styles.buttonsMoreAndLess} ${styles.lessButton}`}
-                >
-                  -
-                </button>
-              </div>
-              <div>
-                <button
-                  onClick={() => {deleteAllInTheCart(product.id, true); if(!token)deleteOneInCartDb()}}
-                  className={styles.deleteButton}
-                >
-                  <RiDeleteBin5Line></RiDeleteBin5Line>
-                </button>
-              </div>
-            </li>
-          </ul>
-        ))} */}
-      </div>
+    <div className={styles.subContainer}>
+      {funkosfromdb?.map((funko) => (
+        <ul key={funko.id}>
+          <li key={funko.id} className={styles.li}>
+            <div className={styles.title}>
+              <h2 className={styles.title}>{funko.title}</h2>
+            </div>
+
+            <img
+              src={funko["image"]}
+              alt="Funko-Img"
+              className={styles.funkoImg}
+            ></img>
+
+            <div className={styles.price}>
+              <h5>
+                US$ {funko.price} x {funko.quantity} ={" "}
+                {(funko.price * funko.quantity).toFixed(2)}
+              </h5>
+            </div>
+
+            <div className={styles.buttonsMoreAndLessDiv}>
+              <button
+                onClick={() => {
+                  updateQuantityInCartDb(funko.id, addOne);
+                }}
+                className={styles.buttonsMoreAndLess}
+              >
+                +
+              </button>
+
+              <button
+                onClick={() => {
+                  updateQuantityInCartDb(funko.id, substractOne);
+                }}
+                className={`${styles.buttonsMoreAndLess} ${styles.lessButton}`}
+              >
+                -
+              </button>
+            </div>
+
+            <div>
+              <button
+                onClick={() => {
+                  deleteProductFromCartDb(funko.id);
+                }}
+                className={styles.deleteButton}
+              >
+                <RiDeleteBin5Line></RiDeleteBin5Line>
+              </button>
+            </div>
+          </li>
+        </ul>
+      ))}
     </div>
   );
+  // }
 };
 
 export default CartFromDb;

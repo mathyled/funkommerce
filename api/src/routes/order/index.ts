@@ -13,13 +13,15 @@ import {
   OrderAccordingState,
 } from "../../controllers/order";
 
-const router = Router();
-///get 
+const router = Router(); 
+
+router.post("/", postOrder)
+
 router.get("/", detailOrder);
 router.get("/status", StatusIncart);
 router.get("/allorder", allStatusOrder);
 router.get("/incart", getAllOrderIncart);
-router.get("/setstatus",OrderAccordingState)
+router.get("/setstatusfilter/:status",OrderAccordingState)
 //post
 router.post("/", postOrder);
 //put 

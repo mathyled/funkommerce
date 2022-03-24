@@ -10,7 +10,7 @@ const Register = () => {
   return (
     <section>
       <button className={styled.button} onClick={() => setVisible(!visible)}>
-        Register
+        Sign up
       </button>
       <main className={styled[vista]}>
         <div className={styled.formButton}>

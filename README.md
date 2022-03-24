@@ -19,7 +19,6 @@
     <li>Open a terminal and run the next command: <b>npm i</b></li>
 </ul>
 
-### 📁 Standing on /api/src folder
 <ul>
     <li>After it finishes installing run the next command: <b>npx prisma migrate reset</b></li>
     <li>Then run: <b>npx prisma db push --force-reset</b></li>

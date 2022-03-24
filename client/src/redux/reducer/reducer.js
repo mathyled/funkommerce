@@ -9,22 +9,38 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
 
-  user: null, //Usuario de la sesion
-  token:null,
-  admin:{
-    users:[]
+  cartDb: [],
+  user12: null,
+  post:
+    JSON.parse(localStorage.getItem("post")) === null
+      ? false
+      : JSON.parse(localStorage.getItem("post")),
+
+  user: null, //Usuario de la sesion {}
+
+  idUser: null,
+  // loggedUser  token  userId
+  msg: null,
+  token: null,
+  admin: {
+    users: [],
   },
-  msg:null,
 
   detail: [],
+
   categories: [],
   license: [],
   brand: [],
+
   reviews: [],
+
   totalToPay: 0,
+  itemsQuantity: 0,
   actualPage: 1,
+
   confirm: {},
   orders: [],
+  userGoogle:{}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -128,7 +144,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CLEAR_CART:
-      localStorage.clear();
+      localStorage.removeItem("funkosInCart");
       //storage.removeItem(keyName);
       return {
         ...state,
@@ -234,7 +250,7 @@ export default function rootReducer(state = initialState, action) {
     //     const allFunkos3 = state.funkos;
 
     //     // eslint-disable-next-line array-callback-return
-    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
+    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((e) => ( e.License.name && e.attributes.license?.includes(action.payload)
     //     ))
     //     console.log(licenseFilter)
     //     return {
@@ -256,16 +272,10 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
-
-      // eslint-disable-next-line array-callback-return
-      //console.log(action.payload);
       let licenseFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos3.filter(
-              (e) => e.license && e.license?.includes(action.payload)
-            );
-      // console.log(licenseFilter);
+          : allFunkos3.filter((e) => e.License.name.includes(action.payload));
       return {
         ...state,
         funkos: licenseFilter,
@@ -274,7 +284,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.GET_USER:
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
-
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       return {
         ...state,
         user: action.payload.user,
@@ -282,30 +292,43 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
+      console.log(action.payload);
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        idUser: action.payload.idUser,
       };
 
     case TYPES.DELETE_USER:
+<<<<<<< HEAD
       console.log('user payload: ',action.payload);
       const users = state.admin.users.filter(
         (user) => parseInt(user.id) !== parseInt(action.payload)
       );
         console.log('users filtrados: ',users)
+=======
+
+     // console.log("user payload: ", action.payload);
+      const users = state.admin.users.filter(
+        (user) => user.id !== action.payload.id
+      );
+
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
-          users:users
-        }
-      }
+          users: users,
+        },
+      };
 
     case TYPES.UPDATE_USER:
+<<<<<<< HEAD
 
       console.log('user update payload: ',action.payload);
       const indexUpdate=state.admin.users.findIndex(user=>user.id === action.payload.id);
@@ -314,14 +337,22 @@ export default function rootReducer(state = initialState, action) {
       // console.log(indexUpdate)
       copyUser[indexUpdate]=action.payload;
       // console.log(copyUser)
+=======
+      console.log("user update payload: ", action.payload);
+      const indexUpdate = state.admin.users.findIndex(
+        (user) => user.id === action.payload.id
+      );
+      const copyUser = state.admin.users;
+      copyUser[indexUpdate] = action.payload;
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
 
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
           users: copyUser,
-        }
-      }
+        },
+      };
 
     case TYPES.RESET_PASSWORD_ADMIN:
 
@@ -345,7 +376,9 @@ export default function rootReducer(state = initialState, action) {
 
 
     case TYPES.FIND_USER:
-      if(action.payload===null) return state;
+    //  console.log(action.payload.user);
+      if (action.payload === null) return state;
+
       // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       // localStorage.setItem("token", JSON.stringify(action.payload.token));
       console.log( action.payload.user);
@@ -353,31 +386,46 @@ export default function rootReducer(state = initialState, action) {
       console.log(  action.payload.token);
       const token=(action.payload.token==='undefined') ? null : JSON.parse(action.payload.token) ;
 
+      //  console.log(tokenLoaded);
       return {
         ...state,
+<<<<<<< HEAD
         user: user,
         token: token,
+=======
+
+        user: JSON.parse(action.payload.user),
+        token: JSON.parse(action.payload.token),
+        idUser: JSON.parse(action.payload.idUser),
+
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       };
 
     case TYPES.LOGOUT_USER:
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
-
+      localStorage.removeItem("userId");
+      localStorage.removeItem("funkosInCart");
       return {
         ...state,
         user: null,
         token: null,
+        userId: null,
+        cart:[],
       };
 
     case TYPES.GET_USERS_ADMIN:
+<<<<<<< HEAD
       console.log('users: ',action.payload);
+=======
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
       return {
         ...state,
-        admin:{
+        admin: {
           ...state.admin,
-          users:action.payload
-        }
-      }
+          users: action.payload,
+        },
+      };
 
     case TYPES.GET_REVIEWS:
       return {
@@ -386,9 +434,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
+      let choosenCart = state.token ? state.cartDb : state.cart;
       let sum = 0;
-      for (let i = 0; i < state.cart.length; i++) {
-        sum += state.cart[i].price * state.cart[i].quantity;
+      for (let i = 0; i < choosenCart.length; i++) {
+        sum += choosenCart[i].price * choosenCart[i].quantity;
       }
       return {
         ...state,
@@ -438,6 +487,75 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case TYPES.GET_CART_DB:
+      let funkosInDb = state.funkosBackUp;
+      // console.log(funkosInDb)
+      let arr3 = [];
+      funkosInDb.filter((funko) => {
+        action.payload.filter((funkoFromdb) => {
+          if (funko.id === funkoFromdb.productId) {
+            arr3.push({ ...funko, quantity: funkoFromdb.quantity });
+          }
+        });
+      });
+
+      return {
+        ...state,
+        cartDb: arr3,
+      };
+
+    case TYPES.SET_POST:
+      localStorage.setItem("post", JSON.stringify(true));
+      return {
+        ...state,
+        post: true,
+      };
+    case TYPES.RESTARTING_POST:
+      localStorage.setItem("post", JSON.stringify(false));
+      return {
+        ...state,
+        post: false,
+      };
+
+     case TYPES.SET_ITEMS_QUANTITY:
+      // console.log(action.payload);
+       return {
+         ...state,
+         itemsQuantity: state.itemsQuantity + 1,
+         cartDb: [...state.cartDb,{...action.payload}]
+       };
+
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case TYPES.MODIFIED_CART_DB:
+     return {
+       ...state,
+       cartDb: []
+     }
+
+
+    case TYPES.ADD_TO_CART_DB:
+      return {
+        ...state,
+        cartDb: state.cartDb.concat([{...action.payload}]),
+      };
+      case TYPES.RESET_COUNTER:
+      return {
+        ...state,
+        itemsQuantity: 0,
+      };
+
+      case TYPES.USER_GOOGLE:
+        return {
+          ...state,
+          token:action.payload.accessToken,
+          userGoogle: action.payload,
+        };
 
     default:
       return {
