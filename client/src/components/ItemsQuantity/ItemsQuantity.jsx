@@ -9,10 +9,10 @@ const ItemsQuantity = () => {
   let cartDb = useSelector((state) => state.cartDb);
   let token = useSelector((state) => state.cartDb);
   let itemsQuantity = useSelector((state) => state.itemsQuantity);
-console.log(9,itemsQuantity)
+//console.log(9,itemsQuantity)
   let choosenCart =  token ? cartDb : cart
   const [itemsQuantity1, setItemsQuantity1] = useState(0);
-console.log(itemsQuantity1)
+//console.log(itemsQuantity1)
   useEffect(() => {
     
   }, [choosenCart,itemsQuantity,choosenCart.length ]);

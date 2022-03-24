@@ -38,7 +38,7 @@ const CartGeneric = () => {
               <h2 className={styles.title}>{product.title}</h2>
             </div>
 
-            <img
+            <img 
               src={product["image"]}
               alt="Funko-Img"
               className={styles.funkoImg}

@@ -11,13 +11,13 @@ const initialState = {
       : JSON.parse(localStorage.getItem("funkosInCart")),
 
   cartDb: [],
-
+  user12: null,
   post:
     JSON.parse(localStorage.getItem("post")) === null
       ? false
       : JSON.parse(localStorage.getItem("post")),
 
-  user: null, //Usuario de la sesion
+  user: null, //Usuario de la sesion {}
 
   idUser: null,
   // loggedUser  token  userId
@@ -40,7 +40,7 @@ const initialState = {
   actualPage: 1,
 
   confirm: {},
-  orders:[],
+  orders: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -304,20 +304,50 @@ export default function rootReducer(state = initialState, action) {
         idUser: action.payload.idUser,
       };
 
+    case TYPES.DELETE_USER:
+     // console.log("user payload: ", action.payload);
+      const users = state.admin.users.filter(
+        (user) => user.id !== action.payload.id
+      );
+
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          users: users,
+        },
+      };
+
+    case TYPES.UPDATE_USER:
+      console.log("user update payload: ", action.payload);
+      const indexUpdate = state.admin.users.findIndex(
+        (user) => user.id === action.payload.id
+      );
+      const copyUser = state.admin.users;
+      copyUser[indexUpdate] = action.payload;
+
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          users: copyUser,
+        },
+      };
+
     case TYPES.FIND_USER:
-      console.log(action.payload.user);
+    //  console.log(action.payload.user);
       if (action.payload === null) return state;
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
 
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      // localStorage.setItem("token", JSON.stringify(action.payload.token));
 
-      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       //  console.log(tokenLoaded);
       return {
         ...state,
-        user: action.payload.user,
-        token: action.payload.token,
-        idUser: action.payload.idUser,
+
+        user: JSON.parse(action.payload.user),
+        token: JSON.parse(action.payload.token),
+        idUser: JSON.parse(action.payload.idUser),
       };
 
     case TYPES.LOGOUT_USER:
@@ -431,16 +461,28 @@ export default function rootReducer(state = initialState, action) {
         post: false,
       };
 
-    case TYPES.SET_ITEMS_QUANTITY:
-      return {
-        ...state,
-        itemsQuantity: state.itemsQuantity + 1,
-      };
+     case TYPES.SET_ITEMS_QUANTITY:
+      // console.log(action.payload);
+       return {
+         ...state,
+         itemsQuantity: state.itemsQuantity + 1,
+         cartDb: [...state.cartDb,{...action.payload}]
+       };
 
     case TYPES.FILTER_STATUS:
       return {
         ...state,
         orders: action.payload,
+      };
+
+    case TYPES.MODIFIED_CART_DB:
+      return initialState;
+
+
+    case TYPES.ADD_TO_CART_DB:
+      return {
+        ...state,
+        cartDb: state.cartDb.concat(action.payload),
       };
 
     default:

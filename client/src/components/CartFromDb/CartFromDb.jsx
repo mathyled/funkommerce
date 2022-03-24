@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getCartDb } from "../../redux/actions/actions";
 import { RiDeleteBin5Line } from "react-icons/ri";
-
+import Swal from "sweetalert2";
 const CartFromDb = () => {
   let funkosfromdb = useSelector((state) => state.cartDb);
   const post = useSelector((state) => state.post);
@@ -13,73 +13,55 @@ const CartFromDb = () => {
   let substractOne = "substractOne";
   const dispatch = useDispatch();
 
-
   const [render, setRender] = useState(true);
-  
-  
-  
-  
- 
-
- 
-
 
   const updateQuantityInCartDb = async (id, operation) => {
-    let itemInCart = funkosfromdb.find((item) => item.id === id);
-   
+    
+      let itemInCart = funkosfromdb.find((item) => item.id === id);
 
-    let cartToPut = await funkosfromdb.map((item2) =>
-      item2.id === itemInCart.id
-        ? {
-            ...item2,
-            quantity:
-              operation === addOne ? ++item2.quantity : --item2.quantity,
-          }
-        : item2
-    );
-    const cartUserdb = await axios.put(
-      "http://localhost:3001/api/order/updataquantity",
-      {
-        Items: cartToPut,
-        idUser: 4,
-      }
-    );
-     setRender(!render);
-     console.log("cartToPut", cartToPut);
+      let cartToPut = await funkosfromdb.map((item2) =>
+        item2.id === itemInCart.id
+          ? {
+              ...item2,
+              quantity:
+                operation === addOne ? ++item2.quantity : --item2.quantity,
+            }
+          : item2
+      );
+      const cartUserdb = await axios.put(
+        "http://localhost:3001/api/order/updataquantity",
+        {
+          Items: cartToPut,
+          idUser: 2,
+        }
+      );
+      setRender(!render);
+      console.log("cartToPut", cartToPut);
     
   };
 
   const deleteProductFromCartDb = async (id) => {
-  
     const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/product",
       {
-        data: { idUser: 4, idProduct: id },
+        data: { idUser: 2, idProduct: id },
       }
     );
     setRender(!render);
+
+    console.log("hice delete del product")
   };
 
   useEffect(() => {
-    let objUser = {
-      UserID: 4,
-    };
-
-    dispatch(getCartDb(objUser));
     
-  }, [dispatch, render,post]);
-
-
-
-
-
+  }, [funkosfromdb,dispatch, render, post]);
 
   return (
     <div className={styles.subContainer}>
       {funkosfromdb?.map((funko) => (
         <ul key={funko.id}>
           <li key={funko.id} className={styles.li}>
-            <div className={styles.title}> 
+            <div className={styles.title}>
               <h2 className={styles.title}>{funko.title}</h2>
             </div>
 

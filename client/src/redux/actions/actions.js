@@ -77,19 +77,19 @@ export const salveUser = () => {
   const user = window.localStorage.getItem("loggedUser");
   const token = window.localStorage.getItem("token");
   const idUser = window.localStorage.getItem("idUser");
-  console.log('se obtiene el usuario del local storage con la llamada del componente APP')
+ // console.log('se obtiene el usuario del local storage con la llamada del componente APP')
 
  
   if(user){
 
-    console.log('el usuario ya existia');
+    //console.log('el usuario ya existia');
 
     return {
       type: TYPES.FIND_USER,
       payload: { user: user, token: token, idUser:idUser },
     };
   }
-    console.log("el usuario no existia");
+   // console.log("el usuario no existia");
 
   return {
     type:TYPES.FIND_USER,
@@ -111,10 +111,11 @@ export const logoutUser = () => {
 //ACTION PARA VERIFICAR SI EL USUARIO TIENE UNA CUENTA
 
 
-export const findUser = (user, token) => {
+export const findUser = (user, token,idUser) => {
   return {
-    type:TYPES.LOGOUT_USER,
-    payload:{user:null,token:null, idUser:null}
+
+    type:TYPES.GET_USER,
+    payload:{user,token, idUser}
   }
 }
 
@@ -342,18 +343,18 @@ export const ConfirmResetPassword = (token, newPassword) => {
   };
 };
 
-export const addCartDb = (obj) => {
-  //console.log("111",obj)
+export const addCartDb = (obj, funkoAAgregar) => {
+  
   
   return async (dispatch) => {
     try {
-      const { data } = axios.post(`http://localhost:3001/api/order`, obj);
+      const { data } = await axios.post(`http://localhost:3001/api/order`, obj);
       dispatch({
         type: TYPES.ADD_TO_CART_DB,
-        payload: data,
+        payload: funkoAAgregar,
       });
     } catch (e) {
-      console.log("Error in addCartDb");
+      console.error("Error in addCartDb",e);
     }
   };
 } 
@@ -362,7 +363,7 @@ export const getCartDb = (obj) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get("http://localhost:3001/api/order/incart", obj )
-   //   console.log("jorge",data)
+      //console.log("jorge",data)
       dispatch({
         type: TYPES.GET_CART_DB,
         payload: data.Order_detail,
@@ -427,10 +428,11 @@ export const restartingPost = () => {
 } 
 
 
-export const setItemsQuantity = () => {
-  
+export const setItemsQuantity = (funkoAAgregar) => {
+  //console.log("fffffffffff",funkoAAgregar)
   return {
-    type: TYPES.SET_ITEMS_QUANTITY
+    type: TYPES.SET_ITEMS_QUANTITY,
+    payload:funkoAAgregar
    };
 } 
 
@@ -442,5 +444,12 @@ export const filterStatus = (status) => {
       payload: data,
     });
   };
+};
+
+export const modifiedCartDb = () => {
+ return {
+      type: TYPES.MODIFIED_CART_DB,
+    };
+  
 };
   

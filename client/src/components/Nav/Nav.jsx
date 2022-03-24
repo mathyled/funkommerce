@@ -21,61 +21,47 @@ import { useAuth0 } from "@auth0/auth0-react";
 // import Filters from '../Filters/Filters'
 // import Desplegable from "../componentsReusable/Desplegable/Desplegable";
 
-
 const Nav = () => {
-
   const dispatch = useDispatch();
 
-  const user2 = useSelector(state=>state.user);
-  const token=useSelector(state=>state.token);
+  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token);
   let itemsQuantity = useSelector((state) => state.setItemsQuantity);
 
+  const { isAuthenticated } = useAuth0();
+  useEffect(() => {}, [itemsQuantity]);
 
-  const { isAuthenticated } = useAuth0()
-  useEffect(()=>{
+  {
+    /* const usuario = useSelector(state => state.user); */
+  }
 
-},[itemsQuantity])
-  return (
-    <section className={styles.nav}>
+  //console.log(isAuthenticated);
 
-
-  {/* const usuario = useSelector(state => state.user); */}
- 
-  console.log(isAuthenticated)
   return (
     <section className={styles.nav}>
       <Link to="/">
-        
-
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
         {!token && (
           <>
-            {
-              isAuthenticated ?
-                (
-                  <div className={styles.auth}>
-                    <Profile />
-                    <LoginOutAuth0 />
-                  </div>
-
-                )
-                :
-                (
-                  <div >
-                    <Login />
-                    <LoginAunth0 />
-                    <Register />
-
-                  </div>
-                )
-            }
+            {isAuthenticated ? (
+              <div className={styles.auth}>
+                <Profile />
+                <LoginOutAuth0 />
+              </div>
+            ) : (
+              <div>
+                <Login />
+                <LoginAunth0 />
+                <Register />
+              </div>
+            )}
           </>
         )}
 
-        { token &&(
+        {token && (
           <button
             className={styles.logout}
             onClick={(event) => {
@@ -86,14 +72,14 @@ const Nav = () => {
           </button>
         )}
       </div>
-
+      <div>
+        {/* {user.role === "ADMIN" ? <button> <Link to ="/admin"> Settings </Link> </button> : ""} */}
+      </div>
       <Link to="/cart" className={styles.linkToCart}>
         <ItemsQuantity />
         <MdOutlineAddShoppingCart className={styles.cartImg} />
       </Link>
     </section>
-    </section>
   );
-
 };
 export default Nav;
