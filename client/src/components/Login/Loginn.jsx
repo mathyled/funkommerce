@@ -9,8 +9,9 @@ import { findUser, addCartDb, setPost } from "../../redux/actions/actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LoginBtn from "../LoginBtn/LoginBtn"
+import { userRows } from "../AdminPanel/PanelHome/data";
 const Login = ({ close, closeValue }) => {
-  //const user = useSelector((state) => state.user);
+  
 
   const viewErrorAndInputs = (errores, inputs) => {
     const result = [];
@@ -82,6 +83,7 @@ const Login = ({ close, closeValue }) => {
   const token = useSelector((state) => state.token);
   const cart = useSelector((state) => state.cart);
   const post = useSelector((state) => state.post);
+  const user = useSelector((state) => state.user);
   
   const postToBack = (e) => {
     e.preventDefault()
@@ -89,7 +91,7 @@ const Login = ({ close, closeValue }) => {
     if (cart.length > 0 && post === false) {
       let obj = {
         Items: cart,
-        UserId: 2,
+        UserId: user.user.id,
       };
       dispatch(addCartDb(obj));
       dispatch(setPost());

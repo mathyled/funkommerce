@@ -10,6 +10,7 @@ import { changePage, addCartDb, setPost, setItemsQuantity, getCartDb} from "../.
 import axios from "axios";
 import CartFromDb from "../CartFromDb/CartFromDb";
 import Swal from "sweetalert2";
+import {modifiedTotal} from '../../redux/actions/actions'
 
 const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   //PAGINADO
@@ -20,7 +21,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
 
   let cartDb = useSelector((state) => state.cartDb);
 
-  const idUser = useSelector((state) => state.idUser);
+  const user = useSelector((state) => state.user);
   
   const post = useSelector((state) => state.post);
 
@@ -52,7 +53,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   const addOneObjectToCartDb = async (id) => {
     
     let objUser = {
-      UserID: 2,
+      UserID: user.user.id,
     };
 
     dispatch(getCartDb(objUser));
@@ -78,7 +79,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   
       let obj = {
         Items: cart.length < 1 ? [modifyQuantityToFunkoDb] : cart,
-        UserId: 2,
+        UserId: user.user.id,
       };
 
      
@@ -87,7 +88,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
       dispatch(addCartDb(obj, funkoAAgregar));
       dispatch(setPost());
       dispatch(setItemsQuantity());
-
+      dispatch(modifiedTotal)
 
     } else if (token && post) {
       let funkoAAgregar2 = await funkos.find((e) => e.id === id);
@@ -99,10 +100,11 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
         "http://localhost:3001/api/order/insertproduct",
         {
           item: modifyQuantityToFunkoDb2,
-          idUser: 2,
+          idUser: user.user.id,
         }
       );
       dispatch(setItemsQuantity(funkoAAgregar2));
+      dispatch(modifiedTotal)
     }
   }
   };
