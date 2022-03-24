@@ -15,12 +15,12 @@ const FilterStatus = () => {
         if(e.target.value === "ALL") {
             dispatch(getOrders())
         } else {
-            setInput({
-                ...input,
-                [e.target.name]: e.target.value
-            })
-            console.log(input)
-            dispatch(filterStatus(input));
+            // console.log(e.target.value)
+            // setInput({
+            //     status: e.target.value
+            // })
+            // console.log(input)
+            dispatch(filterStatus(e.target.value));
         }
     }
 

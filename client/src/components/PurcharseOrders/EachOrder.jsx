@@ -23,9 +23,9 @@ const EachOrder = ({
     status: "",
   });
 
-  useEffect(() => {
-    dispatch(getFunkos())
-  },[])
+  // useEffect(() => {
+    
+  // },[])
 
   const handleChange = (event) => {
     event.preventDefault();
