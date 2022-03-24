@@ -5,8 +5,10 @@ import {
   clearCart,
   modifiedTotal,
   restartingPost,
+  getCartDb,
+  modifiedCartDb
 } from "../../redux/actions/actions";
-
+ 
 import { useEffect, useState } from "react";
 
 import TotalToPay from "../TotalToPay/TotalToPay";
@@ -29,11 +31,17 @@ const Cart = () => {
   
   const emptyCartInDb = async () => {
 
-
+    dispatch(modifiedCartDb());
     const cartUserdb2 = await axios.delete("http://localhost:3001/api/order/", {
-      data: { idUser: 4 },
+      data: { idUser: 2 },
     });
     dispatch(restartingPost());
+    
+    let objUser = {
+      UserID: 2,
+    };
+
+    dispatch(getCartDb(objUser));
   };
 
 
@@ -58,7 +66,11 @@ const Cart = () => {
   useEffect(() => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
-  }, [dispatch, post, cart, totalToPay2, token, funkosfromdb]);
+    let objUser = {
+      UserID: 4,
+    };
+    dispatch(getCartDb(objUser));
+  }, [dispatch, post, cart, totalToPay2, token, funkosfromdb.length]);
 
 
 
@@ -81,8 +93,8 @@ const Cart = () => {
 
         <button
           onClick={() => {
-            emptyCart();
-            emptyCartInDb();
+           !token ? emptyCart()
+            :emptyCartInDb();
           }}
           className={styles.emptyCart}
         >

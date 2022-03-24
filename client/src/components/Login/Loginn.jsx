@@ -10,7 +10,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = ({ close, closeValue }) => {
-  const user = useSelector((state) => state.user);
+  //const user = useSelector((state) => state.user);
 
   const viewErrorAndInputs = (errores, inputs) => {
     const result = [];
@@ -50,7 +50,7 @@ const Login = ({ close, closeValue }) => {
 
     if (resultados.length) {
       alert(resultados[0]);
-    } else {
+    } else{
       //  dispatch(findUser(inputs,close,closeValue));
 
       try {
@@ -58,11 +58,11 @@ const Login = ({ close, closeValue }) => {
           "http://localhost:3001/api/user/signIn",
           inputs
         );
-        //console.log('data: ',data)
+        //console.log('data: ',data.user)
 
         if (data.msg === "User signed in successfully") {
-          console.log("hhh", data);
-          dispatch(findUser(data.user, data.token, data.user.id));
+         // console.log("hhh", data);
+          dispatch(findUser(data, data));
 
           setInputs({
             email: "",
@@ -83,12 +83,13 @@ const Login = ({ close, closeValue }) => {
   const cart = useSelector((state) => state.cart);
   const post = useSelector((state) => state.post);
   
-  const postToBack = () => {
-    console.log("holaque tal")
+  const postToBack = (e) => {
+    e.preventDefault()
+    //console.log("holaque tal")
     if (cart.length > 0 && post === false) {
       let obj = {
         Items: cart,
-        UserId: 4,
+        UserId: 2,
       };
       dispatch(addCartDb(obj));
       dispatch(setPost());
@@ -97,7 +98,7 @@ const Login = ({ close, closeValue }) => {
 
   return (
     <div>
-      {user ? null : (
+      {false ? null : (
         <div className={styles.login}>
           <main className={styles.container} onSubmit={sendLogin}>
             <form autoComplete="off" onSubmit={postToBack}>
