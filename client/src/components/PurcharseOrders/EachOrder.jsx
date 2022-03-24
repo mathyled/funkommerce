@@ -48,6 +48,7 @@ const EachOrder = ({
   };
 
   return (
+
     <div className={styles.eachOrder}>
       <div className={styles.orders}>
         <h4>Orden N° {orderId}</h4>
@@ -61,6 +62,7 @@ const EachOrder = ({
           defaultValue={statusOrder}
           onChange={handleChange}
         >
+
           <option value="PENDING">Pending</option>
           <option value="SHIPPED">Shipped</option>
           <option value="IN TRANSIT">In Transit</option>
