@@ -5,9 +5,11 @@ import axios from "axios";
 import { getCartDb,modifiedTotal } from "../../redux/actions/actions";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { userRows } from "../AdminPanel/PanelHome/data";
 const CartFromDb = () => {
   let funkosfromdb = useSelector((state) => state.cartDb);
   const post = useSelector((state) => state.post);
+  const user = useSelector((state) => state.user);
 
   let addOne = "addOne";
   let substractOne = "substractOne";
@@ -33,7 +35,7 @@ const CartFromDb = () => {
         "http://localhost:3001/api/order/updataquantity",
         {
           Items: cartToPut,
-          idUser: 2,
+          idUser: user.user.id,
         }
       );
       setRender(!render);
@@ -57,7 +59,7 @@ const CartFromDb = () => {
         "http://localhost:3001/api/order/updataquantity",
         {
           Items: cartToPut,
-          idUser: 2,
+          idUser: user.user.id,
         }
       );
      
@@ -78,11 +80,11 @@ const CartFromDb = () => {
     const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/product",
       {
-        data: { idProduct: id, idUser: 2 },
+        data: { idProduct: id, idUser: user.user.id },
       }
     );
     let objUser = {
-      UserID: 4,
+      UserID: user.user.id,
     };
     dispatch(getCartDb(objUser));
     setRender(!render);

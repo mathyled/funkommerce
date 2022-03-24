@@ -25,6 +25,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalToPay2 = useSelector((state) => state.totalToPay);
   const token = useSelector((state) => state.token);
+  const user = useSelector((state) => state.user);
   const funkosfromdb = useSelector((state) => state.cartDb);
   const dispatch = useDispatch();
 
@@ -48,13 +49,13 @@ const Cart = () => {
         const cartUserdb2 = await axios.delete(
           "http://localhost:3001/api/order/",
           {
-            data: { idUser: 2 },
+            data: { idUser: user.id },
           }
         );
         dispatch(restartingPost());
 
         let objUser = {
-          UserID: 2,
+          UserID: user.id,
         };
         dispatch(getFunkos());
        dispatch(getCartDb(objUser));
@@ -97,7 +98,7 @@ const Cart = () => {
     localStorage.setItem("funkosInCart", JSON.stringify(cart));
     dispatch(modifiedTotal());
     let objUser = {
-      UserID: 4,
+      UserID: user?.id,
     };
     dispatch(getCartDb(objUser));
   }, [dispatch, post, cart, totalToPay2, token]);
