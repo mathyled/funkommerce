@@ -1,4 +1,3 @@
-// import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
 
@@ -305,6 +304,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.DELETE_USER:
+
      // console.log("user payload: ", action.payload);
       const users = state.admin.users.filter(
         (user) => user.id !== action.payload.id
@@ -348,6 +348,7 @@ export default function rootReducer(state = initialState, action) {
         user: JSON.parse(action.payload.user),
         token: JSON.parse(action.payload.token),
         idUser: JSON.parse(action.payload.idUser),
+
       };
 
     case TYPES.LOGOUT_USER:
