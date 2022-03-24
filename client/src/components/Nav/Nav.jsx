@@ -79,7 +79,7 @@ const Nav = () => {
 
 
       <div>
-        {userLocal ? userLocal?.user.role === "ADMIN" ? <button className={styles.panel}> <Link to ="/admin" >Admin</Link> </button> : <button className={styles.panel}> <Link to ="/myorders" >My Orders</Link> </button> : ""}
+        {userLocal ? userLocal?.user.role === "ADMIN" ? <button  className={styles.adminBtn}> <Link to ="/admin" className={styles.linkBtn} >Admin</Link> </button> : <button > <Link to ="/myorders"  className={styles.panel} >My Orders</Link> </button> : ""}
       </div>
 
       <Link to="/cart" className={styles.linkToCart}>

@@ -125,6 +125,7 @@
   padding-right: 15px;
   padding-left: 15px;
   font-weight: bold;
+
 }
 .panel:hover {
   background-color: #111;
@@ -132,12 +133,34 @@
   border: solid 1px #fff;
 }
 
+
+.adminBtn{
+  color: #111;
+  background-color: #fff;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 15px;
+  
+}
+.adminBtn:hover{
+  background-color: #111;
+  color: #fff;
+  border: solid 1px #fff;
+}
+
+.linkBtn{
+  color: #111;
+}
 .navlink {
   text-decoration: none;
   color: #111;
 }
+.linkBtn:hover{
+  color: #fff;
+}
 
-.navlink:hover {
+/* .navlink:hover {
   text-decoration: none;
   color: white;
-}
+} */
