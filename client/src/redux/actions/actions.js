@@ -132,50 +132,7 @@ export const getUsersAdmin = (payload) => {
   Action para obtener todos los usuarios para el admin
 */
 
-<<<<<<< HEAD
-export const getUsersAdmin=(token) => {
 
-  return async(dispatch)=>{
-
-    try{
-
-      const config={
-        headers: {
-          "auth-token": token
-        }
-      }
-
-      const  {data } = await axios(URL_USER + "user",config);
-      console.log(data)
-      if(data.msg) return alert('algo salio mal!');
-
-      console.log(data);
-      dispatch({
-        type:TYPES.GET_USERS_ADMIN,
-        payload:data
-      })
-
-    }catch(error){
-
-      console.log('errores getUSer: ',error)
-    }
-=======
-
-export const getUsersAdmin=(token,email) => {
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
-
-  // return async(dispatch)=>{
-  // }}
-}
-// export const findUser = (user,token, idUser) => {
-//   return {
-//     type:TYPES.FIND_USER,
-//     payload:{user,token, idUser}
-
-//   }
-
-
-// }
 
 
 

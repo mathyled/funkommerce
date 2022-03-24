@@ -29,6 +29,7 @@ import {salveUser} from './redux/actions/actions';
 import SendConfirmNewPassword from "./components/componentsReusable/SendMail/SendConfirmNewPassword"
 import ConfirmNewPassword from "./components/ConfirmNewPassword/ConfirmNewPassword";
 import PurchaseOrders from "./components/PurcharseOrders/PurchaseOrders"
+import PurchaseOrdersUsers from "./components/PurchaseOrdersUsers/PurchaseOrdersUsers"
 
 function App() {
 
@@ -82,6 +83,7 @@ function App() {
           element={<ConfirmNewPassword />}
         />
         <Route path="/orders" element={<PurchaseOrders/>} />
+        <Route path="/myorders" element={<PurchaseOrdersUsers/>} />
 
         <Route path="*" element={<Home />} />
       </Routes>
