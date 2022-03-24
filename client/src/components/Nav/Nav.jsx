@@ -29,11 +29,9 @@ const Nav = () => {
   
 
   // const { isAuthenticated } = useAuth0();
-  useEffect(() => {}, [itemsQuantity]);
+  useEffect(() => {}, [ItemsQuantity]);
 
 
-
->>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
   return (
     <section className={styles.nav}>
       <Link to="/">
