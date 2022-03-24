@@ -17,14 +17,12 @@ import PurchaseOrders from "../../PurcharseOrders/PurchaseOrders"
 
 const switchView=(valor)=>{
 
-    console.log('dentro de switch :',valor)
+   // console.log('dentro de switch :',valor)
     switch (valor) {
       case "users":
 
         console.log('se monta los usuarios')
         return <UsersTable/>;
-      case "products":
-        return <h1>Soy productos</h1>;
 
       case "create": 
         return <Create/>;
@@ -32,14 +30,13 @@ const switchView=(valor)=>{
       case "modify":
         return <Modify />;
 
-      case "reports":
-        return <h1>Soy reports</h1>;
+      
 
       case "sales":
         return <PurchaseOrders/>;
 
-      case "home":
-        return <PageHome />;
+      // case "home":
+      //   return <PageHome />;
       default:
         return <PageHome />;
     }
@@ -55,7 +52,7 @@ const PanelHome = () => {
       <div className={darkMode ? "dark" : "app"}>
         <TopBar />
         <div className={styles.container}>
-          {console.log("panel renderizado: ", viewPage, darkMode)}
+        
           <SideBar />
           <div className={styles.others}>{switchView(viewPage)}</div>
         </div>

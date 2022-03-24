@@ -376,7 +376,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         admin: {
           ...state.admin,
-          users: action.payload,
+          users: [action.payload],
         },
       };
 
@@ -394,7 +394,7 @@ export default function rootReducer(state = initialState, action) {
         sum += choosenCart[i].price * choosenCart[i].quantity;
       
     }
-      console.log("choosenCart", choosenCart)
+      //console.log("choosenCart", choosenCart)
       return {
         ...state,
         totalToPay: sum,

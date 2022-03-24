@@ -9,7 +9,7 @@ const TotalToPay = () => {
   const cartDb = useSelector((state) => state.cartDb);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(cartDb);
+  //console.log(cartDb);
   const totalToPay2 = useSelector((state) => state.totalToPay);
   let objUser = {
     UserID: user?.id,

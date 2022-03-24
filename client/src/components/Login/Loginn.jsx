@@ -91,7 +91,7 @@ const Login = ({ close, closeValue }) => {
     if (cart.length > 0 && post === false) {
       let obj = {
         Items: cart,
-        UserId: user.user.id,
+        UserId: user?.user.id,
       };
       dispatch(addCartDb(obj));
       dispatch(setPost());

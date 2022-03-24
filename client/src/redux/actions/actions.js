@@ -136,13 +136,13 @@ export const getUsersAdmin = (payload) => {
 
 
 export const getDetails = (id) => {
-  console.log(id);
+  //console.log(id);
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/api/product/${id}`
       );
-      console.log(data);
+      //console.log(data);
       dispatch({ type: TYPES.GET_FUNKO_DETAIL, payload: data });
     } catch (error) {
       dispatch({ type: TYPES.GET_CATEGORIES, payload: [] });
@@ -363,7 +363,7 @@ export const getCartDb = (obj) => {
         payload: data.Order_detail,
       });
     } catch (e) {
-      console.log("Error in ConfirmResetPassword");
+     // console.log("Error in ConfirmResetPassword");
 
     }}  }
 

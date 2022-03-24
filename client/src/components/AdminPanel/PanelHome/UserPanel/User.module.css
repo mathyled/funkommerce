@@ -16,7 +16,7 @@
     margin: 10px 5%;
     display: grid;
     /* border:1px solid var(--color-form); */
-    grid-template-columns: 0.5fr 1fr 1fr 2fr 0.8fr 0.6fr 0.4fr 0.4fr 0.4fr;
+    grid-template-columns: 0.5fr 1fr 1fr 2fr 0.8fr 0.4fr 0.4fr 0.4fr;
     grid-template-rows: repeat(auto-fill,1fr);
     justify-items: stretch;
 }

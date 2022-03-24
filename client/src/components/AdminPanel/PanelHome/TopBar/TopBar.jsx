@@ -17,20 +17,21 @@ const TopBar = () => {
                 <h1>Admin Panel</h1>
             </div>
             <div class="right_tb">
+                <div  class="notification_tb">
                 <MdDarkMode class="icon_tb" onClick={() => dispatch({ type: "TOGGLE" })} />
-
-                <div class="notification_tb">
+                </div>
+                {/* <div class="notification_tb">
                     <AiOutlineBell class="icon_tb" />
                     <span class="iconNotif_tb"><strong>2</strong></span>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <MdLanguage class="icon_tb" />
                 </div>
                 <div>
                     <IoMdSettings class="icon_tb" />
-                </div>
+                </div> */}
                 <div>
-                    <img src={admin} class="logo_tb" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt= "userIcon"className="logo_tb" />
                 </div>
             </div>
 

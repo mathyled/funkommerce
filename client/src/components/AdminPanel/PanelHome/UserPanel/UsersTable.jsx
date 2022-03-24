@@ -81,7 +81,7 @@ const UsersTable=()=>{
           <div>LastName</div>
           <div>Email</div>
           <div>Role</div>
-          <div>LogedIn</div>
+         
           <div>Delete</div>
           <div>Update</div>
           <div>ResetPass</div>
@@ -89,20 +89,20 @@ const UsersTable=()=>{
             console.log("id:", user);
             return (
               <>
-                <span className={Styles.span}>{index}</span>
-                <span  className={Styles.span}>{user.name}</span>
-                <span  className={Styles.span}>{user.lastName}</span>
-                <span  className={Styles.span}>{user.email}</span>
-                <span className={Styles.span}>{user.role}</span>
-                <span className={Styles.span}>{user.LogedIn.toString()}</span>
-                <button title="User Delete" id={user.id} onClick={userDelete}>
-                  <img src="/images/trash.svg" alt="trash" id={user.id} />
+                <span className={Styles.span}>{index +1 }</span>
+                <span  className={Styles.span}>{user.user.name}</span>
+                <span  className={Styles.span}>{user.user.lastName}</span>
+                <span  className={Styles.span}>{user.user.email}</span>
+                <span className={Styles.span}>{user.user.role}</span>
+                 {/* <span className={Styles.span}>{user.user.LogedIn.toString()}</span>  */}
+                <button title="User Delete" id={user.user.id} onClick={userDelete}>
+                  <img src="/images/trash.svg" alt="trash" id={user.user.id} />
                 </button>
-                <button title="User Update" id={user.id} onClick={userUpdate}>
-                  <img src="/images/update.svg" alt="trash" id={user.id} />
+                <button title="User Update" id={user.user.id} onClick={userUpdate}>
+                  <img src="/images/update.svg" alt="trash" id={user.user.id} />
                 </button>
                 <button title="Reset Password" id={user.id} onClick={resetPassword}>
-                  <img src="/images/reset.svg" alt="reset" id={user.id} />
+                  <img src="/images/reset.svg" alt="reset" id={user.user.id} />
                 </button>
               </>
             );

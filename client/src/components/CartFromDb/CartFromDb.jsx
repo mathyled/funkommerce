@@ -99,7 +99,7 @@ const CartFromDb = () => {
     <div className={styles.subContainer}>
       {funkosfromdb?.map((funko) => (
         <ul key={funko.id}>
-          <li key={funko.id} className={styles.li}>
+          <li className={styles.li}>
             <div className={styles.title}>
               <h2 className={styles.title}>{funko.title}</h2>
             </div>
