@@ -29,7 +29,12 @@ const Nav = () => {
   
 
   // const { isAuthenticated } = useAuth0();
+
+  //useEffect(() => {}, [itemsQuantity]);
+
+
   useEffect(() => {}, [ItemsQuantity]);
+
 
 
   return (

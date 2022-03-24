@@ -135,7 +135,6 @@ export const getUsersAdmin = (payload) => {
 
 
 
-
 export const getDetails = (id) => {
   console.log(id);
   return async (dispatch) => {

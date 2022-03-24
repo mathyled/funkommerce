@@ -74,7 +74,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
       let funkoAAgregar = funkos.find((e) => e.id === id);
       let modifyQuantityToFunkoDb = { ...funkoAAgregar, quantity: 1 };
   
-      setarrVerfication((prevState) => prevState.concat(modifyQuantityToFunkoDb));
+      setarrVerfication((prevState) => prevState.concat([{...modifyQuantityToFunkoDb}]));
   
       let obj = {
         Items: cart.length < 1 ? [modifyQuantityToFunkoDb] : cart,
