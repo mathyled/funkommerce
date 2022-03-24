@@ -25,19 +25,14 @@ const initialState = {
   admin: {
     users: [],
   },
-
   detail: [],
-
   categories: [],
   license: [],
   brand: [],
-
   reviews: [],
-
   totalToPay: 0,
   itemsQuantity: 0,
   actualPage: 1,
-
   confirm: {},
   orders: [],
   userGoogle:{}

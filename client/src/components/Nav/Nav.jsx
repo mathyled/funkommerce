@@ -28,9 +28,12 @@ const Nav = () => {
   const token = useSelector((state) => state.token);
   
 
-
   // const { isAuthenticated } = useAuth0();
+
   //useEffect(() => {}, [itemsQuantity]);
+
+
+  useEffect(() => {}, [ItemsQuantity]);
 
 
 

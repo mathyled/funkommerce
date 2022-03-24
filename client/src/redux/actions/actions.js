@@ -133,6 +133,11 @@ export const getUsersAdmin = (payload) => {
 */
 
 
+// export const getUsersAdmin=(token,email) => {
+
+  // return async(dispatch)=>{
+  // }}
+// }
 
 // export const findUser = (user,token, idUser) => {
 //   return {
