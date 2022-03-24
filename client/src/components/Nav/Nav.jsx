@@ -8,7 +8,7 @@ import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Funkommerce3 from "../../assets/funkommerce3.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../redux/actions/actions";
-
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 
 // import LoginAunth0 from "../LoginAuth0/LoginAuth0";
@@ -23,7 +23,7 @@ import { useEffect } from "react";
 
 const Nav = () => {
   const dispatch = useDispatch();
-
+  const userLocal = useSelector((state) => state.user);
   const user = useSelector((state) => state.userGoogle);
   const token = useSelector((state) => state.token);
   
@@ -74,7 +74,7 @@ const Nav = () => {
         )}
       </div>
       <div>
-        {/* {user.role === "ADMIN" ? <button> <Link to ="/admin"> Settings </Link> </button> : ""} */}
+        {userLocal ? userLocal?.user.role === "ADMIN" ? <button className={styles.panel}> <Link to ="/admin" >Admin</Link> </button> : <button className={styles.panel}> <Link to ="/myorders" >My Orders</Link> </button> : ""}
       </div>
       <Link to="/cart" className={styles.linkToCart}>
         <ItemsQuantity />
