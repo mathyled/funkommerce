@@ -12,6 +12,9 @@ import global_es from "./translations/ES/global.json";
 import global_en from "./translations/EN/global.json";
 import { DarkModeContextProvider } from "./components/AdminPanel/PanelHome/DarkMode/context/darkModeContext";
 import { ContextRouter } from "./components/AdminPanel/PanelHome/context/RoutesContext/routerContext";
+import { Auth0Provider } from "@auth0/auth0-react";
+
+
 i18next.init({
   interpolation: { escapeValue: false },
   lng:"en",
@@ -23,11 +26,19 @@ i18next.init({
       global: global_es
     },
   }
-
+  
 })
+
+const domain =  process.env.REACT_APP_AUTH0_DOMAIN
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
 
 ReactDOM.render(
   <React.StrictMode>
+    <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}
+    >
     <I18nextProvider i18n={i18next} >
     <DarkModeContextProvider>
       <ContextRouter>
@@ -39,7 +50,7 @@ ReactDOM.render(
       </ContextRouter>
       </DarkModeContextProvider>
     </I18nextProvider>
-
+    </Auth0Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

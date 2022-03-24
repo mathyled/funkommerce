@@ -1,34 +1,51 @@
+
 //import { Storage } from "../../helpers/salveStorage";
+
 
 import { TYPES } from "../actions/types";
 
-
-
 const initialState = {
-  funkos: [], 
+  funkos: [],
   funkosBackUp: [],
   cart:
     JSON.parse(localStorage.getItem("funkosInCart")) === null
       ? []
       : JSON.parse(localStorage.getItem("funkosInCart")),
 
-  user: null, //Usuario de la sesion
-  token:null,
-  msg:null,
+  cartDb: [],
+  user12: null,
+  post:
+    JSON.parse(localStorage.getItem("post")) === null
+      ? false
+      : JSON.parse(localStorage.getItem("post")),
+
+  user: null, //Usuario de la sesion {}
+
+  idUser: null,
+  // loggedUser  token  userId
+  msg: null,
+  token: null,
+  admin: {
+    users: [],
+  },
   detail: [],
   categories: [],
   license: [],
   brand: [],
-  reviews:[],
-  totalToPay: 0, 
-  actualPage: 1, 
-  confirm:{},
+
   favoritePost: []
+
+  reviews: [],
+  totalToPay: 0,
+  itemsQuantity: 0,
+  actualPage: 1,
+  confirm: {},
+  orders: [],
+  userGoogle:{}
+
 };
 
-
 export default function rootReducer(state = initialState, action) {
-
   switch (action.type) {
     case TYPES.GET_FUNKOS:
       return {
@@ -129,7 +146,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CLEAR_CART:
-      localStorage.clear();
+      localStorage.removeItem("funkosInCart");
       //storage.removeItem(keyName);
       return {
         ...state,
@@ -231,18 +248,6 @@ export default function rootReducer(state = initialState, action) {
         funkos: categoryFilter,
       };
 
-    // case TYPES.HANDLE_LICENSE:
-    //     const allFunkos3 = state.funkos;
-
-    //     // eslint-disable-next-line array-callback-return
-    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((i) => ( i.license && i.attributes.license?.includes(action.payload)
-    //     ))
-    //     console.log(licenseFilter)
-    //     return {
-    //       ...state,
-    //       funkos: licenseFilter
-    //    }
-
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -253,20 +258,14 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         funkos: brandFilter,
-      }; 
+      };
 
     case TYPES.HANDLE_LICENSE:
       let allFunkos3 = state.funkosBackUp;
-
-      // eslint-disable-next-line array-callback-return
-      //console.log(action.payload);
       let licenseFilter =
         action.payload === "ALL"
           ? state.funkos
-          : allFunkos3.filter(
-              (e) => e.license && e.license?.includes(action.payload)
-            );
-      // console.log(licenseFilter);
+          : allFunkos3.filter((e) => e.License.name.includes(action.payload));
       return {
         ...state,
         funkos: licenseFilter,
@@ -275,7 +274,7 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.GET_USER:
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
-
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
       return {
         ...state,
         user: action.payload.user,
@@ -283,33 +282,109 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.CREATE_USER:
+      console.log(action.payload);
       localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
+      localStorage.setItem("userId", JSON.stringify(action.payload.idUser));
 
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        idUser: action.payload.idUser,
       };
 
-    case TYPES.FIND_USER:
-      localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+    case TYPES.DELETE_USER:
+     // console.log("user payload: ", action.payload);
+      const users = state.admin.users.filter(
+        (user) => user.id !== action.payload.id
+      );
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          users: users,
+        },
+      };
+
+    case TYPES.UPDATE_USER:
+
+      console.log("user update payload: ", action.payload);
+      const indexUpdate = state.admin.users.findIndex(
+        (user) => user.id === action.payload.id
+      );
+      const copyUser = state.admin.users;
+      copyUser[indexUpdate] = action.payload;
 
       return {
         ...state,
-        user: action.payload.user,
-        token: action.payload.token,
+        admin: {
+          ...state.admin,
+          users: copyUser,
+        },
+      };
+
+    case TYPES.RESET_PASSWORD_ADMIN:
+
+    const indexDel=state.admin.users.findIndex(user=>user.id === action.payload.id);
+    const userCopy=state.admin.users;
+      // console.log(state.admin.users)
+      // console.log(indexUpdate)
+      const newUser = {
+        ...copyUser[indexDel],
+        password: "",
+      };
+      copyUser[indexDel]=newUser;
+    
+      return {
+        ...state,
+        admin:{
+          ...state.admin,
+          users:copyUser
+        }
+      }
+
+
+    case TYPES.FIND_USER:
+    //  console.log(action.payload.user);
+      if (action.payload === null) return state;
+
+      // localStorage.setItem("loggedUser", JSON.stringify(action.payload.user));
+      // localStorage.setItem("token", JSON.stringify(action.payload.token));
+      console.log( action.payload.user);
+      const user=action.payload.user ? JSON.parse(action.payload.user) : null;
+      console.log(  action.payload.token);
+      const token=(action.payload.token==='undefined') ? null : JSON.parse(action.payload.token) ;
+
+      //  console.log(tokenLoaded);
+      return {
+        ...state,
+        user: JSON.parse(action.payload.user),
+        token: JSON.parse(action.payload.token),
+        idUser: JSON.parse(action.payload.idUser),
+
       };
 
     case TYPES.LOGOUT_USER:
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("token");
-
+      localStorage.removeItem("userId");
+      localStorage.removeItem("funkosInCart");
       return {
         ...state,
         user: null,
         token: null,
+        userId: null,
+        cart:[],
+      };
+
+    case TYPES.GET_USERS_ADMIN:
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          users: action.payload,
+        },
       };
 
     case TYPES.GET_REVIEWS:
@@ -319,10 +394,14 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case TYPES.MODIFIED_TOTAL:
+      let choosenCart = state.token ? state.cartDb : state.cart;
       let sum = 0;
-      for (let i = 0; i < state.cart.length; i++) {
-        sum += state.cart[i].price * state.cart[i].quantity;
-      }
+      
+      for (let i = 0; i < choosenCart.length; i++) {
+        sum += choosenCart[i].price * choosenCart[i].quantity;
+      
+    }
+      console.log("choosenCart", choosenCart)
       return {
         ...state,
         totalToPay: sum,
@@ -336,32 +415,17 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.CREATE_FUNKO:
       return {
-        ...state
-      };
-
-    case TYPES.CREATE_LICENSE:
-      return {
-        ...state
-      };
-
-    case TYPES.CREATE_BRAND:
-      return {
-        ...state
-      };
-
-    case TYPES.CREATE_CATEGORY:
-      return {
-        ...state
+        ...state,
       };
 
     case TYPES.MODIFY_FUNKO:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.DELETE_FUNKO:
       return {
-        ...state
+        ...state,
       };
 
     case TYPES.GET_CONFIRM:
@@ -370,10 +434,94 @@ export default function rootReducer(state = initialState, action) {
         confirm: action.payload,
       };
 
-      case TYPES.RESET_PASSWORD:
-        return{
+    case TYPES.RESET_PASSWORD:
+      return {
+        ...state,
+        msg: action.payload,
+      };
+
+    case TYPES.GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case TYPES.CHANGE_STATUS:
+      return {
+        ...state,
+      };
+
+    case TYPES.GET_CART_DB:
+      let funkosInDb = state.funkosBackUp;
+      
+      let arr3 = [];
+      funkosInDb.filter((funko) => {
+        action.payload.filter((funkoFromdb) => {
+          if (funko.id === funkoFromdb.productId) {
+            arr3.push({ ...funko, quantity: funkoFromdb.quantity });
+          }
+        });
+      });
+
+      return {
+        ...state,
+        cartDb: arr3,
+        
+      };
+
+    case TYPES.SET_POST:
+      localStorage.setItem("post", JSON.stringify(true));
+      return {
+        ...state,
+        post: true,
+      };
+    case TYPES.RESTARTING_POST:
+      localStorage.setItem("post", JSON.stringify(false));
+      return {
+        ...state,
+        post: false,
+      };
+
+     case TYPES.SET_ITEMS_QUANTITY:
+      // console.log(action.payload);
+       return {
+         ...state,
+         itemsQuantity: state.itemsQuantity + 1,
+         cartDb: [...state.cartDb,{...action.payload}]
+       };
+
+    case TYPES.FILTER_STATUS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case TYPES.MODIFIED_CART_DB:
+     return {
+       ...state,
+       cartDb: []
+     }
+
+
+    case TYPES.ADD_TO_CART_DB:
+      return {
+        ...state,
+        cartDb: state.cartDb.concat([{...action.payload}]),
+      };
+      case TYPES.RESET_COUNTER:
+      return {
+        ...state,
+        itemsQuantity: 0,
+      };
+
+      case TYPES.USER_GOOGLE:
+        return {
           ...state,
+
           msg: action.payload
+           token:action.payload.accessToken,
+          userGoogle: action.payload,
+        };
         }
 ////////////////FAVORITO
         case TYPES.GET_FAVORITE_POST:
@@ -391,6 +539,7 @@ export default function rootReducer(state = initialState, action) {
               ...state,
               favoritePost: state.favoritePost.filter(e => e.id !== action.payload)
           }
+
 
     default:
       return {

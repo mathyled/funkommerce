@@ -1,23 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { modifiedTotal, getCartDb } from "../../redux/actions/actions";
 
 const TotalToPay = () => {
-  // let cart = useSelector((state) => state.cart);
-  // //console.log(cart);
-  const totalToPay2 = useSelector(state => state.totalToPay)
-  // const [total, setTotal] = useState(0);
-  // let sum = 0;
-
-  // useEffect(() => {
-  //   for (let i = 0; i < cart.length; i++) {
-  //     sum += cart[i].price * cart[i].quantity; 
-  //   }
-  //   setTotal(sum);
-   
-  // }, [cart]);
-// console.log(total)
+  const cart = useSelector((state) => state.cart);
+  const cartDb = useSelector((state) => state.cartDb);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  console.log(cartDb);
+  const totalToPay2 = useSelector((state) => state.totalToPay);
+  let objUser = {
+    UserID: user?.id,
+  };
+  useEffect(() => {
+    if (user) {
+      dispatch(getCartDb(objUser));
+      dispatch(modifiedTotal());
+    }
+  }, [dispatch, cartDb]);
   return <div>US$ {totalToPay2.toFixed(2)}</div>;
 };
 export default TotalToPay;

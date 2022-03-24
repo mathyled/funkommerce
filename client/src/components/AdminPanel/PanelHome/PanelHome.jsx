@@ -8,27 +8,35 @@ import { DarkModeContext } from "./DarkMode/context/darkModeContext";
 import "./dark.css"
 import {RouterContext} from './context/RoutesContext/routerContext';
 
+import Create from "../../Form/CreateFunko";
+import Modify from "../../Form/Modification/ModifyFunko"
+
+import UsersTable from "./UserPanel/UsersTable";
+import PurchaseOrders from "../../PurcharseOrders/PurchaseOrders"
+
 
 const switchView=(valor)=>{
 
     console.log('dentro de switch :',valor)
     switch (valor) {
       case "users":
-        return <h1>Soy usuario</h1>;
+
+        console.log('se monta los usuarios')
+        return <UsersTable/>;
       case "products":
         return <h1>Soy productos</h1>;
 
-      case "transactions":
-        return <h1>Soy transacciones</h1>;
+      case "create": 
+        return <Create/>;
 
-      case "analitics":
-        return <h1>Soy analitics</h1>;
+      case "modify":
+        return <Modify />;
 
       case "reports":
         return <h1>Soy reports</h1>;
 
       case "sales":
-        return <h1>Sales</h1>;
+        return <PurchaseOrders/>;
 
       case "home":
         return <PageHome />;

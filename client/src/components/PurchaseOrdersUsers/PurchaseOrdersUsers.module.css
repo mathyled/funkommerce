@@ -1,0 +1,28 @@
+.all {
+    margin-top: 40px;
+}
+
+.eachOrder {
+    margin-top: 20px;
+    background-color: whitesmoke;
+}
+.orders {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.orderDetail {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    align-items: center;
+}
+
+.orderInfo {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    align-items: center;
+
+}

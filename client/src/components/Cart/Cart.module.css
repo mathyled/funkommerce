@@ -102,8 +102,12 @@
   padding: 15px 5px;
   overflow: hidden;
   width: 200px;
+  /* height: 350px; */
 }
-
+.title {
+  overflow: hidden;
+  height: 25px;
+}
 .price {
   margin: 5px 0px;
   background-color: #f3f3f7;
@@ -134,7 +138,6 @@
   padding: 15px 35px 15px 35px;
   display: flex;
   align-items: center;
-
 }
 .buttonsMoreAndLess:hover {
   background-color: #111;
