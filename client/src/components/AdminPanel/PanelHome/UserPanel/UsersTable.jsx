@@ -63,12 +63,12 @@ const UsersTable=()=>{
             console.log('id:',user.id)
             return (
               <>
-                <span>{index}</span>
-                <span>{user.name}</span>
-                <span>{user.lastName}</span>
-                <span>{user.email}</span>
-                <span>{user.role}</span>
-                <span>{user.LogedIn.toString()}</span>
+                <span className={Styles.span}>{index}</span>
+                <span  className={Styles.span}>{user.name}</span>
+                <span  className={Styles.span}>{user.lastName}</span>
+                <span  className={Styles.span}>{user.email}</span>
+                <span className={Styles.span}>{user.role}</span>
+                <span className={Styles.span}>{user.LogedIn.toString()}</span>
                 <button title="User Delete" id={user.id} onClick={userDelete}>
                   <img src="/images/trash.svg" alt="trash" id={user.id} />
                 </button>

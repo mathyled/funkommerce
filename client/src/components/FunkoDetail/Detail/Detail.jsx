@@ -26,7 +26,7 @@ const Detail = () => {
               </div>
               
               <div  className={styles.item} >
-                <h2><strong>License: </strong>{funkoDetails[0].license}</h2>
+                <h2><strong>License: </strong>{funkoDetails[0].License.name}</h2>
               </div>
 
               <div  className={styles.img} >
