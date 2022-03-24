@@ -6,11 +6,15 @@ import Paged from "../Paged/Paged";
 import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
+
+import FavoriteComponent from '../FavoriteComponent/FavoriteComponent'
+
 import { changePage, addCartDb, setPost, setItemsQuantity, getCartDb} from "../../redux/actions/actions";
 import axios from "axios";
 import CartFromDb from "../CartFromDb/CartFromDb";
 import Swal from "sweetalert2";
 import {modifiedTotal} from '../../redux/actions/actions'
+
 
 const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
   //PAGINADO
@@ -136,6 +140,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
                 <div className={styles.item} key={product.id}>
                   <ul key={product.id}>
                     <li className={styles.li}>
+                      <FavoriteComponent id={(product.id).toString()} title={product.title} img={product["image"]} />
                       <Link
                         to={`/detail/${product.id}`}
                         className={styles.linkDetails}
