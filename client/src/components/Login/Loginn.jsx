@@ -52,6 +52,38 @@ const Login = ({ close, closeValue }) => {
       alert(resultados[0]);
     } else{
       //  dispatch(findUser(inputs,close,closeValue));
+<<<<<<< HEAD
+         
+          
+           try {
+             const response = await axios.post(
+               "http://localhost:3001/api/user/signIn",
+               inputs
+             );
+             console.log('data: ',response)
+
+             if (response.data.msg ==="User signed in successfully"){
+
+               dispatch(findUser(response.data.user,response.data.token));
+  
+               setInputs({
+                 email: "",
+                 password: "",
+               });
+               event.target.email.value = "";
+               event.target.password.value = "";
+             }else{
+                 alert(response.data.msg); 
+             }
+
+             
+           } catch (error) {
+             console.log("FINDUSER_ACTION: ", error);
+           }
+       }
+     
+=======
+>>>>>>> 57c30fe9714eb8f1ef032237c643e2c088a6231c
 
       try {
         const { data } = await axios.post(
