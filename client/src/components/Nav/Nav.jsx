@@ -8,6 +8,7 @@ import ItemsQuantity from "../ItemsQuantity/ItemsQuantity";
 import Funkommerce3 from "../../assets/funkommerce3.png";
 import { useDispatch, useSelector} from "react-redux";
 import { logoutUser } from "../../redux/actions/actions";
+import FavoriteButton from "../FavoriteComponent/FavoriteButton";
 // import { AiOutlineHome } from "react-icons/ai";
 // import Order from "../Order/Order"
 // import Filters from '../Filters/Filters'
@@ -27,6 +28,7 @@ const Nav = () => {
         <img src={Funkommerce3} alt="img-not found" className={styles.img} />
       </Link>
       <Searchbar />
+      <FavoriteButton />
       <div className={styles.userbtns}>
         {!usuario && (
           <>
@@ -46,7 +48,7 @@ const Nav = () => {
           </button>
         )}
       </div>
-
+      
       <Link to="/cart" className={styles.linkToCart}>
         <ItemsQuantity />
         <MdOutlineAddShoppingCart className={styles.cartImg} />

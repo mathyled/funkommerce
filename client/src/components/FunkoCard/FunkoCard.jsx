@@ -7,6 +7,7 @@ import tristezaNotFound from "../../assets/tristezaNotFound.png";
 import Order from "../Order/Order";
 import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../redux/actions/actions";
+import FavoriteComponent from '../FavoriteComponent/FavoriteComponent'
 
 const FunkoCard = ({ funkos, addToCart1, cart }) => {
   ///PAGINADO
@@ -49,6 +50,7 @@ const FunkoCard = ({ funkos, addToCart1, cart }) => {
                 <div className={styles.item} key={product.id}>
                   <ul key={product.id}>
                     <li className={styles.li}>
+                      <FavoriteComponent id={(product.id).toString()} title={product.title} img={product["image"]} />
                       <Link
                         to={`/detail/${product.id}`}
                         className={styles.linkDetails}

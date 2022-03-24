@@ -3,12 +3,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails } from "../../../redux/actions/actions";
-import styles from "./Detail.module.css"
-import hotSale from "../../../assets/hotSale.png"
+import styles from "./Detail.module.css";
+import hotSale from "../../../assets/hotSale.png";
+import FavoriteComponent from '../../FavoriteComponent/FavoriteComponent'
+
 const Detail = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const funkoDetails = useSelector(state => state.detail)
+const { id } = useParams();
+const dispatch = useDispatch();
+const funkoDetails = useSelector(state => state.detail)
 
   useEffect(() => {
     dispatch(getDetails(id))
@@ -16,9 +18,8 @@ const Detail = () => {
 
 //  console.log("DETAILS", funkoDetails)
 
-    return (
-
-    
+    return (   
+      <>
           <div className={styles.item} >
        
               <div  className={styles.item} >
@@ -34,7 +35,9 @@ const Detail = () => {
                <img src={hotSale} alt="hot_sale" height="55px" />  
               </div>
           </div>
-    )
+          <FavoriteComponent id={id} title={funkoDetails[0].title} img={funkoDetails[0].image} />
+          </>
+          )
 };
 
 export default Detail;

@@ -1,4 +1,4 @@
-import { Storage } from "../../helpers/salveStorage";
+//import { Storage } from "../../helpers/salveStorage";
 
 import { TYPES } from "../actions/types";
 
@@ -22,7 +22,8 @@ const initialState = {
   reviews:[],
   totalToPay: 0, 
   actualPage: 1, 
-  confirm:{}
+  confirm:{},
+  favoritePost: []
 };
 
 
@@ -374,6 +375,22 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           msg: action.payload
         }
+////////////////FAVORITO
+        case TYPES.GET_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: action.payload
+          }
+      case TYPES.ADD_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: [...state.favoritePost, action.payload]
+          }
+      case TYPES.REMOVE_FAVORITE_POST:
+          return {
+              ...state,
+              favoritePost: state.favoritePost.filter(e => e.id !== action.payload)
+          }
 
     default:
       return {

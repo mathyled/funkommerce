@@ -411,3 +411,48 @@ export const ConfirmResetPassword = (token,newPassword) => {
     }
   };
 };
+
+///////////////////////////////  FAVORITE  ///////////////////////////////////////////
+
+export const addFavoritePost = (favoritePost) => {
+  return (dispatch) => {
+      dispatch({ type: TYPES.ADD_FAVORITE_POST, payload: favoritePost })
+      let favoritos = window.localStorage.getItem('favs')
+      let listFavorite = JSON.parse(favoritos)
+      window.localStorage.setItem("favs", JSON.stringify([...listFavorite, favoritePost]))
+  };
+}
+export const favoritePostList = () => {
+  return (dispatch) => {
+      let favoritos = window.localStorage.getItem('favs')
+      let listFavorite = JSON.parse(favoritos)
+      if (listFavorite?.length !== 0) {
+          window.localStorage.setItem("favs", JSON.stringify(listFavorite))
+      }
+  };
+}
+export const getFavoritePostList = () => {
+  return (dispatch) => {
+      let favoritos = window.localStorage.getItem('favs')
+      let listFavorite = JSON.parse(favoritos)
+      if (!listFavorite) {
+          dispatch({ type: TYPES.GET_FAVORITE_POST, payload: [] })
+      } else {
+
+          dispatch({ type: TYPES.GET_FAVORITE_POST, payload: listFavorite })
+      }
+  };
+}
+
+export const deleteFavoritePost = (id) => {
+  return (dispatch) => {
+      dispatch({ type: TYPES.REMOVE_FAVORITE_POST, payload: id })
+      let favoritos = window.localStorage.getItem('favs')
+      let listFavorite = JSON.parse(favoritos)
+      if (listFavorite) {
+          let deletefav = listFavorite.filter((e) => e.id !== id)
+          window.localStorage.setItem("favs", JSON.stringify(deletefav))
+      }
+
+  };
+}
