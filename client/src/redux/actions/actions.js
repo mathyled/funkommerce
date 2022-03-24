@@ -471,4 +471,11 @@ export const modifiedCartDb = () => {
     };
   
 };
+
+export const resetCounter = () => {
+  return {
+       type: TYPES.RESET_COUNTER
+     };
+   
+ };
   
