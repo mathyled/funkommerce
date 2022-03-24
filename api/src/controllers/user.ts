@@ -113,7 +113,7 @@ export const signIn = async (req: Request, res: Response) => {
             where: { id: user.id },
             data: { LogedIn: true }
         });
-        res.status(200).header('auth-token', token).send({ msg: "User signed in successfully", token ,user:{name:userLoged.name,email:userLoged.email}});
+        return res.status(200).header('auth-token', token).send({ msg: "User signed in successfully", token ,user:{id:userLoged.id,name:userLoged.name,email:userLoged.email}});
     }
 
     } catch (error) {
