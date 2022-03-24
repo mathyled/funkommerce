@@ -241,18 +241,6 @@ export default function rootReducer(state = initialState, action) {
         funkos: categoryFilter,
       };
 
-    // case TYPES.HANDLE_LICENSE:
-    //     const allFunkos3 = state.funkos;
-
-    //     // eslint-disable-next-line array-callback-return
-    //   let licenseFilter = action.payload === 'ALL' ? state.funkos : allFunkos3.filter((e) => ( e.License.name && e.attributes.license?.includes(action.payload)
-    //     ))
-    //     console.log(licenseFilter)
-    //     return {
-    //       ...state,
-    //       funkos: licenseFilter
-    //    }
-
     case TYPES.HANDLE_BRANDS:
       const allFunkos2 = state.funkosBackUp;
 
@@ -401,9 +389,11 @@ export default function rootReducer(state = initialState, action) {
     case TYPES.MODIFIED_TOTAL:
       let choosenCart = state.token ? state.cartDb : state.cart;
       let sum = 0;
+      
       for (let i = 0; i < choosenCart.length; i++) {
         sum += choosenCart[i].price * choosenCart[i].quantity;
-      }
+      
+    }
       console.log("choosenCart", choosenCart)
       return {
         ...state,
@@ -456,7 +446,7 @@ export default function rootReducer(state = initialState, action) {
 
     case TYPES.GET_CART_DB:
       let funkosInDb = state.funkosBackUp;
-      // console.log(funkosInDb)
+      
       let arr3 = [];
       funkosInDb.filter((funko) => {
         action.payload.filter((funkoFromdb) => {
@@ -469,6 +459,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         cartDb: arr3,
+        
       };
 
     case TYPES.SET_POST:
