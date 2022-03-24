@@ -161,7 +161,7 @@ const FunkoCard = ({ funkos, addToCart1, choosenCart, cart}) => {
                             : addOneObjectToCartDb(product.id);
                           
                           }}
-                          className={styles.buttonAdd}
+                          className={`${styles.buttonAdd} ${choosenCart.find((item) => item.id === product.id)? styles.buttonAddInCart : ""}`}
                         >
                           {choosenCart.find((item) => item.id === product.id)
                             ? "In cart"

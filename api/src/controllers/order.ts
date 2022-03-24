@@ -120,7 +120,7 @@ export const allStatusOrder = async (req: Request, res: Response) => {
 
 export const OrderAccordingState = async (req: Request, res: Response) => {
   try {
-    const props = req.body;
+    const props = req.params;
     const statusOrder: any = await helpersOneStatusAllOrder(props);
     statusOrder.length
       ? res.status(200).send(statusOrder)

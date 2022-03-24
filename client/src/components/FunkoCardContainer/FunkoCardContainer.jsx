@@ -20,8 +20,8 @@ const FunkoCardContainer = () => {
 
   let cart = useSelector((state) => state.cart);
   
-  let cartDb = useSelector((state) => state.cartDb);
-  let token = useSelector((state) => state.cartDb);
+  let cartDb  = useSelector((state) => state.cartDb);
+  let token = useSelector((state) => state.token);
   let itemsQuantity = useSelector((state) => state.setItemsQuantity);
   
   let choosenCart =  token ? cartDb : cart

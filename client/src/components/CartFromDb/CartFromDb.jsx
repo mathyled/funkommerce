@@ -16,9 +16,8 @@ const CartFromDb = () => {
   const [render, setRender] = useState(true);
 
   const updateQuantityInCartDb = async (id, operation) => {
-    
-      let itemInCart = funkosfromdb.find((item) => item.id === id);
-
+    let itemInCart = funkosfromdb.find((item) => item.id === id);
+    if (itemInCart.stock > itemInCart.quantity) {
       let cartToPut = await funkosfromdb.map((item2) =>
         item2.id === itemInCart.id
           ? {
@@ -37,24 +36,54 @@ const CartFromDb = () => {
       );
       setRender(!render);
       console.log("cartToPut", cartToPut);
-    
+    } else if (
+      itemInCart.stock === itemInCart.quantity &&
+      operation === substractOne
+    ) {
+      let cartToPut = await funkosfromdb.map((item2) =>
+        item2.id === itemInCart.id
+          ? {
+              ...item2,
+              quantity: --item2.quantity,
+            }
+          : item2
+      );
+      const cartUserdb = await axios.put(
+        "http://localhost:3001/api/order/updataquantity",
+        {
+          Items: cartToPut,
+          idUser: 2,
+        }
+      );
+      setRender(!render);
+      console.log("cartToPut", cartToPut);
+    } else {
+      Swal.fire({
+        title: "Maximum quantity of this product reaches",
+        icon: "info",
+        timer: 4000,
+        timerProgressBar: true,
+      });
+    }
   };
 
   const deleteProductFromCartDb = async (id) => {
     const cartUserdb2 = await axios.delete(
       "http://localhost:3001/api/order/product",
       {
-        data: { idUser: 2, idProduct: id },
+        data: { idProduct: id, idUser: 2 },
       }
     );
+    let objUser = {
+      UserID: 4,
+    };
+    dispatch(getCartDb(objUser));
     setRender(!render);
 
-    console.log("hice delete del product")
+    console.log("hice delete del product");
   };
 
-  useEffect(() => {
-    
-  }, [funkosfromdb,dispatch, render, post]);
+  useEffect(() => {}, [dispatch, post, funkosfromdb]);
 
   return (
     <div className={styles.subContainer}>

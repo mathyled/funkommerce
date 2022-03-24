@@ -26,16 +26,13 @@ const Nav = () => {
 
   const user = useSelector((state) => state.userGoogle);
   const token = useSelector((state) => state.token);
-  let itemsQuantity = useSelector((state) => state.setItemsQuantity);
+  
+
 
   // const { isAuthenticated } = useAuth0();
   useEffect(() => {}, [itemsQuantity]);
 
-  {
-    /* const usuario = useSelector(state => state.user); */
-  }
 
-  //console.log(isAuthenticated);
 
   return (
     <section className={styles.nav}>
@@ -44,7 +41,7 @@ const Nav = () => {
       </Link>
       <Searchbar />
       <div className={styles.userbtns}>
-        {!token && (
+        {!token ? (
           <>
             { token ? (
               <div className={styles.auth}>
@@ -61,13 +58,12 @@ const Nav = () => {
               </div>
             )}
           </>
-        )}
-
-        {token && (
+        ):token && (
           <button
             className={styles.logout}
             onClick={(event) => {
               dispatch(logoutUser());
+              
             }}
           >
             LOGOUT
